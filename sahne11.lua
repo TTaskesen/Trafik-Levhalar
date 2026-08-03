@@ -90,12 +90,13 @@ local function metinOlustur(icerik, ustBosluk)
     end
 
     local tabBarHeight = composer.getVariable("tabBarHeight") or 0
+    local oy = math.abs(display.screenOriginY)
     local scrollView = widget.newScrollView(
         {
-            top = ustBosluk,
+            top = ustBosluk or 230,
             left = 0,
             width = display.contentWidth,
-            height = display.contentHeight - ustBosluk - tabBarHeight,
+            height = display.contentHeight + oy - (ustBosluk or 230) - tabBarHeight,
             horizontalScrollDisabled = true,
             backgroundColor = { 1, 1, 1 }
         })
@@ -254,10 +255,10 @@ function scene:create(event)
 
     self.tableView = widget.newTableView
         {
-            top = 32 - oy,
+            top = -oy,
             left = -ox,
             width = display.contentWidth + ox + ox,
-            height = display.contentHeight - tabBarHeight + oy + oy - 32,
+            height = display.contentHeight - tabBarHeight + oy + oy,
             hideBackground = true,
             onRowRender = onRowRender,
             onRowTouch = onRowTouch,

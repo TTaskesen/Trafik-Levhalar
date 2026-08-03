@@ -972,10 +972,10 @@ function sahne:create(olay)
 	-- Create a tableView
 	tableView = widget.newTableView
 		{
-			top = 32 - oy,
+			top = -oy,
 			left = -ox,
 			width = display.contentWidth + ox + ox,
-			height = display.contentHeight - tabBarHeight + oy + oy - 32,
+			height = display.contentHeight - tabBarHeight + oy + oy,
 			hideBackground = true,
 			listener = tableViewListener,
 			onRowRender = onRowRender,

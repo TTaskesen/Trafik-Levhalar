@@ -178,7 +178,7 @@ function sahne:create(olay)
 
 	resim1 = display.newImageRect("levha/logo.png", 80, 80)
 	resim1.x = display.contentCenterX
-	resim1.y = 56
+	resim1.y = 100
 	sceneGroup:insert(resim1)
 
 
@@ -194,12 +194,13 @@ function sahne:create(olay)
 	sceneGroup:insert( yazi4 ) ]]
 
 
+	local oy7 = math.abs(display.screenOriginY)
 	local scrollView = widget.newScrollView(
 		{
-			top = 128,
+			top = 148,
 			left = 0,
 			width = display.contentWidth,
-			height = display.contentHeight - 128 - (sahneDegis.getVariable("tabBarHeight") or 0),
+			height = display.contentHeight + oy7 - 148 - (sahneDegis.getVariable("tabBarHeight") or 0),
 			horizontalScrollDisabled = true,
 			backgroundColor = { 1, 1, 1 }
 		})
@@ -213,14 +214,14 @@ function sahne:create(olay)
 
 	repeat
 		paragraph, tmpString = string.match(tmpString, "([^\n]*)\n(.*)")
-		paragraphs[#paragraphs + 1] = display.newText({ text = paragraph, width = scrollView.width - (mainPadding * 2), fontSize = 15, font = "Poppins-Medium" })
+		paragraphs[#paragraphs + 1] = display.newText({ text = paragraph, width = scrollView.width - (mainPadding * 2), fontSize = 16, font = "Poppins-Medium" })
 		paragraphs[#paragraphs].anchorX = 0
 		paragraphs[#paragraphs].anchorY = 0
 		paragraphs[#paragraphs].x = mainPadding
 		paragraphs[#paragraphs].y = yStart
 		paragraphs[#paragraphs]:setFillColor(0.2)
 		scrollView:insert(paragraphs[#paragraphs])
-		yStart = yStart + paragraphs[#paragraphs].height
+		yStart = yStart + paragraphs[#paragraphs].height + 5
 	until tmpString == nil or string.len(tmpString) == 0
 
 	scrollView:setScrollHeight(scrollView:getView().height + (mainPadding * 2))

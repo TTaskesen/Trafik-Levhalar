@@ -47,13 +47,15 @@ local function metinOlustur()
 
     local tabBarHeight = composer.getVariable("tabBarHeight") or 0
     local ustBosluk = 64
+    local oy = math.abs(display.screenOriginY)
     local scrollView = widget.newScrollView(
         {
             top = ustBosluk,
             left = 0,
             width = display.contentWidth,
-            height = display.contentHeight - ustBosluk - tabBarHeight,
-            horizontalScrollDisabled = true
+            height = display.contentHeight + oy - ustBosluk - tabBarHeight,
+            horizontalScrollDisabled = true,
+            backgroundColor = { 1, 1, 1 }
         })
 
     local yStart = 10
