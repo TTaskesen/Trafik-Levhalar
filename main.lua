@@ -36,19 +36,6 @@ local function widgetleriGoster( widgetTemaNumarasi )
 	local ekranYuksekligiYarisi = display.contentCenterY
 	local ekranGenisligi, ekranYuksekligi = math.abs(display.screenOriginX), math.abs(display.screenOriginY)
 
-	-- Create title bar at top of the screen
-	local baslikRenkDagilimi = {
-		type = 'gradient',
-		color1 = { 189/255, 203/255, 220/255, 1 }, 
-		color2 = { 89/255, 116/255, 152/255, 1 },
-		direction = "down"
-	}
-	local baslikKismi = display.newRect(ekranGenisligiYarisi, 0, display.contentWidth+ekranGenisligi+ekranGenisligi, 32 )
-	baslikKismi:setFillColor( baslikRenkDagilimi )
-	baslikKismi.y = baslikKismi.contentHeight * 0.5 - ekranYuksekligi
-
-	local baslikMetin = display.newText( "Trafik Levhaları "..temaAdlari[widgetTemaNumarasi], ekranGenisligiYarisi, baslikKismi.y, native.systemFont, 14 )
-
 	if ( temaIdleri[widgetTemaNumarasi] ~= "auto" ) then
 		-- Set theme based on user selection
 		widget.setTheme( temaIdleri[widgetTemaNumarasi] )

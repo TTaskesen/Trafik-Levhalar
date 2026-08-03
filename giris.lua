@@ -13,18 +13,29 @@ local tabBar
 function sahne:create(olay)
 	local sceneGroup = self.view
 
-	-- Arka plan: ana uygulama arka planı açık renkli düz zemindir (bg.jpg kullanılmaz)
+	-- Arka plan: buz mavisi tonu (uygulamanın mavi temasıyla uyumlu karşılama ekranı)
+	local zemin = display.newRect(display.contentCenterX, display.contentCenterY,
+		display.contentWidth, display.contentHeight)
+	zemin:setFillColor(0.84, 0.91, 0.97)
+	sceneGroup:insert(zemin)
 
-	local baslik = display.newText("Karayolları Standart İşaret Levhaları", 0, 0, "Poppins-Bold", 15)
-	baslik:setFillColor(0.15)
+	-- Başlık kartı (diğer sayfalarla aynı stil: mavi kart + beyaz Bebas yazı)
+	local baslikKarti = display.newRoundedRect(display.contentCenterX, 78, 310, 74, 10)
+	baslikKarti:setFillColor(0.05, 0.3, 0.55, 0.85)
+	baslikKarti:setStrokeColor(1, 1, 1, 0.35)
+	baslikKarti.strokeWidth = 1.5
+	sceneGroup:insert(baslikKarti)
+
+	local baslik = display.newText("KARAYOLLARI STANDART\nİŞARET LEVHALARI", 0, 0, "BebasNeue-Regular", 26)
+	baslik:setFillColor(1)
 	baslik.x = display.contentCenterX
-	baslik.y = 90
+	baslik.y = 78
 	sceneGroup:insert(baslik)
 
 	local altBaslik = display.newText("Trafik İşaretleri Eğitim Uygulaması", 0, 0, "Poppins-Medium", 13)
 	altBaslik:setFillColor(0.45)
 	altBaslik.x = display.contentCenterX
-	altBaslik.y = 120
+	altBaslik.y = 126
 	sceneGroup:insert(altBaslik)
 
 	-- Uyarı üçgeni (tehlike işareti)
@@ -61,22 +72,61 @@ function sahne:create(olay)
 	durMetin.x, durMetin.y = dur.x, dur.y
 	sceneGroup:insert(durMetin)
 
-	local baslaButonu = widget.newButton {
-		width = 200,
-		height = 48,
-		label = "BAŞLA",
-		fontSize = 18,
-		labelColor = { default = { 1 }, over = { 1 } },
-		onRelease = function()
+	local function basiliEfekt(olay)
+		local nesne = olay.target
+		if olay.phase == "began" then
+			transition.to(nesne, { xScale = 0.93, yScale = 0.93, time = 90 })
+		elseif olay.phase == "ended" or olay.phase == "cancelled" then
+			transition.to(nesne, { xScale = 1, yScale = 1, time = 140, transition = easing.outBack })
+		end
+		return false
+	end
+
+	local baslaButonu = display.newRoundedRect(display.contentCenterX, 350, 210, 48, 8)
+	baslaButonu:setFillColor(0.05, 0.3, 0.55, 0.85)
+	baslaButonu:setStrokeColor(1, 1, 1, 0.35)
+	baslaButonu.strokeWidth = 1.5
+	sceneGroup:insert(baslaButonu)
+
+	local baslaMetin = display.newText("BAŞLA", 0, 0, "Poppins-Bold", 18)
+	baslaMetin:setFillColor(1)
+	baslaMetin.x, baslaMetin.y = baslaButonu.x, baslaButonu.y
+	sceneGroup:insert(baslaMetin)
+
+	baslaButonu:addEventListener("touch", basiliEfekt)
+	baslaMetin:addEventListener("touch", basiliEfekt)
+
+	local function basla()
+		if tabBar then
+			tabBar.isVisible = true
+		end
+		sahneDegis.gotoScene("sahne1", "fade", 500)
+	end
+	baslaButonu:addEventListener("tap", basla)
+	baslaMetin:addEventListener("tap", basla)
+
+	-- Hikâye kısayolu: sahne7'ye gider
+	local hikayeYazi = display.newText({
+		text = "BİR HİKAYE OKU",
+		x = 0, y = 0,
+		font = "Poppins-Bold",
+		fontSize = 14
+	})
+	hikayeYazi:setFillColor(0.05, 0.3, 0.55)
+	hikayeYazi.x = display.contentCenterX
+	hikayeYazi.y = 405
+	sceneGroup:insert(hikayeYazi)
+
+	local function hikayeDokun(olay)
+		if olay.phase == "began" then
 			if tabBar then
 				tabBar.isVisible = true
 			end
-			sahneDegis.gotoScene("sahne1", "fade", 500)
+			sahneDegis.gotoScene("sahne7", "fade", 400)
+			return true
 		end
-	}
-	baslaButonu.x = display.contentCenterX
-	baslaButonu.y = 350
-	sceneGroup:insert(baslaButonu)
+	end
+	hikayeYazi:addEventListener("touch", hikayeDokun)
 
 	local function nabiz()
 		if dur then

@@ -12,15 +12,140 @@ local widget = require("widget")
 local resim, resim1, yazi1, yazi2, yazi3, yazi4, zamanSay
 
 local myText =
-[[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque semper mollis erat a interdum. Praesent tristique diam in nulla varius, nec aliquet mauris posuere. Suspendisse pretium risus lacus, commodo lacinia sapien dictum et. Sed non varius felis. Curabitur elementum tortor non libero pulvinar, at convallis lectus varius. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur sit amet nunc congue, molestie erat vel, facilisis turpis. Morbi vitae diam ligula. Suspendisse purus turpis, commodo in aliquam id, lobortis a sapien. Sed at libero porta, aliquam odio nec, porta dui. In a congue velit. Aliquam ac quam feugiat, ultricies metus nec, porta neque. Phasellus posuere mollis magna, ac vestibulum ligula congue id. Pellentesque imperdiet aliquam lacus, ac pellentesque dui eleifend nec. Suspendisse auctor vehicula facilisis. Pellentesque id massa tincidunt neque luctus varius.
+[[
+SIFIR NOKTASI
 
-Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sit amet dapibus nulla. Suspendisse ut risus nulla. Maecenas varius elit non faucibus fermentum. Fusce rhoncus, nisl et varius tristique, enim felis egestas purus, et feugiat lorem urna a augue. Maecenas non pulvinar tortor. Aenean condimentum nibh id eros fringilla viverra. Fusce condimentum urna ut volutpat porttitor. Nunc tincidunt congue ligula.
+—— Bölüm 1: İlk Sinyal ——
 
-Duis placerat felis varius, convallis massa sed, volutpat magna. Sed vitae viverra neque. Integer ac sollicitudin libero, at ornare purus. Aliquam egestas hendrerit tellus. Aliquam eu elit vitae lorem lacinia tempus. Proin vel dictum mi. Maecenas porttitor, justo a dictum volutpat, nisl libero dictum ligula, vitae posuere urna elit a quam. Nam arcu metus, semper suscipit pellentesque ac, tempor ut arcu. Vestibulum eu nibh erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed semper sollicitudin lorem, vel commodo libero commodo eget. Proin lacinia euismod elit vitae porttitor. Proin ipsum neque, dictum at dictum eu, egestas malesuada turpis. Nulla eros lectus, adipiscing eget velit sed, malesuada aliquam ipsum. Curabitur et egestas massa. Vestibulum luctus est est, tincidunt viverra nisi vulputate id.
+Dr. Eylül, laboratuvarından dışarı fırladığında İstanbul'un üzerinde tek bir bulut bile yoktu.
 
-Integer lobortis tellus eu ligula viverra egestas. Quisque commodo, massa vel pretium imperdiet, nisl enim euismod justo, sed ultricies lacus mi ut nisi. Maecenas molestie vitae magna non interdum. In gravida ornare orci in vulputate. Praesent suscipit lobortis dui ut interdum. Proin pulvinar metus ligula, a malesuada nunc interdum at. Aenean et scelerisque enim. Integer eget congue sapien. Etiam suscipit mauris neque, id semper quam volutpat vel. Proin venenatis dictum felis quis ultricies. Suspendisse feugiat mi congue ante gravida, id accumsan leo mollis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In hac habitasse platea dictumst. Nulla facilisi.
+Gökyüzü, bu saatlerde hiç olmadığı kadar temizdi; o kadar temiz ki güneş, binaların camlarından geri dönen ışıkla birlikte şehri ikinci kez aydınlatıyor gibiydi. Ama Eylül bunları görmedi. Onun gözleri, elindeki tablette yanıp sönen kırmızı grafiğe kilitlenmişti: sıcaklık, son on dakikada üç buçuk derece düşmüştü.
 
-Nam arcu mauris, convallis sit amet dictum consequat, imperdiet at mi. Vestibulum velit erat, accumsan sit amet vehicula vitae, tempor id nisi. Quisque eu tellus vulputate nisi vestibulum tincidunt at vitae tellus. Quisque sed pretium nisl. Vivamus a aliquet purus. Integer pulvinar neque in dapibus pharetra. Quisque convallis urna vulputate ligula mattis dictum. Vivamus pharetra molestie nunc, ac rhoncus dolor euismod at. Cras fringilla sollicitudin sapien vel sagittis. Donec dignissim scelerisque mi nec pulvinar. Mauris at metus gravida, lacinia dolor quis, vehicula lacus. Donec a pellentesque tellus. Praesent sit amet lorem nisl. Pellentesque interdum felis quis vehicula vestibulum. Donec ut dolor tortor.
+"Bu mümkün değil," diye mırıldandı. Nefesi, sabah soğuğunda değil; korkudan buharlaşmıştı.
+
+Arkasında, laboratuvarın cam kapısının üstündeki dijital saat 06:47'yi gösteriyordu. İçeride, altı ay boyunca gece gündüz üzerinde çalıştığı deney düzeneği vardı: manyetik alanın, atmosferin yüksek katmanlarındaki su buharı üzerindeki etkisini ölçmek için tasarlanmış dev bir halka. O halka, sabah 06:40'ta, kendi kendine açılmıştı.
+
+Ve şimdi, İstanbul'un üzerinde tek bir bulut yokken, sıcaklık düşüyordu.
+
+Eylül, sağır edici sessizliğin içinde sokağa adımını attığında ilk çığlığı duydu. Sonra ikincisini. Sonra, bir anda, onlarcasını.
+
+Boğaz'ın üzerinde, gökyüzünde ince bir çizgi belirmişti. Beyaz değildi, mavimsiydi; sanki biri, gök kubbenin dokusunu iki parmağıyla kavrayıp ayırmıştı. Çizgiden aşağıya, ağır ağır, kar yağıyordu.
+
+Ama bu karın taneleri yere düşmüyordu. Denizin yüzeyine değdikleri yerde duruyor, birikir, donuyor ve orada, suyun üstünde kalıyorlardı. Boğaz, bir saat içinde, yürünebilir bir beyaza dönüştü.
+
+Eylül, laboratuvarına geri koştu. Tableti masanın üstüne bıraktı, halkaya yaklaştı ve ekrandaki son veriyi okudu. O anda, bilim insanı olarak bildiği her şeyi bir kenara bırakıp, sadece bir insan gibi düşündü:
+
+"Bunu ben yapmadım. Peki ya biri yaptıysa?"
+
+Dışarıda, İstanbul artık eski İstanbul değildi. Şehrin her yerinde insanlar durmuş, gökyüzündeki mavimsi çizgiye bakıyordu. Bazıları dua ediyor, bazıları telefonla birilerine ulaşmaya çalışıyor, bazıları ise — çoğunluk onlardı — susuyordu.
+
+Çünkü o çizginin altındaki kar, yalnızca Boğaz'a değil; her yere yağıyordu. Ama kimse bunun ne olduğunu bilmiyordu.
+
+Eylül biliyordu. En azından bir kısmını.
+
+Halkada, deneyden önce olması gereken enerji değerinin tam on iki katı ölçülmüştü. On iki kat. Ve o enerjinin kaynağı, dünyanın herhangi bir yerinde üretilemezdi — İstanbul'un altında, binlerce yıldır hiç kimsenin açmadığı bir kapı olduğunu o anda anladı.
+
+"Sıfır noktası," dedi sesli. Kelimeleri ağzında buz gibi soğudu.
+
+Ve dışarıda, ilk kez, kar taneleri yere ulaştı.
+
+—— Bölüm 2: Beyaz Sessizlik ——
+
+İlk kar tanesi yere değdiğinde, Eylül hâlâ laboratuvarındaydı.
+
+Onu duymadı. Ama kısa bir süre sonra, tüm İstanbul'u örten o sessizliği duydu. Sessizlik, sirenlerin ve çığlıkların ortasında bile, betonların arasından süzülen bir akşam gibiydi. Herkes durmuş, aynı göğe bakıyordu. Ne araba sesi vardı, ne vapur düdüğü, ne kuş sesi. Kentin sesi, buzun içinde sıkışmış gibiydi.
+
+Eylül, karın diz hizasına ulaştığı saatin içinde dışarı çıktı.
+
+Bu kar erimiyordu. Güpeğündüz olmasına rağmen, değdiği her yüzeyde duruyor, birikiyor, donuyordu. Sanki bir el, şehrin üzerine, sabırla ve soğuk bir özenle, uçsuz bir örtü seriyordu.
+
+Eylül, laboratuvarın önündeki arabaya koştu. Motor çalışmadı; yakıt donmuştu. Telefonla önce koordinasyon merkezini, sonra tesisi, sonra arkadaşlarını aradı. Kimse yanıt vermedi. Ekranda yalnızca "Çağrı gönderildi" yazısı ve yavaşça düşen sıcaklık değeri vardı: üç, iki, bir...
+
+Çizginin altında, İstanbul nefes almıyordu.
+
+Ve işte o sırada Eylül, buz tutmuş Boğaz'ın yüzeyinde yürüyen birini gördü. Bir kadın. Ayak izi bırakmadan, kayıyormuş gibi ilerliyordu. Uzun paltosunun etekleri, karın üzerinde kırışıksız bir iz çiziyordu.
+
+Kadın durdu ve Eylül'e doğru döndü. Yüzü uzaktan seçilmiyordu. Ama Eylül o duruştan bir şeyi anladı: bu kadın tesadüfen gelmemişti; bir şey arıyordu.
+
+Ve Eylül, aradığı şeyin deney halkası olabileceğini düşündü.
+
+Laboratuvara geri koştu. Kapıyı kilitledi, perdeyi kapattı ve ölçüm değerini açtı: on iki kat. Rakam hâlâ sabit duruyordu. Eylül o an, o enerjinin ne deneyden ne de bu dünyanın bildiği kaynaklardan geldiğini kesin olarak gördü. O enerji, İstanbul'un altındaki sıfır noktasından geliyordu.
+
+Ve sıfır noktasının kilidini açan şey, o kadın olabilirdi.
+
+Bir saniye, iki saniye... Eylül o an, karın içinde ilerleyen kadının ne bir hayalet ne bir kurtarıcı görmediğini anladı. Bu, bir varlıktı; bir insan, bir araç, bir mekanizma — hangisi olduğu belirsizdi. Ve gökyüzündeki mavimsi çizginin aslında ne olduğunu ilk kez kavradı: bir çizgi değil, bir işaretti.
+
+Dışarıda, kar yağmaya devam ediyordu. Ve o kar, zamanın üzerine çekilen bir çentik gibi, dünyanın ilk sıfırından itibaren her şeyi yeniden saymaya başlamıştı.
+
+—— Bölüm 3: Kapı ——
+
+Eylül, geceyi laboratuvarda geçirdi.
+
+Sıcaklık, gece yarısını geçtiğinde bir derece daha düştü ve sonra durdu — tıpkı birinin termometreye bakıp sabırla beklediği gibi. Dışarıda kar, diz boyundan göğüs hizasına varan bir birikintinin içinde hareketsizdi; rüzgâr yoktu, araba yoktu, kuş yoktu. Şehir, donmuş bir fotoğraf gibiydi.
+
+Eylül gözlerini açtığında o kadını düşündü. Ayak izi bırakmadan yürüyen kadın. Bir fizikçi için bu görüntü, çözülmesi gereken bir bilmeceden çok daha ötesiydi: o kadın, Eylül'ün yirmi yıldır aradığı sorunun cevabı gibi duruyordu. İstanbul'un altında, yüzyıllardır kimsenin açmadığı bir kapı vardı ve o kadın bunu biliyordu.
+
+İlk bilinçli adım, laboratuvarın en eski servis asansörüyle başladı.
+
+Asansör, kırk metrelik bir inişten sonra durdu. Kapılar açıldığında, Eylül'ü yeri sarsan bir sessizlik karşıladı. Ayaklarının altında, İstanbul'un antik haritalarındaki desenlere benzeyen dev bir çember vardı. Bu, hiçbir arşivde geçmeyen bir katmandı.
+
+Eylül, çemberin ortasına yürüdü. Duvarlarda, tanımadığı bir alfabeyle yazılmış satırlar vardı. Kimi yazılar tarih gibiydi, kimi uyarı.
+
+O alanda soluk beklerken, taşın içinden tok ve uzak bir ses geldi. Çemberin ortasındaki bir karonun etrafında, önce ince bir çatlak belirdi.
+
+Eylül geri çekildi. Yer, kendiliğinden açılıyordu — düzenli, ağır, neredeyse saygılı bir hareketle. Bu bir kapıydı; ama bir dilek değil, bir ağızdı. Genişledi, aşağıya, İstanbul'un derinliklerine doğru bir boşluk açtı.
+
+Eylül kapının ağzında durdu ve içeri indi.
+
+Aşağıda, çok uzun bir merdiven vardı. İki yanında, buz gibi parlayan raflarda, billur kaplar içinde nesneler diziliydi. Bazıları tanıdık şekildi; bazıları hiçbir dile, hiçbir çağa, hiçbir coğrafyaya ait değildi.
+
+Merdivenin sonunda çift bir kapı. Üzerinde, yazıların yalnızca bir kısmı İstanbul'un dilleriydi: "ÖLÇÜM — SICAKLIK — SIFIR".
+
+Ve kapının tam ortasında, kadının paltosunun kolundan kopmuş küçük bir kumaş parçası, bir sigara izmariti gibi değil; bir davet gibi, Eylül'e bakıyordu.
+
+Eylül kapıyı itti.
+
+Kapı, hiçbir zorluk yaşatmadan, kendiliğinden açıldı.
+
+Ve içeride, sıfırınucu bekliyordu.
+
+—— Bölüm 4: Sıfırın İçi ——
+
+İçeride, beklediği hiçbir şey yoktu.
+
+Ne makineler vardı, ne tüpler, ne bir laboratuvarın çelik titizliği. Sıfır noktası, evrenin bir köşesinden koparılıp buraya taşınmış gibiydi. Tavan yok gibiydi; ışık, yukarıdaki karanlığın ta içinden süzülüyordu. Yer, bastığı her noktada usulca parlıyordu.
+
+Odanın ortasında bir adam oturuyordu.
+
+Yaşı belli değildi. Derisi kireç gibi parlıyordu. Gözleri kapalıydı. Odadaki bütün sessizlik, bir mıknatısın önündeki toz gibi, adama doğru akıyordu.
+
+Eylül bir adım attı. Adam gözlerini açmadı.
+
+"Buraya nasıl girdiniz?" diye sordu. Sesi, taşların içinde boğuldu.
+
+Adam dudaklarını oynatmadı ama konuştu: "Herkes üzerinde yaşadığı toprağı bilmez. Ama İstanbul'un kapısı, bir kez açılır. O da yalnızca doğru kişiye."
+
+Zemin, adamın sözüyle birlikte aydınlandı. Eylül, parlayan çizgilerin arasında denizleri, dağları, göğü gördü. "Bunlar nedir?"
+
+Adanın gözleri açıldı. "Bunlar, ilk sıfır yazıldığında toprağın, kendine sorduğu soruların cevaplarıdır. Dünyaya örülmüş bir saat."
+
+Ve tam o anda kapının ağzından bir ses geldi:
+
+"Sen gelmeden önce, bunların hepsini bir bekleyişin parçası sanan tek kişi bendim."
+
+Eylül arkasına döndü. Kadın, kapıda duruyordu. Paltosu kıpırtısızdı.
+
+"Hoş geldin," dedi kadın. "On yıldır beni 'sıfırın bekçisi' diye bilirler. Gerçek adım Vefa."
+
+Eylül, tabletini elinden bırakıp adımında ona yaklaştı. "O deney benimdi," dedi. "Onu altı ay ben çalıştım. O sabah kendiliğinden açıldı. Ben çalışmadım."
+
+Vefa gülümsedi. "Senin gelişin bir kaza değildi. Kapı, doğru anahtarı bekledi."
+
+"Anahtar?" dedi Eylül. "Ben neyim ki?"
+
+"O anahtarın sen olduğunu," dedi Vefa, "deneyin sonucundan başka hiçbir şey kanıtlayamaz."
+
+Ve o anda, zeminin altından tok bir ses yükseldi. Eylül ayaklarının altına baktı: çember dönüyordu.
 ]]
 
 
@@ -40,9 +165,9 @@ function sahne:create(olay)
 
 	--resim.touch = sahneyeDokun
 
-	yazi1 = display.newText("SAĞA TEHLİKELİ VİRAJ", 0, 0, "Poppins-Bold", 16)
+	yazi1 = display.newText("SIFIR NOKTASI", 0, 0, "Poppins-Bold", 16)
 	yazi1:setFillColor(0.05, 0.3, 0.55)
-	yazi1.x, yazi1.y = display.contentWidth * 0.5, 50
+	yazi1.x, yazi1.y = display.contentWidth * 0.5, 12
 	sceneGroup:insert(yazi1)
 	yazi1:addEventListener("touch", yaziyaDokun)
 
@@ -51,9 +176,9 @@ function sahne:create(olay)
 	yazi2.x, yazi2.y = display.contentWidth * 0.5, 260
 	sceneGroup:insert( yazi2 ) ]]
 
-	resim1 = display.newImageRect("levha/logo.png", 150, 150)
+	resim1 = display.newImageRect("levha/logo.png", 80, 80)
 	resim1.x = display.contentCenterX
-	resim1.y = display.contentCenterY - 100
+	resim1.y = 56
 	sceneGroup:insert(resim1)
 
 
@@ -71,10 +196,10 @@ function sahne:create(olay)
 
 	local scrollView = widget.newScrollView(
 		{
-			top = 230,
+			top = 128,
 			left = 0,
 			width = display.contentWidth,
-			height = display.contentHeight - 230 - (sahneDegis.getVariable("tabBarHeight") or 0),
+			height = display.contentHeight - 128 - (sahneDegis.getVariable("tabBarHeight") or 0),
 			horizontalScrollDisabled = true,
 			backgroundColor = { 1, 1, 1 }
 		})
