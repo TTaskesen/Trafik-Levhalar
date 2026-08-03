@@ -1,0 +1,16 @@
+# Corona/CoronaSDK build artifacts
+.CoronaLiveBuild/
+build/
+*.apk
+*.ipa
+*.aab
+
+# OS files
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# IDE/editor
+*.iml
+.idea/
+.vscode/
