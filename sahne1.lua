@@ -103,22 +103,22 @@ function sahne:create(olay)
 	sceneGroup:insert(yazi1)
 
 	local menuler = {
-		{ metin = "TEHLİKE UYARI", dokun = yaziyaDokun2 },
-		{ metin = "TRAFİK TANZİM", dokun = yaziyaDokun3 },
-		{ metin = "BİLGİ", dokun = yaziyaDokun4 },
+		{ metin = "TEHLİKE UYARI",          dokun = yaziyaDokun2 },
+		{ metin = "TRAFİK TANZİM",          dokun = yaziyaDokun3 },
+		{ metin = "BİLGİ",                  dokun = yaziyaDokun4 },
 		{ metin = "DURAKLAMA VE PARK ETME", dokun = yaziyaDokun5 },
-		{ metin = "ÖZEL", dokun = yaziyaDokun6 },
-		{ metin = "OTOYOL LEVHALARI", dokun = yaziyaDokun7 },
+		{ metin = "ÖZEL",                   dokun = yaziyaDokun6 },
+		{ metin = "OTOYOL LEVHALARI",       dokun = yaziyaDokun7 },
 	}
 
 	-- Levha tab bara yakın durur; yazı satırları aradaki alana eşit aralıklarla dağılır
 	local kartYukseklik = 30
 	local tabBarHeight = sahneDegis.getVariable("tabBarHeight") or 50
 	local ustSinir = baslikKarti.y + baslikKarti.contentHeight / 2 -- başlığın alt kenarı
-	local altSinir = display.contentHeight - tabBarHeight -- tab barın üst kenarı
+	local altSinir = display.contentHeight - tabBarHeight       -- tab barın üst kenarı
 	local kartToplamYukseklik = #menuler * kartYukseklik
 	local levhaYukseklik = 41
-	local levhaAltBosluk = 5 -- levha ile tab bar arasındaki boşluk
+	local levhaAltBosluk = 5                                  -- levha ile tab bar arasındaki boşluk
 	local esitBosluk = (altSinir - levhaAltBosluk - levhaYukseklik - ustSinir - kartToplamYukseklik) / (#menuler + 1)
 	local baslangicY = ustSinir + esitBosluk + kartYukseklik / 2 -- ilk kartın merkezi
 
@@ -136,12 +136,19 @@ function sahne:create(olay)
 		yazi:addEventListener("touch", menu.dokun)
 		sceneGroup:insert(yazi)
 
-		if i == 1 then yazi2 = yazi
-		elseif i == 2 then yazi3 = yazi
-		elseif i == 3 then yazi4 = yazi
-		elseif i == 4 then yazi5 = yazi
-		elseif i == 5 then yazi6 = yazi
-		else yazi7 = yazi end
+		if i == 1 then
+			yazi2 = yazi
+		elseif i == 2 then
+			yazi3 = yazi
+		elseif i == 3 then
+			yazi4 = yazi
+		elseif i == 4 then
+			yazi5 = yazi
+		elseif i == 5 then
+			yazi6 = yazi
+		else
+			yazi7 = yazi
+		end
 	end
 
 	-- ÖZEL yazısının altındaki boşluğa her açılışta rastgele bir tehlike/uyarı işareti koy
