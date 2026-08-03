@@ -12,7 +12,7 @@ local sahne = sahneDegis.newScene()
 -- BEGINNING OF YOUR IMPLEMENTATION
 ---------------------------------------------------------------------------------
 
-local resim, yazi1, yazi2, yazi3, yazi4, yazi5, yazi6, yazi7, zamanSay
+local resim, yazi1, yazi2, yazi3, yazi4, yazi5, yazi6, yazi7, yazi8, zamanSay
 local menuler
 
 -- Tehlike/uyarı işareti resim kutusu (700x1950, 4 sütun x 13 satır = 52 kare)
@@ -78,6 +78,13 @@ local function yaziyaDokun7(olay, yazi)
 	end
 end
 
+local function yaziyaDokun8(olay, yazi)
+	if olay.phase == "began" and yazi8 then
+		splash.goster("sahne12", "slideRight")
+		return true
+	end
+end
+
 -- Kart/yazı basılı tutma görsel efekti
 local function basiliEfekt(olay)
 	local nesne = olay.target
@@ -118,6 +125,7 @@ function sahne:create(olay)
 		{ metin = "DURAKLAMA VE PARK ETME İŞARETLERİ", dokun = yaziyaDokun5 },
 		{ metin = "ÖZEL İŞARETLER",                    dokun = yaziyaDokun6 },
 		{ metin = "YENİ STANDART LEVHALAR",           dokun = yaziyaDokun7 },
+		{ metin = "OTOYOL LEVHALARI",                  dokun = yaziyaDokun8 },
 	}
 
 	-- Düzen: yazılar kartın içinde taşmaz; uzun metinler iki satıra sarılır ve kart yüksekliği metne uyar
@@ -183,8 +191,10 @@ function sahne:create(olay)
 			yazi5 = yazi
 		elseif i == 5 then
 			yazi6 = yazi
-		else
+		elseif i == 6 then
 			yazi7 = yazi
+		else
+			yazi8 = yazi
 		end
 	end
 
