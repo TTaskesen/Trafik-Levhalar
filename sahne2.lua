@@ -802,7 +802,8 @@ local function metinOlustur(icerik, ustBosluk)
 			left = 0,
 			width = display.contentWidth,
 			height = display.contentHeight + oy - (ustBosluk or 230) - tabBarHeight,
-			horizontalScrollDisabled = true
+			horizontalScrollDisabled = true,
+			backgroundColor = { 1, 1, 1 }
 		})
 
 	local yStart = 10
@@ -812,7 +813,7 @@ local function metinOlustur(icerik, ustBosluk)
 		local newText = display.newText({
 			text = paragraph,
 			width = scrollView.width - (mainPadding * 2),
-			fontSize = 17,
+			fontSize = 16,
 			font = "Poppins-Medium",
 			align = "left"
 		})
@@ -820,7 +821,7 @@ local function metinOlustur(icerik, ustBosluk)
 		newText.anchorY = 0
 		newText.x = mainPadding
 		newText.y = yStart
-		newText:setFillColor(0)
+		newText:setFillColor(0.2)
 		scrollView:insert(newText)
 		yStart = yStart + newText.height + 5
 	end
@@ -839,31 +840,14 @@ function sahne:create(olay)
 	local tabBarHeight = sahneDegis.getVariable("tabBarHeight")
 	local themeID = sahneDegis.getVariable("themeID")
 
-	-- Set color variables depending on theme
+	-- Açık renkli, projeyle uyumlu liste renkleri (tema ne olursa olsun)
 	local tableViewColors = {
-		rowColor = { default = { 1 }, over = { 30 / 255, 144 / 255, 1 } },
+		rowColor = { default = { 1 }, over = { 0.92, 0.95, 1 } },
 		lineColor = { 220 / 255 },
-		catColor = { default = { 150 / 255, 160 / 255, 180 / 255, 200 / 255 }, over = { 150 / 255, 160 / 255, 180 / 255, 200 / 255 } },
-		defaultLabelColor = { 0, 0, 0, 0.6 },
-		catLabelColor = { 0 }
+		catColor = { default = { 0.05, 0.3, 0.55, 0.9 }, over = { 0.05, 0.3, 0.55, 0.9 } },
+		defaultLabelColor = { 0.2 },
+		catLabelColor = { 1 }
 	}
-	if (themeID == "widget_theme_android_holo_dark") then
-		tableViewColors.rowColor.default = { 48 / 255 }
-		tableViewColors.rowColor.over = { 72 / 255 }
-		tableViewColors.lineColor = { 36 / 255 }
-		tableViewColors.catColor.default = { 80 / 255, 80 / 255, 80 / 255, 0.9 }
-		tableViewColors.catColor.over = { 80 / 255, 80 / 255, 80 / 255, 0.9 }
-		tableViewColors.defaultLabelColor = { 1, 1, 1, 0.6 }
-		tableViewColors.catLabelColor = { 1 }
-	elseif (themeID == "widget_theme_android_holo_light") then
-		tableViewColors.rowColor.default = { 250 / 255 }
-		tableViewColors.rowColor.over = { 240 / 255 }
-		tableViewColors.lineColor = { 215 / 255 }
-		tableViewColors.catColor.default = { 220 / 255, 220 / 255, 220 / 255, 0.9 }
-		tableViewColors.catColor.over = { 220 / 255, 220 / 255, 220 / 255, 0.9 }
-		tableViewColors.defaultLabelColor = { 0, 0, 0, 0.6 }
-		tableViewColors.catLabelColor = { 0 }
-	end
 
 	-- Forward reference for the tableView
 	local tableView
@@ -920,11 +904,18 @@ function sahne:create(olay)
 		local row = event.row
 		local groupContentHeight = row.contentHeight
 
-		local rowTitle = display.newText(row, levhaDetaylari[row.index].ad, 50, 50, nil, 16)
-		--localyeniLevha = levhaOlustur()
 		local kareNo = math.max(1, row.index - 1)
+		local rowTitle = display.newText({
+			parent = row,
+			text = levhaDetaylari[row.index].ad,
+			x = 0,
+			y = 0,
+			width = 240,
+			font = "Poppins-Medium",
+			fontSize = 15,
+			align = "left"
+		})
 		local rowResim = display.newImageRect(row, resimLevha, kareNo, 50, 50)
-
 
 		rowResim.x = 20
 		rowResim.y = groupContentHeight * 0.5
@@ -936,6 +927,9 @@ function sahne:create(olay)
 		if (row.isCategory) then
 			rowTitle:setFillColor(unpack(row.params.catLabelColor))
 			rowTitle.text = " TEHLİKE UYARI İŞARETLERİ "
+			rowTitle.font = "Poppins-Bold"
+			rowTitle.size = 16
+			rowTitle:setFillColor(unpack(row.params.catLabelColor))
 			if (rowResim) then -- Kategori satırında resim olmaması için kontrol
 				rowResim:removeSelf()
 				rowResim = nil

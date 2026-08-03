@@ -117,7 +117,7 @@ function sahne:create(olay)
 		{ metin = "BİLGİ İŞARETLERİ",                  dokun = yaziyaDokun4 },
 		{ metin = "DURAKLAMA VE PARK ETME İŞARETLERİ", dokun = yaziyaDokun5 },
 		{ metin = "ÖZEL İŞARETLER",                    dokun = yaziyaDokun6 },
-		{ metin = "OTOYOL LEVHA İŞARETLERİ",           dokun = yaziyaDokun7 },
+		{ metin = "YENİ STANDART LEVHALAR",           dokun = yaziyaDokun7 },
 	}
 
 	-- Düzen: yazılar kartın içinde taşmaz; uzun metinler iki satıra sarılır ve kart yüksekliği metne uyar

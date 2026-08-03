@@ -111,95 +111,95 @@ local resimLevha = graphics.newImageSheet("levha/levha/3-bilgi/bilgi.png", levha
 local levhaDetaylari =
 {
     [1] = { ad = "", aciklama = "" },
-    [2] = { ad = "(B-1a) KAVŞAK ÖNCESİ YÖN LEVHASI", aciklama = [[Kavşağa gelmeden önce, gidilecek yönleri gösteren yol gösterme levhasıdır.]] },
-    [3] = { ad = "(B-1b) KAPLAMA ÜSTÜ YÖN LEVHASI", aciklama = [[Yolun üzerinde, yüksekten geçen köprü biçimindeki yön levhasıdır.]] },
-    [4] = { ad = "(B-2a) GİRİŞİ OLMAYAN YOL KAVŞAĞI", aciklama = [[Kavşağa giriş yapılamayan yolu önceden haber veren levhadır.]] },
-    [5] = { ad = "(B-2b) GİRİŞİ OLMAYAN YOL KAVŞAĞI", aciklama = [[Kavşağa giriş yapılamayan yolu önceden haber veren levhadır.]] },
-    [6] = { ad = "(B-2c) GİRİŞİ OLMAYAN YOL KAVŞAĞI", aciklama = [[Kavşağa giriş yapılamayan yolu önceden haber veren levhadır.]] },
-    [7] = { ad = "(B-3) İLERİKİ KAVŞAKTA SOLA DÖNÜŞ YASAĞINI GÖSTEREN İŞARET LEVHASI", aciklama = [[İlerideki kavşakta sola dönüşün yasak olduğunu önceden bildirir.]] },
-    [8] = { ad = "(B-4) KAVŞAK ÖNCESİ ŞERİT SEÇİMİ LEVHASI", aciklama = [[Kavşaktan önce hangi şeritten hangi yöne gidileceğini gösterir.]] },
-    [9] = { ad = "(B-5a) KAVŞAK İÇİ YÖN LEVHASI", aciklama = [[Kavşak içinde gidilecek yönü gösteren levhadır.]] },
-    [10] = { ad = "(B-5b) KAVŞAK İÇİ YÖN LEVHASI (TURİSTİK MAHAL)", aciklama = [[Turistik yerleşim yerlerine kavşak içinde yön gösteren levhadır.]] },
-    [11] = { ad = "(B-6) KAVŞAK İÇİ YÖN LEVHASI (HAVALİMANI)", aciklama = [[Kavşak içinde havalimanına yön gösteren levhadır.]] },
-    [12] = { ad = "(B-7) KAVŞAK İÇİ YÖN LEVHASI (KAMP YERİ)", aciklama = [[Kavşak içinde kamp yerine yön gösteren levhadır.]] },
-    [13] = { ad = "(B-8a) TÜRKİYE DEVLET SINIRI LEVHASI", aciklama = [[Türkiye Cumhuriyeti devlet sınırının geçildiğini gösterir.]] },
-    [14] = { ad = "(B-8b) İL SINIRI LEVHASI", aciklama = [[Bir il sınırının başladığını gösterir.]] },
-    [15] = { ad = "(B-8c) TÜRKİYE HIZ SINIRLARI LEVHASI", aciklama = [[Türkiye'de yerleşim yeri içi ve dışı hız sınırlarını gösterir.]] },
-    [16] = { ad = "(B-9a) MESKUN MAHAL LEVHASI (İL MERKEZİ)", aciklama = [[İl merkezinin başladığını gösteren yerleşim yeri levhasıdır.]] },
-    [17] = { ad = "(B-9b) MESKUN MAHAL LEVHASI (İLÇE MERKEZİ)", aciklama = [[İlçe merkezinin başladığını gösteren yerleşim yeri levhasıdır.]] },
-    [18] = { ad = "(B-9c) MESKUN MAHAL LEVHASI (İLÇE MERKEZİ)", aciklama = [[İlçe merkezinin başladığını gösteren yerleşim yeri levhası örneğidir.]] },
-    [19] = { ad = "(B-10a) MESKUN MAHAL SONU LEVHASI (İL MERKEZİ)", aciklama = [[İl merkezi yerleşim yerinin sona erdiğini gösterir.]] },
-    [20] = { ad = "(B-10b) MESKUN MAHAL SONU LEVHASI (İLÇE MERKEZİ)", aciklama = [[İlçe merkezi yerleşim yerinin sona erdiğini gösterir.]] },
-    [21] = { ad = "(B-10c) MESKUN MAHAL SONU LEVHASI (İLÇE MERKEZİ)", aciklama = [[İlçe merkezi yerleşim yerinin sona erdiğini gösteren levha örneğidir.]] },
-    [22] = { ad = "(B-11a) COĞRAFİ BİLGİ LEVHASI (DAĞ GEÇİDİ)", aciklama = [[Dağ geçidinin adını ve rakımını gösteren coğrafi bilgi levhasıdır.]] },
-    [23] = { ad = "(B-11b) COĞRAFİ BİLGİ LEVHASI (KÖPRÜ-NEHİR)", aciklama = [[Köprü veya nehrin adını gösteren coğrafi bilgi levhasıdır.]] },
-    [24] = { ad = "(B-11c) COĞRAFİ BİLGİ LEVHASI (KÖPRÜ-NEHİR)", aciklama = [[Köprü veya nehrin adını gösteren coğrafi bilgi levhası örneğidir.]] },
-    [25] = { ad = "(B-11d) COĞRAFİ BİLGİ LEVHASI (DAĞ GEÇİDİ)", aciklama = [[Dağ geçidinin adını ve rakımını gösteren levha örneğidir.]] },
-    [26] = { ad = "(B-13a) MESKUN MAHAL ve KAVŞAK ÇIKIŞI MESAFE LEVHASI", aciklama = [[Meskun mahal ve kavşak çıkışlarına olan uzaklığı kilometre olarak gösterir.]] },
-    [27] = { ad = "(B-13b) MESAFE LEVHASI", aciklama = [[Önemli kavşak ve yerleşim yerlerine olan uzaklığı gösterir.]] },
-    [28] = { ad = "(B-14a) YAYA GEÇİDİ", aciklama = [[Yayaların karşıdan karşıya geçebileceği güvenli geçidi gösterir.]] },
-    [29] = { ad = "(B-14b) OKUL GEÇİDİ", aciklama = [[Okul önlerinde öğrencilerin karşıdan karşıya geçebileceği geçidi gösterir.]] },
-    [30] = { ad = "(B-14c) YAYA BÖLGESİ", aciklama = [[Taşıt trafiğine kapatılmış, yayaların serbestçe yürüyebileceği bölgeyi gösterir.]] },
-    [31] = { ad = "(B-14d) YAYA BÖLGESİ", aciklama = [[Belirli saatlerde yayalara ayrılan bölgeyi gösterir.]] },
-    [32] = { ad = "(B-14e) YAYA BÖLGESİ", aciklama = [[Taşıtların yükleme-boşaltma dışında giremediği yaya bölgesini gösterir.]] },
-    [33] = { ad = "(B-14f) YAYA BÖLGESİ", aciklama = [[Araçların belirli durumlar dışında giremediği yaya bölgesini gösterir.]] },
-    [34] = { ad = "(B-15) HASTANE", aciklama = [[Yakında bir hastane bulunduğunu gösterir.]] },
-    [35] = { ad = "(B-16) TEK YÖNLÜ YOL", aciklama = [[Yolun yalnızca gösterilen yönde tek yönlü olduğunu belirtir.]] },
-    [36] = { ad = "(B-17) İLERİ ÇIKMAZ YOL", aciklama = [[İlerideki yolun çıkmaz olduğunu gösterir.]] },
-    [37] = { ad = "(B-18) OTOYOL BAŞLANGICI", aciklama = [[Otoyolun başladığını gösterir.]] },
-    [38] = { ad = "(B-19) OTOYOL SONU", aciklama = [[Otoyolun sona erdiğini gösterir.]] },
-    [39] = { ad = "(B-20) MOTORLU TAŞIT YOLU BAŞLANGICI", aciklama = [[Motorlu taşıt yolunun başladığını gösterir.]] },
-    [40] = { ad = "(B-21) MOTORLU TAŞIT YOLU SONU", aciklama = [[Motorlu taşıt yolunun sona erdiğini gösterir.]] },
-    [41] = { ad = "(B-22) DURAK", aciklama = [[Toplu taşıma aracı durağının bulunduğunu gösterir.]] },
-    [42] = { ad = "(B-23) İLK YARDIM", aciklama = [[Yakında bir ilk yardım merkezi bulunduğunu gösterir.]] },
-    [43] = { ad = "(B-24) TAMİRHANE", aciklama = [[Yakında bir araç tamirhanesi bulunduğunu gösterir.]] },
-    [44] = { ad = "(B-25) TELEFON", aciklama = [[Yakında bir telefon bulunduğunu gösterir.]] },
-    [45] = { ad = "(B-26) AKARYAKIT İSTASYONU", aciklama = [[Yakında bir akaryakıt istasyonu bulunduğunu gösterir.]] },
-    [46] = { ad = "(B-27) OTEL veya MOTEL", aciklama = [[Yakında bir otel veya motel bulunduğunu gösterir.]] },
-    [47] = { ad = "(B-28) LOKANTA veya KAFETERYA", aciklama = [[Yakında bir lokanta veya kafeterya bulunduğunu gösterir.]] },
-    [48] = { ad = "(B-29) ÇAYHANE", aciklama = [[Yakında bir çayhane bulunduğunu gösterir.]] },
-    [49] = { ad = "(B-30) ÇEŞME", aciklama = [[Yakında bir çeşme bulunduğunu gösterir.]] },
-    [50] = { ad = "(B-31) PİKNİK YERİ", aciklama = [[Yakında bir piknik yerinin bulunduğunu gösterir.]] },
-    [51] = { ad = "(B-32) YÜRÜYÜŞ BAŞLANGICI", aciklama = [[Yürüyüş yolunun başladığını gösterir.]] },
-    [52] = { ad = "(B-33) KAMP YERİ", aciklama = [[Yakında bir kamp yerinin bulunduğunu gösterir.]] },
-    [53] = { ad = "(B-34) KARAVANLI KAMP YERİ", aciklama = [[Yakında karavanlı kamp yerinin bulunduğunu gösterir.]] },
-    [54] = { ad = "(B-35) ÇADIRLI ve KARAVANLI KAMP YERİ", aciklama = [[Yakında çadırlı ve karavanlı kamp yerinin bulunduğunu gösterir.]] },
-    [55] = { ad = "(B-36) GENÇLİK KAMPI", aciklama = [[Yakında bir gençlik kampının bulunduğunu gösterir.]] },
-    [56] = { ad = "(B-37) ÖNCELİĞİ OLAN YÖN", aciklama = [[Kavşakta önceliği olan yönü gösterir.]] },
-    [57] = { ad = "(B-38) ANAYOL", aciklama = [[Bu yolun anayol olduğunu gösterir.]] },
-    [58] = { ad = "(B-39) ANAYOL SONU", aciklama = [[Anayolun sona erdiğini gösterir.]] },
-    [59] = { ad = "(B-40) JANDARMA", aciklama = [[Yakında bir jandarma karakolunun bulunduğunu gösterir.]] },
-    [60] = { ad = "(B-41) POLİS", aciklama = [[Yakında bir polis karakolunun bulunduğunu gösterir.]] },
-    [61] = { ad = "(B-42) YANGIN TEHLİKESİ", aciklama = [[Yangın tehlikesi olan bölgelerde dikkatli olunması gerektiğini belirtir.]] },
-    [62] = { ad = "(B-43) RADYO", aciklama = [[Radyo frekansı hakkında bilgi veren levhadır.]] },
-    [63] = { ad = "(B-44) TURİZM DANIŞMA", aciklama = [[Yakında bir turizm danışma bürosu bulunduğunu gösterir.]] },
-    [64] = { ad = "(B-45a) ALT GEÇİT", aciklama = [[Yakında bir alt geçit bulunduğunu gösterir.]] },
-    [65] = { ad = "(B-45b) ÜST GEÇİT", aciklama = [[Yakında bir üst geçit bulunduğunu gösterir.]] },
-    [66] = { ad = "(B-46) YÜZME YERİ", aciklama = [[Yakında güvenli bir yüzme yerinin bulunduğunu gösterir.]] },
-    [67] = { ad = "(B-47) YÜZÜLMEZ", aciklama = [[Bu bölgede yüzmenin tehlikeli ve yasak olduğunu belirtir.]] },
-    [68] = { ad = "(B-48) BÖLÜNMÜŞ YOL ÖNCESİ YÖN LEVHASI", aciklama = [[Bölünmüş yola girmeden önce yön bilgisi veren levhadır.]] },
-    [69] = { ad = "(B-49) TÜNEL", aciklama = [[Yakında bir tünel bulunduğunu gösterir.]] },
-    [70] = { ad = "(B-50a) ŞERİT DÜZENLEME LEVHALARI", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
-    [71] = { ad = "(B-50b) ŞERİT DÜZENLEME LEVHALARI", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
-    [72] = { ad = "(B-50c) ŞERİT DÜZENLEME LEVHALARI", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
-    [73] = { ad = "(B-50d) ŞERİT DÜZENLEME LEVHALARI", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
-    [74] = { ad = "(B-50e) ŞERİT DÜZENLEME LEVHALARI", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
-    [75] = { ad = "(B-50f) ŞERİT DÜZENLEME LEVHALARI", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
-    [76] = { ad = "(B-50g) ŞERİT DÜZENLEME LEVHALARI", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
-    [77] = { ad = "(B-51a) ŞERİT DÜZENLEME LEVHALARI", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
-    [78] = { ad = "(B-51b) ŞERİT DÜZENLEME LEVHALARI", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
-    [79] = { ad = "(B-51c) ŞERİT DÜZENLEME LEVHALARI", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
-    [80] = { ad = "(B-51d) ŞERİT DÜZENLEME LEVHALARI", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
-    [81] = { ad = "(B-52) İKİ YÖNLÜ YOL", aciklama = [[Yolun iki yönlü olduğunu gösteren bilgi levhasıdır.]] },
-    [82] = { ad = "(B-53a) U DÖNÜŞÜ LEVHASI", aciklama = [[U dönüşü yapılabilecek noktayı gösterir.]] },
-    [83] = { ad = "(B-53b) U DÖNÜŞÜ LEVHASI", aciklama = [[U dönüşü yapılabilecek noktayı gösterir.]] },
-    [84] = { ad = "(B-53c) U DÖNÜŞÜ LEVHASI", aciklama = [[U dönüşü yapılabilecek noktayı gösterir.]] },
-    [85] = { ad = "(B-54) KARAYOLLARI BİLGİ LEVHASI", aciklama = [[Karayolları ile ilgili bilgi veren levhadır.]] },
-    [86] = { ad = "(B-55a) KAÇIŞ RAMPASI (SOL)", aciklama = [[Freni bozulan araçlar için soldaki kaçış rampasını gösterir.]] },
-    [87] = { ad = "(B-55b) KAÇIŞ RAMPASI (SAĞ)", aciklama = [[Freni bozulan araçlar için sağdaki kaçış rampasını gösterir.]] },
-    [88] = { ad = "(B-55c) KAÇIŞ RAMPASI", aciklama = [[Kaçış rampasına yaklaşıldığını gösterir.]] },
-    [89] = { ad = "(B-56d) KAÇIŞ RAMPASI (SOL)", aciklama = [[Kaçış rampasının solda olduğunu gösterir.]] },
-    [90] = { ad = "(B-57d) KAÇIŞ RAMPASI (SAĞ)", aciklama = [[Kaçış rampasının sağda olduğunu gösterir.]] },
+    [2] = { ad = "(B-1a) Kavşak öncesi yön levhası", aciklama = [[Kavşağa gelmeden önce, gidilecek yönleri gösteren yol gösterme levhasıdır.]] },
+    [3] = { ad = "(B-1b) Kaplama üstü yön levhası", aciklama = [[Yolun üzerinde, yüksekten geçen köprü biçimindeki yön levhasıdır.]] },
+    [4] = { ad = "(B-2a) Girişi olmayan yol kavşağı", aciklama = [[Kavşağa giriş yapılamayan yolu önceden haber veren levhadır.]] },
+    [5] = { ad = "(B-2b) Girişi olmayan yol kavşağı", aciklama = [[Kavşağa giriş yapılamayan yolu önceden haber veren levhadır.]] },
+    [6] = { ad = "(B-2c) Girişi olmayan yol kavşağı", aciklama = [[Kavşağa giriş yapılamayan yolu önceden haber veren levhadır.]] },
+    [7] = { ad = "(B-3) İleriki kavşakta sola dönüş yasağını gösteren işaret levhası", aciklama = [[İlerideki kavşakta sola dönüşün yasak olduğunu önceden bildirir.]] },
+    [8] = { ad = "(B-4) Kavşak öncesi şerit seçimi levhası", aciklama = [[Kavşaktan önce hangi şeritten hangi yöne gidileceğini gösterir.]] },
+    [9] = { ad = "(B-5a) Kavşak içi yön levhası", aciklama = [[Kavşak içinde gidilecek yönü gösteren levhadır.]] },
+    [10] = { ad = "(B-5b) Kavşak içi yön levhası (turistik mahal)", aciklama = [[Turistik yerleşim yerlerine kavşak içinde yön gösteren levhadır.]] },
+    [11] = { ad = "(B-6) Kavşak içi yön levhası (havalimanı)", aciklama = [[Kavşak içinde havalimanına yön gösteren levhadır.]] },
+    [12] = { ad = "(B-7) Kavşak içi yön levhası (kamp yeri)", aciklama = [[Kavşak içinde kamp yerine yön gösteren levhadır.]] },
+    [13] = { ad = "(B-8a) Türkiye devlet sınırı levhası", aciklama = [[Türkiye Cumhuriyeti devlet sınırının geçildiğini gösterir.]] },
+    [14] = { ad = "(B-8b) İl sınırı levhası", aciklama = [[Bir il sınırının başladığını gösterir.]] },
+    [15] = { ad = "(B-8c) Türkiye hız sınırları levhası", aciklama = [[Türkiye'de yerleşim yeri içi ve dışı hız sınırlarını gösterir.]] },
+    [16] = { ad = "(B-9a) Meskun mahal levhası (il merkezi)", aciklama = [[İl merkezinin başladığını gösteren yerleşim yeri levhasıdır.]] },
+    [17] = { ad = "(B-9b) Meskun mahal levhası (ilçe merkezi)", aciklama = [[İlçe merkezinin başladığını gösteren yerleşim yeri levhasıdır.]] },
+    [18] = { ad = "(B-9c) Meskun mahal levhası (ilçe merkezi)", aciklama = [[İlçe merkezinin başladığını gösteren yerleşim yeri levhası örneğidir.]] },
+    [19] = { ad = "(B-10a) Meskun mahal sonu levhası (il merkezi)", aciklama = [[İl merkezi yerleşim yerinin sona erdiğini gösterir.]] },
+    [20] = { ad = "(B-10b) Meskun mahal sonu levhası (ilçe merkezi)", aciklama = [[İlçe merkezi yerleşim yerinin sona erdiğini gösterir.]] },
+    [21] = { ad = "(B-10c) Meskun mahal sonu levhası (ilçe merkezi)", aciklama = [[İlçe merkezi yerleşim yerinin sona erdiğini gösteren levha örneğidir.]] },
+    [22] = { ad = "(B-11a) Coğrafi bilgi levhası (dağ geçidi)", aciklama = [[Dağ geçidinin adını ve rakımını gösteren coğrafi bilgi levhasıdır.]] },
+    [23] = { ad = "(B-11b) Coğrafi bilgi levhası (köprü-nehir)", aciklama = [[Köprü veya nehrin adını gösteren coğrafi bilgi levhasıdır.]] },
+    [24] = { ad = "(B-11c) Coğrafi bilgi levhası (köprü-nehir)", aciklama = [[Köprü veya nehrin adını gösteren coğrafi bilgi levhası örneğidir.]] },
+    [25] = { ad = "(B-11d) Coğrafi bilgi levhası (dağ geçidi)", aciklama = [[Dağ geçidinin adını ve rakımını gösteren levha örneğidir.]] },
+    [26] = { ad = "(B-13a) Meskun mahal ve kavşak çıkışı mesafe levhası", aciklama = [[Meskun mahal ve kavşak çıkışlarına olan uzaklığı kilometre olarak gösterir.]] },
+    [27] = { ad = "(B-13b) Mesafe levhası", aciklama = [[Önemli kavşak ve yerleşim yerlerine olan uzaklığı gösterir.]] },
+    [28] = { ad = "(B-14a) Yaya geçidi", aciklama = [[Yayaların karşıdan karşıya geçebileceği güvenli geçidi gösterir.]] },
+    [29] = { ad = "(B-14b) Okul geçidi", aciklama = [[Okul önlerinde öğrencilerin karşıdan karşıya geçebileceği geçidi gösterir.]] },
+    [30] = { ad = "(B-14c) Yaya bölgesi", aciklama = [[Taşıt trafiğine kapatılmış, yayaların serbestçe yürüyebileceği bölgeyi gösterir.]] },
+    [31] = { ad = "(B-14d) Yaya bölgesi", aciklama = [[Belirli saatlerde yayalara ayrılan bölgeyi gösterir.]] },
+    [32] = { ad = "(B-14e) Yaya bölgesi", aciklama = [[Taşıtların yükleme-boşaltma dışında giremediği yaya bölgesini gösterir.]] },
+    [33] = { ad = "(B-14f) Yaya bölgesi", aciklama = [[Araçların belirli durumlar dışında giremediği yaya bölgesini gösterir.]] },
+    [34] = { ad = "(B-15) Hastane", aciklama = [[Yakında bir hastane bulunduğunu gösterir.]] },
+    [35] = { ad = "(B-16) Tek yönlü yol", aciklama = [[Yolun yalnızca gösterilen yönde tek yönlü olduğunu belirtir.]] },
+    [36] = { ad = "(B-17) İleri çıkmaz yol", aciklama = [[İlerideki yolun çıkmaz olduğunu gösterir.]] },
+    [37] = { ad = "(B-18) Otoyol başlangıcı", aciklama = [[Otoyolun başladığını gösterir.]] },
+    [38] = { ad = "(B-19) Otoyol sonu", aciklama = [[Otoyolun sona erdiğini gösterir.]] },
+    [39] = { ad = "(B-20) Motorlu taşıt yolu başlangıcı", aciklama = [[Motorlu taşıt yolunun başladığını gösterir.]] },
+    [40] = { ad = "(B-21) Motorlu taşıt yolu sonu", aciklama = [[Motorlu taşıt yolunun sona erdiğini gösterir.]] },
+    [41] = { ad = "(B-22) Durak", aciklama = [[Toplu taşıma aracı durağının bulunduğunu gösterir.]] },
+    [42] = { ad = "(B-23) İlk yardım", aciklama = [[Yakında bir ilk yardım merkezi bulunduğunu gösterir.]] },
+    [43] = { ad = "(B-24) Tamirhane", aciklama = [[Yakında bir araç tamirhanesi bulunduğunu gösterir.]] },
+    [44] = { ad = "(B-25) Telefon", aciklama = [[Yakında bir telefon bulunduğunu gösterir.]] },
+    [45] = { ad = "(B-26) Akaryakıt istasyonu", aciklama = [[Yakında bir akaryakıt istasyonu bulunduğunu gösterir.]] },
+    [46] = { ad = "(B-27) Otel veya motel", aciklama = [[Yakında bir otel veya motel bulunduğunu gösterir.]] },
+    [47] = { ad = "(B-28) Lokanta veya kafeterya", aciklama = [[Yakında bir lokanta veya kafeterya bulunduğunu gösterir.]] },
+    [48] = { ad = "(B-29) Çayhane", aciklama = [[Yakında bir çayhane bulunduğunu gösterir.]] },
+    [49] = { ad = "(B-30) Çeşme", aciklama = [[Yakında bir çeşme bulunduğunu gösterir.]] },
+    [50] = { ad = "(B-31) Piknik yeri", aciklama = [[Yakında bir piknik yerinin bulunduğunu gösterir.]] },
+    [51] = { ad = "(B-32) Yürüyüş başlangıcı", aciklama = [[Yürüyüş yolunun başladığını gösterir.]] },
+    [52] = { ad = "(B-33) Kamp yeri", aciklama = [[Yakında bir kamp yerinin bulunduğunu gösterir.]] },
+    [53] = { ad = "(B-34) Karavanlı kamp yeri", aciklama = [[Yakında karavanlı kamp yerinin bulunduğunu gösterir.]] },
+    [54] = { ad = "(B-35) Çadırlı ve karavanlı kamp yeri", aciklama = [[Yakında çadırlı ve karavanlı kamp yerinin bulunduğunu gösterir.]] },
+    [55] = { ad = "(B-36) Gençlik kampı", aciklama = [[Yakında bir gençlik kampının bulunduğunu gösterir.]] },
+    [56] = { ad = "(B-37) Önceliği olan yön", aciklama = [[Kavşakta önceliği olan yönü gösterir.]] },
+    [57] = { ad = "(B-38) Anayol", aciklama = [[Bu yolun anayol olduğunu gösterir.]] },
+    [58] = { ad = "(B-39) Anayol sonu", aciklama = [[Anayolun sona erdiğini gösterir.]] },
+    [59] = { ad = "(B-40) Jandarma", aciklama = [[Yakında bir jandarma karakolunun bulunduğunu gösterir.]] },
+    [60] = { ad = "(B-41) Polis", aciklama = [[Yakında bir polis karakolunun bulunduğunu gösterir.]] },
+    [61] = { ad = "(B-42) Yangın tehlikesi", aciklama = [[Yangın tehlikesi olan bölgelerde dikkatli olunması gerektiğini belirtir.]] },
+    [62] = { ad = "(B-43) Radyo", aciklama = [[Radyo frekansı hakkında bilgi veren levhadır.]] },
+    [63] = { ad = "(B-44) Turizm danışma", aciklama = [[Yakında bir turizm danışma bürosu bulunduğunu gösterir.]] },
+    [64] = { ad = "(B-45a) Alt geçit", aciklama = [[Yakında bir alt geçit bulunduğunu gösterir.]] },
+    [65] = { ad = "(B-45b) Üst geçit", aciklama = [[Yakında bir üst geçit bulunduğunu gösterir.]] },
+    [66] = { ad = "(B-46) Yüzme yeri", aciklama = [[Yakında güvenli bir yüzme yerinin bulunduğunu gösterir.]] },
+    [67] = { ad = "(B-47) Yüzülmez", aciklama = [[Bu bölgede yüzmenin tehlikeli ve yasak olduğunu belirtir.]] },
+    [68] = { ad = "(B-48) Bölünmüş yol öncesi yön levhası", aciklama = [[Bölünmüş yola girmeden önce yön bilgisi veren levhadır.]] },
+    [69] = { ad = "(B-49) Tünel", aciklama = [[Yakında bir tünel bulunduğunu gösterir.]] },
+    [70] = { ad = "(B-50a) Şerit düzenleme levhaları", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
+    [71] = { ad = "(B-50b) Şerit düzenleme levhaları", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
+    [72] = { ad = "(B-50c) Şerit düzenleme levhaları", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
+    [73] = { ad = "(B-50d) Şerit düzenleme levhaları", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
+    [74] = { ad = "(B-50e) Şerit düzenleme levhaları", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
+    [75] = { ad = "(B-50f) Şerit düzenleme levhaları", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
+    [76] = { ad = "(B-50g) Şerit düzenleme levhaları", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
+    [77] = { ad = "(B-51a) Şerit düzenleme levhaları", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
+    [78] = { ad = "(B-51b) Şerit düzenleme levhaları", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
+    [79] = { ad = "(B-51c) Şerit düzenleme levhaları", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
+    [80] = { ad = "(B-51d) Şerit düzenleme levhaları", aciklama = [[Şeritlerin düzenlenmesi ve kullanımı hakkında bilgi veren levhadır.]] },
+    [81] = { ad = "(B-52) İki yönlü yol", aciklama = [[Yolun iki yönlü olduğunu gösteren bilgi levhasıdır.]] },
+    [82] = { ad = "(B-53a) U dönüşü levhası", aciklama = [[U dönüşü yapılabilecek noktayı gösterir.]] },
+    [83] = { ad = "(B-53b) U dönüşü levhası", aciklama = [[U dönüşü yapılabilecek noktayı gösterir.]] },
+    [84] = { ad = "(B-53c) U dönüşü levhası", aciklama = [[U dönüşü yapılabilecek noktayı gösterir.]] },
+    [85] = { ad = "(B-54) Karayolları bilgi levhası", aciklama = [[Karayolları ile ilgili bilgi veren levhadır.]] },
+    [86] = { ad = "(B-55a) Kaçış rampası (sol)", aciklama = [[Freni bozulan araçlar için soldaki kaçış rampasını gösterir.]] },
+    [87] = { ad = "(B-55b) Kaçış rampası (sağ)", aciklama = [[Freni bozulan araçlar için sağdaki kaçış rampasını gösterir.]] },
+    [88] = { ad = "(B-55c) Kaçış rampası", aciklama = [[Kaçış rampasına yaklaşıldığını gösterir.]] },
+    [89] = { ad = "(B-56d) Kaçış rampası (sol)", aciklama = [[Kaçış rampasının solda olduğunu gösterir.]] },
+    [90] = { ad = "(B-57d) Kaçış rampası (sağ)", aciklama = [[Kaçış rampasının sağda olduğunu gösterir.]] },
 }
 
 -- Metin göstermek için ScrollView oluşturan fonksiyon
@@ -216,7 +216,8 @@ local function metinOlustur(icerik, ustBosluk)
             left = 0,
             width = display.contentWidth,
             height = display.contentHeight - ustBosluk - tabBarHeight,
-            horizontalScrollDisabled = true
+            horizontalScrollDisabled = true,
+            backgroundColor = { 1, 1, 1 }
         })
 
     local yStart = 10
@@ -226,7 +227,7 @@ local function metinOlustur(icerik, ustBosluk)
         local newText = display.newText({
             text = paragraph,
             width = scrollView.width - (mainPadding * 2),
-            fontSize = 17,
+            fontSize = 16,
             font = "Poppins-Medium",
             align = "left"
         })
@@ -234,7 +235,7 @@ local function metinOlustur(icerik, ustBosluk)
         newText.anchorY = 0
         newText.x = mainPadding
         newText.y = yStart
-        newText:setFillColor(0)
+        newText:setFillColor(0.2)
         scrollView:insert(newText)
         yStart = yStart + newText.height + 5
     end
@@ -256,29 +257,12 @@ function scene:create(event)
     local themeID = composer.getVariable("themeID")
 
     local tableViewColors = {
-        rowColor = { default = { 1 }, over = { 30 / 255, 144 / 255, 1 } },
+        rowColor = { default = { 1 }, over = { 0.92, 0.95, 1 } },
         lineColor = { 220 / 255 },
-        catColor = { default = { 150 / 255, 160 / 255, 180 / 255, 200 / 255 }, over = { 150 / 255, 160 / 255, 180 / 255, 200 / 255 } },
-        defaultLabelColor = { 0, 0, 0, 0.6 },
-        catLabelColor = { 0 }
+        catColor = { default = { 0.05, 0.3, 0.55, 0.9 }, over = { 0.05, 0.3, 0.55, 0.9 } },
+        defaultLabelColor = { 0.2 },
+        catLabelColor = { 1 }
     }
-    if (themeID == "widget_theme_android_holo_dark") then
-        tableViewColors.rowColor.default = { 48 / 255 }
-        tableViewColors.rowColor.over = { 72 / 255 }
-        tableViewColors.lineColor = { 36 / 255 }
-        tableViewColors.catColor.default = { 80 / 255, 80 / 255, 80 / 255, 0.9 }
-        tableViewColors.catColor.over = { 80 / 255, 80 / 255, 80 / 255, 0.9 }
-        tableViewColors.defaultLabelColor = { 1, 1, 1, 0.6 }
-        tableViewColors.catLabelColor = { 1 }
-    elseif (themeID == "widget_theme_android_holo_light") then
-        tableViewColors.rowColor.default = { 250 / 255 }
-        tableViewColors.rowColor.over = { 240 / 255 }
-        tableViewColors.lineColor = { 215 / 255 }
-        tableViewColors.catColor.default = { 220 / 255, 220 / 255, 220 / 255, 0.9 }
-        tableViewColors.catColor.over = { 220 / 255, 220 / 255, 220 / 255, 0.9 }
-        tableViewColors.defaultLabelColor = { 0, 0, 0, 0.6 }
-        tableViewColors.catLabelColor = { 0 }
-    end
 
     local ilkKare = levhaKareleri.frames[1]
     local g, y = levhaBoyut(ilkKare)
@@ -316,7 +300,16 @@ function scene:create(event)
         local row = event.row
         local groupContentHeight = row.contentHeight
 
-        local rowTitle = display.newText(row, levhaDetaylari[row.index].ad, 0, 0, nil, 16)
+        local rowTitle = display.newText({
+            parent = row,
+            text = levhaDetaylari[row.index].ad,
+            x = 0,
+            y = 0,
+            width = 240,
+            font = "Poppins-Medium",
+            fontSize = 15,
+            align = "left"
+        })
         rowTitle.anchorX = 0
         rowTitle.x = 80
         rowTitle.y = groupContentHeight * 0.5
@@ -325,6 +318,8 @@ function scene:create(event)
         if (row.isCategory) then
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
             rowTitle.text = "BİLGİ İŞARETLERİ"
+            rowTitle.font = "Poppins-Bold"
+            rowTitle.size = 16
         else
             rowTitle:setFillColor(unpack(row.params.defaultLabelColor))
             local kare = levhaKareleri.frames[row.index - 1]

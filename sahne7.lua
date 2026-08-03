@@ -36,16 +36,12 @@ end
 function sahne:create(olay)
 	local sceneGroup = self.view
 
-	resim = display.newImage("bg3.jpg")
-	resim.x = display.contentCenterX
-	resim.y = display.contentCenterY
-
-	sceneGroup:insert(resim)
+	-- Arka plan: ana uygulama arka planı açık renkli düz zemindir (bg3.jpg kullanılmaz)
 
 	--resim.touch = sahneyeDokun
 
-	yazi1 = display.newText("SAĞA TEHLİKELİ VİRAJ", 0, 0, native.systemFontBold, 16)
-	yazi1:setFillColor(255)
+	yazi1 = display.newText("SAĞA TEHLİKELİ VİRAJ", 0, 0, "Poppins-Bold", 16)
+	yazi1:setFillColor(0.05, 0.3, 0.55)
 	yazi1.x, yazi1.y = display.contentWidth * 0.5, 50
 	sceneGroup:insert(yazi1)
 	yazi1:addEventListener("touch", yaziyaDokun)
@@ -79,7 +75,8 @@ function sahne:create(olay)
 			left = 0,
 			width = display.contentWidth,
 			height = display.contentHeight - 230 - (sahneDegis.getVariable("tabBarHeight") or 0),
-			horizontalScrollDisabled = true
+			horizontalScrollDisabled = true,
+			backgroundColor = { 1, 1, 1 }
 		})
 
 	local paragraphs = {}
@@ -91,12 +88,12 @@ function sahne:create(olay)
 
 	repeat
 		paragraph, tmpString = string.match(tmpString, "([^\n]*)\n(.*)")
-		paragraphs[#paragraphs + 1] = display.newText({ text = paragraph, width = scrollView.width - (mainPadding * 2), fontSize = 14 })
+		paragraphs[#paragraphs + 1] = display.newText({ text = paragraph, width = scrollView.width - (mainPadding * 2), fontSize = 15, font = "Poppins-Medium" })
 		paragraphs[#paragraphs].anchorX = 0
 		paragraphs[#paragraphs].anchorY = 0
 		paragraphs[#paragraphs].x = mainPadding
 		paragraphs[#paragraphs].y = yStart
-		paragraphs[#paragraphs]:setFillColor(0)
+		paragraphs[#paragraphs]:setFillColor(0.2)
 		scrollView:insert(paragraphs[#paragraphs])
 		yStart = yStart + paragraphs[#paragraphs].height
 	until tmpString == nil or string.len(tmpString) == 0

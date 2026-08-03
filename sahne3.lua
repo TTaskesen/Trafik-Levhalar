@@ -290,7 +290,7 @@ tarafına, gerekli ise, ayrıca sağ tarafına da konulması gerekir.
 Belli bazı araç kategorilerinin bu yasaklamanın dışında bırakılmaları halinde, bu
 durumun araç figürü ile hariç mesajı içeren PL-10 ilave bir paneli ile belirtilmesi
 gerekir.]] },
-    [31] = { ad = "U Dönüşü yapılmaz", aciklama = [[Bu işaret levhası, U dönüşü yapmanın yasak olduğunu bildirir.
+    [31] = { ad = "U dönüşü yapılmaz", aciklama = [[Bu işaret levhası, U dönüşü yapmanın yasak olduğunu bildirir.
 Bu işaret levhasının U dönüşünün tehlikeli ya da başka bir sebeple uygunsuz
 olduğu kavşaklarda kullanılması gerekir. İşaretin, sürücülerin önlem almalarına imkan
 verecek ve trafiği tehlikeye düşürmeden, tıkanıklığa sebep olmadan bu manevradan
@@ -441,7 +441,7 @@ Mecburiyetin sadece belli türdeki araçları kapsaması durumunda işaret levha
 altında yönlendirmek istenilen araç figürünü içeren PL-10 paneli kullanılır. Mecburiyet
 dışında tutulacak araçlar ise o araç figürü ile birlikte “hariç” ibaresi içeren PL-10
 paneli ile belirtilir.]] },
-    [46] = { ad = "Sağa ve Sola mecburi yön", aciklama = [[Bu işaret levhaları sürücülerin levha üzerinde belirtilen istikameti takip etmek
+    [46] = { ad = "Sağa ve sola mecburi yön", aciklama = [[Bu işaret levhaları sürücülerin levha üzerinde belirtilen istikameti takip etmek
 zorunda olduklarını bildirir. Mecburiyet bildiren işaret levhaları, kavşaklarda bazı
 kolların tek yönlü olması halinde veya servis yolu gibi geçici kullanıma açık
 kesimlerde sürücülerin belli yönlerde hareketlerine devamını belirtmek üzere
@@ -559,7 +559,8 @@ local function metinOlustur(icerik, ustBosluk)
             left = 0,
             width = display.contentWidth,
             height = display.contentHeight + oy - (ustBosluk or 230) - tabBarHeight,
-            horizontalScrollDisabled = true
+            horizontalScrollDisabled = true,
+            backgroundColor = { 1, 1, 1 }
         })
 
     local yStart = 10
@@ -569,7 +570,7 @@ local function metinOlustur(icerik, ustBosluk)
         local newText = display.newText({
             text = paragraph,
             width = scrollView.width - (mainPadding * 2),
-            fontSize = 17,
+            fontSize = 16,
             font = "Poppins-Medium",
             align = "left"
         })
@@ -577,7 +578,7 @@ local function metinOlustur(icerik, ustBosluk)
         newText.anchorY = 0
         newText.x = mainPadding
         newText.y = yStart
-        newText:setFillColor(0)
+        newText:setFillColor(0.2)
         scrollView:insert(newText)
         yStart = yStart + newText.height + 5
     end
@@ -599,29 +600,12 @@ function scene:create(event)
     local themeID = composer.getVariable("themeID")
 
     local tableViewColors = {
-        rowColor = { default = { 1 }, over = { 30 / 255, 144 / 255, 1 } },
+        rowColor = { default = { 1 }, over = { 0.92, 0.95, 1 } },
         lineColor = { 220 / 255 },
-        catColor = { default = { 150 / 255, 160 / 255, 180 / 255, 200 / 255 }, over = { 150 / 255, 160 / 255, 180 / 255, 200 / 255 } },
-        defaultLabelColor = { 0, 0, 0, 0.6 },
-        catLabelColor = { 0 }
+        catColor = { default = { 0.05, 0.3, 0.55, 0.9 }, over = { 0.05, 0.3, 0.55, 0.9 } },
+        defaultLabelColor = { 0.2 },
+        catLabelColor = { 1 }
     }
-    if (themeID == "widget_theme_android_holo_dark") then
-        tableViewColors.rowColor.default = { 48 / 255 }
-        tableViewColors.rowColor.over = { 72 / 255 }
-        tableViewColors.lineColor = { 36 / 255 }
-        tableViewColors.catColor.default = { 80 / 255, 80 / 255, 80 / 255, 0.9 }
-        tableViewColors.catColor.over = { 80 / 255, 80 / 255, 80 / 255, 0.9 }
-        tableViewColors.defaultLabelColor = { 1, 1, 1, 0.6 }
-        tableViewColors.catLabelColor = { 1 }
-    elseif (themeID == "widget_theme_android_holo_light") then
-        tableViewColors.rowColor.default = { 250 / 255 }
-        tableViewColors.rowColor.over = { 240 / 255 }
-        tableViewColors.lineColor = { 215 / 255 }
-        tableViewColors.catColor.default = { 220 / 255, 220 / 255, 220 / 255, 0.9 }
-        tableViewColors.catColor.over = { 220 / 255, 220 / 255, 220 / 255, 0.9 }
-        tableViewColors.defaultLabelColor = { 0, 0, 0, 0.6 }
-        tableViewColors.catLabelColor = { 0 }
-    end
 
     local ilkKare = levhaTanzimKareleri.frames[1]
     local g, y = levhaBoyut(ilkKare)
@@ -659,7 +643,16 @@ function scene:create(event)
         local row = event.row
         local groupContentHeight = row.contentHeight
 
-        local rowTitle = display.newText(row, levhaDetaylari[row.index].ad, 0, 0, nil, 16)
+        local rowTitle = display.newText({
+            parent = row,
+            text = levhaDetaylari[row.index].ad,
+            x = 0,
+            y = 0,
+            width = 240,
+            font = "Poppins-Medium",
+            fontSize = 15,
+            align = "left"
+        })
         rowTitle.anchorX = 0
         rowTitle.x = 80
         rowTitle.y = groupContentHeight * 0.5
@@ -668,6 +661,8 @@ function scene:create(event)
         if (row.isCategory) then
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
             rowTitle.text = "TRAFİK TANZİM İŞARETLERİ"
+            rowTitle.font = "Poppins-Bold"
+            rowTitle.size = 16
         else
             rowTitle:setFillColor(unpack(row.params.defaultLabelColor))
             local kare = levhaTanzimKareleri.frames[row.index - 1]

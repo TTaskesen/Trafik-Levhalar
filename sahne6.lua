@@ -29,13 +29,13 @@ local resimLevha = graphics.newImageSheet("levha/levha/6-yatay/yatay.png", levha
 local levhaDetaylari =
 {
     [1] = { ad = "", aciklama = "" },
-    [2] = { ad = "ÖZÜRLÜ SÜRÜCÜLER İÇİN PARK YERİ", aciklama = [[Bu alanın özürlü sürücüler için ayrılmış park yeri olduğunu gösterir.]] },
-    [3] = { ad = "BU ŞERİT SADECE İLERİ YÖNDE SEYİR İÇİNDİR", aciklama = [[Bu şeritte yalnızca ileri yönde gidilebileceğini gösteren yatay işaretlemedir.]] },
-    [4] = { ad = "BU ŞERİT SADECE İLERİ SEYİR VEYA SOLA DÖNÜŞ İÇİNDİR", aciklama = [[Bu şeritte ileri gidilebileceğini veya sola dönüş yapılabileceğini gösterir.]] },
-    [5] = { ad = "BU ŞERİT SADECE İLERİ SEYİR VEYA SAĞA DÖNÜŞ İÇİNDİR", aciklama = [[Bu şeritte ileri gidilebileceğini veya sağa dönüş yapılabileceğini gösterir.]] },
-    [6] = { ad = "BU ŞERİT SADECE SOLA DÖNÜŞ İÇİNDİR", aciklama = [[Bu şeritten yalnızca sola dönüş yapılabileceğini gösteren oktur.]] },
-    [7] = { ad = "BU ŞERİT SADECE SAĞA DÖNÜŞ İÇİNDİR", aciklama = [[Bu şeritten yalnızca sağa dönüş yapılabileceğini gösteren oktur.]] },
-    [8] = { ad = "SOLA GEÇİLİR", aciklama = [[Öndeki araca soldan geçilebileceğini gösteren yatay işaretlemedir.]] },
+    [2] = { ad = "Özürlü Sürücüler İçin Park Yeri", aciklama = [[Bu alanın özürlü sürücüler için ayrılmış park yeri olduğunu gösterir.]] },
+    [3] = { ad = "Bu şerit sadece ileri yönde seyir içindir", aciklama = [[Bu şeritte yalnızca ileri yönde gidilebileceğini gösteren yatay işaretlemedir.]] },
+    [4] = { ad = "Bu şerit sadece ileri seyir veya sola dönüş içindir", aciklama = [[Bu şeritte ileri gidilebileceğini veya sola dönüş yapılabileceğini gösterir.]] },
+    [5] = { ad = "Bu şerit sadece ileri seyir veya sağa dönüş içindir", aciklama = [[Bu şeritte ileri gidilebileceğini veya sağa dönüş yapılabileceğini gösterir.]] },
+    [6] = { ad = "Bu şerit sadece sola dönüş içindir", aciklama = [[Bu şeritten yalnızca sola dönüş yapılabileceğini gösteren oktur.]] },
+    [7] = { ad = "Bu şerit sadece sağa dönüş içindir", aciklama = [[Bu şeritten yalnızca sağa dönüş yapılabileceğini gösteren oktur.]] },
+    [8] = { ad = "Sola geçilir", aciklama = [[Öndeki araca soldan geçilebileceğini gösteren yatay işaretlemedir.]] },
 }
 
 -- Metin göstermek için ScrollView oluşturan fonksiyon
@@ -52,7 +52,8 @@ local function metinOlustur(icerik, ustBosluk)
             left = 0,
             width = display.contentWidth,
             height = display.contentHeight - ustBosluk - tabBarHeight,
-            horizontalScrollDisabled = true
+            horizontalScrollDisabled = true,
+            backgroundColor = { 1, 1, 1 }
         })
 
     local yStart = 10
@@ -62,7 +63,7 @@ local function metinOlustur(icerik, ustBosluk)
         local newText = display.newText({
             text = paragraph,
             width = scrollView.width - (mainPadding * 2),
-            fontSize = 17,
+            fontSize = 16,
             font = "Poppins-Medium",
             align = "left"
         })
@@ -70,7 +71,7 @@ local function metinOlustur(icerik, ustBosluk)
         newText.anchorY = 0
         newText.x = mainPadding
         newText.y = yStart
-        newText:setFillColor(0)
+        newText:setFillColor(0.2)
         scrollView:insert(newText)
         yStart = yStart + newText.height + 5
     end
@@ -92,29 +93,12 @@ function scene:create(event)
     local themeID = composer.getVariable("themeID")
 
     local tableViewColors = {
-        rowColor = { default = { 1 }, over = { 30 / 255, 144 / 255, 1 } },
+        rowColor = { default = { 1 }, over = { 0.92, 0.95, 1 } },
         lineColor = { 220 / 255 },
-        catColor = { default = { 150 / 255, 160 / 255, 180 / 255, 200 / 255 }, over = { 150 / 255, 160 / 255, 180 / 255, 200 / 255 } },
-        defaultLabelColor = { 0, 0, 0, 0.6 },
-        catLabelColor = { 0 }
+        catColor = { default = { 0.05, 0.3, 0.55, 0.9 }, over = { 0.05, 0.3, 0.55, 0.9 } },
+        defaultLabelColor = { 0.2 },
+        catLabelColor = { 1 }
     }
-    if (themeID == "widget_theme_android_holo_dark") then
-        tableViewColors.rowColor.default = { 48 / 255 }
-        tableViewColors.rowColor.over = { 72 / 255 }
-        tableViewColors.lineColor = { 36 / 255 }
-        tableViewColors.catColor.default = { 80 / 255, 80 / 255, 80 / 255, 0.9 }
-        tableViewColors.catColor.over = { 80 / 255, 80 / 255, 80 / 255, 0.9 }
-        tableViewColors.defaultLabelColor = { 1, 1, 1, 0.6 }
-        tableViewColors.catLabelColor = { 1 }
-    elseif (themeID == "widget_theme_android_holo_light") then
-        tableViewColors.rowColor.default = { 250 / 255 }
-        tableViewColors.rowColor.over = { 240 / 255 }
-        tableViewColors.lineColor = { 215 / 255 }
-        tableViewColors.catColor.default = { 220 / 255, 220 / 255, 220 / 255, 0.9 }
-        tableViewColors.catColor.over = { 220 / 255, 220 / 255, 220 / 255, 0.9 }
-        tableViewColors.defaultLabelColor = { 0, 0, 0, 0.6 }
-        tableViewColors.catLabelColor = { 0 }
-    end
 
     local ilkKare = levhaKareleri.frames[1]
     local g, y = levhaBoyut(ilkKare)
@@ -152,7 +136,14 @@ function scene:create(event)
         local row = event.row
         local groupContentHeight = row.contentHeight
 
-        local rowTitle = display.newText(row, levhaDetaylari[row.index].ad, 0, 0, nil, 16)
+        local rowTitle = display.newText({
+            parent = row,
+            text = levhaDetaylari[row.index].ad,
+            fontSize = row.isCategory and 16 or 15,
+            font = row.isCategory and "Poppins-Bold" or "Poppins-Medium",
+            width = 240,
+            align = "left"
+        })
         rowTitle.anchorX = 0
         rowTitle.x = 80
         rowTitle.y = groupContentHeight * 0.5

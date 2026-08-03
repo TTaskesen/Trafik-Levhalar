@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 --
--- sahne11.lua - Otoyol İşaretleri
+-- sahne11.lua - Yeni_standart levhalar
 --
 --------------------------------------------------------------------------------
 
@@ -14,31 +14,35 @@ local levhaKareleri = {
     sheetContentWidth = 700,
     sheetContentHeight = 1085,
     frames = {
-        [1] = { x = 5, y = 3, width = 163, height = 146 },
-        [2] = { x = 180, y = 3, width = 163, height = 146 },
-        [3] = { x = 360, y = 3, width = 163, height = 146 },
-        [4] = { x = 530, y = 3, width = 163, height = 146 },
-        [5] = { x = 5, y = 153, width = 163, height = 146 },
-        [6] = { x = 180, y = 153, width = 163, height = 146 },
-        [7] = { x = 360, y = 153, width = 163, height = 146 },
-        [8] = { x = 530, y = 153, width = 163, height = 146 },
-        [9] = { x = 5, y = 303, width = 163, height = 146 },
-        [10] = { x = 180, y = 303, width = 163, height = 146 },
-        [11] = { x = 360, y = 303, width = 163, height = 146 },
-        [12] = { x = 530, y = 303, width = 163, height = 146 },
-        [13] = { x = 5, y = 453, width = 163, height = 146 },
-        [14] = { x = 180, y = 453, width = 163, height = 146 },
-        [15] = { x = 360, y = 453, width = 163, height = 146 },
-        [16] = { x = 530, y = 453, width = 163, height = 146 },
-        [17] = { x = 5, y = 603, width = 163, height = 146 },
-        [18] = { x = 180, y = 603, width = 163, height = 146 },
-        [19] = { x = 360, y = 603, width = 163, height = 146 },
-        [20] = { x = 530, y = 603, width = 163, height = 146 },
-        [21] = { x = 5, y = 753, width = 163, height = 146 },
-        [22] = { x = 180, y = 753, width = 163, height = 146 },
-        [23] = { x = 360, y = 753, width = 163, height = 146 },
-        [24] = { x = 530, y = 753, width = 163, height = 146 },
-        [25] = { x = 5, y = 903, width = 163, height = 146 },
+        [1]  = { x = 27, y = 28, width = 160, height = 128 },
+        [2]  = { x = 189, y = 28, width = 160, height = 128 },
+        [3]  = { x = 351, y = 28, width = 160, height = 128 },
+        [4]  = { x = 513, y = 28, width = 160, height = 128 },
+        [5]  = { x = 27, y = 157, width = 160, height = 129 },
+        [6]  = { x = 189, y = 157, width = 160, height = 129 },
+        [7]  = { x = 351, y = 157, width = 160, height = 129 },
+        [8]  = { x = 513, y = 157, width = 160, height = 129 },
+        [9]  = { x = 27, y = 287, width = 160, height = 128 },
+        [10] = { x = 189, y = 287, width = 160, height = 128 },
+        [11] = { x = 351, y = 287, width = 160, height = 128 },
+        [12] = { x = 513, y = 287, width = 160, height = 128 },
+        [13] = { x = 27, y = 416, width = 160, height = 129 },
+        [14] = { x = 189, y = 416, width = 160, height = 129 },
+        [15] = { x = 351, y = 416, width = 160, height = 129 },
+        [16] = { x = 513, y = 416, width = 160, height = 129 },
+        [17] = { x = 27, y = 546, width = 160, height = 128 },
+        [18] = { x = 189, y = 546, width = 160, height = 128 },
+        [19] = { x = 351, y = 546, width = 160, height = 128 },
+        [20] = { x = 513, y = 546, width = 160, height = 128 },
+        [21] = { x = 27, y = 675, width = 160, height = 129 },
+        [22] = { x = 189, y = 675, width = 160, height = 129 },
+        [23] = { x = 351, y = 675, width = 160, height = 129 },
+        [24] = { x = 513, y = 675, width = 160, height = 129 },
+        [25] = { x = 27, y = 805, width = 160, height = 128 },
+        [26] = { x = 189, y = 805, width = 160, height = 128 },
+        [27] = { x = 351, y = 805, width = 160, height = 128 },
+        [28] = { x = 513, y = 805, width = 160, height = 128 },
+        [29] = { x = 27, y = 934, width = 160, height = 130 },
     }
 }
 
@@ -47,31 +51,35 @@ local resimLevha = graphics.newImageSheet("levha/levha/5-yeni-standart/yeni-stan
 local levhaDetaylari =
 {
     [1] = { ad = "", aciklama = "" },
-    [2] = { ad = "LEVHA 1", aciklama = [[Açıklama eklenecek.]] },
-    [3] = { ad = "LEVHA 2", aciklama = [[Açıklama eklenecek.]] },
-    [4] = { ad = "LEVHA 3", aciklama = [[Açıklama eklenecek.]] },
-    [5] = { ad = "LEVHA 4", aciklama = [[Açıklama eklenecek.]] },
-    [6] = { ad = "LEVHA 5", aciklama = [[Açıklama eklenecek.]] },
-    [7] = { ad = "LEVHA 6", aciklama = [[Açıklama eklenecek.]] },
-    [8] = { ad = "LEVHA 7", aciklama = [[Açıklama eklenecek.]] },
-    [9] = { ad = "LEVHA 8", aciklama = [[Açıklama eklenecek.]] },
-    [10] = { ad = "LEVHA 9", aciklama = [[Açıklama eklenecek.]] },
-    [11] = { ad = "LEVHA 10", aciklama = [[Açıklama eklenecek.]] },
-    [12] = { ad = "LEVHA 11", aciklama = [[Açıklama eklenecek.]] },
-    [13] = { ad = "LEVHA 12", aciklama = [[Açıklama eklenecek.]] },
-    [14] = { ad = "LEVHA 13", aciklama = [[Açıklama eklenecek.]] },
-    [15] = { ad = "LEVHA 14", aciklama = [[Açıklama eklenecek.]] },
-    [16] = { ad = "LEVHA 15", aciklama = [[Açıklama eklenecek.]] },
-    [17] = { ad = "LEVHA 16", aciklama = [[Açıklama eklenecek.]] },
-    [18] = { ad = "LEVHA 17", aciklama = [[Açıklama eklenecek.]] },
-    [19] = { ad = "LEVHA 18", aciklama = [[Açıklama eklenecek.]] },
-    [20] = { ad = "LEVHA 19", aciklama = [[Açıklama eklenecek.]] },
-    [21] = { ad = "LEVHA 20", aciklama = [[Açıklama eklenecek.]] },
-    [22] = { ad = "LEVHA 21", aciklama = [[Açıklama eklenecek.]] },
-    [23] = { ad = "LEVHA 22", aciklama = [[Açıklama eklenecek.]] },
-    [24] = { ad = "LEVHA 23", aciklama = [[Açıklama eklenecek.]] },
-    [25] = { ad = "LEVHA 24", aciklama = [[Açıklama eklenecek.]] },
-    [26] = { ad = "LEVHA 25", aciklama = [[Açıklama eklenecek.]] },
+    [2] = { ad = "Levha 1", aciklama = [[Açıklama eklenecek.]] },
+    [3] = { ad = "Levha 2", aciklama = [[Açıklama eklenecek.]] },
+    [4] = { ad = "Levha 3", aciklama = [[Açıklama eklenecek.]] },
+    [5] = { ad = "Levha 4", aciklama = [[Açıklama eklenecek.]] },
+    [6] = { ad = "Levha 5", aciklama = [[Açıklama eklenecek.]] },
+    [7] = { ad = "Levha 6", aciklama = [[Açıklama eklenecek.]] },
+    [8] = { ad = "Levha 7", aciklama = [[Açıklama eklenecek.]] },
+    [9] = { ad = "Levha 8", aciklama = [[Açıklama eklenecek.]] },
+    [10] = { ad = "Levha 9", aciklama = [[Açıklama eklenecek.]] },
+    [11] = { ad = "Levha 10", aciklama = [[Açıklama eklenecek.]] },
+    [12] = { ad = "Levha 11", aciklama = [[Açıklama eklenecek.]] },
+    [13] = { ad = "Levha 12", aciklama = [[Açıklama eklenecek.]] },
+    [14] = { ad = "Levha 13", aciklama = [[Açıklama eklenecek.]] },
+    [15] = { ad = "Levha 14", aciklama = [[Açıklama eklenecek.]] },
+    [16] = { ad = "Levha 15", aciklama = [[Açıklama eklenecek.]] },
+    [17] = { ad = "Levha 16", aciklama = [[Açıklama eklenecek.]] },
+    [18] = { ad = "Levha 17", aciklama = [[Açıklama eklenecek.]] },
+    [19] = { ad = "Levha 18", aciklama = [[Açıklama eklenecek.]] },
+    [20] = { ad = "Levha 19", aciklama = [[Açıklama eklenecek.]] },
+    [21] = { ad = "Levha 20", aciklama = [[Açıklama eklenecek.]] },
+    [22] = { ad = "Levha 21", aciklama = [[Açıklama eklenecek.]] },
+    [23] = { ad = "Levha 22", aciklama = [[Açıklama eklenecek.]] },
+    [24] = { ad = "Levha 23", aciklama = [[Açıklama eklenecek.]] },
+    [25] = { ad = "Levha 24", aciklama = [[Açıklama eklenecek.]] },
+    [26] = { ad = "Levha 25", aciklama = [[Açıklama eklenecek.]] },
+    [27] = { ad = "Levha 26", aciklama = [[Açıklama eklenecek.]] },
+    [28] = { ad = "Levha 27", aciklama = [[Açıklama eklenecek.]] },
+    [29] = { ad = "Levha 28", aciklama = [[Açıklama eklenecek.]] },
+    [30] = { ad = "Levha 29", aciklama = [[Açıklama eklenecek.]] },
 }
 
 -- Metin göstermek için ScrollView oluşturan fonksiyon
@@ -88,7 +96,8 @@ local function metinOlustur(icerik, ustBosluk)
             left = 0,
             width = display.contentWidth,
             height = display.contentHeight - ustBosluk - tabBarHeight,
-            horizontalScrollDisabled = true
+            horizontalScrollDisabled = true,
+            backgroundColor = { 1, 1, 1 }
         })
 
     local yStart = 10
@@ -98,7 +107,7 @@ local function metinOlustur(icerik, ustBosluk)
         local newText = display.newText({
             text = paragraph,
             width = scrollView.width - (mainPadding * 2),
-            fontSize = 17,
+            fontSize = 16,
             font = "Poppins-Medium",
             align = "left"
         })
@@ -106,7 +115,7 @@ local function metinOlustur(icerik, ustBosluk)
         newText.anchorY = 0
         newText.x = mainPadding
         newText.y = yStart
-        newText:setFillColor(0)
+        newText:setFillColor(0.2)
         scrollView:insert(newText)
         yStart = yStart + newText.height + 5
     end
@@ -116,7 +125,7 @@ local function metinOlustur(icerik, ustBosluk)
 end
 
 local function levhaBoyut(kare)
-    local olcek = math.min(380 / kare.width, 300 / kare.height, 2.5)
+    local olcek = math.min(260 / kare.width, 200 / kare.height, 1.7)
     return kare.width * olcek, kare.height * olcek
 end
 
@@ -128,29 +137,12 @@ function scene:create(event)
     local themeID = composer.getVariable("themeID")
 
     local tableViewColors = {
-        rowColor = { default = { 1 }, over = { 30 / 255, 144 / 255, 1 } },
+        rowColor = { default = { 1 }, over = { 0.92, 0.95, 1 } },
         lineColor = { 220 / 255 },
-        catColor = { default = { 150 / 255, 160 / 255, 180 / 255, 200 / 255 }, over = { 150 / 255, 160 / 255, 180 / 255, 200 / 255 } },
-        defaultLabelColor = { 0, 0, 0, 0.6 },
-        catLabelColor = { 0 }
+        catColor = { default = { 0.05, 0.3, 0.55, 0.9 }, over = { 0.05, 0.3, 0.55, 0.9 } },
+        defaultLabelColor = { 0.2 },
+        catLabelColor = { 1 }
     }
-    if (themeID == "widget_theme_android_holo_dark") then
-        tableViewColors.rowColor.default = { 48 / 255 }
-        tableViewColors.rowColor.over = { 72 / 255 }
-        tableViewColors.lineColor = { 36 / 255 }
-        tableViewColors.catColor.default = { 80 / 255, 80 / 255, 80 / 255, 0.9 }
-        tableViewColors.catColor.over = { 80 / 255, 80 / 255, 80 / 255, 0.9 }
-        tableViewColors.defaultLabelColor = { 1, 1, 1, 0.6 }
-        tableViewColors.catLabelColor = { 1 }
-    elseif (themeID == "widget_theme_android_holo_light") then
-        tableViewColors.rowColor.default = { 250 / 255 }
-        tableViewColors.rowColor.over = { 240 / 255 }
-        tableViewColors.lineColor = { 215 / 255 }
-        tableViewColors.catColor.default = { 220 / 255, 220 / 255, 220 / 255, 0.9 }
-        tableViewColors.catColor.over = { 220 / 255, 220 / 255, 220 / 255, 0.9 }
-        tableViewColors.defaultLabelColor = { 0, 0, 0, 0.6 }
-        tableViewColors.catLabelColor = { 0 }
-    end
 
     local ilkKare = levhaKareleri.frames[1]
     local g, y = levhaBoyut(ilkKare)
@@ -188,7 +180,16 @@ function scene:create(event)
         local row = event.row
         local groupContentHeight = row.contentHeight
 
-        local rowTitle = display.newText(row, levhaDetaylari[row.index].ad, 0, 0, nil, 16)
+        local rowTitle = display.newText({
+            parent = row,
+            text = levhaDetaylari[row.index].ad,
+            x = 0,
+            y = 0,
+            width = 240,
+            font = "Poppins-Medium",
+            fontSize = 15,
+            align = "left"
+        })
         rowTitle.anchorX = 0
         rowTitle.x = 80
         rowTitle.y = groupContentHeight * 0.5
@@ -196,7 +197,9 @@ function scene:create(event)
 
         if (row.isCategory) then
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
-            rowTitle.text = "OTOYOL İŞARETLERİ"
+            rowTitle.text = "YENİ STANDART LEVHALAR"
+            rowTitle.font = "Poppins-Bold"
+            rowTitle.size = 16
         else
             rowTitle:setFillColor(unpack(row.params.defaultLabelColor))
             local kare = levhaKareleri.frames[row.index - 1]
@@ -262,7 +265,7 @@ function scene:create(event)
     sceneGroup:insert(self.tableView)
 
     -- 1 kategori satırı + levha satırları
-    for i = 1, 26 do
+    for i = 1, 30 do
         local isCategory = false
         local rowHeight = 70
         local rowColor = {
