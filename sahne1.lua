@@ -108,7 +108,7 @@ function sahne:create(olay)
 		{ metin = "BİLGİ",                  dokun = yaziyaDokun4 },
 		{ metin = "DURAKLAMA VE PARK ETME", dokun = yaziyaDokun5 },
 		{ metin = "ÖZEL",                   dokun = yaziyaDokun6 },
-		{ metin = "OTOYOL LEVHALARI",       dokun = yaziyaDokun7 },
+		{ metin = "OTOYOL LEVHA",           dokun = yaziyaDokun7 },
 	}
 
 	-- Levha tab bara yakın durur; yazı satırları aradaki alana eşit aralıklarla dağılır
