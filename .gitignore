@@ -1,5 +1,5 @@
 # Corona/CoronaSDK build artifacts
-.CoronaLiveBuild/
+.CoronaLiveBuild
 build/
 *.apk
 *.ipa
