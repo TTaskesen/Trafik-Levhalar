@@ -13,6 +13,7 @@ local sahne = sahneDegis.newScene()
 ---------------------------------------------------------------------------------
 
 local resim, yazi1, yazi2, yazi3, yazi4, yazi5, yazi6, yazi7, zamanSay
+local menuler
 
 -- Tehlike/uyarı işareti resim kutusu (700x1950, 4 sütun x 13 satır = 52 kare)
 local levhaKareleri = {
@@ -77,15 +78,23 @@ local function yaziyaDokun7(olay, yazi)
 	end
 end
 
+-- Kart/yazı basılı tutma görsel efekti
+local function basiliEfekt(olay)
+	local nesne = olay.target
+	if olay.phase == "began" then
+		transition.to(nesne, { xScale = 0.93, yScale = 0.93, time = 90 })
+	elseif olay.phase == "ended" or olay.phase == "cancelled" then
+		transition.to(nesne, { xScale = 1, yScale = 1, time = 140, transition = easing.outBack })
+	end
+	return false
+end
+
 
 -- Called when the scene's view does not exist:
 function sahne:create(olay)
 	local sceneGroup = self.view
 
-	resim = display.newImage("bg.jpg")
-	resim.x = display.contentCenterX
-	resim.y = display.contentCenterY
-	sceneGroup:insert(resim)
+	-- Arka plan: ana uygulama arka planı açık renkli düz zemindir (bg.jpg kullanılmaz)
 
 	local yazifont = "Poppins-Bold"
 	local baslikfont = "BebasNeue-Regular"
@@ -102,37 +111,65 @@ function sahne:create(olay)
 	yazi1.x, yazi1.y = display.contentCenterX, 50
 	sceneGroup:insert(yazi1)
 
-	local menuler = {
-		{ metin = "TEHLİKE UYARI",          dokun = yaziyaDokun2 },
-		{ metin = "TRAFİK TANZİM",          dokun = yaziyaDokun3 },
-		{ metin = "BİLGİ",                  dokun = yaziyaDokun4 },
-		{ metin = "DURAKLAMA VE PARK ETME", dokun = yaziyaDokun5 },
-		{ metin = "ÖZEL",                   dokun = yaziyaDokun6 },
-		{ metin = "OTOYOL LEVHA",           dokun = yaziyaDokun7 },
+	menuler = {
+		{ metin = "TEHLİKE UYARI İŞARETLERİ",          dokun = yaziyaDokun2 },
+		{ metin = "TRAFİK TANZİM İŞARETLERİ",          dokun = yaziyaDokun3 },
+		{ metin = "BİLGİ İŞARETLERİ",                  dokun = yaziyaDokun4 },
+		{ metin = "DURAKLAMA VE PARK ETME İŞARETLERİ", dokun = yaziyaDokun5 },
+		{ metin = "ÖZEL İŞARETLER",                    dokun = yaziyaDokun6 },
+		{ metin = "OTOYOL LEVHA İŞARETLERİ",           dokun = yaziyaDokun7 },
 	}
 
-	-- Levha tab bara yakın durur; yazı satırları aradaki alana eşit aralıklarla dağılır
-	local kartYukseklik = 30
+	-- Düzen: yazılar kartın içinde taşmaz; uzun metinler iki satıra sarılır ve kart yüksekliği metne uyar
 	local tabBarHeight = sahneDegis.getVariable("tabBarHeight") or 50
 	local ustSinir = baslikKarti.y + baslikKarti.contentHeight / 2 -- başlığın alt kenarı
-	local altSinir = display.contentHeight - tabBarHeight       -- tab barın üst kenarı
-	local kartToplamYukseklik = #menuler * kartYukseklik
-	local levhaYukseklik = 41
-	local levhaAltBosluk = 5                                  -- levha ile tab bar arasındaki boşluk
-	local esitBosluk = (altSinir - levhaAltBosluk - levhaYukseklik - ustSinir - kartToplamYukseklik) / (#menuler + 1)
-	local baslangicY = ustSinir + esitBosluk + kartYukseklik / 2 -- ilk kartın merkezi
+	local altSinir = display.contentHeight - tabBarHeight -- tab barın üst kenarı
+	local levhaYukseklik = 82
+	local levhaMerkezY = altSinir - levhaYukseklik / 2 -- resim en altta, altında boşluk yok
+	local levhaUstSinir = altSinir - levhaYukseklik
+	local kartGenislik = 300
+	local yaziGenislik = kartGenislik - 16
+	local ustBosluk = 10
+
+	-- Yazıları oluştur ve yüksekliklerini ölç (genişlik sınırı taşmayı önler)
+	for i, menu in ipairs(menuler) do
+		local yazi = display.newText({
+			text = menu.metin, x = 0, y = 0, font = yazifont, fontSize = 16,
+			width = yaziGenislik, align = "center"
+		})
+		yazi:setFillColor(1)
+		menu.kartYukseklik = yazi.contentHeight + 10
+		menu.yazi = yazi
+	end
+
+	-- Kartları başlıktan aşağıya doğru diz; kalan boşluk kart aralarına eşit dağıtılır
+	local toplamKartYukseklik = 0
+	for i, menu in ipairs(menuler) do
+		toplamKartYukseklik = toplamKartYukseklik + menu.kartYukseklik
+	end
+	local kartAralik = (levhaUstSinir - ustSinir - ustBosluk - toplamKartYukseklik) / (#menuler - 1)
+	if kartAralik < 6 then kartAralik = 6 end
+	local y = ustSinir + ustBosluk
+	local kartMerkezleri = {}
+	for i = 1, #menuler do
+		kartMerkezleri[i] = y + menuler[i].kartYukseklik / 2
+		y = y + menuler[i].kartYukseklik + kartAralik
+	end
 
 	for i, menu in ipairs(menuler) do
-		local y = baslangicY + (i - 1) * (kartYukseklik + esitBosluk)
-		local kart = display.newRoundedRect(display.contentCenterX, y, 300, kartYukseklik, 8)
-		kart:setFillColor(0.1, 0.13, 0.17, 0.6)
-		kart:setStrokeColor(1, 1, 1, 0.25)
-		kart.strokeWidth = 1
+		local y = kartMerkezleri[i]
+		local kart = display.newRoundedRect(display.contentCenterX, y, kartGenislik, menu.kartYukseklik, 8)
+		kart:setFillColor(0.05, 0.3, 0.55, 0.85)
+		kart:setStrokeColor(1, 1, 1, 0.35)
+		kart.strokeWidth = 1.5
 		sceneGroup:insert(kart)
+		menu.kart = kart
+		kart:addEventListener("touch", basiliEfekt)
+		kart:addEventListener("touch", menu.dokun)
 
-		local yazi = display.newText(menu.metin, 0, 0, yazifont, 15)
-		yazi:setFillColor(1)
+		local yazi = menu.yazi
 		yazi.x, yazi.y = display.contentCenterX, y
+		yazi:addEventListener("touch", basiliEfekt)
 		yazi:addEventListener("touch", menu.dokun)
 		sceneGroup:insert(yazi)
 
@@ -156,7 +193,7 @@ function sahne:create(olay)
 	local levhaGenislik = levhaYukseklik * 163 / 146
 	local rastgeleLevha = display.newImageRect(sceneGroup, resimLevha, math.random(1, 52), levhaGenislik, levhaYukseklik)
 	rastgeleLevha.x = display.contentCenterX
-	rastgeleLevha.y = altSinir - levhaAltBosluk - levhaYukseklik / 2
+	rastgeleLevha.y = levhaMerkezY +70
 	sceneGroup:insert(rastgeleLevha)
 
 
@@ -170,24 +207,26 @@ function sahne:show(olay)
 	if "did" == faz then
 		--print("1: show olayı, faz did")
 
-		-- Update Lua memory text display
-		local hafizaGoster = function()
-			--resim:addEventListener( "touch", resim )
-			--yazi7.isVisible = true
-			yazi2.text = yazi2.text .. " İŞARETLERİ"
-			yazi2.x = display.contentWidth * 0.5
-			yazi3.text = yazi3.text .. " İŞARETLERİ"
-			yazi3.x = display.contentWidth * 0.5
-			yazi4.text = yazi4.text .. " İŞARETLERİ"
-			yazi4.x = display.contentWidth * 0.5
-			yazi5.text = yazi5.text .. " İŞARETLERİ"
-			yazi5.x = display.contentWidth * 0.5
-			yazi6.text = yazi6.text .. " İŞARETLER"
-			yazi6.x = display.contentWidth * 0.5
-			yazi7.text = yazi7.text .. " İŞARETLERİ"
-			yazi7.x = display.contentWidth * 0.5
+		-- Giriş efektleri: başlık ve menü kartları/yazıları kademeli belirir
+		yazi1.alpha = 0
+		transition.to(yazi1, { alpha = 1, time = 450, transition = easing.outQuad })
+		for i, menu in ipairs(menuler) do
+			menu.kart.alpha = 0
+			menu.kart.xScale, menu.kart.yScale = 0.85, 0.85
+			menu.yazi.alpha = 0
+			menu.yazi.xScale, menu.yazi.yScale = 0.75, 0.75
 		end
-		zamanSay = timer.performWithDelay(1000, hafizaGoster, 1)
+		for i, menu in ipairs(menuler) do
+			local gecikme = 180 + (i - 1) * 110
+			transition.to(menu.kart, {
+				alpha = 1, xScale = 1, yScale = 1,
+				time = 360, delay = gecikme, transition = easing.outQuad
+			})
+			transition.to(menu.yazi, {
+				alpha = 1, xScale = 1, yScale = 1,
+				time = 420, delay = gecikme + 40, transition = easing.outQuad
+			})
+		end
 	end
 end
 

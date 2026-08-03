@@ -46,7 +46,7 @@ local function metinOlustur()
     end
 
     local tabBarHeight = composer.getVariable("tabBarHeight") or 0
-    local ustBosluk = 60
+    local ustBosluk = 64
     local scrollView = widget.newScrollView(
         {
             top = ustBosluk,
@@ -60,18 +60,22 @@ local function metinOlustur()
     local mainPadding = 10
 
     for paragraph in string.gmatch(icerik .. "\n", "([^\n]*)\n") do
+        local baslikMi = #paragraph > 3 and paragraph == paragraph:upper()
         local newText = display.newText({
             text = paragraph,
             width = scrollView.width - (mainPadding * 2),
-            fontSize = 17,
-            font = "Poppins-Medium",
+            fontSize = baslikMi and 15 or 17,
+            font = baslikMi and "Poppins-Bold" or "Poppins-Medium",
             align = "left"
         })
+        if baslikMi then
+            yStart = yStart + 8
+        end
         newText.anchorX = 0
         newText.anchorY = 0
         newText.x = mainPadding
         newText.y = yStart
-        newText:setFillColor(0)
+        newText:setFillColor(unpack(baslikMi and { 0.05, 0.3, 0.55 } or { 0.2 }))
         scrollView:insert(newText)
         yStart = yStart + newText.height + 5
     end
@@ -83,8 +87,14 @@ end
 function scene:create(event)
     local sceneGroup = self.view
 
+    local baslikKarti = display.newRoundedRect(display.contentCenterX, 30, 240, 52, 10)
+    baslikKarti:setFillColor(0.05, 0.3, 0.55, 0.85)
+    baslikKarti:setStrokeColor(1, 1, 1, 0.35)
+    baslikKarti.strokeWidth = 1.5
+    sceneGroup:insert(baslikKarti)
+
     local baslik = display.newText("Levha Tarihi", 0, 0, "BebasNeue-Regular", 30)
-    baslik:setFillColor(0)
+    baslik:setFillColor(1)
     baslik.x = display.contentCenterX
     baslik.y = 30
     sceneGroup:insert(baslik)

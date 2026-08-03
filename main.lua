@@ -56,14 +56,8 @@ local function widgetleriGoster( widgetTemaNumarasi )
 		-- Store theme in Composer variable for use elsewhere
 		sahneDegis.setVariable( "themeID", temaIdleri[widgetTemaNumarasi] )
 		
-		-- Change background color depending on theme
-		if ( temaIdleri[widgetTemaNumarasi] == "widget_theme_android" ) then
-			display.setDefault( "background", 197/255, 204/255, 212/255, 1 )
-		elseif ( temaIdleri[widgetTemaNumarasi] == "widget_theme_android_holo_light" ) then
-			display.setDefault( "background", 248/255 )
-		elseif ( temaIdleri[widgetTemaNumarasi] == "widget_theme_android_holo_dark" ) then
-			display.setDefault( "background", 34/255 )
-		end
+		-- Proje arka planı: açık renkli düz zemin (tab yazıları ve içerik net görünsün)
+		display.setDefault( "background", 0.93, 0.95, 0.97, 1 )
 	end
 
 	-- Create buttons table for the tabBar

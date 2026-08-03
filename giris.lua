@@ -13,19 +13,16 @@ local tabBar
 function sahne:create(olay)
 	local sceneGroup = self.view
 
-	local resim = display.newImage("bg.jpg")
-	resim.x = display.contentCenterX
-	resim.y = display.contentCenterY
-	sceneGroup:insert(resim)
+	-- Arka plan: ana uygulama arka planı açık renkli düz zemindir (bg.jpg kullanılmaz)
 
 	local baslik = display.newText("Karayolları Standart İşaret Levhaları", 0, 0, "Poppins-Bold", 15)
-	baslik:setFillColor(1)
+	baslik:setFillColor(0.15)
 	baslik.x = display.contentCenterX
 	baslik.y = 90
 	sceneGroup:insert(baslik)
 
 	local altBaslik = display.newText("Trafik İşaretleri Eğitim Uygulaması", 0, 0, "Poppins-Medium", 13)
-	altBaslik:setFillColor(0.85)
+	altBaslik:setFillColor(0.45)
 	altBaslik.x = display.contentCenterX
 	altBaslik.y = 120
 	sceneGroup:insert(altBaslik)
@@ -36,7 +33,7 @@ function sahne:create(olay)
 		-45, 40,
 		45, 40
 	})
-	ucgen:setFillColor(1)
+	ucgen:setFillColor(0.92)
 	ucgen:setStrokeColor(0.75, 0, 0)
 	ucgen.strokeWidth = 7
 	sceneGroup:insert(ucgen)
