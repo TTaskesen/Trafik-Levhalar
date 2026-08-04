@@ -9,6 +9,7 @@ build/
 Thumbs.db
 .DS_Store
 desktop.ini
+._*
 
 # IDE/editor
 *.iml
