@@ -11,8 +11,10 @@ local splash = {}
 function splash.goster(hedefSahne, gecisTuru)
 	local grup = display.newGroup()
 
+	-- Karartma tüm fiziksel ekranı kapsar; böylece tab bar da splash sırasında dokunulamaz
+	local ox, oy = math.abs(display.screenOriginX), math.abs(display.screenOriginY)
 	local karart = display.newRect(display.contentCenterX, display.contentCenterY,
-		display.contentWidth, display.contentHeight)
+		display.contentWidth + ox + ox, display.contentHeight + oy + oy)
 	karart:setFillColor(0, 0, 0, 0.55)
 	grup:insert(karart)
 
@@ -66,7 +68,10 @@ function splash.goster(hedefSahne, gecisTuru)
 	local gecisZaman = timer.performWithDelay(1300, function()
 		timer.cancel(lambaZaman)
 		timer.cancel(noktaZaman)
-		sahneDegis.gotoScene(hedefSahne, gecisTuru, 700)
+		-- Splash sırasında kullanıcı başka sayfaya geçtiyse hedefe zorla gitme
+		if sahneDegis.getSceneName("current") == "sahne1" then
+			sahneDegis.gotoScene(hedefSahne, gecisTuru, 700)
+		end
 		transition.fadeOut(grup, { time = 600, onComplete = function()
 			grup:removeSelf()
 			grup = nil

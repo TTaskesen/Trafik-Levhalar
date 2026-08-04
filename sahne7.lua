@@ -237,8 +237,6 @@ function sahne:show(olay)
 	if "did" == faz then
 		print("2: show olay, faz did")
 
-		-- remove previous scene's view
-		sahneDegis.removeScene("sahne2")
 		collectgarbage("collect")
 
 		-- Update Lua memory text display

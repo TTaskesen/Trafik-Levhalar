@@ -884,7 +884,7 @@ function sahne:create(olay)
 	local backButton = widget.newButton {
 		width = 128,
 		height = 32,
-		label = "geri dön",
+		label = "Geri Dön",
 		onRelease = goBack
 	}
 	backButton.x = 100
@@ -951,7 +951,7 @@ function sahne:create(olay)
 	local function onRowTouch(event)
 		local phase = event.phase
 		local row = event.target
-		if ("release" == phase) then
+		if ("release" == phase) and not row.isCategory then
 			yeniLevha.isVisible = true -- Satır seçilince levha resmi görünsün
 			transition.to(tableView, {
 				x = ((display.contentWidth / 2) + ox + ox) * -1,
@@ -961,12 +961,10 @@ function sahne:create(olay)
 			})
 			transition.to(backButton, { x = display.contentCenterX, time = 750, transition = easing.outQuint })
 			transition.to(yeniLevha, { x = display.contentCenterX, time = 480, transition = easing.outQuint })
-			if not row.isCategory then
-				yeniLevha:setFrame(row.index - 1) -- Seçilen levhanın resmini göster
-				local secilenMetin = levhaDetaylari[row.index].aciklama
-				metinOlustur(secilenMetin, 230)
-				sceneGroup:insert(scrollViewMetin)
-			end
+			yeniLevha:setFrame(row.index - 1) -- Seçilen levhanın resmini göster
+			local secilenMetin = levhaDetaylari[row.index].aciklama
+			metinOlustur(secilenMetin, 230)
+			sceneGroup:insert(scrollViewMetin)
 		end
 	end
 	-- Create a tableView

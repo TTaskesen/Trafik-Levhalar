@@ -124,45 +124,78 @@ function sahne:create(olay)
 		{ metin = "BİLGİ İŞARETLERİ",                  dokun = yaziyaDokun4 },
 		{ metin = "DURAKLAMA VE PARK ETME İŞARETLERİ", dokun = yaziyaDokun5 },
 		{ metin = "ÖZEL İŞARETLER",                    dokun = yaziyaDokun6 },
-		{ metin = "YENİ STANDART LEVHALAR",           dokun = yaziyaDokun7 },
+		{ metin = "YENİ STANDART LEVHALAR",            dokun = yaziyaDokun7 },
 		{ metin = "OTOYOL LEVHALARI",                  dokun = yaziyaDokun8 },
 	}
 
-	-- Düzen: yazılar kartın içinde taşmaz; uzun metinler iki satıra sarılır ve kart yüksekliği metne uyar
+	-- Düzen: kartlar başlık ile tab bar arasına sığmalı; son kart ile tab bar arasındaki
+	-- boşluğa rastgele levha konur. Metinler alana sığmazsa yazı boyutu kademeli küçülür.
 	local tabBarHeight = sahneDegis.getVariable("tabBarHeight") or 50
 	local ustSinir = baslikKarti.y + baslikKarti.contentHeight / 2 -- başlığın alt kenarı
-	local altSinir = display.contentHeight - tabBarHeight -- tab barın üst kenarı
-	local levhaYukseklik = 82
-	local levhaMerkezY = altSinir - levhaYukseklik / 2 -- resim en altta, altında boşluk yok
-	local levhaUstSinir = altSinir - levhaYukseklik
+	local altSinir = display.contentHeight - tabBarHeight       -- tab barın üst kenarı
 	local kartGenislik = 300
 	local yaziGenislik = kartGenislik - 16
 	local ustBosluk = 10
+	local minKartAralik = 4
 
 	-- Yazıları oluştur ve yüksekliklerini ölç (genişlik sınırı taşmayı önler)
 	for i, menu in ipairs(menuler) do
 		local yazi = display.newText({
-			text = menu.metin, x = 0, y = 0, font = yazifont, fontSize = 16,
-			width = yaziGenislik, align = "center"
+			text = menu.metin,
+			x = 0,
+			y = 0,
+			font = yazifont,
+			fontSize = 16,
+			width = yaziGenislik,
+			align = "center"
 		})
 		yazi:setFillColor(1)
-		menu.kartYukseklik = yazi.contentHeight + 10
 		menu.yazi = yazi
 	end
 
-	-- Kartları başlıktan aşağıya doğru diz; kalan boşluk kart aralarına eşit dağıtılır
-	local toplamKartYukseklik = 0
-	for i, menu in ipairs(menuler) do
-		toplamKartYukseklik = toplamKartYukseklik + menu.kartYukseklik
+	-- Son kart ile tab bar arasında rastgele levha için ayrılan pay
+	local levhaPayi = 62
+	local function toplamKartYuksekliginiHesapla()
+		local toplam = 0
+		for i, menu in ipairs(menuler) do
+			menu.kartYukseklik = menu.yazi.contentHeight + 10
+			toplam = toplam + menu.kartYukseklik
+		end
+		return toplam
 	end
-	local kartAralik = (levhaUstSinir - ustSinir - ustBosluk - toplamKartYukseklik) / (#menuler - 1)
-	if kartAralik < 6 then kartAralik = 6 end
+	local toplamKartYukseklik = toplamKartYuksekliginiHesapla()
+
+	-- Kartlar ayrılan alana sığana kadar yazı boyutunu küçült (16 -> 15 -> 14)
+	local yaziBoyutu = 16
+	local kartAralik = (altSinir - levhaPayi - ustSinir - ustBosluk - toplamKartYukseklik) / (#menuler - 1)
+	while kartAralik < minKartAralik and yaziBoyutu > 14 do
+		yaziBoyutu = yaziBoyutu - 1
+		for i, menu in ipairs(menuler) do
+			menu.yazi.size = yaziBoyutu
+		end
+		toplamKartYukseklik = toplamKartYuksekliginiHesapla()
+		kartAralik = (altSinir - levhaPayi - ustSinir - ustBosluk - toplamKartYukseklik) / (#menuler - 1)
+	end
+	if kartAralik < minKartAralik then
+		-- Hâlâ sığmıyorsa levha payını daralt; levha küçülerek yer açar
+		levhaPayi = 44
+		kartAralik = (altSinir - levhaPayi - ustSinir - ustBosluk - toplamKartYukseklik) / (#menuler - 1)
+		if kartAralik < minKartAralik then
+			kartAralik = minKartAralik
+			levhaPayi = altSinir - ustSinir - ustBosluk - toplamKartYukseklik - kartAralik * (#menuler - 1)
+			if levhaPayi < 10 then levhaPayi = 10 end
+		end
+	end
+
+	-- Kartları başlıktan aşağıya doğru diz; kalan boşluk kart aralarına eşit dağıtılır
 	local y = ustSinir + ustBosluk
 	local kartMerkezleri = {}
 	for i = 1, #menuler do
 		kartMerkezleri[i] = y + menuler[i].kartYukseklik / 2
 		y = y + menuler[i].kartYukseklik + kartAralik
 	end
+	-- Son kartın alt kenarı (levha buradan tab bara kadar olan boşluğa yerleşir)
+	local sonKartAlt = y - kartAralik
 
 	for i, menu in ipairs(menuler) do
 		local y = kartMerkezleri[i]
@@ -198,13 +231,21 @@ function sahne:create(olay)
 		end
 	end
 
-	-- ÖZEL yazısının altındaki boşluğa her açılışta rastgele bir tehlike/uyarı işareti koy
+	-- Son kart ile tab bar arasındaki boşluğa her açılışta rastgele bir tehlike/uyarı işareti koy;
+	-- alan dar olsa bile levha küçültülerek her durumda gösterilir (en az 30, en çok 82 piksel)
+	local levhaYukseklik = math.min(math.max(altSinir - sonKartAlt - 4, 40), 82)
 	math.randomseed(os.time() + os.clock())
 	local levhaGenislik = levhaYukseklik * 163 / 146
 	local rastgeleLevha = display.newImageRect(sceneGroup, resimLevha, math.random(1, 52), levhaGenislik, levhaYukseklik)
 	rastgeleLevha.x = display.contentCenterX
-	rastgeleLevha.y = levhaMerkezY +70
+	rastgeleLevha.y = altSinir - levhaYukseklik / 2
 	sceneGroup:insert(rastgeleLevha)
+
+	-- Levhaya dokununca karşılama ekranına (giris) dön
+	local function girseDon()
+		sahneDegis.gotoScene("giris", "fade", 400)
+	end
+	rastgeleLevha:addEventListener("tap", girseDon)
 
 
 
@@ -229,12 +270,20 @@ function sahne:show(olay)
 		for i, menu in ipairs(menuler) do
 			local gecikme = 180 + (i - 1) * 110
 			transition.to(menu.kart, {
-				alpha = 1, xScale = 1, yScale = 1,
-				time = 360, delay = gecikme, transition = easing.outQuad
+				alpha = 1,
+				xScale = 1,
+				yScale = 1,
+				time = 360,
+				delay = gecikme,
+				transition = easing.outQuad
 			})
 			transition.to(menu.yazi, {
-				alpha = 1, xScale = 1, yScale = 1,
-				time = 420, delay = gecikme + 40, transition = easing.outQuad
+				alpha = 1,
+				xScale = 1,
+				yScale = 1,
+				time = 420,
+				delay = gecikme + 40,
+				transition = easing.outQuad
 			})
 		end
 	end
