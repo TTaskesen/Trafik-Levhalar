@@ -5,6 +5,7 @@
 ---------------------------------------------------------------------------------
 
 local sahneDegis = require("composer")
+local ortak = require("levha_ortak")
 local sahne = sahneDegis.newScene()
 
 local widget = require("widget")
@@ -160,6 +161,7 @@ end
 
 function sahne:create(olay)
 	local sceneGroup = self.view
+	local ustSinir = display.safeScreenOriginY or display.screenOriginY or 0
 
 	-- Arka plan: ana uygulama arka planı açık renkli düz zemindir (bg3.jpg kullanılmaz)
 
@@ -167,7 +169,7 @@ function sahne:create(olay)
 
 	yazi1 = display.newText("SIFIR NOKTASI", 0, 0, "Poppins-Bold", 16)
 	yazi1:setFillColor(0.05, 0.3, 0.55)
-	yazi1.x, yazi1.y = display.contentWidth * 0.5, 12
+	yazi1.x, yazi1.y = display.contentCenterX, ustSinir + 20
 	sceneGroup:insert(yazi1)
 	yazi1:addEventListener("touch", yaziyaDokun)
 
@@ -178,7 +180,7 @@ function sahne:create(olay)
 
 	resim1 = display.newImageRect("levha/logo.png", 80, 80)
 	resim1.x = display.contentCenterX
-	resim1.y = 100
+	resim1.y = ustSinir + 100
 	sceneGroup:insert(resim1)
 
 
@@ -197,7 +199,7 @@ function sahne:create(olay)
 	local oy7 = math.abs(display.screenOriginY)
 	local scrollView = widget.newScrollView(
 		{
-			top = 148,
+			top = ustSinir + 148,
 			left = 0,
 			width = display.contentWidth,
 			height = display.contentHeight + oy7 - 148 - (sahneDegis.getVariable("tabBarHeight") or 0),
@@ -235,6 +237,8 @@ function sahne:show(olay)
 	local faz = olay.phase
 
 	if "did" == faz then
+		local tabBar = sahneDegis.getVariable("tabBar")
+		ortak.tabBarGoster(tabBar)
 		print("2: show olay, faz did")
 
 		collectgarbage("collect")

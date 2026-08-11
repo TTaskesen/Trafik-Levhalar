@@ -5,6 +5,7 @@
 ---------------------------------------------------------------------------------
 local widget = require("widget")
 local sahneDegis = require("composer")
+local ortak = require("levha_ortak")
 local sahne = sahneDegis.newScene()
 local scrollViewMetin
 
@@ -369,7 +370,7 @@ araç sürücülerinin vites düşürmeleri gerektiğini bildirir. Uyarı levhas
     [8] = { ad = "İki taraftan daralan kaplama", aciklama = [[Bu işaretler, devamlı veya geçici nedenlerle yol kaplamasının her iki taraftan veya sağdan-soldan önlem almaksızın yan yana geçemeyebilecekleri kesimleri belirtmek amacı ile kullanılmalıdır.
 Bölünmüş yollarda yapılan çalışmalardaki daralmalarda bölünmüş yollardan iki yönlü yollara geçişlerdeki daralmalarda bu işaret levhaları kullanılmaz.Ancak bölünmüş yollarda köprü ve benzeri nedenlerle bankette daralma varsa (YB-4a,b,c,d)nolu levhalar yerine 
 (T-4a,b,c)nolu işaret levhalarından uygun olanı kullanılmalıdır.]] },
-    [9] = { ad = "Sağdan daralan daralan kaplama", aciklama = [[Bu işaretler, devamlı veya geçici nedenlerle yol kaplamasının her iki taraftan veya sağdan-soldan önlem almaksızın yan yana geçemeyebilecekleri kesimleri belirtmek amacı ile kullanılmalıdır.
+    [9] = { ad = "Sağdan daralan kaplama", aciklama = [[Bu işaretler, devamlı veya geçici nedenlerle yol kaplamasının her iki taraftan veya sağdan-soldan önlem almaksızın yan yana geçemeyebilecekleri kesimleri belirtmek amacı ile kullanılmalıdır.
 Bölünmüş yollarda yapılan çalışmalardaki daralmalarda bölünmüş yollardan iki yönlü yollara geçişlerdeki daralmalarda bu işaret levhaları kullanılmaz.Ancak bölünmüş yollarda köprü ve benzeri nedenlerle bankette daralma varsa (YB-4a,b,c,d)nolu levhalar yerine 
 (T-4a,b,c)nolu işaret levhalarından uygun olanı kullanılmalıdır.]] },
     [10] = { ad = "Soldan daralan kaplama", aciklama = [[Bu işaretler, devamlı veya geçici nedenlerle yol kaplamasının her iki taraftan veya sağdan-soldan önlem almaksızın yan yana geçemeyebilecekleri kesimleri belirtmek amacı ile kullanılmalıdır.
@@ -794,7 +795,9 @@ local function metinOlustur(icerik, ustBosluk)
 		scrollViewMetin = nil
 	end
 
-	local tabBarHeight = sahneDegis.getVariable("tabBarHeight") or 0
+	-- Detayda tab bar gizli olduğu için açıklama alanı ekranın altına
+	-- kadar uzanır.
+	local tabBarHeight = 0
 	local oy = math.abs(display.screenOriginY)
 	local scrollView = widget.newScrollView(
 		{
@@ -851,17 +854,21 @@ function sahne:create(olay)
 
 	-- Forward reference for the tableView
 	local tableView
-
+	-- Görsel ve geri düğmesi, üst başlık ile açıklama alanı arasındaki
+	-- boşlukta üstten ve alttan dengeli dursun.
 	local yeniLevha = display.newSprite(sahneGroup, resimLevha, levhaSpriteKareleri)
+	local detayResimY, detayButonY = ortak.detayYerlesimi(yeniLevha.contentHeight)
 
 	yeniLevha.x = display.contentCenterX - 130
-	yeniLevha.y = display.contentCenterY - 130
+	yeniLevha.y = detayResimY
 	yeniLevha.myName = "levha"
 	yeniLevha.isVisible = false -- Satır seçilene kadar gizli kalsın (arka planda soluk görünmesin)
 	sceneGroup:insert(yeniLevha)
 
 	-- Function to return to the tableView
 	local function goBack(event)
+		local tabBar = sahneDegis.getVariable("tabBar")
+		if tabBar then tabBar.isVisible = false end
 		transition.to(tableView, { x = display.contentWidth * 0.5, time = 600, transition = easing.outQuint })
 		transition.to(event.target,
 			{ x = display.contentWidth + event.target.contentWidth, time = 480, transition = easing.outQuint })
@@ -888,7 +895,7 @@ function sahne:create(olay)
 		onRelease = goBack
 	}
 	backButton.x = 100
-	backButton.y = 200
+	backButton.y = detayButonY
 	sceneGroup:insert(backButton)
 
 	-- Listen for tableView events
@@ -904,6 +911,15 @@ function sahne:create(olay)
 		local row = event.row
 		local groupContentHeight = row.contentHeight
 
+		-- TableView satırları yeniden kullanır. Önceki satırın metin ve görseli
+		-- temizlenmezse başka bir levhanın üstünde soluk hayalet içerik kalır.
+		for i = row.numChildren, 1, -1 do
+			local child = row[i]
+			if child and child._levhaSatirOgesi then
+				child:removeSelf()
+			end
+		end
+
 		local kareNo = math.max(1, row.index - 1)
 		local rowTitle = display.newText({
 			parent = row,
@@ -915,18 +931,19 @@ function sahne:create(olay)
 			fontSize = 15,
 			align = "left"
 		})
+		rowTitle._levhaSatirOgesi = true
 		local rowResim = display.newImageRect(row, resimLevha, kareNo, 50, 50)
+		rowResim._levhaSatirOgesi = true
 
 		rowResim.x = 20
 		rowResim.y = groupContentHeight * 0.5
-		row:insert(rowResim)
 		rowTitle.x = 50
 		rowTitle.anchorX = 0
 		rowTitle.y = groupContentHeight * 0.5
 
 		if (row.isCategory) then
 			rowTitle:setFillColor(unpack(row.params.catLabelColor))
-			rowTitle.text = " TEHLİKE UYARI İŞARETLERİ "
+			rowTitle.text = " TEHLİKE UYARI İŞARETLERİ (52 LEVHA) "
 			rowTitle.font = "Poppins-Bold"
 			rowTitle.size = 16
 			rowTitle:setFillColor(unpack(row.params.catLabelColor))
@@ -952,7 +969,12 @@ function sahne:create(olay)
 		local phase = event.phase
 		local row = event.target
 		if ("release" == phase) and not row.isCategory then
+			local tabBar = sahneDegis.getVariable("tabBar")
+			ortak.tabBarGizle(tabBar)
 			yeniLevha.isVisible = true -- Satır seçilince levha resmi görünsün
+			-- Görsel ve geri düğmesi aynı yatay merkez çizgisinde dursun.
+			yeniLevha.x = display.contentCenterX
+			backButton.x = display.contentCenterX
 			transition.to(tableView, {
 				x = ((display.contentWidth / 2) + ox + ox) * -1,
 				time = 600,
@@ -962,9 +984,19 @@ function sahne:create(olay)
 			transition.to(backButton, { x = display.contentCenterX, time = 750, transition = easing.outQuint })
 			transition.to(yeniLevha, { x = display.contentCenterX, time = 480, transition = easing.outQuint })
 			yeniLevha:setFrame(row.index - 1) -- Seçilen levhanın resmini göster
+			local yeniDetayY, yeniButonY, yeniMetinY = ortak.detayYerlesimi(yeniLevha.contentHeight)
+			yeniLevha.y = yeniDetayY
+			backButton.y = yeniButonY
 			local secilenMetin = levhaDetaylari[row.index].aciklama
-			metinOlustur(secilenMetin, 230)
+			metinOlustur(secilenMetin, yeniMetinY)
 			sceneGroup:insert(scrollViewMetin)
+
+			-- Detay açıklaması sonradan eklendiği için tab barın üzerinde
+			-- kalmasını ve Ana Sayfa dokunuşunu almasını garanti et.
+			local tabBar = sahneDegis.getVariable("tabBar")
+			if tabBar then
+				tabBar:toFront()
+			end
 		end
 	end
 	-- Create a tableView
@@ -973,7 +1005,7 @@ function sahne:create(olay)
 			top = -oy,
 			left = -ox,
 			width = display.contentWidth + ox + ox,
-			height = display.contentHeight - tabBarHeight + oy + oy,
+			height = display.contentHeight - 70 + oy + oy,
 			hideBackground = true,
 			listener = tableViewListener,
 			onRowRender = onRowRender,
@@ -1012,6 +1044,35 @@ function sahne:create(olay)
 		}
 	end
 
+	ortak.listeGeriDonButonu(sahneGroup, function()
+		sahneDegis.gotoScene("sahne1", "fade", 400)
+	end)
+
+	-- Liste satırları yukarı kayarken mavi kategori başlığının arkasına girmesin.
+	-- Bu sabit katman hem başlığı korur hem de kayan içeriği maskeler.
+	local sabitBaslik = display.newRect(
+		sceneGroup,
+		display.contentCenterX,
+		-oy + 35,
+		display.contentWidth + ox + ox,
+		70
+	)
+	sabitBaslik:setFillColor(0.05, 0.3, 0.55, 0.9)
+	sabitBaslik:addEventListener("touch", function()
+		return true
+	end)
+
+	local sabitBaslikMetni = display.newText({
+		parent = sceneGroup,
+		text = "TEHLİKE UYARI İŞARETLERİ (52 LEVHA)",
+		x = display.contentCenterX,
+		y = -oy + 35,
+		font = "Poppins-Bold",
+		fontSize = 16,
+		align = "center"
+	})
+	sabitBaslikMetni:setFillColor(1)
+
 
 
 	print("\n2: create olay")
@@ -1022,6 +1083,10 @@ function sahne:show(olay)
 
 	if "did" == faz then
 		print("2: show olay, faz did")
+
+		-- Bu kategori sayfasında tab bar kullanılmıyor.
+		local tabBar = sahneDegis.getVariable("tabBar")
+			ortak.tabBarGizle(tabBar)
 
 		-- remove previous scene's view
 		collectgarbage("collect")

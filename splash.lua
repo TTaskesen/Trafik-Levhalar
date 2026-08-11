@@ -7,8 +7,15 @@
 local sahneDegis = require("composer")
 
 local splash = {}
+local splashAktif = false
 
 function splash.goster(hedefSahne, gecisTuru)
+	-- Aynı anda yalnızca bir splash/geçiş çalışsın.
+	if splashAktif then
+		return
+	end
+	splashAktif = true
+
 	local grup = display.newGroup()
 
 	-- Karartma tüm fiziksel ekranı kapsar; böylece tab bar da splash sırasında dokunulamaz
@@ -16,6 +23,10 @@ function splash.goster(hedefSahne, gecisTuru)
 	local karart = display.newRect(display.contentCenterX, display.contentCenterY,
 		display.contentWidth + ox + ox, display.contentHeight + oy + oy)
 	karart:setFillColor(0, 0, 0, 0.55)
+	-- Display nesnesi üzerinde listener olmazsa dokunma alttaki sahneye ulaşabilir.
+	karart:addEventListener("touch", function()
+		return true
+	end)
 	grup:insert(karart)
 
 	local kutu = display.newRoundedRect(display.contentCenterX, display.contentCenterY, 280, 190, 18)
@@ -68,6 +79,7 @@ function splash.goster(hedefSahne, gecisTuru)
 	local gecisZaman = timer.performWithDelay(1300, function()
 		timer.cancel(lambaZaman)
 		timer.cancel(noktaZaman)
+		splashAktif = false
 		-- Splash sırasında kullanıcı başka sayfaya geçtiyse hedefe zorla gitme
 		if sahneDegis.getSceneName("current") == "sahne1" then
 			sahneDegis.gotoScene(hedefSahne, gecisTuru, 700)

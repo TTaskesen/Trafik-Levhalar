@@ -6,6 +6,7 @@
 
 local widget = require("widget")
 local composer = require("composer")
+local ortak = require("levha_ortak")
 local scene = composer.newScene()
 
 local scrollViewMetin
@@ -550,46 +551,11 @@ local function metinOlustur(icerik, ustBosluk)
         scrollViewMetin:removeSelf()
         scrollViewMetin = nil
     end
-
-    local tabBarHeight = composer.getVariable("tabBarHeight") or 0
-    local oy = math.abs(display.screenOriginY)
-    local scrollView = widget.newScrollView(
-        {
-            top = ustBosluk or 230,
-            left = 0,
-            width = display.contentWidth,
-            height = display.contentHeight + oy - (ustBosluk or 230) - tabBarHeight,
-            horizontalScrollDisabled = true,
-            backgroundColor = { 1, 1, 1 }
-        })
-
-    local yStart = 10
-    local mainPadding = 10
-
-    for paragraph in string.gmatch(icerik .. "\n", "([^\n]*)\n") do
-        local newText = display.newText({
-            text = paragraph,
-            width = scrollView.width - (mainPadding * 2),
-            fontSize = 16,
-            font = "Poppins-Medium",
-            align = "left"
-        })
-        newText.anchorX = 0
-        newText.anchorY = 0
-        newText.x = mainPadding
-        newText.y = yStart
-        newText:setFillColor(0.2)
-        scrollView:insert(newText)
-        yStart = yStart + newText.height + 5
-    end
-
-    scrollView:setScrollHeight(yStart + (mainPadding * 2))
-    scrollViewMetin = scrollView
+    scrollViewMetin = ortak.metinOlustur(icerik, ustBosluk, 0)
 end
 
 local function levhaBoyut(kare)
-    local olcek = math.min(380 / kare.width, 140 / kare.height, 2.5)
-    return kare.width * olcek, kare.height * olcek
+    return ortak.levhaBoyut(kare, 380, 140, 2.5)
 end
 
 function scene:create(event)
@@ -599,23 +565,20 @@ function scene:create(event)
     local tabBarHeight = composer.getVariable("tabBarHeight") or 0
     local themeID = composer.getVariable("themeID")
 
-    local tableViewColors = {
-        rowColor = { default = { 1 }, over = { 0.92, 0.95, 1 } },
-        lineColor = { 220 / 255 },
-        catColor = { default = { 0.05, 0.3, 0.55, 0.9 }, over = { 0.05, 0.3, 0.55, 0.9 } },
-        defaultLabelColor = { 0.2 },
-        catLabelColor = { 1 }
-    }
+    local tableViewColors = ortak.listeRenkleri()
 
     local ilkKare = levhaTanzimKareleri.frames[1]
     local g, y = levhaBoyut(ilkKare)
+    local detayResimY, detayButonY = ortak.detayYerlesimi(y)
     self.yeniLevha = display.newImageRect(sceneGroup, resimLevha, 1, g, y)
     self.yeniLevha.x = display.contentCenterX
-    self.yeniLevha.y = 150
+    self.yeniLevha.y = detayResimY
     self.yeniLevha.isVisible = false -- Satır seçilene kadar gizli kalsın (arka planda soluk görünmesin)
     sceneGroup:insert(self.yeniLevha)
 
     local function goBack(event)
+        local tabBar = composer.getVariable("tabBar")
+        ortak.tabBarGizle(tabBar)
         transition.to(self.tableView, { x = display.contentWidth * 0.5, time = 600, transition = easing.outQuint })
         transition.to(self.backButton, { x = 100, y = 200, time = 480, transition = easing.outQuint })
         transition.to(self.yeniLevha, { x = display.contentWidth + self.yeniLevha.contentWidth, time = 480, transition = easing.outQuint,
@@ -636,12 +599,16 @@ function scene:create(event)
         onRelease = goBack
     }
     self.backButton.x = 100
-    self.backButton.y = 200
+    self.backButton.y = detayButonY
     sceneGroup:insert(self.backButton)
 
     local function onRowRender(event)
         local row = event.row
         local groupContentHeight = row.contentHeight
+        for i = row.numChildren, 1, -1 do
+            local child = row[i]
+            if child and child._levhaSatirOgesi then child:removeSelf() end
+        end
 
         local rowTitle = display.newText({
             parent = row,
@@ -656,11 +623,11 @@ function scene:create(event)
         rowTitle.anchorX = 0
         rowTitle.x = 80
         rowTitle.y = groupContentHeight * 0.5
-        row:insert(rowTitle)
+        rowTitle._levhaSatirOgesi = true
 
         if (row.isCategory) then
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
-            rowTitle.text = "TRAFİK TANZİM İŞARETLERİ"
+            rowTitle.text = "TRAFİK TANZİM İŞARETLERİ (61 LEVHA)"
             rowTitle.font = "Poppins-Bold"
             rowTitle.size = 16
         else
@@ -672,9 +639,9 @@ function scene:create(event)
                 rw, rh = 50 * oran, 50
             end
             local rowResim = display.newImageRect(row, resimLevha, row.index - 1, rw, rh)
+            rowResim._levhaSatirOgesi = true
             rowResim.x = 20
             rowResim.y = groupContentHeight * 0.5
-            row:insert(rowResim)
         end
     end
 
@@ -684,6 +651,8 @@ function scene:create(event)
 
         if ("release" == phase) then
             if not row.isCategory then
+                local tabBar = composer.getVariable("tabBar")
+                ortak.tabBarGizle(tabBar)
                 transition.to(self.tableView, {
                     x = ((display.contentWidth / 2) + ox + ox) * -1,
                     time = 600,
@@ -697,22 +666,32 @@ function scene:create(event)
                 local secilenKare = row.index - 1
                 local kare = levhaTanzimKareleri.frames[secilenKare]
                 local g, y = levhaBoyut(kare)
+                local yeniDetayY, yeniButonY, yeniMetinY = ortak.detayYerlesimi(y)
                 self.yeniLevha = display.newImageRect(sceneGroup, resimLevha, secilenKare, g, y)
                 self.yeniLevha.x = display.contentCenterX
-                self.yeniLevha.y = 150
+                self.yeniLevha.y = yeniDetayY
                 sceneGroup:insert(self.yeniLevha)
+				self.backButton.x = display.contentCenterX
+				self.backButton.y = yeniButonY
 
                 transition.to(self.backButton,
                     {
                         x = display.contentCenterX,
-                        y = 150 + (y / 2) + 24,
+                        y = yeniButonY,
                         time = 750,
                         transition = easing.outQuint
                     })
 
                 local secilenMetin = levhaDetaylari[row.index].aciklama
-                metinOlustur(secilenMetin, 150 + (y / 2) + 50)
+                metinOlustur(secilenMetin, yeniMetinY)
                 sceneGroup:insert(scrollViewMetin)
+
+                -- Detay açıklaması sonradan eklendiği için tab barın üstüne
+                -- çıkmasını ve Ana Sayfa düğmesinin dokunmayı almasını garanti et.
+                local tabBar = composer.getVariable("tabBar")
+                if tabBar then
+                    tabBar:toFront()
+                end
             end
         end
     end
@@ -722,7 +701,7 @@ function scene:create(event)
             top = -oy,
             left = -ox,
             width = display.contentWidth + ox + ox,
-            height = display.contentHeight - tabBarHeight + oy + oy,
+            height = display.contentHeight - 70 + oy + oy,
             hideBackground = true,
             onRowRender = onRowRender,
             onRowTouch = onRowTouch,
@@ -756,11 +735,20 @@ function scene:create(event)
             params = { defaultLabelColor = tableViewColors.defaultLabelColor, catLabelColor = tableViewColors.catLabelColor }
         }
     end
+
+    ortak.listeGeriDonButonu(sceneGroup, function()
+        composer.gotoScene("sahne1", "fade", 400)
+    end)
+    ortak.sabitListeBasligi(sceneGroup, "TRAFİK TANZİM İŞARETLERİ (61 LEVHA)", ox, oy)
 end
 
 function scene:show(event)
     local phase = event.phase
     if "did" == phase then
+        local tabBar = composer.getVariable("tabBar")
+        if tabBar then
+            ortak.tabBarGizle(tabBar)
+        end
         collectgarbage("collect")
     end
 end

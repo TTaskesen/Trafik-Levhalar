@@ -7,6 +7,7 @@
 
 local widget = require("widget")
 local composer = require("composer")
+local ortak = require("levha_ortak")
 local scene = composer.newScene()
 
 local scrollViewMetin
@@ -31,6 +32,12 @@ Duraklamanın ve park etmenin yasak olduğu veya serbest olduğu yerleri göster
 5. ÖZEL İŞARETLER
 Özel durumları ve özel amaçlı işaretleri kapsar.
 
+6. YENİ STANDART LEVHALAR
+Trafik düzenlemelerindeki güncellemelerle uygulamaya alınan, güncel standartlara uygun yeni işaret levhalarını kapsar.
+
+7. OTOYOL LEVHALARI
+Otoyollarda sürücüleri yol düzeni, yön, çıkış, bağlantı ve güvenli sürüş koşulları hakkında bilgilendiren işaret levhalarıdır.
+
 NASIL KULLANILIR
 Ana sayfadan bir kategori seçin. Açılan listeden bir levhaya dokunun. Levha büyütülerek gösterilir ve altında levhanın anlamını açıklayan bilgi metni görüntülenir.
 
@@ -46,7 +53,7 @@ local function metinOlustur()
     end
 
     local tabBarHeight = composer.getVariable("tabBarHeight") or 0
-    local ustBosluk = 64
+    local ustBosluk = (display.safeScreenOriginY or display.screenOriginY or 0) + 64
     local oy = math.abs(display.screenOriginY)
     local scrollView = widget.newScrollView(
         {
@@ -88,8 +95,9 @@ end
 
 function scene:create(event)
     local sceneGroup = self.view
+    local baslikY = (display.safeScreenOriginY or display.screenOriginY or 0) + 30
 
-    local baslikKarti = display.newRoundedRect(display.contentCenterX, 30, 240, 52, 10)
+    local baslikKarti = display.newRoundedRect(display.contentCenterX, baslikY, 240, 52, 10)
     baslikKarti:setFillColor(0.05, 0.3, 0.55, 0.85)
     baslikKarti:setStrokeColor(1, 1, 1, 0.35)
     baslikKarti.strokeWidth = 1.5
@@ -98,7 +106,7 @@ function scene:create(event)
     local baslik = display.newText("Bilgi", 0, 0, "BebasNeue-Regular", 30)
     baslik:setFillColor(1)
     baslik.x = display.contentCenterX
-    baslik.y = 30
+    baslik.y = baslikY
     sceneGroup:insert(baslik)
 
     metinOlustur()
@@ -108,6 +116,8 @@ end
 function scene:show(event)
     local phase = event.phase
     if "did" == phase then
+        local tabBar = composer.getVariable("tabBar")
+        ortak.tabBarGoster(tabBar)
         collectgarbage("collect")
     end
 end

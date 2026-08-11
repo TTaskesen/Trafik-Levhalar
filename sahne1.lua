@@ -6,6 +6,7 @@
 local widget = require("widget")
 local sahneDegis = require("composer")
 local splash = require("splash")
+local ortak = require("levha_ortak")
 local sahne = sahneDegis.newScene()
 
 ---------------------------------------------------------------------------------
@@ -100,6 +101,8 @@ end
 -- Called when the scene's view does not exist:
 function sahne:create(olay)
 	local sceneGroup = self.view
+	local ekranBilgileri = ortak.ekranBilgileri()
+	local ustEkranSiniri = display.safeScreenOriginY or display.screenOriginY or 0
 
 	-- Arka plan: ana uygulama arka planı açık renkli düz zemindir (bg.jpg kullanılmaz)
 
@@ -107,7 +110,8 @@ function sahne:create(olay)
 	local baslikfont = "BebasNeue-Regular"
 
 	-- Başlık kartı
-	local baslikKarti = display.newRoundedRect(display.contentCenterX, 50, 310, 70, 10)
+	local baslikY = ustEkranSiniri + 50
+	local baslikKarti = display.newRoundedRect(display.contentCenterX, baslikY, 310, 70, 10)
 	baslikKarti:setFillColor(0.05, 0.3, 0.55, 0.85)
 	baslikKarti:setStrokeColor(1, 1, 1, 0.35)
 	baslikKarti.strokeWidth = 1.5
@@ -115,7 +119,7 @@ function sahne:create(olay)
 
 	yazi1 = display.newText("KARAYOLLARI STANDART\nİŞARET LEVHALARI", 0, 0, baslikfont, 26)
 	yazi1:setFillColor(1)
-	yazi1.x, yazi1.y = display.contentCenterX, 50
+	yazi1.x, yazi1.y = display.contentCenterX, baslikY
 	sceneGroup:insert(yazi1)
 
 	menuler = {
@@ -132,11 +136,11 @@ function sahne:create(olay)
 	-- boşluğa rastgele levha konur. Metinler alana sığmazsa yazı boyutu kademeli küçülür.
 	local tabBarHeight = sahneDegis.getVariable("tabBarHeight") or 50
 	local ustSinir = baslikKarti.y + baslikKarti.contentHeight / 2 -- başlığın alt kenarı
-	local altSinir = display.contentHeight - tabBarHeight       -- tab barın üst kenarı
+	local altSinir = ekranBilgileri.safeBottom - tabBarHeight       -- tab barın üst kenarı
 	local kartGenislik = 300
 	local yaziGenislik = kartGenislik - 16
 	local ustBosluk = 10
-	local minKartAralik = 4
+	local minKartAralik = 8
 
 	-- Yazıları oluştur ve yüksekliklerini ölç (genişlik sınırı taşmayı önler)
 	for i, menu in ipairs(menuler) do
@@ -153,12 +157,12 @@ function sahne:create(olay)
 		menu.yazi = yazi
 	end
 
-	-- Son kart ile tab bar arasında rastgele levha için ayrılan pay
-	local levhaPayi = 62
+	-- Son kart ile tab bar arasında üç rastgele levha için ayrılan pay
+	local levhaPayi = 82
 	local function toplamKartYuksekliginiHesapla()
 		local toplam = 0
 		for i, menu in ipairs(menuler) do
-			menu.kartYukseklik = menu.yazi.contentHeight + 10
+		menu.kartYukseklik = menu.yazi.contentHeight + 12
 			toplam = toplam + menu.kartYukseklik
 		end
 		return toplam
@@ -231,21 +235,34 @@ function sahne:create(olay)
 		end
 	end
 
-	-- Son kart ile tab bar arasındaki boşluğa her açılışta rastgele bir tehlike/uyarı işareti koy;
-	-- alan dar olsa bile levha küçültülerek her durumda gösterilir (en az 30, en çok 82 piksel)
-	local levhaYukseklik = math.min(math.max(altSinir - sonKartAlt - 4, 40), 82)
+	-- Son kart ile tab bar arasındaki boşluğa her açılışta üç rastgele tehlike/uyarı
+	-- işareti koy. Aynı yükseklikte ve yan yana gösterilirler.
+	local levhaYukseklik = math.min(math.max(altSinir - sonKartAlt - 4, 58), 105)
 	math.randomseed(os.time() + os.clock())
 	local levhaGenislik = levhaYukseklik * 163 / 146
-	local rastgeleLevha = display.newImageRect(sceneGroup, resimLevha, math.random(1, 52), levhaGenislik, levhaYukseklik)
-	rastgeleLevha.x = display.contentCenterX
-	rastgeleLevha.y = altSinir - levhaYukseklik / 2
-	sceneGroup:insert(rastgeleLevha)
+	local levhaAraligi = 6
+	local rastgeleLevhalar = display.newGroup()
+	sceneGroup:insert(rastgeleLevhalar)
 
-	-- Levhaya dokununca karşılama ekranına (giris) dön
+	-- Herhangi bir levhaya dokununca karşılama ekranına (giris) dön
 	local function girseDon()
 		sahneDegis.gotoScene("giris", "fade", 400)
 	end
-	rastgeleLevha:addEventListener("tap", girseDon)
+
+	for i = 1, 3 do
+		local rastgeleLevha = display.newImageRect(
+			rastgeleLevhalar,
+			resimLevha,
+			math.random(1, 52),
+			levhaGenislik,
+			levhaYukseklik
+		)
+		rastgeleLevha.x = (i - 2) * (levhaGenislik + levhaAraligi)
+		rastgeleLevha.y = 0
+		rastgeleLevha:addEventListener("tap", girseDon)
+	end
+	rastgeleLevhalar.x = display.contentCenterX
+	rastgeleLevhalar.y = altSinir - levhaYukseklik / 2
 
 
 
@@ -257,6 +274,10 @@ function sahne:show(olay)
 
 	if "did" == faz then
 		--print("1: show olayı, faz did")
+		local tabBar = sahneDegis.getVariable("tabBar")
+		if tabBar then
+			ortak.tabBarGoster(tabBar)
+		end
 
 		-- Giriş efektleri: başlık ve menü kartları/yazıları kademeli belirir
 		yazi1.alpha = 0

@@ -13,6 +13,7 @@ display.setDefault( "background", 1 )	-- white
 local sahneDegis = require ("composer")
 
 local widget = require ("widget")
+local ortak = require ("levha_ortak")
 
 local json = require( "json" )
 
@@ -32,9 +33,7 @@ local temaAdlari = {
 
 local function widgetleriGoster( widgetTemaNumarasi )
 
-	local ekranGenisligiYarisi= display.contentCenterX
-	local ekranYuksekligiYarisi = display.contentCenterY
-	local ekranGenisligi, ekranYuksekligi = math.abs(display.screenOriginX), math.abs(display.screenOriginY)
+	local ekranBilgileri = ortak.ekranBilgileri()
 
 	if ( temaIdleri[widgetTemaNumarasi] ~= "auto" ) then
 		-- Set theme based on user selection
@@ -47,53 +46,72 @@ local function widgetleriGoster( widgetTemaNumarasi )
 		display.setDefault( "background", 0.93, 0.95, 0.97, 1 )
 	end
 
+	local tabBar
+	local tabButtonWidth = display.contentWidth / 4
+	local function anaSayfayaGit()
+		-- Ana Sayfa sekmesine her dokunuşta ana menüyü aç.
+		-- Mevcut sahne kontrolü yapılmıyor; böylece detay/listeden
+		-- sekmeye yeniden dokunmak da sahne1'e dönüşü garanti eder.
+		sahneDegis.gotoScene("sahne1", "fade", 400)
+	end
+
 	-- Create buttons table for the tabBar
 	local tabButtons = 
 	{
 		{
 			label = "Ana Sayfa",
-			onPress = function()
-				if sahneDegis.getSceneName("current") ~= "sahne1" then
-					sahneDegis.gotoScene("sahne1")
-				end
-			end,
+			width = tabButtonWidth,
+			onPress = anaSayfayaGit,
 			selected = true
 		},
 		{
 			label = "Levha Tarihi",
+			width = tabButtonWidth,
 			onPress = function() sahneDegis.gotoScene( "sahne8" ); end,
 		},
 		{
 			label = "Bilgi",
+			width = tabButtonWidth,
 			onPress = function() sahneDegis.gotoScene( "sahne9" ); end,
 		},
 		{
 			label = "Hakkımızda",
+			width = tabButtonWidth,
 			onPress = function() sahneDegis.gotoScene( "sahne10" ); end,
 		}
 	}
-	local tabBar = widget.newTabBar
+	tabBar = widget.newTabBar
 	{
+		left = 0,
 		top = display.contentHeight,
-		width = display.contentWidth+ekranGenisligi+ekranGenisligi,
+		width = display.contentWidth,
 		buttons = tabButtons
 	}
-	tabBar.x = ekranGenisligiYarisi
+	tabBar.isHitTestable = true
 
 	-- Widget tam yüklendikten sonra yüksekliği ve konumu doğru okunur;
 	-- hemen okunduğunda height 0 dönebildiği için ertelenmiş ayar yapılır.
-	local altGuvenlikBoslugu = 40 -- Gerçek cihazın alt tuşlarına (nav bar / home göstergesi) çarpmaması için pay
+	local altGuvenlikBoslugu = math.max(40, ekranBilgileri.bottomInset)
 	local function tabBarAyarla()
 		local h = tabBar.contentHeight or tabBar.height
 		if not h or h == 0 then
 			h = 50
 		end
-		tabBar.y = display.contentHeight - altGuvenlikBoslugu - (h / 2) + ekranYuksekligi
+		tabBar.y = ekranBilgileri.safeBottom - altGuvenlikBoslugu - (h / 2)
 		-- Sahnelere, tab bar üst kenarının biraz üzerinde durmaları için pay eklenmiş yükseklik ver
 		sahneDegis.setVariable( "tabBarHeight", h + altGuvenlikBoslugu )
 	end
 	tabBarAyarla()
 	timer.performWithDelay( 100, tabBarAyarla )
+	-- Sahne içerikleri sonradan oluşturulsa bile tab bar her zaman
+	-- en üst katmanda kalsın. Detay sayfalarında görünürlük false ise
+	-- gizli kalır; geri dönüldüğünde yeniden öne alınır.
+	timer.performWithDelay( 250, function()
+		if tabBar and tabBar.isVisible then
+			tabBar:toFront()
+		end
+		return true
+	end, 0)
 
 	-- Store tabBar in Composer variable
 	sahneDegis.setVariable( "tabBar", tabBar )
