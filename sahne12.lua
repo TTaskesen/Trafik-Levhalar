@@ -54,15 +54,15 @@ local resimLevha = graphics.newImageSheet("levha/levha/5-yeni-standart/yeni-stan
 
 local levhaDetaylari =
 {
-    [1] = { ad = "", aciklama = "" },
-    [2] = { ad = "Otoyol Levhası 1", aciklama = [[Açıklama eklenecek.]] },
-    [3] = { ad = "Otoyol Levhası 2", aciklama = [[Açıklama eklenecek.]] },
-    [4] = { ad = "Otoyol Levhası 3", aciklama = [[Açıklama eklenecek.]] },
-    [5] = { ad = "Otoyol Levhası 4", aciklama = [[Açıklama eklenecek.]] },
-    [6] = { ad = "Otoyol Levhası 5", aciklama = [[Açıklama eklenecek.]] },
-    [7] = { ad = "Otoyol Levhası 6", aciklama = [[Açıklama eklenecek.]] },
-    [8] = { ad = "Otoyol Levhası 7", aciklama = [[Açıklama eklenecek.]] },
-    [9] = { ad = "Otoyol Levhası 8", aciklama = [[Açıklama eklenecek.]] },
+    [1] = { ad = "", aciklama = [[Açıklama Eklenecek.]]},
+[2] = { ad = "Kavşak İsim Levhası", aciklama = [[Açıklama Eklenecek.]]},
+[3] = { ad = "Otoyol Rejimi Levhası", aciklama = [[Açıklama Eklenecek.]]},
+[4] = { ad = "Servis Alanı Levhası", aciklama = [[Açıklama Eklenecek.]]},
+[5] = { ad = "Park Alanı Levhası", aciklama = [[Açıklama Eklenecek.]]},
+[6] = { ad = "Başüstü Şerit Seçimi Levhası", aciklama = [[Açıklama Eklenecek.]]},
+[7] = { ad = "Ogs Levhası", aciklama = [[Açıklama Eklenecek.]]},
+[8] = { ad = "Hgs Levhası", aciklama = [[Açıklama Eklenecek.]]},
+[9] = { ad = "Şerit Seçimi Ve Kullanma Levhaları", aciklama = [[Açıklama Eklenecek.]]},
 }
 
 -- Metin göstermek için ScrollView oluşturan fonksiyon
