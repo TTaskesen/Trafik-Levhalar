@@ -32,15 +32,15 @@ local resimLevha = graphics.newImageSheet("levha/levha/7-otoyol/Otoyol.png", lev
 local levhaDetaylari =
 {
 { ad = "", aciklama = "" },
-[2] = { ad = "Kavşak isim levhası", aciklama = [[Otoyol üzerindeki kavşağın adını ve ilgili mesafeyi gösterir.]] },
-[3] = { ad = "Otoyol rejimi levhası", aciklama = [[Otoyolda uygulanması gereken hız ve trafik düzeni hakkında bilgi verir.]] },
-[4] = { ad = "Acil durum levhaları", aciklama = [[Otoyolda acil durumda kullanılabilecek hizmet ve yardım noktalarını gösterir.]] },
-[5] = { ad = "Servis alanı levhaları", aciklama = [[Servis, dinlenme ve diğer yardımcı hizmet alanlarının yerini bildirir.]] },
-[6] = { ad = "Park alanı levhası", aciklama = [[Otoyol üzerindeki park alanını ve bu alanda sunulan hizmetleri gösterir.]] },
-[7] = { ad = "Başüstü şerit seçimi levhası", aciklama = [[Sürücülerin ilerleyecekleri şeridi seçmelerine yardımcı olur.]] },
-[8] = { ad = "OGS levhası", aciklama = [[Otoyol geçiş sistemine ait gişe veya geçiş noktasını gösterir.]] },
-[9] = { ad = "HGS levhası", aciklama = [[Hızlı Geçiş Sistemi kullanılan geçiş noktasını bildirir.]] },
-[10] = { ad = "Şerit seçimi ve kullanma levhaları", aciklama = [[Şeritlerin hangi yön ve güzergâhlar için kullanılacağını gösterir.]] },
+[2] = { ad = "Kavşak isim levhası", aciklama = [[Yeşil levhadaki kavşak adı, yol numarası ve mesafe bilgisi, sürücünün hangi kavşağa yaklaştığını önceden bildirir. Görseldeki “Düzce Kavşağı”, K.16 kodu ve 2000 m bilgisi, kavşağın iki kilometre ileride olduğunu gösterir. Sürücü güzergâhını önceden planlamalı ve çıkış ya da bağlantı şeridine zamanında geçmelidir.]] },
+[3] = { ad = "Otoyol rejimi levhası", aciklama = [[Mavi-kırmızı hız ve yasak sembollerinin birlikte bulunduğu levha, otoyol kesiminde geçerli olan temel trafik düzenini hatırlatır. Görselde 40 ve 120 hız değerleri ile durma, geri dönme veya yaya trafiğine ilişkin yasak sembolleri yer alır. Sürücü, levhadaki her sembolü ayrı bir kural olarak değerlendirmeli ve otoyolun kontrollü giriş-çıkış düzenine uymalıdır.]] },
+[4] = { ad = "Acil durum levhaları", aciklama = [[Birden fazla acil yardım ve hizmet sembolünün bulunduğu panel, otoyol üzerindeki acil durum noktalarını ve yardımcı tesisleri gösterir. Telefon, sağlık, itfaiye veya benzeri semboller sürücünün ihtiyaç halinde hangi hizmetlere ulaşabileceğini bildirir. Arıza ya da acil durumda araç güvenli yere alınmalı, bu işaretlerle gösterilen yardım noktalarına yönlendirme takip edilmelidir.]] },
+[5] = { ad = "Servis alanı levhaları", aciklama = [[Levhadaki “P” ve hizmet sembolleri, otoyol üzerindeki servis veya dinlenme alanında sunulan imkânları gösterir. Park, tuvalet, telefon, yakıt ya da diğer hizmet sembolleri sürücüye alanda neler bulunabileceği hakkında ön bilgi verir. Uzun yolculuklarda dinlenmek için yalnızca belirtilen servis alanlarına giriniz ve otoyolun ana taşıt yolunda durmayınız.]] },
+[6] = { ad = "Park alanı levhası", aciklama = [[Yeşil zemin üzerindeki “Park Alanı” yazısı ve “500 m” mesafe bilgisi, ileride bir park alanı bulunduğunu bildirir. Sürücü park ihtiyacını bu alana göre planlamalı, emniyet şeridinde veya otoyol taşıt yolunda durmamalıdır. Park alanına yaklaşırken yönlendirme işaretlerini ve giriş şeridini takip ediniz.]] },
+[7] = { ad = "Başüstü şerit seçimi levhası", aciklama = [[Araç ve şerit bilgilerini içeren yeşil levha, başüstü bir yönlendirme sistemiyle hangi şeridin hangi bağlantıya hizmet ettiğini gösterir. Görseldeki oklar ve araç sembolleri, sürücünün ilerleyeceği güzergâhı ve şerit seçimini önceden yapmasına yardımcı olur. Şerit değiştirmek gerekiyorsa sinyal veriniz, aynaları kontrol ediniz ve son anda manevra yapmayınız.]] },
+[8] = { ad = "OGS levhası", aciklama = [[OGS sembolü ve radyo dalgalarını andıran çizgiler, elektronik otoyol geçiş sistemine ait noktayı gösterir. Bu levha, geçiş veya ücretlendirme sistemiyle ilgili bir alan bulunduğunu bildirir; sürücü doğru şeridi takip etmeli ve geçiş için gerekli sistemin etkin olduğundan emin olmalıdır. Gişe ya da geçiş noktasında hız ve şerit düzenine uyunuz.]] },
+[9] = { ad = "HGS levhası", aciklama = [[Yeşil levhadaki HGS yazısı, Hızlı Geçiş Sistemi kullanılan geçiş noktasını gösterir. Araç, sistemde tanımlı bir HGS hesabı veya etiketiyle geçiş yapmalıdır; geçiş sırasında şerit ve hız uyarılarına uyulmalıdır. Hesabı veya etiketi bulunmayan araçlar için ilgili otoyol kurallarını ve alternatif geçiş düzenini kontrol ediniz.]] },
+[10] = { ad = "Şerit seçimi ve kullanma levhaları", aciklama = [[Üstten görülen yol ve birden fazla yön oku, şeritlerin farklı yön ve güzergâhlara ayrıldığını gösterir. Kırmızı çarpı işareti, ilgili şeridin veya yönün kullanılmaması gerektiğini; açık oklar ise kullanılabilecek yönleri belirtir. Sürücü kavşağa yaklaşmadan önce hedef yönünü seçmeli ve yol çizgileriyle levhadaki okları birlikte takip etmelidir.]] },
 
 }
 

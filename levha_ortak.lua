@@ -190,6 +190,9 @@ end
 function ortak.tabBarGizle(tabBar, sure)
     if not tabBar then return end
     transition.cancel(tabBar)
+    -- Görsel gizleme animasyonu sürerken tabbar alttaki açıklama
+    -- dokunuşlarını yakalayıp başka bir sayfaya geçirmemeli.
+    tabBar.isHitTestable = false
     tabBar.isVisible = true
     tabBar.alpha = 1
     transition.to(tabBar, {
@@ -204,6 +207,7 @@ end
 function ortak.tabBarGoster(tabBar, sure)
     if not tabBar then return end
     transition.cancel(tabBar)
+    tabBar.isHitTestable = true
     tabBar.isVisible = true
     tabBar.alpha = 0
     tabBar:toFront()
