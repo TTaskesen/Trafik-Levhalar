@@ -794,43 +794,7 @@ local function metinOlustur(icerik, ustBosluk)
 		scrollViewMetin:removeSelf()
 		scrollViewMetin = nil
 	end
-
-	-- Detayda tab bar gizli olduğu için açıklama alanı ekranın altına
-	-- kadar uzanır.
-	local tabBarHeight = 0
-	local oy = math.abs(display.screenOriginY)
-	local scrollView = widget.newScrollView(
-		{
-			top = ustBosluk or 230,
-			left = 0,
-			width = display.contentWidth,
-			height = display.contentHeight + oy - (ustBosluk or 230) - tabBarHeight,
-			horizontalScrollDisabled = true,
-			backgroundColor = { 1, 1, 1 }
-		})
-
-	local yStart = 10
-	local mainPadding = 10
-
-	for paragraph in string.gmatch(icerik .. "\n", "([^\n]*)\n") do
-		local newText = display.newText({
-			text = paragraph,
-			width = scrollView.width - (mainPadding * 2),
-			fontSize = 16,
-			font = "Poppins-Medium",
-			align = "left"
-		})
-		newText.anchorX = 0
-		newText.anchorY = 0
-		newText.x = mainPadding
-		newText.y = yStart
-		newText:setFillColor(0.2)
-		scrollView:insert(newText)
-		yStart = yStart + newText.height + 5
-	end
-
-	scrollView:setScrollHeight(yStart + (mainPadding * 2))
-	scrollViewMetin = scrollView
+	scrollViewMetin = ortak.metinOlustur(icerik, ustBosluk, 0)
 end
 
 function sahne:create(olay)
@@ -844,13 +808,7 @@ function sahne:create(olay)
 	local themeID = sahneDegis.getVariable("themeID")
 
 	-- Açık renkli, projeyle uyumlu liste renkleri (tema ne olursa olsun)
-	local tableViewColors = {
-		rowColor = { default = { 1 }, over = { 0.92, 0.95, 1 } },
-		lineColor = { 220 / 255 },
-		catColor = { default = { 0.05, 0.3, 0.55, 0.9 }, over = { 0.05, 0.3, 0.55, 0.9 } },
-		defaultLabelColor = { 0.2 },
-		catLabelColor = { 1 }
-	}
+	local tableViewColors = ortak.listeRenkleri()
 
 	-- Forward reference for the tableView
 	local tableView
@@ -888,27 +846,16 @@ function sahne:create(olay)
 	end
 
 	-- Back button
-	local backButton = widget.newButton {
-		width = 128,
-		height = 32,
-		label = "Geri Dön",
-		onRelease = goBack
-	}
+	local backButton = ortak.geriDonButonu(goBack, 128, 32)
 	backButton.x = 100
 	backButton.y = detayButonY
 	sceneGroup:insert(backButton)
-
-	-- Listen for tableView events
-	local function tableViewListener(event)
-		local phase = event.phase
-		print("Event.phase is:", event.phase)
-	end
-
 
 	-- Handle row rendering
 	local function onRowRender(event)
 		local phase = event.phase
 		local row = event.row
+		row._detayAcildi = false
 		local groupContentHeight = row.contentHeight
 
 		-- TableView satırları yeniden kullanır. Önceki satırın metin ve görseli
@@ -942,6 +889,7 @@ function sahne:create(olay)
 		rowTitle.y = groupContentHeight * 0.5
 
 		if (row.isCategory) then
+			rowTitle.isVisible = false
 			rowTitle:setFillColor(unpack(row.params.catLabelColor))
 			rowTitle.text = " TEHLİKE UYARI İŞARETLERİ (52 LEVHA) "
 			rowTitle.font = "Poppins-Bold"
@@ -956,19 +904,13 @@ function sahne:create(olay)
 		end
 	end
 
-	-- Handle row updates
-	local function onRowUpdate(event)
-		local phase = event.phase
-		local row = event.row
-
-		print(row.index, ": is now onscreen")
-	end
-
 	-- Handle touches on the row
 	local function onRowTouch(event)
 		local phase = event.phase
 		local row = event.target
-		if ("release" == phase) and not row.isCategory then
+		if (phase == "press" or phase == "release" or phase == "tap" or phase == "ended")
+			and not row.isCategory and not row._detayAcildi then
+			row._detayAcildi = true
 			local tabBar = sahneDegis.getVariable("tabBar")
 			ortak.tabBarGizle(tabBar)
 			yeniLevha.isVisible = true -- Satır seçilince levha resmi görünsün
@@ -1007,9 +949,7 @@ function sahne:create(olay)
 			width = display.contentWidth + ox + ox,
 			height = display.contentHeight - 70 + oy + oy,
 			hideBackground = true,
-			listener = tableViewListener,
 			onRowRender = onRowRender,
-			onRowUpdate = onRowUpdate,
 			onRowTouch = onRowTouch,
 		}
 	sceneGroup:insert(tableView)
@@ -1048,42 +988,13 @@ function sahne:create(olay)
 		sahneDegis.gotoScene("sahne1", "fade", 400)
 	end)
 
-	-- Liste satırları yukarı kayarken mavi kategori başlığının arkasına girmesin.
-	-- Bu sabit katman hem başlığı korur hem de kayan içeriği maskeler.
-	local sabitBaslik = display.newRect(
-		sceneGroup,
-		display.contentCenterX,
-		-oy + 35,
-		display.contentWidth + ox + ox,
-		70
-	)
-	sabitBaslik:setFillColor(0.05, 0.3, 0.55, 0.9)
-	sabitBaslik:addEventListener("touch", function()
-		return true
-	end)
-
-	local sabitBaslikMetni = display.newText({
-		parent = sceneGroup,
-		text = "TEHLİKE UYARI İŞARETLERİ (52 LEVHA)",
-		x = display.contentCenterX,
-		y = -oy + 35,
-		font = "Poppins-Bold",
-		fontSize = 16,
-		align = "center"
-	})
-	sabitBaslikMetni:setFillColor(1)
-
-
-
-	print("\n2: create olay")
+	ortak.sabitListeBasligi(sceneGroup, "TEHLİKE UYARI İŞARETLERİ (52 LEVHA)", ox, oy)
 end
 
 function sahne:show(olay)
 	local faz = olay.phase
 
 	if "did" == faz then
-		print("2: show olay, faz did")
-
 		-- Bu kategori sayfasında tab bar kullanılmıyor.
 		local tabBar = sahneDegis.getVariable("tabBar")
 			ortak.tabBarGizle(tabBar)
@@ -1096,7 +1007,6 @@ end
 function sahne:hide(olay)
 	local faz = olay.phase
 	if "will" == faz then
-		print("2: hide olay, faz will")
 	elseif "did" == faz then
 		-- DİKKAT: removeScene("sahne1") KALDIRILDI.
 		-- Ana sayfa butonu ile sahne1'e geçilirken hedef sahne yok
@@ -1106,7 +1016,6 @@ function sahne:hide(olay)
 end
 
 function sahne:destroy(olay)
-	print("((sahne 2 yok ediliyor)")
 	if scrollViewMetin then
 		scrollViewMetin:removeSelf(); scrollViewMetin = nil
 	end -- Global olanı da temizle

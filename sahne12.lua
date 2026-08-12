@@ -1,8 +1,6 @@
 --------------------------------------------------------------------------------
 --
--- sahne12.lua - OTOYOL LEVHALARI (geçici içerik)
--- Resimler ve yazılar sonradan eklenecek; şimdilik geçici levha ve metinler
--- kullanılıyor. Görseller için geçici olarak "5-yeni-standart" sayfası kullanılır.
+-- sahne12.lua - OTOYOL LEVHALARI
 --
 --------------------------------------------------------------------------------
 
@@ -13,56 +11,37 @@ local scene = composer.newScene()
 
 local scrollViewMetin
 
--- GEÇİCİ: gerçek otoyol levhaları gelene kadar yeni standart sayfasındaki görseller kullanılır
 local levhaKareleri = {
-    sheetContentWidth = 700,
-    sheetContentHeight = 1085,
+    sheetContentWidth = 1174,
+    sheetContentHeight = 197,
     frames = {
-        [1]  = { x = 27, y = 28, width = 160, height = 128 },
-        [2]  = { x = 189, y = 28, width = 160, height = 128 },
-        [3]  = { x = 351, y = 28, width = 160, height = 128 },
-        [4]  = { x = 513, y = 28, width = 160, height = 128 },
-        [5]  = { x = 27, y = 157, width = 160, height = 129 },
-        [6]  = { x = 189, y = 157, width = 160, height = 129 },
-        [7]  = { x = 351, y = 157, width = 160, height = 129 },
-        [8]  = { x = 513, y = 157, width = 160, height = 129 },
-        [9]  = { x = 27, y = 287, width = 160, height = 128 },
-        [10] = { x = 189, y = 287, width = 160, height = 128 },
-        [11] = { x = 351, y = 287, width = 160, height = 128 },
-        [12] = { x = 513, y = 287, width = 160, height = 128 },
-        [13] = { x = 27, y = 416, width = 160, height = 129 },
-        [14] = { x = 189, y = 416, width = 160, height = 129 },
-        [15] = { x = 351, y = 416, width = 160, height = 129 },
-        [16] = { x = 513, y = 416, width = 160, height = 129 },
-        [17] = { x = 27, y = 546, width = 160, height = 128 },
-        [18] = { x = 189, y = 546, width = 160, height = 128 },
-        [19] = { x = 351, y = 546, width = 160, height = 128 },
-        [20] = { x = 513, y = 546, width = 160, height = 128 },
-        [21] = { x = 27, y = 675, width = 160, height = 129 },
-        [22] = { x = 189, y = 675, width = 160, height = 129 },
-        [23] = { x = 351, y = 675, width = 160, height = 129 },
-        [24] = { x = 513, y = 675, width = 160, height = 129 },
-        [25] = { x = 27, y = 805, width = 160, height = 128 },
-        [26] = { x = 189, y = 805, width = 160, height = 128 },
-        [27] = { x = 351, y = 805, width = 160, height = 128 },
-        [28] = { x = 513, y = 805, width = 160, height = 128 },
-        [29] = { x = 27, y = 934, width = 160, height = 130 },
+        [1] = { x = 28,   y = 48, width = 155, height = 108 },
+        [2] = { x = 214,  y = 60, width = 80,  height = 92 },
+        [3] = { x = 337,  y = 60, width = 65,  height = 92 },
+        [4] = { x = 435,  y = 60, width = 82,  height = 92 },
+        [5] = { x = 558,  y = 60, width = 83,  height = 92 },
+        [6] = { x = 680,  y = 75, width = 84,  height = 80 },
+        [7] = { x = 800,  y = 75, width = 84,  height = 80 },
+        [8] = { x = 914,  y = 60, width = 93,  height = 92 },
+        [9] = { x = 1035, y = 60, width = 88,  height = 92 },
     }
 }
 
-local resimLevha = graphics.newImageSheet("levha/levha/5-yeni-standart/yeni-standart.png", levhaKareleri)
+local resimLevha = graphics.newImageSheet("levha/levha/7-otoyol/Otoyol.png", levhaKareleri)
 
 local levhaDetaylari =
 {
-    [1] = { ad = "", aciklama = [[Açıklama Eklenecek.]]},
-[2] = { ad = "Kavşak İsim Levhası", aciklama = [[Açıklama Eklenecek.]]},
-[3] = { ad = "Otoyol Rejimi Levhası", aciklama = [[Açıklama Eklenecek.]]},
-[4] = { ad = "Servis Alanı Levhası", aciklama = [[Açıklama Eklenecek.]]},
-[5] = { ad = "Park Alanı Levhası", aciklama = [[Açıklama Eklenecek.]]},
-[6] = { ad = "Başüstü Şerit Seçimi Levhası", aciklama = [[Açıklama Eklenecek.]]},
-[7] = { ad = "Ogs Levhası", aciklama = [[Açıklama Eklenecek.]]},
-[8] = { ad = "Hgs Levhası", aciklama = [[Açıklama Eklenecek.]]},
-[9] = { ad = "Şerit Seçimi Ve Kullanma Levhaları", aciklama = [[Açıklama Eklenecek.]]},
+{ ad = "", aciklama = "" },
+[2] = { ad = "Kavşak isim levhası", aciklama = [[Otoyol üzerindeki kavşağın adını ve ilgili mesafeyi gösterir.]] },
+[3] = { ad = "Otoyol rejimi levhası", aciklama = [[Otoyolda uygulanması gereken hız ve trafik düzeni hakkında bilgi verir.]] },
+[4] = { ad = "Acil durum levhaları", aciklama = [[Otoyolda acil durumda kullanılabilecek hizmet ve yardım noktalarını gösterir.]] },
+[5] = { ad = "Servis alanı levhaları", aciklama = [[Servis, dinlenme ve diğer yardımcı hizmet alanlarının yerini bildirir.]] },
+[6] = { ad = "Park alanı levhası", aciklama = [[Otoyol üzerindeki park alanını ve bu alanda sunulan hizmetleri gösterir.]] },
+[7] = { ad = "Başüstü şerit seçimi levhası", aciklama = [[Sürücülerin ilerleyecekleri şeridi seçmelerine yardımcı olur.]] },
+[8] = { ad = "OGS levhası", aciklama = [[Otoyol geçiş sistemine ait gişe veya geçiş noktasını gösterir.]] },
+[9] = { ad = "HGS levhası", aciklama = [[Hızlı Geçiş Sistemi kullanılan geçiş noktasını bildirir.]] },
+[10] = { ad = "Şerit seçimi ve kullanma levhaları", aciklama = [[Şeritlerin hangi yön ve güzergâhlar için kullanılacağını gösterir.]] },
+
 }
 
 -- Metin göstermek için ScrollView oluşturan fonksiyon
@@ -75,7 +54,9 @@ local function metinOlustur(icerik, ustBosluk)
 end
 
 local function levhaBoyut(kare)
-    return ortak.levhaBoyut(kare, 260, 200, 1.7)
+    -- Otoyol.png içindeki kareler düşük çözünürlüklü olduğundan
+    -- doğal boyutlarının üzerine büyütülmeyerek bulanıklık azaltılır.
+    return ortak.levhaBoyut(kare, 220, 160, 1.0)
 end
 
 function scene:create(event)
@@ -111,18 +92,14 @@ function scene:create(event)
         end
     end
 
-    self.backButton = widget.newButton {
-        width = 128,
-        height = 32,
-        label = "Geri Dön",
-        onRelease = goBack
-    }
+    self.backButton = ortak.geriDonButonu(goBack, 128, 32)
     self.backButton.x = 100
     self.backButton.y = detayButonY
     sceneGroup:insert(self.backButton)
 
     local function onRowRender(event)
         local row = event.row
+        row._detayAcildi = false
         local groupContentHeight = row.contentHeight
         for i = row.numChildren, 1, -1 do
             local child = row[i]
@@ -134,7 +111,7 @@ function scene:create(event)
             text = levhaDetaylari[row.index].ad,
             x = 0,
             y = 0,
-            width = 240,
+            width = math.max(1, display.contentWidth - 92),
             font = "Poppins-Medium",
             fontSize = 15,
             align = "left"
@@ -145,8 +122,9 @@ function scene:create(event)
         rowTitle._levhaSatirOgesi = true
 
         if (row.isCategory) then
+            rowTitle.isVisible = false
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
-            rowTitle.text = "OTOYOL LEVHALARI (8 LEVHA)"
+            rowTitle.text = "OTOYOL LEVHALARI (9 LEVHA)"
             rowTitle.font = "Poppins-Bold"
             rowTitle.size = 16
         else
@@ -166,8 +144,9 @@ function scene:create(event)
         local phase = event.phase
         local row = event.target
 
-        if ("release" == phase) then
-            if not row.isCategory then
+        if (phase == "press" or phase == "release" or phase == "tap" or phase == "ended") then
+            if not row.isCategory and not row._detayAcildi then
+                row._detayAcildi = true
                 local tabBar = composer.getVariable("tabBar")
                 ortak.tabBarGizle(tabBar)
                 transition.to(self.tableView, {
@@ -219,7 +198,7 @@ function scene:create(event)
     sceneGroup:insert(self.tableView)
 
     -- 1 kategori satırı + levha satırları
-    for i = 1, 9 do
+    for i = 1, 10 do
         local isCategory = false
         local rowHeight = 70
         local rowColor = {
@@ -249,7 +228,7 @@ function scene:create(event)
     ortak.listeGeriDonButonu(sceneGroup, function()
         composer.gotoScene("sahne1", "fade", 400)
     end)
-    ortak.sabitListeBasligi(sceneGroup, "OTOYOL LEVHALARI (8 LEVHA)", ox, oy)
+    ortak.sabitListeBasligi(sceneGroup, "OTOYOL LEVHALARI (9 LEVHA)", ox, oy)
 end
 
 function scene:show(event)

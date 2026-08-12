@@ -4,6 +4,9 @@
 local widget = require("widget")
 
 local ortak = {}
+local BASLIK_MAVI = { 0.05, 0.30, 0.55 }
+local BASLIK_MAVI_ACIK = { 0.08, 0.40, 0.68 }
+local BASLIK_BEYAZ = { 1, 1, 1 }
 
 function ortak.ekranBilgileri()
     local originX = display.screenOriginX or 0
@@ -87,7 +90,10 @@ function ortak.detayYerlesimi(gorselYuksekligi)
         resimY = math.max(enAzResimY, math.min(resimY, enFazlaResimY))
     end
 
-    local dugmeY = resimY + (gorselYuksekligi / 2) + bosluk
+    local dugmeY = math.min(
+        resimY + (gorselYuksekligi / 2) + bosluk,
+        altSinir - (dugmeYuksekligi / 2)
+    )
     local metinY = dugmeY + (dugmeYuksekligi / 2) + 26
     return resimY, dugmeY, metinY
 end
@@ -126,19 +132,55 @@ function ortak.sabitListeBasligi(sceneGroup, baslik, ox, oy)
         y = y,
         font = "Poppins-Bold",
         fontSize = 16,
+        width = math.max(1, display.contentWidth - 20),
         align = "center"
     })
     sabitBaslikMetni:setFillColor(1)
 end
 
+function ortak.geriDonButonu(onRelease, genislik, yukseklik)
+    local genislik = genislik or 160
+    local yukseklik = yukseklik or 40
+    local buton = display.newGroup()
+    local zemin = display.newRoundedRect(buton, 0, 0, genislik, yukseklik, 6)
+    zemin:setFillColor(unpack(BASLIK_MAVI))
+
+    local yazi = display.newText({
+        parent = buton,
+        text = "Geri Dön",
+        x = 0,
+        y = 0,
+        font = "Poppins-Bold",
+        fontSize = 17,
+        align = "center"
+    })
+    yazi:setFillColor(unpack(BASLIK_BEYAZ))
+
+    function buton:touch(event)
+        if event.phase == "began" then
+            display.getCurrentStage():setFocus(self)
+            self.isFocus = true
+            zemin:setFillColor(unpack(BASLIK_MAVI_ACIK))
+            return true
+        elseif self.isFocus and (event.phase == "ended" or event.phase == "cancelled") then
+            display.getCurrentStage():setFocus(nil)
+            self.isFocus = false
+            zemin:setFillColor(unpack(BASLIK_MAVI))
+            if event.phase == "ended" and onRelease then
+                onRelease(event)
+            end
+            return true
+        end
+        return true
+    end
+
+    buton:addEventListener("touch")
+    return buton
+end
+
 function ortak.listeGeriDonButonu(sceneGroup, onRelease)
     local ekran = ortak.ekranBilgileri()
-    local buton = widget.newButton({
-        width = 160,
-        height = 40,
-        label = "Geri Dön",
-        onRelease = onRelease
-    })
+    local buton = ortak.geriDonButonu(onRelease)
     buton.x = display.contentCenterX
     buton.y = ekran.safeBottom - 28
     sceneGroup:insert(buton)

@@ -250,18 +250,14 @@ function scene:create(event)
         end
     end
 
-    self.backButton = widget.newButton {
-        width = 128,
-        height = 32,
-        label = "Geri Dön",
-        onRelease = goBack
-    }
+    self.backButton = ortak.geriDonButonu(goBack, 128, 32)
     self.backButton.x = 100
     self.backButton.y = detayButonY
     sceneGroup:insert(self.backButton)
 
     local function onRowRender(event)
         local row = event.row
+        row._detayAcildi = false
         local groupContentHeight = row.contentHeight
         for i = row.numChildren, 1, -1 do
             local child = row[i]
@@ -273,7 +269,7 @@ function scene:create(event)
             text = levhaDetaylari[row.index].ad,
             x = 0,
             y = 0,
-            width = 240,
+            width = math.max(1, display.contentWidth - 92),
             font = "Poppins-Medium",
             fontSize = 15,
             align = "left"
@@ -284,6 +280,7 @@ function scene:create(event)
         rowTitle._levhaSatirOgesi = true
 
         if (row.isCategory) then
+            rowTitle.isVisible = false
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
             rowTitle.text = "BİLGİ İŞARETLERİ (89 LEVHA)"
             rowTitle.font = "Poppins-Bold"
@@ -305,8 +302,9 @@ function scene:create(event)
         local phase = event.phase
         local row = event.target
 
-        if ("release" == phase) then
-            if not row.isCategory then
+        if (phase == "press" or phase == "release" or phase == "tap" or phase == "ended") then
+            if not row.isCategory and not row._detayAcildi then
+                row._detayAcildi = true
                 local tabBar = composer.getVariable("tabBar")
                 ortak.tabBarGizle(tabBar)
                 transition.to(self.tableView, {

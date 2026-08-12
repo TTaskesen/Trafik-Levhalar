@@ -51,36 +51,36 @@ local resimLevha = graphics.newImageSheet("levha/levha/5-yeni-standart/yeni-stan
 
 local levhaDetaylari =
 {
-    [1] = { ad = "", aciklama = [[Açıklama Eklenecek.]]},
-[2] = { ad = "Trafik Sıkışıklığı", aciklama = [[Açıklama Eklenecek.]]},
-[3] = { ad = "Tramvay Hattı ile Oluşan Kavşak", aciklama = [[Açıklama Eklenecek.]]},
-[4] = { ad = "Okul Bölgesi Azami Hız Sınırı", aciklama = [[Açıklama Eklenecek.]]},
-[5] = { ad = "Yayalar ve Bisikletliler Tarafından Kullanılabilen Yol", aciklama = [[Açıklama Eklenecek.]]},
-[6] = { ad = "Yayalar ve Bisikletliler Tarafından Kullanılabilen Yolun Sonu", aciklama = [[Açıklama Eklenecek.]]},
-[7] = { ad = "Yayalar ve Bisikletliler İçin Ayrı Ayrı Kullanılabilen Yol", aciklama = [[Açıklama Eklenecek.]]},
-[8] = { ad = "Yayalar ve Bisikletliler İçin Ayrı Ayrı Kullanılabilen Yolun Sonu", aciklama = [[Açıklama Eklenecek.]]},
-[9] = { ad = "Girişi Olmayan Yol Kavşağı", aciklama = [[Açıklama Eklenecek.]]},
-[10] = { ad = "Kavşak İçi Yön Levhası(Metro)", aciklama = [[Açıklama Eklenecek.]]},
-[11] = { ad = "İleri Tek Yönlü Yol", aciklama = [[Açıklama Eklenecek.]]},
-[12] = { ad = "Rampalı Yaya Üst Geçidi", aciklama = [[Açıklama Eklenecek.]]},
-[13] = { ad = "İki Yönlü Trafik", aciklama = [[Açıklama Eklenecek.]]},
-[14] = { ad = "Yaya Öncelikli Yol", aciklama = [[Açıklama Eklenecek.]]},
-[15] = { ad = "Yaya Öncelikli Yolun Sonu", aciklama = [[Açıklama Eklenecek.]]},
-[16] = { ad = "İstasyon", aciklama = [[Açıklama Eklenecek.]]},
-[17] = { ad = "Tramvay Durağı", aciklama = [[Açıklama Eklenecek.]]},
-[18] = { ad = "Sanayi Bölgesi(OSB)", aciklama = [[Açıklama Eklenecek.]]},
-[19] = { ad = "Trafik Elektronik Denetleme", aciklama = [[Açıklama Eklenecek.]]},
-[20] = { ad = "Trafik Elektronik Denetleme", aciklama = [[Açıklama Eklenecek.]]},
-[21] = { ad = "Trafik Elektronik Denetleme", aciklama = [[Açıklama Eklenecek.]]},
-[22] = { ad = "Kapalı Park Yeri", aciklama = [[Açıklama Eklenecek.]]},
-[23] = { ad = "Park Yeri ( Metrodan Yararlanacaklar için)", aciklama = [[Açıklama Eklenecek.]]},
-[24] = { ad = "Park Yeri ( Tramvaydan Yararlanacaklar için)", aciklama = [[Açıklama Eklenecek.]]},
-[25] = { ad = "Ağaç Engeli", aciklama = [[Açıklama Eklenecek.]]},
-[26] = { ad = "Araç Çekilir", aciklama = [[Açıklama Eklenecek.]]},
-[27] = { ad = "İki Yönlü Trafik", aciklama = [[Açıklama Eklenecek.]]},
-[28] = { ad = "İki Yönlü Trafik", aciklama = [[Açıklama Eklenecek.]]},
-[29] = { ad = "Askeri Araç Çıkabilir", aciklama = [[Açıklama Eklenecek.]]},
-[30] = { ad = "Yüksek Gerilim Hattı", aciklama = [[Açıklama Eklenecek.]]},
+    [1] = { ad = "", aciklama = "" },
+[2] = { ad = "Trafik Sıkışıklığı", aciklama = [[İleride trafik yoğunluğu veya trafik kuyruğu olabileceğini bildirir. Hızınızı azaltarak takip mesafesini koruyunuz.]] },
+[3] = { ad = "Tramvay Hattı ile Oluşan Kavşak", aciklama = [[İleride tramvay hattının bulunduğu bir kavşak olduğunu gösterir. Tramvay geçişlerine ve kavşaktaki diğer araçlara dikkat ediniz.]] },
+[4] = { ad = "Okul Bölgesi Azami Hız Sınırı", aciklama = [[Okul bölgesinde uygulanacak azami hız sınırını gösterir. Belirtilen hız sınırını aşmayınız ve öğrencilerin geçişlerine dikkat ediniz.]] },
+[5] = { ad = "Yayalar ve Bisikletliler Tarafından Kullanılabilen Yol", aciklama = [[Yolun yayalar ve bisikletliler tarafından birlikte kullanılabileceğini bildirir. Tüm yol kullanıcıları birbirlerine karşı dikkatli olmalıdır.]] },
+[6] = { ad = "Yayalar ve Bisikletliler Tarafından Kullanılabilen Yolun Sonu", aciklama = [[Yayalar ve bisikletliler tarafından birlikte kullanılabilen yolun sona erdiğini gösterir. Yolun devamındaki trafik düzenine uyunuz.]] },
+[7] = { ad = "Yayalar ve Bisikletliler İçin Ayrı Ayrı Kullanılabilen Yol", aciklama = [[Yayalar ve bisikletliler için ayrılmış bölümlerin bulunduğunu gösterir. Her kullanıcı kendisine ayrılan bölümü kullanmalıdır.]] },
+[8] = { ad = "Yayalar ve Bisikletliler İçin Ayrı Ayrı Kullanılabilen Yolun Sonu", aciklama = [[Yayalar ve bisikletliler için ayrı bölümlere ayrılmış yolun sona erdiğini bildirir.]] },
+[9] = { ad = "Girişi Olmayan Yol Kavşağı", aciklama = [[İleride araç girişine kapalı bir yolun bulunduğu kavşağı gösterir. Bu yola girmeyiniz ve yönlendirmelere uyunuz.]] },
+[10] = { ad = "Kavşak İçi Yön Levhası (Metro)", aciklama = [[Kavşak içinde metro istasyonuna veya metro yönüne ulaşmak için izlenecek yönü gösterir.]] },
+[11] = { ad = "İleri Tek Yönlü Yol", aciklama = [[Trafiğin yalnızca ileri yönde ve tek yönlü olarak ilerlediğini bildirir. Ters yönde giriş yapmayınız.]] },
+[12] = { ad = "Rampalı Yaya Üst Geçidi", aciklama = [[Yayaların rampalı üst geçidi kullanarak yolu güvenli şekilde geçebileceğini gösterir.]] },
+[13] = { ad = "İki Yönlü Trafik", aciklama = [[Yolun iki yönlü trafiğe açıldığını bildirir. Karşı yönden gelen araçlara ve şerit çizgilerine dikkat ediniz.]] },
+[14] = { ad = "Yaya Öncelikli Yol", aciklama = [[Yayaların öncelikli olduğu yolu gösterir. Sürücüler yayalara geçiş hakkı vermeli ve düşük hızla ilerlemelidir.]] },
+[15] = { ad = "Yaya Öncelikli Yolun Sonu", aciklama = [[Yaya önceliğinin uygulandığı yolun sona erdiğini bildirir. Bundan sonra geçerli trafik kurallarına uyunuz.]] },
+[16] = { ad = "İstasyon", aciklama = [[Yakında bir toplu taşıma istasyonu bulunduğunu gösterir. İstasyona giriş ve çıkış yapan yayalara dikkat ediniz.]] },
+[17] = { ad = "Tramvay Durağı", aciklama = [[Tramvay durağının bulunduğunu bildirir. Durağa yanaşan tramvaylara ve yolculara dikkat ediniz.]] },
+[18] = { ad = "Sanayi Bölgesi (OSB)", aciklama = [[Organize sanayi bölgesine veya sanayi alanına girildiğini gösterir. Ağır araç ve iş makinesi hareketlerine dikkat ediniz.]] },
+[19] = { ad = "Trafik Elektronik Denetleme", aciklama = [[Trafiğin elektronik sistemlerle denetlendiğini bildirir. Hız sınırı ve diğer trafik kurallarına uyunuz.]] },
+[20] = { ad = "Trafik Elektronik Denetleme", aciklama = [[Bu bölgede trafik ihlallerinin elektronik sistemlerle izlenebileceğini gösterir. Belirtilen kurallara uyunuz.]] },
+[21] = { ad = "Trafik Elektronik Denetleme", aciklama = [[Elektronik trafik denetiminin devam ettiğini bildirir. Hızınızı ve sürüş kurallarına uyumunuzu kontrol ediniz.]] },
+[22] = { ad = "Kapalı Park Yeri", aciklama = [[Kapalı otopark alanını gösterir. Park etmek için belirtilen giriş ve yönlendirmeleri kullanınız.]] },
+[23] = { ad = "Park Yeri (Metrodan Yararlanacaklar İçin)", aciklama = [[Aracını park edip metroya devam etmek isteyenler için ayrılmış park alanını gösterir.]] },
+[24] = { ad = "Park Yeri (Tramvaydan Yararlanacaklar İçin)", aciklama = [[Aracını park edip tramvaya devam etmek isteyenler için ayrılmış park alanını gösterir.]] },
+[25] = { ad = "Ağaç Engeli", aciklama = [[Yol üzerinde veya yol kenarında ağaç engeli bulunabileceğini bildirir. Hızınızı azaltarak dikkatli ilerleyiniz.]] },
+[26] = { ad = "Araç Çekilir", aciklama = [[Kurallara aykırı park edilen araçların çekilebileceğini bildirir. Aracınızı yalnızca izin verilen yerlere park ediniz.]] },
+[27] = { ad = "İki Yönlü Trafik", aciklama = [[İki yönlü araç trafiğinin bulunduğu bölümü gösterir. Karşı yönden gelen araçlara ve geçiş önceliğine dikkat ediniz.]] },
+[28] = { ad = "İki Yönlü Trafik", aciklama = [[Yolun iki yönlü kullanıldığını bildirir. Şerit değiştirmeden önce karşı yönden gelen trafiği kontrol ediniz.]] },
+[29] = { ad = "Askeri Araç Çıkabilir", aciklama = [[Askeri araçların yola çıkabileceği veya yolu kullanabileceği bölgeyi bildirir. Ani araç çıkışlarına karşı dikkatli olunuz.]] },
+[30] = { ad = "Yüksek Gerilim Hattı", aciklama = [[Yakında yüksek gerilim hattı bulunduğunu gösterir. Elektrik tesislerine yaklaşmayınız ve güvenlik uyarılarına uyunuz.]] },
 
 }
 
@@ -131,18 +131,14 @@ function scene:create(event)
         end
     end
 
-    self.backButton = widget.newButton {
-        width = 128,
-        height = 32,
-        label = "Geri Dön",
-        onRelease = goBack
-    }
+    self.backButton = ortak.geriDonButonu(goBack, 128, 32)
     self.backButton.x = 100
     self.backButton.y = detayButonY
     sceneGroup:insert(self.backButton)
 
     local function onRowRender(event)
         local row = event.row
+        row._detayAcildi = false
         local groupContentHeight = row.contentHeight
         for i = row.numChildren, 1, -1 do
             local child = row[i]
@@ -154,7 +150,7 @@ function scene:create(event)
             text = levhaDetaylari[row.index].ad,
             x = 0,
             y = 0,
-            width = 240,
+            width = math.max(1, display.contentWidth - 92),
             font = "Poppins-Medium",
             fontSize = 15,
             align = "left"
@@ -165,6 +161,7 @@ function scene:create(event)
         rowTitle._levhaSatirOgesi = true
 
         if (row.isCategory) then
+            rowTitle.isVisible = false
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
             rowTitle.text = "YENİ STANDART LEVHALAR (29 LEVHA)"
             rowTitle.font = "Poppins-Bold"
@@ -186,8 +183,9 @@ function scene:create(event)
         local phase = event.phase
         local row = event.target
 
-        if ("release" == phase) then
-            if not row.isCategory then
+        if (phase == "press" or phase == "release" or phase == "tap" or phase == "ended") then
+            if not row.isCategory and not row._detayAcildi then
+                row._detayAcildi = true
                 local tabBar = composer.getVariable("tabBar")
                 ortak.tabBarGizle(tabBar)
                 transition.to(self.tableView, {

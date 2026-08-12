@@ -15,8 +15,6 @@ local sahneDegis = require ("composer")
 local widget = require ("widget")
 local ortak = require ("levha_ortak")
 
-local json = require( "json" )
-
 local temaIdleri = {
 	"widget_theme_android_holo_dark",
 	"widget_theme_android_holo_light",
@@ -24,13 +22,6 @@ local temaIdleri = {
 	"widget_theme_ios7",
 	--"widget_theme_ios", 
 }
-local temaAdlari = {
-	"Android Dark",
-	"Android Normal",
-	"Android",
-	"iOS",
-}
-
 local function widgetleriGoster( widgetTemaNumarasi )
 
 	local ekranBilgileri = ortak.ekranBilgileri()

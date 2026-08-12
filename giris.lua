@@ -80,16 +80,6 @@ function sahne:create(olay)
 	durMetin.x, durMetin.y = dur.x, dur.y
 	sceneGroup:insert(durMetin)
 
-	local function basiliEfekt(olay)
-		local nesne = olay.target
-		if olay.phase == "began" then
-			transition.to(nesne, { xScale = 0.93, yScale = 0.93, time = 90 })
-		elseif olay.phase == "ended" or olay.phase == "cancelled" then
-			transition.to(nesne, { xScale = 1, yScale = 1, time = 140, transition = easing.outBack })
-		end
-		return false
-	end
-
 	local baslaButonu = display.newRoundedRect(display.contentCenterX, butonY, 210, 48, 8)
 	baslaButonu:setFillColor(0.05, 0.3, 0.55, 0.85)
 	baslaButonu:setStrokeColor(1, 1, 1, 0.35)
@@ -101,17 +91,32 @@ function sahne:create(olay)
 	baslaMetin.x, baslaMetin.y = baslaButonu.x, baslaButonu.y
 	sceneGroup:insert(baslaMetin)
 
-	baslaButonu:addEventListener("touch", basiliEfekt)
-	baslaMetin:addEventListener("touch", basiliEfekt)
-
 	local function basla()
 		if tabBar then
 			tabBar.isVisible = true
 		end
 		sahneDegis.gotoScene("sahne1", "fade", 500)
 	end
-	baslaButonu:addEventListener("tap", basla)
-	baslaMetin:addEventListener("tap", basla)
+
+	local function baslaDokun(olay)
+		local nesne = olay.target
+		if olay.phase == "began" then
+			display.getCurrentStage():setFocus(nesne)
+			nesne.isFocus = true
+			transition.to(nesne, { xScale = 0.93, yScale = 0.93, time = 90 })
+		elseif nesne.isFocus and (olay.phase == "ended" or olay.phase == "cancelled") then
+			display.getCurrentStage():setFocus(nil)
+			nesne.isFocus = false
+			transition.to(nesne, { xScale = 1, yScale = 1, time = 140, transition = easing.outBack })
+			if olay.phase == "ended" then
+				basla()
+			end
+		end
+		return true
+	end
+
+	baslaButonu:addEventListener("touch", baslaDokun)
+	baslaMetin:addEventListener("touch", baslaDokun)
 
 	-- Hikâye kısayolu: sahne7'ye gider
 	local hikayeYazi = display.newText({

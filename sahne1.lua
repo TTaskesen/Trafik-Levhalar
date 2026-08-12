@@ -127,7 +127,7 @@ function sahne:create(olay)
 		{ metin = "TRAFİK TANZİM İŞARETLERİ",          dokun = yaziyaDokun3 },
 		{ metin = "BİLGİ İŞARETLERİ",                  dokun = yaziyaDokun4 },
 		{ metin = "DURAKLAMA VE PARK ETME İŞARETLERİ", dokun = yaziyaDokun5 },
-		{ metin = "ÖZEL İŞARETLER",                    dokun = yaziyaDokun6 },
+		{ metin = "YATAY (ÖZEL) İŞARETLER",                    dokun = yaziyaDokun6 },
 		{ metin = "YENİ STANDART LEVHALAR",            dokun = yaziyaDokun7 },
 		{ metin = "OTOYOL LEVHALARI",                  dokun = yaziyaDokun8 },
 	}
@@ -314,8 +314,6 @@ function sahne:hide(olay)
 	local faz = olay.phase
 
 	if "will" == faz then
-		print("1: hide olayı, faz will")
-
 		-- zamanlayıcıyı iptal et
 		if zamanSay then
 			timer.cancel(zamanSay)
@@ -327,7 +325,6 @@ function sahne:hide(olay)
 end
 
 function sahne:destroy(olay)
-	print("((sahne 1 in yok edilmesi))")
 end
 
 ---------------------------------------------------------------------------------

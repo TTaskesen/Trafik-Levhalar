@@ -230,7 +230,6 @@ function sahne:create(olay)
 	sceneGroup:insert(scrollView)
 
 
-	print("\n2: create olay")
 end
 
 function sahne:show(olay)
@@ -239,7 +238,6 @@ function sahne:show(olay)
 	if "did" == faz then
 		local tabBar = sahneDegis.getVariable("tabBar")
 		ortak.tabBarGoster(tabBar)
-		print("2: show olay, faz did")
 
 		collectgarbage("collect")
 
@@ -257,7 +255,6 @@ end
 function sahne:hide(olay)
 	local faz = olay.phase
 	if "will" == faz then
-		print("2: hide olayı, faz will")
 
 		-- cancel timer
 		--timer.cancel( zamanSay ); zamanSay = nil;
@@ -270,7 +267,6 @@ function sahne:hide(olay)
 end
 
 function sahne:destroy(olay)
-	print("((sahne 6 yok ediliyor)")
 end
 
 ---------------------------------------------------------------------------------
