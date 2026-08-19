@@ -1,8 +1,10 @@
-[1] = { ad = "", aciklama = "" },
-    [2] = { ad = "Özürlü Sürücüler İçin Park Yeri", aciklama = [[Bu alanın özürlü sürücüler için ayrılmış park yeri olduğunu gösterir.]] },
-    [3] = { ad = "Bu şerit sadece ileri yönde seyir içindir", aciklama = [[Bu şeritte yalnızca ileri yönde gidilebileceğini gösteren yatay işaretlemedir.]] },
-    [4] = { ad = "Bu şerit sadece ileri seyir veya sola dönüş içindir", aciklama = [[Bu şeritte ileri gidilebileceğini veya sola dönüş yapılabileceğini gösterir.]] },
-    [5] = { ad = "Bu şerit sadece ileri seyir veya sağa dönüş içindir", aciklama = [[Bu şeritte ileri gidilebileceğini veya sağa dönüş yapılabileceğini gösterir.]] },
-    [6] = { ad = "Bu şerit sadece sola dönüş içindir", aciklama = [[Bu şeritten yalnızca sola dönüş yapılabileceğini gösteren oktur.]] },
-    [7] = { ad = "Bu şerit sadece sağa dönüş içindir", aciklama = [[Bu şeritten yalnızca sağa dönüş yapılabileceğini gösteren oktur.]] },
-    [8] = { ad = "Sola geçilir", aciklama = [[Öndeki araca soldan geçilebileceğini gösteren yatay işaretlemedir.]] },
+{
+    [1] = { ad = "", aciklama = "" },
+    [2] = { ad = "Özürlü Sürücüler İçin Park Yeri", aciklama = [[Tekerlekli sandalye sembolü, park alanının engelli bireyler için ayrıldığını gösterir. Bu yerler, araca daha rahat binilip inilmesi ve erişilebilir güzergâha yakınlık sağlanması amacıyla ayrılmıştır. Yetkisi bulunmayan sürücüler bu alanlara park etmemeli, park ederken yatay işaretleme ve ek levhalardaki kurallara uymalıdır.]] },
+    [3] = { ad = "Bu şerit sadece ileri yönde seyir içindir", aciklama = [[Düz ok, bu şeritte yalnızca ileri yönde hareket edilebileceğini bildirir. Sürücü kavşakta veya şerit ayrımında sağa ya da sola dönmemeli, dönüş yapmak istiyorsa önceden izin verilen başka bir şeride geçmelidir. Şerit oku ile yol çizgilerini birlikte takip ediniz.]] },
+    [4] = { ad = "Bu şerit sadece ileri seyir veya sola dönüş içindir", aciklama = [[Düz ve sola yönelen okların birlikte bulunması, bu şeritten ileri gidilebileceğini veya sola dönülebileceğini gösterir. Sağa dönüş bu şeritten yapılamaz. Dönüş öncesinde sinyal veriniz, kavşak kontrolünü ve karşı yönden gelen araçları kontrol ediniz.]] },
+    [5] = { ad = "Bu şerit sadece ileri seyir veya sağa dönüş içindir", aciklama = [[Düz ve sağa yönelen okların birlikte bulunması, şeridin ileri seyir veya sağa dönüş için kullanılabileceğini bildirir. Sola dönüş yapmak isteyen sürücü bu şeridi kullanmamalı, uygun şeride zamanında geçmelidir. Sağa dönüşte yayalara ve bisikletlilere geçiş hakkı veriniz.]] },
+    [6] = { ad = "Bu şerit sadece sola dönüş içindir", aciklama = [[Sola yönelen ok, bu şeridin yalnızca sola dönüş için ayrıldığını gösterir. Düz devam etmek veya sağa dönmek isteyen sürücüler başka bir şeridi kullanmalıdır. Dönüşten önce sinyal veriniz, karşıdan gelen trafiği ve kavşak içindeki yayaları kontrol ediniz.]] },
+    [7] = { ad = "Bu şerit sadece sağa dönüş içindir", aciklama = [[Sağa yönelen ok, bu şeridin yalnızca sağa dönüş için kullanılacağını bildirir. Düz devam etmek veya sola dönmek için bu şeritte beklemeyiniz; uygun şeride önceden geçiniz. Dönüş sırasında yaya geçitlerine, bisiklet yoluna ve yol kenarındaki kullanıcılara dikkat ediniz.]] },
+    [8] = { ad = "Sola geçilir", aciklama = [[Kavisli sola geçiş oku, engel veya yol düzeni nedeniyle taşıtların sola yönelerek geçmesi gerektiğini gösterir. Sürücü hızını azaltmalı, ok yönündeki geçişi takip etmeli ve karşı yönden gelen araçlara yeterli mesafe bırakmalıdır. İşaretli geçiş sırasında ani şerit değişikliğinden kaçınınız.]] },
+}

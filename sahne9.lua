@@ -8,6 +8,7 @@
 local widget = require("widget")
 local composer = require("composer")
 local ortak = require("levha_ortak")
+local dil = require("dil")
 local scene = composer.newScene()
 
 local scrollViewMetin
@@ -45,6 +46,8 @@ SORUMLULUK REDDİ
 Bu uygulamadaki bilgiler eğitim amaçlıdır. Trafikte geçerli olan kurallar için resmi kaynaklar ve yetkili kuruluşların yayınları esas alınmalıdır.
 ]]
 
+icerik = dil.dosyaMetni("bilgi", icerik)
+
 -- Metin göstermek için ScrollView oluşturan fonksiyon
 local function metinOlustur()
     if scrollViewMetin then
@@ -53,7 +56,7 @@ local function metinOlustur()
     end
 
     local tabBarHeight = composer.getVariable("tabBarHeight") or 0
-    local ustBosluk = (display.safeScreenOriginY or display.screenOriginY or 0) + 64
+    local ustBosluk = (display.safeScreenOriginY or display.screenOriginY or 0) + 96
     local oy = math.abs(display.screenOriginY)
     local scrollView = widget.newScrollView(
         {
@@ -62,7 +65,7 @@ local function metinOlustur()
             width = display.contentWidth,
             height = display.contentHeight + oy - ustBosluk - tabBarHeight,
             horizontalScrollDisabled = true,
-            backgroundColor = { 1, 1, 1 }
+            backgroundColor = { 0, 0, 0, 0 }
         })
 
     local yStart = 10
@@ -84,7 +87,7 @@ local function metinOlustur()
         newText.anchorY = 0
         newText.x = mainPadding
         newText.y = yStart
-        newText:setFillColor(unpack(baslikMi and { 0.05, 0.3, 0.55 } or { 0.2 }))
+        newText:setFillColor(1, 1, 1)
         scrollView:insert(newText)
         yStart = yStart + newText.height + 5
     end
@@ -97,13 +100,31 @@ function scene:create(event)
     local sceneGroup = self.view
     local baslikY = (display.safeScreenOriginY or display.screenOriginY or 0) + 30
 
+    local arkaPlan = display.newImageRect(
+        sceneGroup,
+        "levha/bg2.jpg",
+        display.contentWidth,
+        display.contentHeight
+    )
+    arkaPlan.x = display.contentCenterX
+    arkaPlan.y = display.contentCenterY
+
+    local metinKontrast = display.newRect(
+        sceneGroup,
+        display.contentCenterX,
+        display.contentCenterY,
+        display.contentWidth,
+        display.contentHeight
+    )
+    metinKontrast:setFillColor(0, 0, 0, 0.5)
+
     local baslikKarti = display.newRoundedRect(display.contentCenterX, baslikY, 240, 52, 10)
     baslikKarti:setFillColor(0.05, 0.3, 0.55, 0.85)
     baslikKarti:setStrokeColor(1, 1, 1, 0.35)
     baslikKarti.strokeWidth = 1.5
     sceneGroup:insert(baslikKarti)
 
-    local baslik = display.newText("Bilgi", 0, 0, "BebasNeue-Regular", 30)
+    local baslik = display.newText(dil.metin("bilgi_basligi"), 0, 0, "BebasNeue-Regular", 30)
     baslik:setFillColor(1)
     baslik.x = display.contentCenterX
     baslik.y = baslikY

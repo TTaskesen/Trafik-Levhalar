@@ -7,6 +7,7 @@ local widget = require("widget")
 local sahneDegis = require("composer")
 local splash = require("splash")
 local ortak = require("levha_ortak")
+local dil = require("dil")
 local sahne = sahneDegis.newScene()
 
 ---------------------------------------------------------------------------------
@@ -117,19 +118,19 @@ function sahne:create(olay)
 	baslikKarti.strokeWidth = 1.5
 	sceneGroup:insert(baslikKarti)
 
-	yazi1 = display.newText("KARAYOLLARI STANDART\nİŞARET LEVHALARI", 0, 0, baslikfont, 26)
+	yazi1 = display.newText(dil.metin("uygulama_basligi"), 0, 0, baslikfont, 26)
 	yazi1:setFillColor(1)
 	yazi1.x, yazi1.y = display.contentCenterX, baslikY
 	sceneGroup:insert(yazi1)
 
 	menuler = {
-		{ metin = "TEHLİKE UYARI İŞARETLERİ",          dokun = yaziyaDokun2 },
-		{ metin = "TRAFİK TANZİM İŞARETLERİ",          dokun = yaziyaDokun3 },
-		{ metin = "BİLGİ İŞARETLERİ",                  dokun = yaziyaDokun4 },
-		{ metin = "DURAKLAMA VE PARK ETME İŞARETLERİ", dokun = yaziyaDokun5 },
-		{ metin = "YATAY (ÖZEL) İŞARETLER",                    dokun = yaziyaDokun6 },
-		{ metin = "YENİ STANDART LEVHALAR",            dokun = yaziyaDokun7 },
-		{ metin = "OTOYOL LEVHALARI",                  dokun = yaziyaDokun8 },
+		{ metin = dil.metin("menu_tehlike"), dokun = yaziyaDokun2 },
+		{ metin = dil.metin("menu_tanzim"), dokun = yaziyaDokun3 },
+		{ metin = dil.metin("menu_bilgi"), dokun = yaziyaDokun4 },
+		{ metin = dil.metin("menu_durma"), dokun = yaziyaDokun5 },
+		{ metin = dil.metin("menu_yatay"), dokun = yaziyaDokun6 },
+		{ metin = dil.metin("menu_yeni"), dokun = yaziyaDokun7 },
+		{ metin = dil.metin("menu_otoyol"), dokun = yaziyaDokun8 },
 	}
 
 	-- Düzen: kartlar başlık ile tab bar arasına sığmalı; son kart ile tab bar arasındaki

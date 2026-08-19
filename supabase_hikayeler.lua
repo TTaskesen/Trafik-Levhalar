@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------
+-- Supabase REST bağlantısı. Ayarlar boşsa uygulama yerel kayıtla çalışır.
+--------------------------------------------------------------------------------
+local json = require("json")
+local config = require("supabase_config")
+
+local supabase = {}
+
+local function hazirMi()
+    return type(config.url) == "string" and config.url ~= ""
+        and type(config.publishableKey) == "string" and config.publishableKey ~= ""
+end
+
+local function istekYap(method, yol, veri, listener)
+    if not hazirMi() then
+        if listener then listener(false, "Supabase ayarları henüz yapılmadı.") end
+        return false
+    end
+
+    local basliklar = {
+        ["Content-Type"] = "application/json",
+        apikey = config.publishableKey,
+        Authorization = "Bearer " .. config.publishableKey
+    }
+    local parametreler = {
+        method = method,
+        headers = basliklar,
+        timeout = 10000
+    }
+    if veri then
+        parametreler.body = json.encode(veri)
+    end
+    network.request(config.url .. "/rest/v1/" .. yol, method, function(event)
+        if event.isError then
+            if listener then listener(false, event.response or "Ağ bağlantısı kurulamadı.") end
+            return
+        end
+        local basarili = event.status >= 200 and event.status < 300
+        local sonuc = event.response
+        if basarili and type(sonuc) == "string" and sonuc ~= "" then
+            local cozuldu, tablo = pcall(json.decode, sonuc)
+            if cozuldu then sonuc = tablo end
+        end
+        if listener then listener(basarili, sonuc) end
+    end, parametreler)
+    return true
+end
+
+function supabase.aktif()
+    return hazirMi()
+end
+
+function supabase.hikayeGonder(baslik, metin, dilKodu, listener)
+    return istekYap("POST", "hikayeler", {
+        baslik = baslik,
+        metin = metin,
+        dil = dilKodu or "tr",
+        durum = "beklemede"
+    }, listener)
+end
+
+function supabase.yayinlananlariGetir(listener)
+    return istekYap("GET", "hikayeler?select=id,baslik,metin,dil,olusturma_tarihi&durum=eq.yayinda&order=olusturma_tarihi.desc", nil, listener)
+end
+
+return supabase

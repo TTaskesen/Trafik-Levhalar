@@ -1,0 +1,11 @@
+Cette application a été conçue pour aider chacun à reconnaître et à apprendre plus facilement les panneaux routiers.
+
+TURGUT TAŞKESEN
+Le développeur, Turgut Taşkesen, est ingénieur en mécanique et vit à Kahramanmaraş.
+
+Il a commencé récemment à développer des logiciels. Il a créé cette application parce qu’il considère que la bonne connaissance des panneaux est importante pour la sécurité routière de tous.
+
+OBJECTIF
+L’application présente visuellement les panneaux aux candidats au permis, aux conducteurs et à tous les usagers de la route, puis explique leur signification.
+
+De nouvelles fonctions et mises à jour continueront d’être ajoutées. Vos avis et suggestions contribueront à améliorer l’application.

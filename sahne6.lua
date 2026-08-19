@@ -27,17 +27,7 @@ local levhaKareleri = {
 
 local resimLevha = graphics.newImageSheet("levha/levha/6-yatay/yatay.png", levhaKareleri)
 
-local levhaDetaylari =
-{
-    [1] = { ad = "", aciklama = "" },
-    [2] = { ad = "Özürlü Sürücüler İçin Park Yeri", aciklama = [[Tekerlekli sandalye sembolü, park alanının engelli bireyler için ayrıldığını gösterir. Bu yerler, araca daha rahat binilip inilmesi ve erişilebilir güzergâha yakınlık sağlanması amacıyla ayrılmıştır. Yetkisi bulunmayan sürücüler bu alanlara park etmemeli, park ederken yatay işaretleme ve ek levhalardaki kurallara uymalıdır.]] },
-    [3] = { ad = "Bu şerit sadece ileri yönde seyir içindir", aciklama = [[Düz ok, bu şeritte yalnızca ileri yönde hareket edilebileceğini bildirir. Sürücü kavşakta veya şerit ayrımında sağa ya da sola dönmemeli, dönüş yapmak istiyorsa önceden izin verilen başka bir şeride geçmelidir. Şerit oku ile yol çizgilerini birlikte takip ediniz.]] },
-    [4] = { ad = "Bu şerit sadece ileri seyir veya sola dönüş içindir", aciklama = [[Düz ve sola yönelen okların birlikte bulunması, bu şeritten ileri gidilebileceğini veya sola dönülebileceğini gösterir. Sağa dönüş bu şeritten yapılamaz. Dönüş öncesinde sinyal veriniz, kavşak kontrolünü ve karşı yönden gelen araçları kontrol ediniz.]] },
-    [5] = { ad = "Bu şerit sadece ileri seyir veya sağa dönüş içindir", aciklama = [[Düz ve sağa yönelen okların birlikte bulunması, şeridin ileri seyir veya sağa dönüş için kullanılabileceğini bildirir. Sola dönüş yapmak isteyen sürücü bu şeridi kullanmamalı, uygun şeride zamanında geçmelidir. Sağa dönüşte yayalara ve bisikletlilere geçiş hakkı veriniz.]] },
-    [6] = { ad = "Bu şerit sadece sola dönüş içindir", aciklama = [[Sola yönelen ok, bu şeridin yalnızca sola dönüş için ayrıldığını gösterir. Düz devam etmek veya sağa dönmek isteyen sürücüler başka bir şeridi kullanmalıdır. Dönüşten önce sinyal veriniz, karşıdan gelen trafiği ve kavşak içindeki yayaları kontrol ediniz.]] },
-    [7] = { ad = "Bu şerit sadece sağa dönüş içindir", aciklama = [[Sağa yönelen ok, bu şeridin yalnızca sağa dönüş için kullanılacağını bildirir. Düz devam etmek veya sola dönmek için bu şeritte beklemeyiniz; uygun şeride önceden geçiniz. Dönüş sırasında yaya geçitlerine, bisiklet yoluna ve yol kenarındaki kullanıcılara dikkat ediniz.]] },
-    [8] = { ad = "Sola geçilir", aciklama = [[Kavisli sola geçiş oku, engel veya yol düzeni nedeniyle taşıtların sola yönelerek geçmesi gerektiğini gösterir. Sürücü hızını azaltmalı, ok yönündeki geçişi takip etmeli ve karşı yönden gelen araçlara yeterli mesafe bırakmalıdır. İşaretli geçiş sırasında ani şerit değişikliğinden kaçınınız.]] },
-}
+local levhaDetaylari = ortak.levhaAciklamalariniOku("levha/levha/6-yatay/Yatay Levhalar Aciklama.json", 8)
 
 -- Metin göstermek için ScrollView oluşturan fonksiyon
 local function metinOlustur(icerik, ustBosluk)
@@ -60,6 +50,7 @@ function scene:create(event)
     local themeID = composer.getVariable("themeID")
 
     local tableViewColors = ortak.listeRenkleri()
+    local seciliSatir
 
     local ilkKare = levhaKareleri.frames[1]
     local g, y = levhaBoyut(ilkKare)
@@ -73,6 +64,10 @@ function scene:create(event)
     local function goBack(event)
         local tabBar = composer.getVariable("tabBar")
         ortak.tabBarGizle(tabBar)
+        if seciliSatir then
+            seciliSatir._detayAcildi = false
+            seciliSatir = nil
+        end
         self.tableView.isVisible = true
         transition.to(self.tableView, { x = display.contentWidth * 0.5, time = 600, transition = easing.outQuint })
         transition.to(self.backButton, { x = 100, y = 200, time = 480, transition = easing.outQuint })
@@ -103,7 +98,7 @@ function scene:create(event)
 
         local rowTitle = display.newText({
             parent = row,
-            text = levhaDetaylari[row.index].ad,
+            text = ortak.levhaAdi(levhaDetaylari[row.index].ad),
             fontSize = row.isCategory and 16 or 15,
             font = row.isCategory and "Poppins-Bold" or "Poppins-Medium",
             width = math.max(1, display.contentWidth - 92),
@@ -117,7 +112,7 @@ function scene:create(event)
         if (row.isCategory) then
             rowTitle.isVisible = false
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
-            rowTitle.text = "ÖZEL (YATAY) İŞARETLER (7 LEVHA)"
+            rowTitle.text = ortak.listeBasligi("yatay", 7)
         else
             rowTitle:setFillColor(unpack(row.params.defaultLabelColor))
             local kare = levhaKareleri.frames[row.index - 1]
@@ -135,9 +130,10 @@ function scene:create(event)
         local phase = event.phase
         local row = event.target
 
-        if (phase == "press" or phase == "release" or phase == "tap" or phase == "ended") then
+        if (phase == "release" or phase == "tap" or phase == "ended") then
             if not row.isCategory and not row._detayAcildi then
                 row._detayAcildi = true
+                seciliSatir = row
                 local tabBar = composer.getVariable("tabBar")
                 ortak.tabBarGizle(tabBar)
                 transition.to(self.tableView, {
@@ -176,7 +172,7 @@ function scene:create(event)
                         transition = easing.outQuint
                     })
 
-                local secilenMetin = levhaDetaylari[row.index].aciklama
+                local secilenMetin = ortak.levhaAciklamasi(levhaDetaylari[row.index])
                 metinOlustur(secilenMetin, yeniMetinY)
                 sceneGroup:insert(scrollViewMetin)
             end
@@ -226,7 +222,7 @@ function scene:create(event)
     ortak.listeGeriDonButonu(sceneGroup, function()
         composer.gotoScene("sahne1", "fade", 400)
     end)
-    ortak.sabitListeBasligi(sceneGroup, "ÖZEL (YATAY) İŞARETLER (7 LEVHA)", ox, oy)
+    ortak.sabitListeBasligi(sceneGroup, ortak.listeBasligi("yatay", 7), ox, oy)
 end
 
 function scene:show(event)

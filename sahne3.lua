@@ -41,509 +41,7 @@ local resimLevha = graphics.newImageSheet("levha/levha/2-tanzim/tanzim.png",
     levhaTanzimKareleri)
 
 -- Her levha için hem adı hem de açıklaması (detay metni) içeren tablo
-local levhaDetaylari =
-{
-    [1]  = { ad = "", aciklama = "" },
-    [2] = { ad = "Yol ver", aciklama = [[Bu işaret levhası, ana yol-tali yol kavşaklarında, tali yoldan kavşağa yaklaşmakta
-olan sürücülerin gerekmediği durumlarda kavşakta durmaksızın, ana yolda
-seyretmekte olan araçlara yol vermesi gerektiğini belirtir.]] },
-    [3] = { ad = "Dur", aciklama = [[Bu işaret levhası, sürücülerin bir kavşağa girmeden önce durarak kavşaktaki
-bütün araçlara yol vermeleri gerektiğini belirtir.
-Bu işaret levhası aynı zamanda kontrolsüz bir demiryolu geçidinden geçmeden
-önce söz konusu olan durma mecburiyetini belirtmek için kullanılabilir.]] },
-    [4] = { ad = "Karşıdan gelene yol ver", aciklama = [[Bu işaret levhası, iki yönlü trafik akışının zor ya da imkansız olduğu dar yol
-kesimlerinde öncelik hakkının karşıdan gelen araçlara ait olduğunu belirtmek
-amacıyla kullanılır.
-Bu işaret levhasının;
-- Sürücülerin, hem gece hem de gündüz, bu yol kesiminin bütün uzunluğunu açık
-bir biçimde görmeleri durumunda,
-- Karşı yönde B-37 nolu Önceliği Olan Yön işaret levhasının konulmuş olması
-durumunda,
-kullanılması gerekir.]] },
-    [5] = { ad = "Girişi olmayan yol", aciklama = [[Bu işaret levhası, her türlü taşıt girişinin yasak olduğu yolların girişlerinde
-kullanılır ve normal olarak işaretin konulduğu yolun karşı yönden tek yönlü trafiğe
-ayrılmış olduğunu belirtir.
-Bu işaretin montaj yeri, sürücülerin yanlış bir manevrasına sebebiyet vermeyecek
-tarzda seçilmeli, gerekiyorsa (TT-26a ve TT-26b nolu veya uygun olan mecburi yön
-levhalarından birisi ile) işaret levhaları, hem girişi olmayan yol hakkında ön ikaz, hem
-de yasaklamayı takviye edici olarak kullanılmalıdır. (Mecburi yön levhalarındaki
-işaretlemelere bakınız)
-Bu işaret levhası çoğunlukla, iki yönlü trafiğin uygun olmadığı ya da istenmediği
-şehir içi alanlarda trafiği kontrol etmek için kullanılır (Bkz. Şekil 25) Ayrıca, bölünmüş
-yol başlangıçlarında orta refüj üzerinde kullanılan TT-36a nolu Sağdan Gidiniz
-mecburi yön levhasının sürücülerin yanlış yola girmelerini engellemede yetersiz
-kaldığı durumlarda kullanılmalıdır. Gerekli durumlarda TT-4 nolu Girişi Olmayan Yol
-işaret levhası yolun solunda da kullanılabilir.]] },
-    [6] = { ad = "Taşıt trafiğine kapalı yol", aciklama = [[Bu işaret levhası, yolun her iki yöndeki taşıt trafiğine kapalı olduğunu bildirir.
-Bu işaret levhası, sadece yayalara açık olan caddeler üzerinde kullanılabilir.
-Ticaret alanlarında mal teslim eden kamyonların bu caddelere girmesi gerekli olabilir.
-Bu gibi hallerde, bu işaret levhasının altında hariç tutulan aracın figürünü ve “Hariç”
-yazılı mesajı içeren PL-10 ilave paneli kullanılır. Bu gibi bir istisnanın sadece mesai
-saatlerinde veya belirli bir süre geçerli olması halinde, PL-9 ilave paneli ile (07:00 -
-19:00 gibi) istisnanın geçerli olduğu saat de belirtilebilir.
-TT-5 nolu Taşıt Trafiğine Kapalı Yol işaret levhası, toprak kayması vs. gibi bazı
-sebeplerle geçici olarak kapalı olan yollarda da kullanılabilir. Bu gibi hallerde, bu
-levha fiziksel bariyerler ile pekiştirilmeli, geceleri ise, kırmızı ışık yayan trafik kontrol
-cihazları kullanılmalıdır.
- Bu işaretin ileride bulunan kapalı bir yol kesimini uyarmak için önceden
-kullanılması durumunda, işaret levhasının altında kapalı olan yol kesimine olan
-uzaklık, PL-2 ilave paneli ile belirtilmelidir.]] },
-    [7] = { ad = "Motosiklet hariç motorlu taşıt trafiğine kapalı yol", aciklama = [[Bu işaret levhası, sepetsiz motosikletler ve motorlu bisikletler dışındaki her türlü
-motorlu taşıtın girmesinin yasak olduğunu bildirir.
-Böyle bir kısıtlama okul binaları, hastane vs. binalardan akan transit trafiğin
-aksatılmasını engellemek üzere meskun alanlarda uygun olabilir.
-İlave paneller kullanılarak "Hastaneye Giden Araçlar Hariç", " Bina Sakinleri
-Hariç" gibi istisnalar belirtilebilir. Yasaklamanın sadece geceleri geçerli olması
-halinde, yasaklama saatlerini belirten ilave bir panel kullanılmalıdır. Böyle bir ilave
-panelde örneğin "19 : 00 - 06 : 00 arası" şeklinde bir ifadeye yer verilebilir.
-İşaret levhasının konulacağı yerin, sürücülerin yanlış bir manevraya teşebbüsünü
-önleyecek tarzda belirlenmesi gerekir.]] },
-    [8] = { ad = "Motosiklet giremez", aciklama = [[Bu işaret levhası, motosiklet girişinin yasak olduğunu bildirir.
-Bu işaret levhası daha ziyade şehir içi yollarda, söz gelişi aşırı gürültü gibi
-sebeplerle, motosiklet trafiğinin uygunsuz olduğu düşünülen yerlerde kullanılabilir. İşaret levhasının konulacağı yerin, sürücülerin yanlış bir manevraya teşebbüsünü
-önleyecek tarzda belirlenmesi gerekir.]] },
-    [9] = { ad = "Bisiklet giremez", aciklama = [[Bu işaret levhası, bisiklet girişinin yasak olduğunu bildirir.
-Bu işaret levhası, bisiklet kullanmanın özellikle tehlikeli olduğu ya da bisikletlilerin
-diğer trafik tehlikelerine sebep olma ya da motorlu araçlar için uygunsuz durumlar
-yaratma ihtimalinin bulunduğu yol ve caddelere bisikletli girişini engellemek için
-kullanılabilir.
-İşaret levhasının konulacağı yerin, sürücülerin yanlış bir manevraya teşebbüsünü
-önleyecek tarzda belirlenmesi gerekir.]] },
-    [10] = { ad = "Motorlu bisiklet giremez", aciklama = [[Bu işaret levhası, motorlu bisiklet girişinin yasak olduğunu bildirir.
-Bu işaret levhası, motorlu bisiklet kullanmanın özellikle tehlikeli olduğu ya da
-motorlu bisiklet sürücülerinin diğer trafik tehlikelerine sebep olma ya da motorlu
-araçlar için uygunsuz durumlar yaratma ihtimalinin olduğu yol ve caddelere motorlu
-bisiklet girişini engellemek için kullanılabilir.
-İşaret levhasının konulacağı yerin, sürücülerin yanlış bir manevraya teşebbüsünü
-önleyecek tarzda belirlenmesi gerekir.]] },
-    [11] = { ad = "Kamyon giremez", aciklama = [[Bu işaret levhası, kamyon (azami yüklü ağırlığı 3.5 tondan fazla olan yük taşıtları)
-ve otobüs girişinin yasak olduğunu bildirir. 
-Bu işaret levhası, ağır trafiğin uygunsuz olduğu, söz gelişi dar şehir alanlarında,
-ya da kamyon-otobüslerin yarattığı gürültü ve hava kirliliğinin rahatsızlığa neden
-olduğu yerlerde kullanılabilir.
-Üzerinde belli ağırlık rakamlarına, örneğin 6 ton gibi, yer veren ilave paneller
-kullanmak sureti ile, yasaklama izin verilen azami ağırlığı ilave panelde belirtilmiş
-olan değeri aşan kamyon-otobüsler ile sınırlanmış olur.
-Bu işaret levhasının altına ilave panel koyarak yasaklamaya ilişkin ön uyarıda
-bulunulabilir. Bu panelde ön bilgilendirmenin yapıldığı nokta ile yasaklamanın
-başladığı nokta arasındaki uzaklık (örneğin 1.3 km gibi) belirtilmelidir. Bu türden bir
-ön uyarı bilgisinin verilmesinin nedeni kamyon sürücüsüne yasaklama bölgesine
-geldiğinde geriye dönmek zorunda kalmak yerine alternatif bir yol seçebilme şansı
-vermektir.
-İşaret levhasının konulacağı yerin, sürücülerin yanlış bir manevraya teşebbüsünü
-önleyecek tarzda belirlenmesi gerekir.]] },
-    [12] = { ad = "Otobüs giremez", aciklama = [[Bu işaret levhası, kamyon (azami yüklü ağırlığı 3.5 tondan fazla olan yük taşıtları)
-ve otobüs girişinin yasak olduğunu bildirir. 
-Bu işaret levhası, ağır trafiğin uygunsuz olduğu, söz gelişi dar şehir alanlarında,
-ya da kamyon-otobüslerin yarattığı gürültü ve hava kirliliğinin rahatsızlığa neden
-olduğu yerlerde kullanılabilir.
-Üzerinde belli ağırlık rakamlarına, örneğin 6 ton gibi, yer veren ilave paneller
-kullanmak sureti ile, yasaklama izin verilen azami ağırlığı ilave panelde belirtilmiş
-olan değeri aşan kamyon-otobüsler ile sınırlanmış olur.
-Bu işaret levhasının altına ilave panel koyarak yasaklamaya ilişkin ön uyarıda
-bulunulabilir. Bu panelde ön bilgilendirmenin yapıldığı nokta ile yasaklamanın
-başladığı nokta arasındaki uzaklık (örneğin 1.3 km gibi) belirtilmelidir. Bu türden bir
-ön uyarı bilgisinin verilmesinin nedeni kamyon sürücüsüne yasaklama bölgesine
-geldiğinde geriye dönmek zorunda kalmak yerine alternatif bir yol seçebilme şansı
-vermektir.
-İşaret levhasının konulacağı yerin, sürücülerin yanlış bir manevraya teşebbüsünü
-önleyecek tarzda belirlenmesi gerekir.]] },
-    [13] = { ad = "Treyler giremez", aciklama = [[Bu işaret levhası, bir römork çeken motorlu taşıt girişinin yasak olduğunu bildirir.
-Bir önceki trafik işaret levhasında da olduğu gibi, bu işaret levhası da ağır trafiğin
-uygunsuz olduğu, söz gelişi dar şehir alanlarında, ya da kamyonların yarattığı gürültü
-ve hava kirliliğinin rahatsızlığa neden olduğu yerlerde kullanılabilir.
-Üzerinde belli bir ağırlık rakamına, örneğin 10 ton gibi, yer veren ilave paneller
-kullanmak sureti ile, yasaklama panelde belirtilmiş olan izin verilen azami ağırlığı
-aşan kamyonlar ile sınırlanmış olur.
-Bu işaret levhasının altına ilave panel koyarak yasaklamaya ilişkin ön uyarıda
-bulunulabilir. Bu panelde ön bilgilendirmenin yapıldığı nokta ile yasaklamanın
-başladığı nokta arasındaki uzaklık ( örneğin 200m 1.3 km gibi ) belirtilmelidir. Bu
-türden bir ön uyarı bilgisinin verilmesinin nedeni kamyon sürücüsüne yasaklama
-bölgesine geldiğinde geriye dönmek zorunda kalmak yerine alternatif bir yol
-seçebilme şansı vermektir.
-İşaret levhasının konulacağı yerin, sürücülerin yanlış bir manevraya teşebbüsünü
-önleyecek tarzda belirlenmesi gerekir.]] },
-    [14] = { ad = "Yaya giremez", aciklama = [[Bu işaret levhası, yayaların girmesinin yasak olduğunu bildirir.
-Bu işaret levhası sadece, yayaların girmesinin özellikle tehlike arz edebileceği
-yerlerden otoyol ve kaldırım bulunmayan çok şeritli karayolları ile buna benzer
-karayolları ile kesişen diğer yollarda veya yaya girişinin Kanunen yasak olduğu diğer
-yerlerde kullanılmalıdır.]] },
-    [15] = { ad = "At arabası giremez", aciklama = [[Bu işaret levhası at arabası girişinin yasak olduğunu bildirir.
-Bu işaret levhası at arabalarının söz gelişi yüksek hızlı çok şeritli karayolları,
-ekspres yollar, vs. yollarda tehlike ya da uygunsuzluk yaratabilecekleri yol ve
-caddelere girişinin engellenmesi amacıyla kullanılabilir.]] },
-    [16] = { ad = "El arabası giremez", aciklama = [[Bu işaret levhası el arabası girişinin yasak olduğunu bildirir.
-Bu işaret levhası el arabalarının, söz gelişi yüksek hızlı çok şeritli karayolları,
-ekspres yollar, vs. yollarda tehlike ya da uygunsuzluk yaratabilecekleri yol ve
-caddelere girişinin engellenmesi amacıyla kullanılabilir.]] },
-    [17] = { ad = "Traktör giremez", aciklama = [[Bu işaret levhası tarım traktörünün girmesinin yasak olduğunu bildirir.
-Bu işaret levhası tarım traktörlerinin söz gelişi yüksek hızlı çok şeritli karayolları,
-ekspres yollar, vs. yollarda tehlike ya da uygunsuzluk yaratabilecekleri yol ve
-caddelere girişinin engellenmesi amacıyla kullanılabilir.]] },
-    [18] = { ad = "Belirli miktarlardan fazla patlayıcı ve parlayıcı madde taşıyan taşıt giremez", aciklama = [[Bu işaret levhası, belirli miktarlardan fazla patlayıcı ve/veya parlayıcı madde
-taşıyan taşıtların girmesinin yasak olduğunu bildirir.]] },
-    [19] = { ad = "Tehlikeli madde taşıyan taşıt giremez", aciklama = [[Bu işaret levhası, tehlikeli madde taşıyan taşıtların girmesinin yasak olduğu yol
-girişlerinde kullanılır.]] },
-    [20] = { ad = "Belirli miktarlardan fazla su kirletici madde taşıyan taşıt giremez", aciklama = [[Bu işaret levhası, belirli miktardan fazla su kirletici madde taşıyan taşıtların
-girmesinin yasak olduğu yol girişlerinde kullanılır.]] },
-    [21] = { ad = "Motorlu taşıt giremez", aciklama = [[Bu işaret levhası, bisikletliler ile hayvanlar tarafından çekilen araçlar hariç
-motosikletler ve motorlu bisikletler de dahil her türlü motorlu taşıtın girmesinin yasak
-olduğunu bildirir.
-Böyle bir kısıtlama okul binaları, hastane vs. binalardan akan transit trafiğin
-aksatılmasını engellemek üzere meskun alanlarda uygun olabilir. 
-İlave paneller kullanılarak " Hastaneye giden Araçlar hariç", " Bina sakinleri hariç"
-gibi istisnalar belirtilebilir. Yasaklamanın sadece geceleri geçerli olması halinde,
-yasaklama saatlerini belirten ilave bir panel kullanılmalıdır. Böyle bir ilave panelde
-örneğin " 19 : 00 - 06 : 00 arası" şeklinde bir ifadeye yer verilebilir.
-İşaret levhasının konulacağı yerin, sürücülerin yanlış bir manevraya teşebbüsünü
-önleyecek tarzda belirlenmesi gerekir.]] },
-    [22] = { ad = "Taşıt giremez", aciklama = [[Bu işaret levhası bisiklet, motorlu bisiklet ve el arabası dışındaki her türlü
-taşıtın girmesinin yasak olduğunu bildirir.
-Böyle bir kısıtlama okul binaları, hastane vs. binalardan akan transit trafiğin
-aksatılmasını engellemek üzere meskun alanlarda uygun olabilir.
-İlave paneller kullanılarak " Hastaneye giden Araçlar hariç", " Bina sakinleri hariç"
-gibi istisnalar belirtilebilir. Yasaklamanın sadece geceleri geçerli olması halinde,
-yasaklama saatlerini belirten ilave bir panel kullanılmalıdır. Böyle bir ilave panelde
-örneğin " 19 : 00 - 06 : 00 arası" şeklinde bir ifadeye yer verilebilir.
-İşaret levhasının konulacağı yerin, sürücülerin yanlış bir manevraya teşebbüsünü
-önleyecek tarzda belirlenmesi gerekir.
-]] },
-    [23] = { ad = "Genişliği ..... metreden fazla olan taşıt giremez", aciklama = [[
- Bu işaret levhası, toplam genişliği levhada belirtilmiş olan değerden fazla olan
-taşıtların girişinin yasak olduğunu bildirir.
-Bu işaret levhası daralan yol kesimlerinde,
-örneğin dar bir köprü ya da dar bir alt geçitte gerekli
-olabilir. Levhadaki değer, yolun her iki yanındaki
-engellerden 20 şer cm. güvenlik payı düşürülerek
-tespit edilir. Bu levha, yol
-çalışmaları sırasında daralan şerit genişliklerini
-göstermek üzere şerit düzenleme levhaları üzerinde
-de kullanılabilir. Bu işaret levhası yasaklama noktasına monte edildiği takdirde, (bu noktanın bir
-kavşakta olmaması şartıyla) bu işaret levhasının aynı zamanda alternatif bir yol
-seçmenin mümkün olduğu en son kavşağa da konmuş olması gerekir. Bu ön bilgi
-levhasında işaretin bulunduğu nokta ile yasaklama yeri arasındaki mesafeyi belirten
-ilave bir panel kullanılmalıdır.]] },
-    [24] = { ad = "Genişliği ..... metreden fazla olan taşıt giremez", aciklama = [[
- Bu işaret levhası, toplam genişliği levhada belirtilmiş olan değerden fazla olan
-taşıtların girişinin yasak olduğunu bildirir.
-Bu işaret levhası daralan yol kesimlerinde,
-örneğin dar bir köprü ya da dar bir alt geçitte gerekli
-olabilir. Levhadaki değer, yolun her iki yanındaki
-engellerden 20 şer cm. güvenlik payı düşürülerek
-tespit edilir. Bu levha, yol
-çalışmaları sırasında daralan şerit genişliklerini
-göstermek üzere şerit düzenleme levhaları üzerinde
-de kullanılabilir. Bu işaret levhası yasaklama noktasına monte edildiği takdirde, (bu noktanın bir
-kavşakta olmaması şartıyla) bu işaret levhasının aynı zamanda alternatif bir yol
-seçmenin mümkün olduğu en son kavşağa da konmuş olması gerekir. Bu ön bilgi
-levhasında işaretin bulunduğu nokta ile yasaklama yeri arasındaki mesafeyi belirten
-ilave bir panel kullanılmalıdır.]] },
-    [25] = { ad = "Genişliği ..... metreden fazla olan taşıt giremez", aciklama = [[Bu işaret levhası, uzunluğu levhada belirtilen rakamdan fazla olan taşıt ya da
-katarın girişinin yasak olduğunu bildirir.
-Bu işaret levhası, uzun araçların trafik rahatsızlıklarına ya da başka problemlere
-sebebiyet verebilecekleri cadde ya da yollara girişini önlenmek amacı ile kullanılabilir.]] },
-    [26] = { ad = "Dingil başına .... tondan fazla yük düşen taşıt giremez", aciklama = [[Bu işaret levhası tek dingil başına levhada yazılı olan tondan fazla yük düşen
-araçların girişinin yasak olduğunu bildirir.
-Bu işaret levhası izin verilen dingil ağırlığının Karayolları Trafik Kanunu’nda
-belirtilmiş olan normal ağırlıktan daha az olmasının zorunlu olduğu yollarda
-kullanılabilir.
-Söz konusu kısıtlama, sınırlı taşıma kapasitesi olan köprüler ya da ağır yağış,
-toprak kayması, vs. nedenler ile yolun geçici olarak zayıf kalması gibi sebeplerden
-ileri gelebilir.
-Bu işaret levhası yasaklama noktasına monte edildiği takdirde, ( bu noktanın bir
-kavşakta olmaması şartıyla ) bu işaret levhasının aynı zamanda alternatif bir yol
-seçmenin mümkün olduğu en son kavşağa da konmuş olması gerekir. Bu ön bilgi
-levhasında işaretin bulunduğu nokta ile yasaklama yeri arasındaki mesafeyi belirten
-ilave bir panel kullanılmalıdır.]] },
-    [27] = { ad = "Yüklü ağırlığı ... tondan fazla olan taşıt giremez", aciklama = [[Bu işaret levhası yüklü ağırlığı levhada belirtilen değerden fazla olan araçların
-girişinin yasak olduğunu bildirir.
-Bir önceki trafik işaret levhasında olduğu gibi, bu işaret levhası da izin verilen
-yüklü taşıt ağırlığının Karayolları Trafik Kanunu’nda belirtilmiş olan normal ağırlık
-değerinden daha düşük olması gereken yollarda kullanılabilir. Söz konusu kısıtlama,
-sınırlı taşıma kapasitesi olan köprüler ya da ağır yağış, toprak kayması, vs. nedenler
-ile yolun geçici olarak zayıf kalması gibi sebeplerden ileri gelebilir.
-Bu işaret levhası yasaklama noktasına monte edildiği takdirde, ( bu noktanın bir
-kavşakta olmaması şartıyla ) bu işaret levhasının aynı zamanda alternatif bir yol
-seçmenin mümkün olduğu en son kavşağa da konmuş olması gerekir. Bu ön bilgi
-levhasında işaretin bulunduğu nokta ile yasaklama yeri arasındaki mesafeyi belirten
-ilave bir panel kullanılmalıdır.]] },
-    [28] = { ad = "Öndeki taşıt ... metreden daha yakın takip edilmez", aciklama = [[Bu işaret levhası, yol ve trafik koşullarının taşıtlar arasında belli bir mesafenin
-korunmasını gerektirdiği ve taşıtların yol üzerindeki boyuna dağılımın kritik olduğu
-kesimlerin başlangıcına konulur. Gerekli ise kritik kesimin başlangıcından önce bu
-kesime olan mesafeyi gösteren ilave bir panelle levhanın tekrarı mümkündür.]] },
-    [29] = { ad = "Sağa dönülmez", aciklama = [[Bu işaret levhası sağa dönüşlerin yasak olduğunu bildirir.
-Bu işaret levhasının sağa dönüşlerin tehlikeli ya da başka sebeple uygunsuz
-olduğu kavşaklarda kullanılması gerekir. Bu işaret levhasının sürücülerin önlem
-almalarına imkan verecek ve trafiği tehlikeye düşürmeden ve tıkanıklığa sebep
-olmadan bu manevradan vazgeçebilecekleri yerden önce monte edilmesi gerekir.
-Gerekli görülmesi halinde, levha yolun her iki tarafına da konulmalıdır.
-Belli bazı araç kategorilerinin bu yasaklamanın dışında bırakılmaları halinde, bu
-durumun araç figürü ile hariç mesajı içeren PL-10 ilave bir paneli ile belirtilmesi
-gerekir.]] },
-    [30] = { ad = "Sola dönülmez", aciklama = [[Bu işaret levhası sola dönüşlerin yasak olduğunu bildirir.
-Bu işaret levhasının sola dönüşlerin tehlikeli ya da başka sebeple uygunsuz
-olduğu kavşaklarda kullanılması gerekir. Bu işaret levhasının sürücülerin önlem
-almalarına imkan verecek ve trafiği tehlikeye düşürmeden ve tıkanıklığa sebep
-olmadan bu manevradan vazgeçebilecekleri yerden önce monte edilmesi gerekir.
-Gerek görülmesi halinde, levha yolun her iki tarafına da konulmalıdır.
-Bir şeritten fazla olan yaklaşım yollarında, bu işaret levhasının taşıt yolunun sol
-tarafına, gerekli ise, ayrıca sağ tarafına da konulması gerekir.
-Belli bazı araç kategorilerinin bu yasaklamanın dışında bırakılmaları halinde, bu
-durumun araç figürü ile hariç mesajı içeren PL-10 ilave bir paneli ile belirtilmesi
-gerekir.]] },
-    [31] = { ad = "U dönüşü yapılmaz", aciklama = [[Bu işaret levhası, U dönüşü yapmanın yasak olduğunu bildirir.
-Bu işaret levhasının U dönüşünün tehlikeli ya da başka bir sebeple uygunsuz
-olduğu kavşaklarda kullanılması gerekir. İşaretin, sürücülerin önlem almalarına imkan
-verecek ve trafiği tehlikeye düşürmeden, tıkanıklığa sebep olmadan bu manevradan
-vazgeçebilecekleri yerden önce monte edilmesi gerekir. Gerekli görülmesi halinde,
-levha yolun her iki tarafına da konulmalıdır.
-Sola dönüş yasağını gösteren işaret levhasının kullanıldığı kesimlerde bu
-işaret levhası kullanılmaz.
-Belli bazı araç kategorilerinin bu yasaklamanın dışında bırakılmaları halinde,
-yasaklama kapsamı dışında bırakılan araç figürü ile hariç mesajı içeren PL-10 nolu
-ilave bir panelle belirtilmesi gerekir.]] },
-    [32] = { ad = "Öndeki taşıtı geçmek yasaktır", aciklama = [[Bu işaret levhası, iki tekerlekli mopedler (motorlu bisikletler) ve yanında sepeti
-olmayan iki tekerlekli motosikletler ile bisikletlerin dışındaki taşıtların geçilmesinin
-yasak olduğunu bildirmek için kullanılır.
- Bu işaret levhası, öndeki aracı geçmenin özellikle tehlikeli olduğu yerlerde, söz
-gelişi görüşün kapalı olduğu düşey veya yatay kurplarda, geçme yapılmasını
-engellemek amacıyla, bütün yollarda yolun her iki tarafında da kullanılmalıdır. Bu
-yasağın uygulanacağı diğer yerler Karayolları Trafik Kanunu’nda belirtilmiştir. Ancak,
-Karayolları Trafik Kanunu’nda geçmenin yasak olarak belirtildiği yerlerden kavşak ve
-okul-yaya geçidi yaklaşımlarında, kavşak ve okul-yaya geçidi işaret levhaları ile
-birlikte ayrıca TT-27 nolu Öndeki Taşıtı Geçmek Yasaktır levhasının kullanımına
-gerek bulunmamaktadır.
-Bu işaret levhasının montaj yeri, görüşün kapalı olduğu kesimlerde, Bölüm 8.8
-Kurbların İşaretlenmesi bölümünde belirtilen proje hızlarına bağlı olarak belirtilen
-Görüş mesafelerinde (Gm) olacak ve geçme yasağı çizgisi de aynı noktada
-başlayacaktır. Görüşün açık olduğu ve iki yönlü trafiğin kullandığı köprü yaklaşımları
-ile hemzemin geçit yaklaşımlarında, köprü ve hemzemin geçitlere 150 metre
-mesafede kullanılmalıdır.]] },
-    [33] = { ad = "Yük taşıtlarının öndeki taşıtı geçmesi yasaktır", aciklama = [[Bu işaret levhası, izin verilen azami ağırlığı 3.5 tonun üzerinde olan yük
-taşıtlarının öndeki aracı geçmesinin yasak olduğunu bildirir.
-Bu işaret levhası, görüşün açık olmasına rağmen öndeki aracı geçmenin özellikle
-tehlikeli olduğu yerlerde, söz gelişi kamyonların geçme yapabilmesi için anormal
-uzunlukta bir mesafeye ihtiyaç duydukları dik ve uzun rampalarda, yük taşıtlarının
-geçme teşebbüsünü engellemek amacıyla kullanılabilir. Geçme yasağının sadece
-yük taşıtları için uygulanacak olması durumunda da, yatayda kesikli çizgi işaretlemesi
-yapılır.
-Özellikle tırmanma şeritlerinin bulunduğu yol kesimlerinde, TT-28 nolu
-işaret levhasının kullanımı yerine, asgari mecburi hızların gösterildiği Şerit
-düzenleme levhasının kullanımı tercih edilmelidir.]] },
-    [34] = { ad = "Azami hız sınırlaması", aciklama = [[Bu işaret levhası uyulması gereken hız sınırını bildirir.
-Bu işaret levhasının, hız sınırının değiştiği her noktada kullanılması gerekir. Hızın
-bir yoldan diğerine farklılık gösterdiği kavşaklarda, sürücüleri hız değişikliği hakkında
-bilgilendirmek amacıyla bu işaret levhası kullanılmalıdır. Normal olarak bu tür bilginin
-kavşaktan sonra verilmesi gerekir. ( aşağıdaki örneklere bakınız )
-Azami hız sınırlamasının uzun bir yol kesimini ilgilendirmesi durumunda işaret
-levhasının yaklaşık olarak her 10 km 'de bir tekrarlanması gerekir.
-İşletme hızının ve taşıt yoğunluğunun fazla olduğu yol kesimlerinde, bu işaret
-levhası yolun solunda da kullanılabilir.
-Bu işaret levhalarında belirtilen hız limitleri, genel olarak 20 km/saat aralıklarla
-(70-50-30 veya 30-50-70 gibi) artırılıp düşürülebilir. Proje hızı 110 km/saat olan
-yerleşim yeri dışındaki bölünmüş yollarda, hızlar, genel olarak (90-70-50 veya
-50-70-90) gibi artırılıp düşürülmelidir. Proje hızı, yasada belirtilen hız limitlerinden
-düşük olan yollarda, hızların proje hızından itibaren 20 km/saat aralıklara artırılıp,
-düşürülmesi gerekmektedir
-	Azami hız sınırlamasının, bazı yol kesimlerinde sadece
-yağışlı havalarda uygulanmak istenmesi durumunda bu işaret
-levhasının altına şemsiye figürü içeren PL-7 ilave paneli eklenir.
-Azami hız sınırlaması yapılan bir yol kesiminde sınırlamanın sona erdiğinin de
-TT-33 nolu Azami Hız Sınırlaması Sonu işaret levhası ile belirtilmesi gerekir.
-Uygun hız sınırının belirlenebilmesi için aşağıdaki faktörlerin göz önünde
-bulundurulması gerekir:
-• Yatay ve düşey kurplar,
-• En kesit, örneğin kaplama ve banketlerin eni, şerit sayısı, vs.
-• Yol yüzeyi ile banketlerin durumu,
-• Yaya, bisikletli, park halindeki araçların, vs. görünümü,
-• Fiili yol kesiminde meydana geldiği bildirilen kazalar.]] },
-    [35] = { ad = "Sesli ikaz cihazlarınınkullanımı yasaktır", aciklama = [[Bu işaret levhası, bir kazadan kaçınma durumları hariç, sesli ikaz cihazlarının
-kullanımının yasak olduğunu bildirir.
-Bu işaret levhası, sesli ikaz cihazlarının kullanımının çevreye rahatsızlık verdiği,
-hastane, okul gibi alanlarda kullanılabilir.
-Bu işaret ile yasaklamanın geçerli olduğu yol kesiminin uzunluğu PL-1 ilave
-paneli ile bildirilmelidir.]] },
-    [36] = { ad = "Gümrük- durmadan geçmek yasaktır", aciklama = [[Bu işaret levhası, sürücülerin gümrük işlemleri için durmak zorunda olduklarını
-bildirir.
-Bu işaret levhası ayrıca, polis ve askeri kontrol noktalarında kullanılabilir. Bu gibi
-hallerde, levhadaki " gümrük" yazısının yerine " kontrol (control)" kelimesi
-kullanılmadır.]] },
-    [37] = { ad = "Bütün yasaklama ve kısıtlamaların sonu", aciklama = [[Bu işaret levhası, daha önce yapılmış olan yasaklama ve kısıtlamaların sona
-erdiğini bildirir.
-Bu işaret levhası daha önce birden fazla yasaklama ve kısıtlama yapılmış ise her
-bir yasaklama ve kısıtlama levhası için yasaklama ve kısıtlamanın sona erdiğini
-belirten ayrı birer levha yerine hepsinin yerini almak üzere kullanılır.]] },
-    [38] = { ad = "Hız sınırlaması sonu", aciklama = [[Bu işaret levhası, daha önce uygulanmış olan hız kısıtlamasının sona erdiğini
-bildirir.
-Bu işaret levhası, daha önce TT-29 nolu işaret levhası ile yapılan azami hız
-sınırlamasının sona erdiğini ve Karayolları Trafik Kanunu’nda o yol için gerekli olan
-yasal hız limitlerinin geçerli olduğunu gösterir.]] },
-    [39] = { ad = "Geçme yasağı sonu", aciklama = [[Bu işaret levhası geçme yasağının sona erdiğini bildirir.
-Bu işaret levhası, her zaman için TT-27 nolu “Öndeki Taşıtı Geçmek Yasaktır”
-levhasının konulduğunda, yasaklamanın sona erdiği noktayı belirtmek için
-kullanılmalıdır.]] },
-    [40] = { ad = "Kamyonlar için geçme yasağı sonu", aciklama = [[Bu işaret levhası kamyonlar için konulan öndeki aracı geçme yasağının sona
-erdiğini bildirir.
-Bu işaret levhası, her zaman için TT-28 nolu “Kamyonlar İçin Öndeki Taşıtı
-Geçmek Yasaktır” levhasının konulmuş olduğu durumlarda yasaklamanın sona erdiği
-noktayı belirtmek için kullanılmalıdır.]] },
-    [41] = { ad = "Sağa mecburi yön", aciklama = [[Bu işaret levhaları sürücülerin levha üzerinde belirtilen istikameti takip etmek
-zorunda olduklarını bildirir. Mecburiyet bildiren işaret levhaları, kavşaklarda bazı
-kolların tek yönlü olması halinde veya servis yolu gibi geçici kullanıma açık
-kesimlerde sürücülerin belli yönlerde hareketlerine devamını belirtmek üzere
-kullanılır.
- Genel olarak bu işaret levhaları ile, gerekli görülen dönüş yasağı işaretleri birlikte
-kullanılarak uygun manevranın emniyetle yapılması sağlanır.
-Mecburiyetin sadece belli türdeki araçları kapsaması durumunda işaret levhasının
-altında yönlendirmek istenilen araç figürünü içeren PL-10 paneli kullanılır. Mecburiyet
-dışında tutulacak araçlar ise o araç figürü ile birlikte “hariç” ibaresi içeren PL-10
-paneli ile belirtilir.]] },
-    [42] = { ad = "Sola mecburi yön", aciklama = [[Bu işaret levhaları sürücülerin levha üzerinde belirtilen istikameti takip etmek
-zorunda olduklarını bildirir. Mecburiyet bildiren işaret levhaları, kavşaklarda bazı
-kolların tek yönlü olması halinde veya servis yolu gibi geçici kullanıma açık
-kesimlerde sürücülerin belli yönlerde hareketlerine devamını belirtmek üzere
-kullanılır.
- Genel olarak bu işaret levhaları ile, gerekli görülen dönüş yasağı işaretleri birlikte
-kullanılarak uygun manevranın emniyetle yapılması sağlanır.
-Mecburiyetin sadece belli türdeki araçları kapsaması durumunda işaret levhasının
-altında yönlendirmek istenilen araç figürünü içeren PL-10 paneli kullanılır. Mecburiyet
-dışında tutulacak araçlar ise o araç figürü ile birlikte “hariç” ibaresi içeren PL-10
-paneli ile belirtilir.]] },
-    [43] = { ad = "İleri mecburi yön", aciklama = [[Bu işaret levhaları sürücülerin levha üzerinde belirtilen istikameti takip etmek
-zorunda olduklarını bildirir. Mecburiyet bildiren işaret levhaları, kavşaklarda bazı
-kolların tek yönlü olması halinde veya servis yolu gibi geçici kullanıma açık
-kesimlerde sürücülerin belli yönlerde hareketlerine devamını belirtmek üzere
-kullanılır.
- Genel olarak bu işaret levhaları ile, gerekli görülen dönüş yasağı işaretleri birlikte
-kullanılarak uygun manevranın emniyetle yapılması sağlanır.
-Mecburiyetin sadece belli türdeki araçları kapsaması durumunda işaret levhasının
-altında yönlendirmek istenilen araç figürünü içeren PL-10 paneli kullanılır. Mecburiyet
-dışında tutulacak araçlar ise o araç figürü ile birlikte “hariç” ibaresi içeren PL-10
-paneli ile belirtilir.]] },
-    [44] = { ad = "İleri ve sağa mecburi yön", aciklama = [[Bu işaret levhaları sürücülerin levha üzerinde belirtilen istikameti takip etmek
-zorunda olduklarını bildirir. Mecburiyet bildiren işaret levhaları, kavşaklarda bazı
-kolların tek yönlü olması halinde veya servis yolu gibi geçici kullanıma açık
-kesimlerde sürücülerin belli yönlerde hareketlerine devamını belirtmek üzere
-kullanılır.
- Genel olarak bu işaret levhaları ile, gerekli görülen dönüş yasağı işaretleri birlikte
-kullanılarak uygun manevranın emniyetle yapılması sağlanır.
-Mecburiyetin sadece belli türdeki araçları kapsaması durumunda işaret levhasının
-altında yönlendirmek istenilen araç figürünü içeren PL-10 paneli kullanılır. Mecburiyet
-dışında tutulacak araçlar ise o araç figürü ile birlikte “hariç” ibaresi içeren PL-10
-paneli ile belirtilir.]] },
-    [45] = { ad = "İleri ve sola mecburi yön", aciklama = [[Bu işaret levhaları sürücülerin levha üzerinde belirtilen istikameti takip etmek
-zorunda olduklarını bildirir. Mecburiyet bildiren işaret levhaları, kavşaklarda bazı
-kolların tek yönlü olması halinde veya servis yolu gibi geçici kullanıma açık
-kesimlerde sürücülerin belli yönlerde hareketlerine devamını belirtmek üzere
-kullanılır.
- Genel olarak bu işaret levhaları ile, gerekli görülen dönüş yasağı işaretleri birlikte
-kullanılarak uygun manevranın emniyetle yapılması sağlanır.
-Mecburiyetin sadece belli türdeki araçları kapsaması durumunda işaret levhasının
-altında yönlendirmek istenilen araç figürünü içeren PL-10 paneli kullanılır. Mecburiyet
-dışında tutulacak araçlar ise o araç figürü ile birlikte “hariç” ibaresi içeren PL-10
-paneli ile belirtilir.]] },
-    [46] = { ad = "Sağa ve sola mecburi yön", aciklama = [[Bu işaret levhaları sürücülerin levha üzerinde belirtilen istikameti takip etmek
-zorunda olduklarını bildirir. Mecburiyet bildiren işaret levhaları, kavşaklarda bazı
-kolların tek yönlü olması halinde veya servis yolu gibi geçici kullanıma açık
-kesimlerde sürücülerin belli yönlerde hareketlerine devamını belirtmek üzere
-kullanılır.
- Genel olarak bu işaret levhaları ile, gerekli görülen dönüş yasağı işaretleri birlikte
-kullanılarak uygun manevranın emniyetle yapılması sağlanır.
-Mecburiyetin sadece belli türdeki araçları kapsaması durumunda işaret levhasının
-altında yönlendirmek istenilen araç figürünü içeren PL-10 paneli kullanılır. Mecburiyet
-dışında tutulacak araçlar ise o araç figürü ile birlikte “hariç” ibaresi içeren PL-10
-paneli ile belirtilir.]] },
-    [47] = { ad = "İleriden sağa mecburi yön", aciklama = [[Bu işaret levhaları sürücülerin levha üzerinde belirtilen istikameti takip etmek
-zorunda olduklarını bildirir. Mecburiyet bildiren işaret levhaları, kavşaklarda bazı
-kolların tek yönlü olması halinde veya servis yolu gibi geçici kullanıma açık
-kesimlerde sürücülerin belli yönlerde hareketlerine devamını belirtmek üzere
-kullanılır.
- Genel olarak bu işaret levhaları ile, gerekli görülen dönüş yasağı işaretleri birlikte
-kullanılarak uygun manevranın emniyetle yapılması sağlanır.
-Mecburiyetin sadece belli türdeki araçları kapsaması durumunda işaret levhasının
-altında yönlendirmek istenilen araç figürünü içeren PL-10 paneli kullanılır. Mecburiyet
-dışında tutulacak araçlar ise o araç figürü ile birlikte “hariç” ibaresi içeren PL-10
-paneli ile belirtilir.]] },
-    [48] = { ad = "İleriden sola mecburi yön", aciklama = [[Bu işaret levhaları sürücülerin levha üzerinde belirtilen istikameti takip etmek
-zorunda olduklarını bildirir. Mecburiyet bildiren işaret levhaları, kavşaklarda bazı
-kolların tek yönlü olması halinde veya servis yolu gibi geçici kullanıma açık
-kesimlerde sürücülerin belli yönlerde hareketlerine devamını belirtmek üzere
-kullanılır.
- Genel olarak bu işaret levhaları ile, gerekli görülen dönüş yasağı işaretleri birlikte
-kullanılarak uygun manevranın emniyetle yapılması sağlanır.
-Mecburiyetin sadece belli türdeki araçları kapsaması durumunda işaret levhasının
-altında yönlendirmek istenilen araç figürünü içeren PL-10 paneli kullanılır. Mecburiyet
-dışında tutulacak araçlar ise o araç figürü ile birlikte “hariç” ibaresi içeren PL-10
-paneli ile belirtilir.]] },
-    [49] = { ad = "Sağdan gidiniz", aciklama = [[Bu işaret levhası, taşıt yolu üzerinde bulunan fiziki ayırıcı ve adaları bildirmek ve
-sürücülerin bu kesime çarpmalarını önlemek amacıyla ayırıcı ve adaların başlarında
-kullanılır. Bu işaret levhasının kullanılması, aksine bir işaret yoksa trafiğin sağa veya
-sola dönüşünü engellemez
-İşaret levhasının görünürlüğünü artırmak amacıyla, levhanın monte edilmiş olduğu
-işaret direğinin altına bir T-34 Refüj Başı Ek Levhası iliştirilebilir. Sokak
-aydınlatmasının bulunmadığı şehir dışı alanlara dikilen işaret levhalarının her zaman
-için Refüj Başı Ek Levhası ile tamamlanması gerekir. Ancak refüj başına çarpmanın
-söz konusu olmadığı kesimlerde Refüj Başı Ek Levhasının kullanımına gerek yoktur.]] },
-    [50] = { ad = "Her iki yandan gidiniz", aciklama = [[Bu işaret levhası, taşıt yollarının bir ayırıcı ile ayrılmış olmasına rağmen, bu
-yolların aynı yöndeki taşıt trafiğine ait olduğunu ve okların gösterdiği her iki yönden
-de gidilebileceğini belirtir.
-Bu işaret levhası, refüj başında T-35 nolu Dönüş Adası Ek Levhası ile birlikte
-kullanılabilir.
-TT-36c nolu Her İki Yandan Gidiniz işaret levhasının ana yol ile çıkış rampası
-arasındaki dönüş adasının işaretlenmesinde kullanılmaması gerekir. Bu gibi yerlerde,
-T-35 nolu Dönüş Adası Ek Levhası ile gerekirse kavşak içi yön levhasının
-kullanılması gerekir.]] },
-    [51] = { ad = "Ada etrafında dönünüz", aciklama = [[Bu işaret levhası, dönel kavşaklarda izlenmesi gereken seyir yönünü gösterir.
-Bu işaret levhasının dönel kavşağın her girişine konulması gerekir. Dönel
-kavşağa giren sürücülerin kavşak içindeki sürücülere yol vermesi gerektiğini belirten
-genel bir kural olması sebebiyle, TT-37 nolu Ada Etrafında Dönünüz işaret levhası ya
-TT- 1 nolu Yol Ver levhası ile ya da TT-2 nolu Dur işaret levhası ile birlikte
-kullanılacaktır.]] },
-    [52] = { ad = "Mecburi bisiklet yolu", aciklama = [[Bu işaret levhası, bisikletlilerin bisiklet yolunu kullanmak zorunda olduklarını ve
-diğer araçların aynı yolu kullanma haklarının olmadığını bildirir.
-Bu işaret levhası, sadece bisikletiler için inşa edilmiş olan özel yolun başlangıcına
-konulabilir. Diğer yol ve caddelerle olan her kesişimden sonra bu işaret levhasının
-tekrarlanması gerekir.]] },
-    [53] = { ad = "Mecburi bisiklet yolu sonu", aciklama = [[Bu işaret levhası, bisiklet yolunun sona erdiğini bildirir ve sadece TT-38a nolu
-Mecburi Bisiklet Yolu işaret levhası ile belirtilen zorunluluğunun sona erdiğini
-belirtmek için kullanılır.]] },
-    [54] = { ad = "Mecburi yaya yolu", aciklama = [[Bu işaret levhası, yayaların bu işaretin konulmuş olduğu yolu kullanmak zorunda
-olduklarını bildirir. Levha ayrıca sürücülere, yaya yolunu kullanma haklarının
-olmadığını bildirir.
-Bu işaret levhası sadece, bir komşu yoldan veya caddeden ayrılmış olan yaya
-yolları için kullanılmalı, taşıt trafiğine açık olan yollar kenarındaki yaya kaldırımları için
-kullanılmamalıdır.]] },
-    [55] = { ad = "Mecburi yaya yolu sonu", aciklama = [[Bu işaret levhası, yaya yolunun sona erdiğini bildirir ve sadece TT-39a nolu
-Mecburi Yaya Yolu işaret levhası ile belirtilen zorunluluğunun sona erdiğini belirtmek
-için kullanılır.
-]] },
-    [56] = { ad = "Mecburi atlı yolu", aciklama = [[Bu işaret levhası, atlıların bu işaretin konulmuş olduğu yolu kullanmak zorunda
-olduklarını bildirir. Levha ayrıca, diğer yol kullanıcılarına (yayalar hariç) atlı yolunu
-kullanma haklarının olmadığını bildirir.
-Bu işaret levhası örneğin bir park içinde atlılar için yapılmış ayrı bir yol olduğunda
-kullanılabilir.]] },
-    [57] = { ad = "Mecburi atlı yolu sonu", aciklama = [[Bu işaret levhası, atlı yolunun sona erdiğini bildirir ve sadece TT-40a nolu
-Mecburi Atlı Yolu işaret levhası ile belirtilen zorunluluğunun sona erdiğini belirtmek
-için kullanılır.]] },
-    [58] = { ad = "Mecburi asgari hız", aciklama = [[Bu işaret levhası, otoyol veya benzer standarttaki yollarda levhada belirtilen
-hızdan daha düşük bir hızla seyir edilemeyeceğini bildirir.
- Bu işaret levhası, otoyollar üzerinde kullanılan (O-4) nolu Otoyol Rejimi
-Levhası’nın bünyesinde yer alır. Gerekli görülmesi halinde otoyol ile benzer
-standarttaki ekspres yollar üzerinde de kullanılabilir.]] },
-    [59] = { ad = "Mecburi asgari hız sonu", aciklama = [[Bu işaret levhası, daha önce uygulanmış olan asgari hız kısıtlamasının sona
-erdiğini bildirir.
-Bu işaret levhası, daha önce TT-41a nolu Mecburi Asgari Hız işaret levhası ile
-yapılan mecburi asgari hız sınırlamasının sona erdiğini ve Karayolları Trafik
-Kanunu’nda, o yol için gerekli olan yasal hız limitlerinin geçerli olduğunu gösterir.]] },
-    [60] = { ad = "Zincir takmak mecburidir", aciklama = [[Bu işaret levhası, çekiş tekerleklerinin en az ikisine zincir takmanın zorunlu
-olduğunu bildirir ve PL-7 nolu kar figürü içeren ilave panel ile birlikte kullanılır.]] },
-    [61] = { ad = "Zincir takma mecburidyeti sonu", aciklama = [[Bu işaret levhası, zincir takma zorunluluğunun sona erdiğini ve sadece TT-42a
-Zincir Takma Mecburidir işaret ile belirtilen zorunluluğunun sona erdiğini belirtmek
-için kullanılır.]] },
-    [62] = { ad = "Tehlikeli madde taşıyan taşıtlar için mecburi yön", aciklama = [[Tehlikeli madde taşıyan araçların yönlendirilmesi, TT-43a,b,c nolu işaret levhaları
-ile yapılır. Levha bünyesinde mecburi yön levhaları yerine TT-35a,b nolu işaret
-levhası da kullanılabilir.]] },
-}
+local levhaDetaylari = ortak.levhaAciklamalariniOku("levha/levha/2-tanzim/Trafik Tanzim Aciklama.json", 62)
 
 -- Metin göstermek için ScrollView oluşturan fonksiyon
 local function metinOlustur(icerik, ustBosluk)
@@ -566,6 +64,7 @@ function scene:create(event)
     local themeID = composer.getVariable("themeID")
 
     local tableViewColors = ortak.listeRenkleri()
+    local seciliSatir
 
     local ilkKare = levhaTanzimKareleri.frames[1]
     local g, y = levhaBoyut(ilkKare)
@@ -579,6 +78,10 @@ function scene:create(event)
     local function goBack(event)
         local tabBar = composer.getVariable("tabBar")
         ortak.tabBarGizle(tabBar)
+        if seciliSatir then
+            seciliSatir._detayAcildi = false
+            seciliSatir = nil
+        end
         transition.to(self.tableView, { x = display.contentWidth * 0.5, time = 600, transition = easing.outQuint })
         transition.to(self.backButton, { x = 100, y = 200, time = 480, transition = easing.outQuint })
         transition.to(self.yeniLevha, { x = display.contentWidth + self.yeniLevha.contentWidth, time = 480, transition = easing.outQuint,
@@ -608,7 +111,7 @@ function scene:create(event)
 
         local rowTitle = display.newText({
             parent = row,
-            text = levhaDetaylari[row.index].ad,
+            text = ortak.levhaAdi(levhaDetaylari[row.index].ad),
             x = 0,
             y = 0,
             width = math.max(1, display.contentWidth - 92),
@@ -624,7 +127,7 @@ function scene:create(event)
         if (row.isCategory) then
             rowTitle.isVisible = false
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
-            rowTitle.text = "TRAFİK TANZİM İŞARETLERİ (61 LEVHA)"
+            rowTitle.text = ortak.listeBasligi("tanzim", 61)
             rowTitle.font = "Poppins-Bold"
             rowTitle.size = 16
         else
@@ -646,9 +149,10 @@ function scene:create(event)
         local phase = event.phase
         local row = event.target
 
-        if (phase == "press" or phase == "release" or phase == "tap" or phase == "ended") then
+        if (phase == "release" or phase == "tap" or phase == "ended") then
             if not row.isCategory and not row._detayAcildi then
                 row._detayAcildi = true
+                seciliSatir = row
                 local tabBar = composer.getVariable("tabBar")
                 ortak.tabBarGizle(tabBar)
                 transition.to(self.tableView, {
@@ -680,7 +184,7 @@ function scene:create(event)
                         transition = easing.outQuint
                     })
 
-                local secilenMetin = levhaDetaylari[row.index].aciklama
+                local secilenMetin = ortak.levhaAciklamasi(levhaDetaylari[row.index])
                 metinOlustur(secilenMetin, yeniMetinY)
                 sceneGroup:insert(scrollViewMetin)
 
@@ -737,7 +241,7 @@ function scene:create(event)
     ortak.listeGeriDonButonu(sceneGroup, function()
         composer.gotoScene("sahne1", "fade", 400)
     end)
-    ortak.sabitListeBasligi(sceneGroup, "TRAFİK TANZİM İŞARETLERİ (61 LEVHA)", ox, oy)
+    ortak.sabitListeBasligi(sceneGroup, ortak.listeBasligi("tanzim", 61), ox, oy)
 end
 
 function scene:show(event)

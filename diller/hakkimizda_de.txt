@@ -1,0 +1,11 @@
+Diese Anwendung wurde entwickelt, damit Verkehrszeichen leichter erkannt und gelernt werden können.
+
+TURGUT TAŞKESEN
+Der Entwickler der Anwendung, Turgut Taşkesen, ist Maschinenbauingenieur und lebt in Kahramanmaraş.
+
+Er begann erst vor kurzer Zeit mit der Softwareentwicklung und entschied sich für diese Anwendung, weil er glaubt, dass das richtige Verständnis von Verkehrszeichen für die Verkehrssicherheit aller Menschen wichtig ist.
+
+ZIEL
+Die Anwendung soll Fahrschülern, Fahrern und allen Verkehrsteilnehmern Verkehrszeichen visuell vorstellen und ihre Bedeutung erklären.
+
+Mit der Weiterentwicklung werden neue Funktionen und Aktualisierungen hinzukommen. Rückmeldungen und Vorschläge helfen dabei, die Anwendung zu verbessern.

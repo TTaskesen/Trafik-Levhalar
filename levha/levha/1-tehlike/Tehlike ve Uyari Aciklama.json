@@ -1,0 +1,214 @@
+[
+  {
+    "ad": "",
+    "aciklama": ""
+  },
+  {
+    "ad": "Sağa Tehlikeli Viraj",
+    "aciklama": "Tehlikeli viraj veya birbirini izleyen tehlikeli virajlar, yukarıda verilen işaret levhalarının uygun olanlarından birisi ile belirtilir.\nLevhanın dikileceği yer, kurbun tanjant noktasından itibaren Tablo :9 da verilen değerlerde olmalı ve levhanın konulduğu kesim dikkate alınarak, viraj veya virajların ilk dönüşü sağa ise (T-1a veya T-2a) nolu\nsola ise (T-1b veya T- 2b) nolu işaret levhalarından birisi konulmalıdır."
+  },
+  {
+    "ad": "Sola Tehlikeli Viraj",
+    "aciklama": "Tehlikeli viraj veya birbirini izleyen tehlikeli virajlar, yukarıda verilen işaret levhalarının uygun olanlarından birisi ile belirtilir.\nLevhanın dikileceği yer, kurbun tanjant noktasından itibaren Tablo :9 da verilen değerlerde olmalı ve levhanın konulduğu kesim dikkate alınarak, viraj veya virajların ilk dönüşü sağa ise (T-1a veya T-2a) nolu\nsola ise (T-1b veya T- 2b) nolu işaret levhalarından birisi konulmalıdır."
+  },
+  {
+    "ad": "Sağa Tehlikeli Devamlı Virajlar",
+    "aciklama": "Tehlikeli viraj veya birbirini izleyen tehlikeli virajlar, yukarıda verilen işaret levhalarının uygun olanlarından birisi ile belirtilir.\nLevhanın dikileceği yer, kurbun tanjant noktasından itibaren Tablo :9 da verilen değerlerde olmalı ve levhanın konulduğu kesim dikkate alınarak, viraj veya virajların ilk dönüşü sağa ise (T-1a veya T-2a) nolu\nsola ise (T-1b veya T- 2b) nolu işaret levhalarından birisi konulmalıdır."
+  },
+  {
+    "ad": "Sola Tehlikeli Devamlı Virajlar",
+    "aciklama": "Tehlikeli viraj veya birbirini izleyen tehlikeli virajlar, yukarıda verilen işaret levhalarının uygun olanlarından birisi ile belirtilir.\nLevhanın dikileceği yer, kurbun tanjant noktasından itibaren Tablo :9 da verilen değerlerde olmalı ve levhanın konulduğu kesim dikkate alınarak, viraj veya virajların ilk dönüşü sağa ise (T-1a veya T-2a) nolu\nsola ise (T-1b veya T- 2b) nolu işaret levhalarından birisi konulmalıdır."
+  },
+  {
+    "ad": "Tehlikeli Eğim (İniş)",
+    "aciklama": "Bu işaret levhaları, tehlikeli olduğu düşünülen iniş yada çıkış eğimli yol kesimlerini gösterir ve özellikle kamyon vb büyük\naraç sürücülerinin vites düşürmeleri gerektiğini bildirir. Uyarı levhası üzerinde belirtilen eğim derecesi uyarıya konu olan yol kesiminin ortalama eğimi olmalıdır."
+  },
+  {
+    "ad": "Tehlikeli Eğim (Çıkış)",
+    "aciklama": "Bu işaret levhaları, tehlikeli olduğu düşünülen iniş yada çıkış eğimli yol kesimlerini gösterir ve özellikle kamyon vb büyük\naraç sürücülerinin vites düşürmeleri gerektiğini bildirir. Uyarı levhası üzerinde belirtilen eğim derecesi uyarıya konu olan yol kesiminin ortalama eğimi olmalıdır."
+  },
+  {
+    "ad": "İki taraftan daralan kaplama",
+    "aciklama": "Bu işaretler, devamlı veya geçici nedenlerle yol kaplamasının her iki taraftan veya sağdan-soldan önlem almaksızın yan yana geçemeyebilecekleri kesimleri belirtmek amacı ile kullanılmalıdır.\nBölünmüş yollarda yapılan çalışmalardaki daralmalarda bölünmüş yollardan iki yönlü yollara geçişlerdeki daralmalarda bu işaret levhaları kullanılmaz.Ancak bölünmüş yollarda köprü ve benzeri nedenlerle bankette daralma varsa (YB-4a,b,c,d)nolu levhalar yerine\n(T-4a,b,c)nolu işaret levhalarından uygun olanı kullanılmalıdır."
+  },
+  {
+    "ad": "Sağdan daralan kaplama",
+    "aciklama": "Bu işaretler, devamlı veya geçici nedenlerle yol kaplamasının her iki taraftan veya sağdan-soldan önlem almaksızın yan yana geçemeyebilecekleri kesimleri belirtmek amacı ile kullanılmalıdır.\nBölünmüş yollarda yapılan çalışmalardaki daralmalarda bölünmüş yollardan iki yönlü yollara geçişlerdeki daralmalarda bu işaret levhaları kullanılmaz.Ancak bölünmüş yollarda köprü ve benzeri nedenlerle bankette daralma varsa (YB-4a,b,c,d)nolu levhalar yerine\n(T-4a,b,c)nolu işaret levhalarından uygun olanı kullanılmalıdır."
+  },
+  {
+    "ad": "Soldan daralan kaplama",
+    "aciklama": "Bu işaretler, devamlı veya geçici nedenlerle yol kaplamasının her iki taraftan veya sağdan-soldan önlem almaksızın yan yana geçemeyebilecekleri kesimleri belirtmek amacı ile kullanılmalıdır.\nBölünmüş yollarda yapılan çalışmalardaki daralmalarda bölünmüş yollardan iki yönlü yollara geçişlerdeki daralmalarda bu işaret levhaları kullanılmaz.Ancak bölünmüş yollarda köprü ve benzeri nedenlerle bankette daralma varsa (YB-4a,b,c,d)nolu levhalar yerine\n(T-4a,b,c)nolu işaret levhalarından uygun olanı kullanılmalıdır."
+  },
+  {
+    "ad": "açılan köprü",
+    "aciklama": "Bu işaret levhası, karayolu üzerindeki trafiği engelleyecek şekilde açılabilen köprüleri bildirmek için kullanılabilir."
+  },
+  {
+    "ad": "Deniz veya nehir kıyısında biten yol",
+    "aciklama": "Bu işaret levhası, yolun deniz ya da nehir kıyısında son bulduğunu ve taşıtların\nsuya düşme tehlikesinin olduğu uyarısında bulunur. Bu işaret levhası rıhtımları\nbelirtmek için de kullanılabilir. "
+  },
+  {
+    "ad": "kasisli yol",
+    "aciklama": "Bu işaret levhası, taşıtların daha önceki yol şartlarına göre normal hızlarını\ndüşürmedikleri takdirde, taşıtları tehlikeye düşürebilecek hendek, kasis, çukur ve\nbenzeri üst yapı bozukluklarını uyarmak için kullanılır. Kaplama ile köprüler\narasındaki trafik güvenliğini tehlikeye düşürebilecek kot farkları da bu işaret levhası\nile bildirilebilir.\nEğer bozuk olan yol kesimi 100 metreden daha uzun ise bozuk olan kesimin\nuzunluğu ilave bir panelle (PL-1) gösterilmelidir. (Ör. 150-800 m gibi)\nGerekli görüldüğü hallerde bu işaret levhası, Azami Hız Sınırlaması levhaları ile\nbirlikte kullanılabilir.\n Bozuk olan yol kesimi onarıldıktan sonra bu işaret levhası derhal kaldırılmalıdır."
+  },
+  {
+    "ad": "Kaygan yol",
+    "aciklama": "Bu trafik işaret levhası, yol yüzeyinin kaygan olduğu hakkında uyarıda bulunur ve\nsürücülerin fren yapmamaları, hızlanmamaları ve ani manevralar yapmamaları\ngerektiğini bildirir.\nNormal olarak bu işaret levhasının yol kaplamasının geçici olarak kayganlaştığı\nyerler ve/veya koşullarda uyarıda bulunmak için kullanılması gerekir. Bununla birlikte,\nkaplamadaki aşınma nedeniyle yağmurlu havalarda ya da siste kayganlaşan yol\nkesimlerinde, bu işaret kaplama yenileninceye kadar kalıcı olarak kullanılmalı ve PL7 ilave bir panellerinden şemsiye figürlü olanı ile pekiştirilmelidir. Ancak, aşınma\nbulunmayan bir yol kesiminde, yağmur veya sis nedeniyle yolun kaygan olduğu işaret\nlevhası ile belirtilmez. Ayrıca, kar nedeniyle kaygan yol işaret levhası\nkullanılmamalıdır.\nUyarının yolun uzun bir kesimini ilgilendirmesi halinde, işaret levhasının altına\nuyarıya konu kesimin uzunluğunu belirten ilave bir panel (PL-1) konulmalıdır\n(Örneğin 200 m -1.5 km gibi).\n Yoldaki geçici kayganlığın sona erdirilmesinden sonra bu levha derhal\nkaldırılmalıdır."
+  },
+  {
+    "ad": "Gevşek Malzemeli zemin",
+    "aciklama": "Bu işaret levhası, taşıt yolu üzerinde gevşek malzeme olduğunu ve öndeki\naraçlardan taş sıçrayabileceğini bildirir.\nBu işaret levhası, sathi kaplama işlemi yapıldıktan sonra yol üzerinde gevşek\nmalzeme kalmış olması halinde kullanılır. Ayrıca beklenmeyen bir şekilde gevşek\nmalzeme ortaya çıkan diğer durumlarda da kullanılabilir.\nBu işaret levhası, yolun bir kesiminde normalden fazla miktarda gevşek malzeme\nolsa dahi, hiç bir zaman stabilize yollarda kullanılmamalıdır.\nUyarının yolun uzun bir kesimini ilgilendirmesi halinde, işaret levhasının altına\nuyarıya konu kesimin uzunluğunu belirten ilave bir panel (PL-1) konulmalıdır\n(Örneğin 200 m -1.5 km gibi). Bu gibi hallerde uyarı her kilometrede ve kavşaklardan\nsonra tekrarlanmalıdır."
+  },
+  {
+    "ad": "Gevşek şev",
+    "aciklama": " Bu işaret levhası, yarma şevinden taşıt yolu üzerine taş ve kaya parçaları\nyuvarlanabileceğini ve/veya kaplama üzerinde taş ve kaya parçaları olabileceğini\ngösterir. Sürücülerin bu işaret ile belirtilen kesime yaklaşırken yavaşlamaları ancak\nbu kesimde durmamaları ve park etmemeleri gerektiğini bildirir.\nYarma şevinin yola nazaran durumuna göre levha içindeki sembolün yönü\ndeğiştirilebilir.\nUyarının yolun uzun bir kesimini ilgilendirmesi halinde, işaret levhasının altına\nuyarıya konu kesimin uzunluğunu belirten ilave bir panel (PL-1) konulmalıdır."
+  },
+  {
+    "ad": "Yaya geçidi",
+    "aciklama": "Bu işaret levhaları, ileride yaya geçidi olduğu uyarısında bulunur.\nBu işaret levhalarının, normal olarak şehir içlerinde B-14a nolu Yaya Geçidi\nlevhasının ön uyarısı olarak kullanımına gerek bulunmamaktadır. Ancak, görüş\nkoşulları sınırlı ise ya da işletme hızı 50 km/saatin üzerinde ise, bu işaret levhası kent\niçi alanlarda da kullanılabilir.\nİşletme hızlarının yüksek olduğu kesimlerde yaya geçidi oluşturmak için işletme\nhızının 50 km / saat’e düşürülmesi gerekir."
+  },
+  {
+    "ad": "Okul geçidi",
+    "aciklama": "Bu işaret levhası, okul ya da oyun alanları gibi çocukların sık sık geçtiği yol\nkesimlerini belirtmek için kullanılır. Bu işaret levhasını gören sürücüler hızlarını\ndüşürmeli ve ani bir duruş için hazırlıklı olmalıdırlar.\nBu işaret levhasının, sadece okul bahçeleri ya da oyun alanları çıkışlarının bir yol\nya da cadde ile doğrudan bağlantılı olduğu durumlarda geçiş yerlerine konan B-14b\nnolu işaret levhasının ön uyarısı olarak kullanılması gerekir.\nHızın düşük olduğu şehir içi alanlarda, bu işaret levhasının kullanımına gerek\nbulunmamaktadır. Bu durumlarda, sadece B-14b nolu Okul Geçidi bilgi levhasının\nkullanılması yeterlidir. Bununla birlikte, görüş imkanı zayıf ise ya da işletme hızı 50\nkm/saatin üzerinde ise, bu işaretin kullanılması gerekir.\nÇocuklar için yol güvenliğinin artırılması amacıyla bu tehlike uyarı işareti ile\nbirlikte 30 km / saat gibi bir hız sınırı işareti de konulabilir."
+  },
+  {
+    "ad": "Bisiklet geçebilir",
+    "aciklama": "Bu işaret levhası, bir bisiklet yolunun bu işaretin konulduğu yola bağlandığını ya\nda bisikletlilerin yol eksenini dik olarak karşıya geçebilecekleri kesimleri belirtmek için\nkullanılabilir."
+  },
+  {
+    "ad": "Ehil hayvanlar geçebilir",
+    "aciklama": "Bu işaret levhaları, yol üzerinde bir hayvan olabileceğini ve/veya hayvanların\ngeçiş yaptıkları bir kesim olduğunu ve aynı zamanda kaplama üzerinde kir ve çamur\nolabileceğini belirtmek için kullanılır.\nEhli hayvanların geçiş yapabilecekleri kesimler (T-14a) nolu, vahşi hayvanların\ngeçebilecekleri kesimlerde (T-14b) nolu işaret levhası ile belirtilmelidir.\nUyarının yolun uzun bir kesimini ilgilendirmesi halinde, işaret levhasının altına\nuyarıya konu kesimin uzunluğunu belirten ilave bir panel (PL-1) konulmalıdır."
+  },
+  {
+    "ad": "Vahşi hayvanlar geçebilir",
+    "aciklama": "Bu işaret levhaları, yol üzerinde bir hayvan olabileceğini ve/veya hayvanların\ngeçiş yaptıkları bir kesim olduğunu ve aynı zamanda kaplama üzerinde kir ve çamur\nolabileceğini belirtmek için kullanılır.\nEhli hayvanların geçiş yapabilecekleri kesimler (T-14a) nolu, vahşi hayvanların\ngeçebilecekleri kesimlerde (T-14b) nolu işaret levhası ile belirtilmelidir.\nUyarının yolun uzun bir kesimini ilgilendirmesi halinde, işaret levhasının altına\nuyarıya konu kesimin uzunluğunu belirten ilave bir panel (PL-1) konulmalıdır."
+  },
+  {
+    "ad": "Yolda çalışma",
+    "aciklama": "Bu işaret levhası, ilerideki yol kesiminde yol çalışmasının olduğunu, kaplama\nüzerinde kir ve/veya çamur nedeniyle yol yüzeyinin kaygan olabileceğini belirtir.\nYolda çalışma işaret levhalarının her zaman, yolun her iki tarafına konulması ve\nbunların sarı zeminli dörtgen bir levhanın içinde olması gerekir.\nBu işaret levhasının konulduğu kesim ile çalışma mahalli arasındaki mesafe ilave\nbir panelle (500 m -1.5 km gibi) belirtilebilir.\nYolda yapılan çalışmaların kaza tehlikesini artırması nedeniyle, işaret levhalarının\nkonulduğu yer ve durum son derece önemlidir. Bu bakımdan, tam olarak\ngörülebilmeleri için en iyi konuma yerleştirilmeleri gerekir. Yolda çalışma olduğu\nuyarısında bulunan trafik işaret levhaları, daima temiz ve iyi durumda tutulmalıdır.\nYansıtıcı yüzeylerinin hasar görmesi halinde bu levhalar yenisi ile değiştirilmelidir.\nYukarıda sözü edilen bütün tedbirler önemli olup bunlara yolda çalışma yapılan\nkesimlerde kullanılan diğer trafik kontrol cihazları da dahildir."
+  },
+  {
+    "ad": "Işıklı işaret cihazı",
+    "aciklama": "Bu işaret levhası, ışıklı işaret cihazları ile kontrol edilen kavşakları belirtmek için\nkullanılabilir.\nBu işaret levhası, sürücülerin beklemedikleri kesimlerdeki ışıklı işaretle yönetilen\nkavşakları belirtmek amacıyla kullanılmalıdır. Dolayısıyla, normal olarak bu işaret\nlevhasının ışıklı işaret cihazlarının yaygın olduğu şehir içinde kullanılmaması,\nşehirlere girişteki ilk ışıklı işaretle yönetilen kavşaklardan önce kullanılması gerekir.\nBu işaretin kullanıldığı kavşaklarda, ayrıca diğer kavşak uyarı işaretlerinin\nkullanımına gerek bulunmamaktadır."
+  },
+  {
+    "ad": "Havaalanı-havalimanı(Alçak Uçuş)",
+    "aciklama": "Bu işaret levhası, karayolu üzerinden alçaktan geçen uçakların olabileceğini ve\nsürücülerin bu kesimlerde ani gürültülere karşı hazırlıklı olmaları gerektiğini bildirir.\nHavaalanı levhası, havaalanı-havalimanı yakınlarındaki karayolları üzerinde,\nkarayoluna yakın mesafede alçaktan uçan uçaklar olması durumunda kullanılabilir.\nUyarının yolun uzun bir kesimini ilgilendirmesi halinde, işaret levhasının altına\nuyarıya konu kesimin uzunluğunu belirten ilave bir panel (PL-1) konulmalıdır.\nİşaret levhası içindeki sembol ters çevrilebilir."
+  },
+  {
+    "ad": "Yandan rüzgar",
+    "aciklama": "Bu işaret levhaları, sık sık yandan kuvvetli rüzgar esen yüksek köprüler, dolgular\nvb. yol kesimlerini belirtmek için kullanılabilir. Bu işaret levhası, aynı zamanda\nsürücülerin hızlarını düşürmeleri ve önlerindeki araçları geçmekten kaçınmaları\ngerektiğini bildirir.\nUyarının yolun uzun bir kesimini ilgilendirmesi halinde, işaret levhasının altına\nuyarıya konu kesimin uzunluğunu belirten ilave bir panel (PL-1) konulmalıdır.\nİşaret levhası içindeki sembol ters çevrilebilir."
+  },
+  {
+    "ad": "İki yönlü trafik",
+    "aciklama": "Bu işaret levhası, iki yönlü trafiğin işlediği yol kesimlerini belirtir.\nİki Yönlü Trafik levhası, tek yönlü yol kesiminin geçici ya da sürekli olarak iki\nyönlü yola dönüştüğü zaman kullanılır."
+  },
+  {
+    "ad": "Dikkat",
+    "aciklama": "Bu işaret levhası, tehlike uyarı işaretleri (T Grubu) ile belirlenen tehlikeler dışında\nkalan diğer tehlikeler hakkında uyarıda bulunmak amacıyla kullanılabilir.\nDikkat levhası ile belirtilen tehlikenin cinsi mutlaka ilave bir panelle belirtilmelidir.\n Bu işaret levhası, tehlike uyarı işaretleri ile belirtilen tehlikelere veya trafik\ntanzim işaretleri ile verilen yasaklama ve kısıtlamalara dikkat çekmek için\nkullanılamaz. Ayrıca, tali yoldan veya bir mülkten çıkabilecek araçları uyarmak için\nde (İş Makineleri Çıkabilir – Askeri Araç Çıkabilir vb. gibi) bu işaret levhası\nkullanılmamalıdır."
+  },
+  {
+    "ad": "Kontrolsüz kavşak",
+    "aciklama": "Bu işaret levhası, ileride genel geçiş önceliği kuralının yürürlükte olduğu, diğer bir\nifadeyle sağdan gelmekte olan araçların ilk geçiş hakkına sahip olduğu ve hızın\ndüşürülmesi gerektiği kontrolsüz kavşakları bildirmek için kullanılabilir."
+  },
+  {
+    "ad": "Anayol-tali yol kavşaklarının işaretlenmesi",
+    "aciklama": "Bu işaret levhaları, bir tali yol kavşağına yaklaşılmakta olduğunu, bu işaretin\nkullanıldığı yoldaki trafiğin ilk geçiş hakkına sahip bulunduğunu ve tali yoldan\nyaklaşmakta olan sürücülerin ana yola girmeden önce yol vermelerinin veya\ndurmalarının gerekli olduğunu bildirir.\n Bu işaret levhalarının kullanıldığı kavşaklarda, tali yoldaki araç sürücüleri için TT1 nolu Yol Ver veya TT-2 nolu Dur işaret levhalarından uygun olanı konulmalıdır.\n Bu işaret levhaları, aynı zamanda öndeki taşıtı geçmenin yasak olduğunu\nbelirttiğinden, bu işaret levhaları ile birlikte TT-27 nolu Öndeki Taşıtı Geçmek\nYasaktır işaret levhası kullanılmaz. Ayrıca, ana yol üzerinde B-38 nolu Ana Yol işaret levhası ya da B-1a nolu Kavşak\nÖncesi Yön Levhası kullanılmışsa, bu levhaların kullanımına gerek yoktur. Ancak, bu\nişaretlerden hangisi kullanılırsa kullanılsın tali yolda TT-1 nolu Yol Ver veya TT-2\nnolu Dur işaret levhalarından uygun olanı konulmalıdır.\nAna yol-tali yol kavşaklarının işaretlenmesinde kullanılacak sembol, yoldaki\nmevcut durumunu yansıtmalıdır. Yani ana yol, Şekil 10’da olduğu gibi ise bu işaret\nlevhalarından uygun olanı kullanılabilir. Ancak, ana yolun doğru giden güzergah\nolmaması durumunda, bu işaret levhaları yerine uygun ilave panelle B-38 nolu Ana\nYol işaret levhası kullanılmalıdır."
+  },
+  {
+    "ad": "Anayol-tali yol kavşaklarının işaretlenmesi",
+    "aciklama": "Bu işaret levhaları, bir tali yol kavşağına yaklaşılmakta olduğunu, bu işaretin\nkullanıldığı yoldaki trafiğin ilk geçiş hakkına sahip bulunduğunu ve tali yoldan\nyaklaşmakta olan sürücülerin ana yola girmeden önce yol vermelerinin veya\ndurmalarının gerekli olduğunu bildirir.\n Bu işaret levhalarının kullanıldığı kavşaklarda, tali yoldaki araç sürücüleri için TT1 nolu Yol Ver veya TT-2 nolu Dur işaret levhalarından uygun olanı konulmalıdır.\n Bu işaret levhaları, aynı zamanda öndeki taşıtı geçmenin yasak olduğunu\nbelirttiğinden, bu işaret levhaları ile birlikte TT-27 nolu Öndeki Taşıtı Geçmek\nYasaktır işaret levhası kullanılmaz. Ayrıca, ana yol üzerinde B-38 nolu Ana Yol işaret levhası ya da B-1a nolu Kavşak\nÖncesi Yön Levhası kullanılmışsa, bu levhaların kullanımına gerek yoktur. Ancak, bu\nişaretlerden hangisi kullanılırsa kullanılsın tali yolda TT-1 nolu Yol Ver veya TT-2\nnolu Dur işaret levhalarından uygun olanı konulmalıdır.\nAna yol-tali yol kavşaklarının işaretlenmesinde kullanılacak sembol, yoldaki\nmevcut durumunu yansıtmalıdır. Yani ana yol, Şekil 10’da olduğu gibi ise bu işaret\nlevhalarından uygun olanı kullanılabilir. Ancak, ana yolun doğru giden güzergah\nolmaması durumunda, bu işaret levhaları yerine uygun ilave panelle B-38 nolu Ana\nYol işaret levhası kullanılmalıdır."
+  },
+  {
+    "ad": "Anayol-tali yol kavşaklarının işaretlenmesi",
+    "aciklama": "Bu işaret levhaları, bir tali yol kavşağına yaklaşılmakta olduğunu, bu işaretin\nkullanıldığı yoldaki trafiğin ilk geçiş hakkına sahip bulunduğunu ve tali yoldan\nyaklaşmakta olan sürücülerin ana yola girmeden önce yol vermelerinin veya\ndurmalarının gerekli olduğunu bildirir.\n Bu işaret levhalarının kullanıldığı kavşaklarda, tali yoldaki araç sürücüleri için TT1 nolu Yol Ver veya TT-2 nolu Dur işaret levhalarından uygun olanı konulmalıdır.\n Bu işaret levhaları, aynı zamanda öndeki taşıtı geçmenin yasak olduğunu\nbelirttiğinden, bu işaret levhaları ile birlikte TT-27 nolu Öndeki Taşıtı Geçmek\nYasaktır işaret levhası kullanılmaz. Ayrıca, ana yol üzerinde B-38 nolu Ana Yol işaret levhası ya da B-1a nolu Kavşak\nÖncesi Yön Levhası kullanılmışsa, bu levhaların kullanımına gerek yoktur. Ancak, bu\nişaretlerden hangisi kullanılırsa kullanılsın tali yolda TT-1 nolu Yol Ver veya TT-2\nnolu Dur işaret levhalarından uygun olanı konulmalıdır.\nAna yol-tali yol kavşaklarının işaretlenmesinde kullanılacak sembol, yoldaki\nmevcut durumunu yansıtmalıdır. Yani ana yol, Şekil 10’da olduğu gibi ise bu işaret\nlevhalarından uygun olanı kullanılabilir. Ancak, ana yolun doğru giden güzergah\nolmaması durumunda, bu işaret levhaları yerine uygun ilave panelle B-38 nolu Ana\nYol işaret levhası kullanılmalıdır."
+  },
+  {
+    "ad": "Anayol-tali yol kavşaklarının işaretlenmesi",
+    "aciklama": "Bu işaret levhaları, bir tali yol kavşağına yaklaşılmakta olduğunu, bu işaretin\nkullanıldığı yoldaki trafiğin ilk geçiş hakkına sahip bulunduğunu ve tali yoldan\nyaklaşmakta olan sürücülerin ana yola girmeden önce yol vermelerinin veya\ndurmalarının gerekli olduğunu bildirir.\n Bu işaret levhalarının kullanıldığı kavşaklarda, tali yoldaki araç sürücüleri için TT1 nolu Yol Ver veya TT-2 nolu Dur işaret levhalarından uygun olanı konulmalıdır.\n Bu işaret levhaları, aynı zamanda öndeki taşıtı geçmenin yasak olduğunu\nbelirttiğinden, bu işaret levhaları ile birlikte TT-27 nolu Öndeki Taşıtı Geçmek\nYasaktır işaret levhası kullanılmaz. Ayrıca, ana yol üzerinde B-38 nolu Ana Yol işaret levhası ya da B-1a nolu Kavşak\nÖncesi Yön Levhası kullanılmışsa, bu levhaların kullanımına gerek yoktur. Ancak, bu\nişaretlerden hangisi kullanılırsa kullanılsın tali yolda TT-1 nolu Yol Ver veya TT-2\nnolu Dur işaret levhalarından uygun olanı konulmalıdır.\nAna yol-tali yol kavşaklarının işaretlenmesinde kullanılacak sembol, yoldaki\nmevcut durumunu yansıtmalıdır. Yani ana yol, Şekil 10’da olduğu gibi ise bu işaret\nlevhalarından uygun olanı kullanılabilir. Ancak, ana yolun doğru giden güzergah\nolmaması durumunda, bu işaret levhaları yerine uygun ilave panelle B-38 nolu Ana\nYol işaret levhası kullanılmalıdır."
+  },
+  {
+    "ad": "Anayol-tali yol kavşaklarının işaretlenmesi",
+    "aciklama": "Bu işaret levhaları, bir tali yol kavşağına yaklaşılmakta olduğunu, bu işaretin\nkullanıldığı yoldaki trafiğin ilk geçiş hakkına sahip bulunduğunu ve tali yoldan\nyaklaşmakta olan sürücülerin ana yola girmeden önce yol vermelerinin veya\ndurmalarının gerekli olduğunu bildirir.\n Bu işaret levhalarının kullanıldığı kavşaklarda, tali yoldaki araç sürücüleri için TT1 nolu Yol Ver veya TT-2 nolu Dur işaret levhalarından uygun olanı konulmalıdır.\n Bu işaret levhaları, aynı zamanda öndeki taşıtı geçmenin yasak olduğunu\nbelirttiğinden, bu işaret levhaları ile birlikte TT-27 nolu Öndeki Taşıtı Geçmek\nYasaktır işaret levhası kullanılmaz. Ayrıca, ana yol üzerinde B-38 nolu Ana Yol işaret levhası ya da B-1a nolu Kavşak\nÖncesi Yön Levhası kullanılmışsa, bu levhaların kullanımına gerek yoktur. Ancak, bu\nişaretlerden hangisi kullanılırsa kullanılsın tali yolda TT-1 nolu Yol Ver veya TT-2\nnolu Dur işaret levhalarından uygun olanı konulmalıdır.\nAna yol-tali yol kavşaklarının işaretlenmesinde kullanılacak sembol, yoldaki\nmevcut durumunu yansıtmalıdır. Yani ana yol, Şekil 10’da olduğu gibi ise bu işaret\nlevhalarından uygun olanı kullanılabilir. Ancak, ana yolun doğru giden güzergah\nolmaması durumunda, bu işaret levhaları yerine uygun ilave panelle B-38 nolu Ana\nYol işaret levhası kullanılmalıdır."
+  },
+  {
+    "ad": "Sağdan anayola giriş",
+    "aciklama": "Bu işaretler, tek yönlü ve bölünmüş yola katılan yan yollar veya köprülü\nkavşakların bağlantı yollarını bildirmek için kullanılır. Aynı yönde birden fazla şeridi\nbulunan yollarda yolun yalnızca kastedilen kenarında kullanılması yeterlidir."
+  },
+  {
+    "ad": "Soldan anayola giriş",
+    "aciklama": "Bu işaretler, tek yönlü ve bölünmüş yola katılan yan yollar veya köprülü\nkavşakların bağlantı yollarını bildirmek için kullanılır. Aynı yönde birden fazla şeridi\nbulunan yollarda yolun yalnızca kastedilen kenarında kullanılması yeterlidir."
+  },
+  {
+    "ad": "Dönel kavşak yaklaşımı",
+    "aciklama": "Bu işaret levhası, ilerideki dönel kavşak olduğunu belirtmek amacı ile\nkullanılabilir. Bu tehlike uyarı işareti, görüş olanağının sınırlı olduğu ya da dönel\nkavşağın başka bir nedenden dolayı tehlike arz ettiği durumda kullanılabilir. Bu işaret\nlevhasının kullanılmasının gerekli olup olmadığı değerlendirilirken T-21 nolu\nKontrolsüz Kavşak işaret levhası kapsamındaki tablo haline getirilmiş olan değerler\nuygulanabilir.\nAyrıca yön levhalarından yararlanmak sureti ile de bir dönel kavşak hakkında bilgi\nverme imkanı göz önünde bulundurulmalıdır. Başka bir değişle dönel kavşak\nyaklaşımında kavşak öncesi yön levhası kullanılmış olması halinde bu işaret\nlevhasının kullanımına gerek yoktur."
+  },
+  {
+    "ad": "Kontrollü demiryolu geçidi",
+    "aciklama": "Bu işaret levhası, demiryolu hattının her iki tarafında bariyer veya benzeri bir\nsistemle kontrol edilen bir hemzemin geçit bulunduğunu bildirir.\nKontrollü Demiryolu Geçidi levhasının “Hemzemin Demiryolu Geçidi Yaklaşım\nLevhası” ile birlikte kullanılması gerekir. İlave bir uyarıya gerek görülmediği takdirde\nyolun sağında kullanılan T-28a nolu levhanın üstünde kullanılır. (Bkz. Şekil 13)\n Demiryolu geçitlerinde kullanılan bariyer veya benzeri sistemler, münavebeli\nkırmızı ve beyaz veya kırmızı ve sarı reflektif şeritlerle açıkça belirlenmelidir.\n Sürücülerin geçitten güvenli bir şekilde geçiş yapmalarını veya durup yol\nvermelerini sağlayacak görüş imkanı bulunmayan demiryolu geçitlerinin kontrollü\nhale getirilmesi zorunludur. Ancak, trenlerin oldukça yavaş seyrettiği veya\nkarayolundaki trafiğin yoğun olmadığı geçitler kontrollü hale getirilmeyebilir."
+  },
+  {
+    "ad": "Kontrolsüz demiryolu geçidi",
+    "aciklama": "Bu işaret levhası, bariyersiz olan hemzemin geçit hakkında uyarıda\nbulunmaktadır.\nKontrolsüz Demiryolu Geçidi levhasının Hemzemin Demiryolu Geçidi Yaklaşım\nLevhası ile birlikte kullanılması gerekir. İlave bir uyarıya gerek görülmediği takdirde\nyolun sağında kullanılan T-28a nolu levhanın üstünde kullanılır."
+  },
+  {
+    "ad": "Kontrolsüz demiryolu geçidi işaret levhaları",
+    "aciklama": "Bu işaret levhalarının, demiryolu geçidinin tam konumunu göstermek üzere\nbariyeri olmayan (kontrolsüz) demiryolu hemzemin geçitlerinin her iki tarafına da\nkonulması gerekir.\n(T-27b) nolu işaret levhası sadece, demiryolu hattının en azından iki hattan\noluşması halinde kullanılacaktır.\n İşaret levhası yolun sağ tarafında kullanılacak ve en yakındaki demiryolu\nhattından 5.0 metre uzaklıkta olacaktır. Kaplamanın genişliğinin 5 metreden daha az\nolması halinde, işaret levhasının yolun solunda da kullanılmasına gerek yoktur.\nTrenlerin yaklaşmakta olduğuna dair uyarıda bulunan bir ışıklı işaret cihazının ya\nda DUR levhasının olması halinde, bu işaret levhalarının ışıklı işaret cihazının olduğu\ndireğe yahut da DUR levhasının olduğu direğe monte edilmesi gerekir. Demiryolu\nHemzemin Geçit İşaret Levhasının montaj yüksekliği 1.20 metreden daha az\nolmaması gerekir.\nYeterli yer olmaması halinde, işaret levhası 90º çevrilerek monte edilebilir."
+  },
+  {
+    "ad": "Kontrolsüz demiryolu geçidi işaret levhaları",
+    "aciklama": "Bu işaret levhalarının, demiryolu geçidinin tam konumunu göstermek üzere\nbariyeri olmayan (kontrolsüz) demiryolu hemzemin geçitlerinin her iki tarafına da\nkonulması gerekir.\n(T-27b) nolu işaret levhası sadece, demiryolu hattının en azından iki hattan\noluşması halinde kullanılacaktır.\n İşaret levhası yolun sağ tarafında kullanılacak ve en yakındaki demiryolu\nhattından 5.0 metre uzaklıkta olacaktır. Kaplamanın genişliğinin 5 metreden daha az\nolması halinde, işaret levhasının yolun solunda da kullanılmasına gerek yoktur.\nTrenlerin yaklaşmakta olduğuna dair uyarıda bulunan bir ışıklı işaret cihazının ya\nda DUR levhasının olması halinde, bu işaret levhalarının ışıklı işaret cihazının olduğu\ndireğe yahut da DUR levhasının olduğu direğe monte edilmesi gerekir. Demiryolu\nHemzemin Geçit İşaret Levhasının montaj yüksekliği 1.20 metreden daha az\nolmaması gerekir.\nYeterli yer olmaması halinde, işaret levhası 90º çevrilerek monte edilebilir."
+  },
+  {
+    "ad": "Hemzemin demiryolu geçidi yaklaşım levhaları",
+    "aciklama": "Bu işaret levhaları, uyarı levhalarının görünürlüğünü artırmak ve hemzemin\ngeçide olan mesafeyi belirtmek amacıyla hemzemin geçitlerin yaklaşımında kullanılır.\n(T-28a) ve / veya (T-28b) nolu levhaların, (T-25) nolu Kontrollü Demiryolu Geçidi\nya da (T-26) nolu Kontrolsüz Demiryolu Geçidi işaret levhalarından uygun olan birisi\nile bu işaret levhalarının altında kullanılmaları gerekir.\n(T-29a) ve (T-29b) nolu işaret levhaları, (T-27) Kontrolsüz Demiryolu Geçidi uyarı\nlevhasının bulunduğu yere 200 metre, (T-30a) ve (T-30b) nolu işaret levhaları ise bu\nlevhaya 100 metre mesafede konulacaktır.\n(T-28a), (T-29a) ve (T-30a) nolu işaret levhaları, yolun sağında kullanılacaktır.\n(T-28b), (T-29b) ve (T-30b) nolu yolun solunda kullanılacak işaret levhaları, sadece\nartırılmış uyarıya lüzum görüldüğünde kullanılmalıdır."
+  },
+  {
+    "ad": "Hemzemin demiryolu geçidi yaklaşım levhaları",
+    "aciklama": "Bu işaret levhaları, uyarı levhalarının görünürlüğünü artırmak ve hemzemin\ngeçide olan mesafeyi belirtmek amacıyla hemzemin geçitlerin yaklaşımında kullanılır.\n(T-28a) ve / veya (T-28b) nolu levhaların, (T-25) nolu Kontrollü Demiryolu Geçidi\nya da (T-26) nolu Kontrolsüz Demiryolu Geçidi işaret levhalarından uygun olan birisi\nile bu işaret levhalarının altında kullanılmaları gerekir.\n(T-29a) ve (T-29b) nolu işaret levhaları, (T-27) Kontrolsüz Demiryolu Geçidi uyarı\nlevhasının bulunduğu yere 200 metre, (T-30a) ve (T-30b) nolu işaret levhaları ise bu\nlevhaya 100 metre mesafede konulacaktır.\n(T-28a), (T-29a) ve (T-30a) nolu işaret levhaları, yolun sağında kullanılacaktır.\n(T-28b), (T-29b) ve (T-30b) nolu yolun solunda kullanılacak işaret levhaları, sadece\nartırılmış uyarıya lüzum görüldüğünde kullanılmalıdır."
+  },
+  {
+    "ad": "Hemzemin demiryolu geçidi yaklaşım levhaları",
+    "aciklama": "Bu işaret levhaları, uyarı levhalarının görünürlüğünü artırmak ve hemzemin\ngeçide olan mesafeyi belirtmek amacıyla hemzemin geçitlerin yaklaşımında kullanılır.\n(T-28a) ve / veya (T-28b) nolu levhaların, (T-25) nolu Kontrollü Demiryolu Geçidi\nya da (T-26) nolu Kontrolsüz Demiryolu Geçidi işaret levhalarından uygun olan birisi\nile bu işaret levhalarının altında kullanılmaları gerekir.\n(T-29a) ve (T-29b) nolu işaret levhaları, (T-27) Kontrolsüz Demiryolu Geçidi uyarı\nlevhasının bulunduğu yere 200 metre, (T-30a) ve (T-30b) nolu işaret levhaları ise bu\nlevhaya 100 metre mesafede konulacaktır.\n(T-28a), (T-29a) ve (T-30a) nolu işaret levhaları, yolun sağında kullanılacaktır.\n(T-28b), (T-29b) ve (T-30b) nolu yolun solunda kullanılacak işaret levhaları, sadece\nartırılmış uyarıya lüzum görüldüğünde kullanılmalıdır."
+  },
+  {
+    "ad": "Köprü başı levhaları",
+    "aciklama": "Bu işaret levhaları, köprüleri uyarmak için köprü korkuluklarına monte edilir.\nKöprüde otokorkuluk vb. tedbirler ile trafik güvenliği artırılmışsa, bu levhaların\nkullanıma gerek yoktur.\nBölünmüş yollarda, refüj aralığında köprü korkuluğu yoksa (T-31b) nolu levha\nkullanılmayacaktır."
+  },
+  {
+    "ad": "Engel",
+    "aciklama": "Bu işaret levhası, yolun geçici olarak tamamen taşıt trafiğine kapatıldığı\ndurumlarda, TT-5 veya TT-35a ve TT-35b nolu işaret levhaları ile birlikte kullanılır. Bu\nişaret levhaları ile birlikte aynı zamanda sarı veya kırmızı renkli flaşörlerin uygun\nolanının da kullanımına özen gösterilmelidir."
+  },
+  {
+    "ad": "Tehlikeli viraj yön levhaları",
+    "aciklama": "Bu işaret levhaları, görüşü artırmak ve sürücülere daha iyi kılavuzluk sağlamak\namacı ile güvenli seyir olasılığı bulunmayan keskin virajlarda, T-1a,b veya T-2a,b\nnolu işaret levhalarından sonra kullanılır. Ancak, tehlikeli viraj yön levhaları her\nvirajda kullanılmamalı, bu işaretler yolun genel yapısına göre kıyaslandığında\nözellikle tehlikeli bulunan virajlarda kullanılmalıdır.\n T-33a nolu Tehlikeli Viraj Yön Levhaları, uzun ve tehlikeli virajların dış kenarında\nkullanılmalıdır. Bütün viraj boyunca levhanın açısı trafiğin akış yönüne bakıyor\nolmalıdır. İki yönlü yollarda, T-33a nolu Tehlikeli Viraj Yön Levhalarının her konumda\nçift olarak konulması ve trafiğin her iki istikametine de bakıyor olması gerekir.\nT-33b nolu Tehlikeli Viraj Yön Levhaları devlet yollarında kullanılmakla birlikte\nyüksek hızlı il yollarında da kullanılabilir. Aynı amaca hizmet eden T-33c nolu\nTehlikeli Viraj Yön Levhaları ise sadece il yollarında kullanılır.\nGörüşün kapalı olduğu yatay kurblarda, TT-27 nolu işaret levhası ile geçme\nyasağı uygulanır."
+  },
+  {
+    "ad": "Tehlikeli viraj yön levhaları",
+    "aciklama": "Bu işaret levhaları, görüşü artırmak ve sürücülere daha iyi kılavuzluk sağlamak\namacı ile güvenli seyir olasılığı bulunmayan keskin virajlarda, T-1a,b veya T-2a,b\nnolu işaret levhalarından sonra kullanılır. Ancak, tehlikeli viraj yön levhaları her\nvirajda kullanılmamalı, bu işaretler yolun genel yapısına göre kıyaslandığında\nözellikle tehlikeli bulunan virajlarda kullanılmalıdır.\n T-33a nolu Tehlikeli Viraj Yön Levhaları, uzun ve tehlikeli virajların dış kenarında\nkullanılmalıdır. Bütün viraj boyunca levhanın açısı trafiğin akış yönüne bakıyor\nolmalıdır. İki yönlü yollarda, T-33a nolu Tehlikeli Viraj Yön Levhalarının her konumda\nçift olarak konulması ve trafiğin her iki istikametine de bakıyor olması gerekir.\nT-33b nolu Tehlikeli Viraj Yön Levhaları devlet yollarında kullanılmakla birlikte\nyüksek hızlı il yollarında da kullanılabilir. Aynı amaca hizmet eden T-33c nolu\nTehlikeli Viraj Yön Levhaları ise sadece il yollarında kullanılır.\nGörüşün kapalı olduğu yatay kurblarda, TT-27 nolu işaret levhası ile geçme\nyasağı uygulanır."
+  },
+  {
+    "ad": "Tehlikeli viraj yön levhaları",
+    "aciklama": "Bu işaret levhaları, görüşü artırmak ve sürücülere daha iyi kılavuzluk sağlamak\namacı ile güvenli seyir olasılığı bulunmayan keskin virajlarda, T-1a,b veya T-2a,b\nnolu işaret levhalarından sonra kullanılır. Ancak, tehlikeli viraj yön levhaları her\nvirajda kullanılmamalı, bu işaretler yolun genel yapısına göre kıyaslandığında\nözellikle tehlikeli bulunan virajlarda kullanılmalıdır.\n T-33a nolu Tehlikeli Viraj Yön Levhaları, uzun ve tehlikeli virajların dış kenarında\nkullanılmalıdır. Bütün viraj boyunca levhanın açısı trafiğin akış yönüne bakıyor\nolmalıdır. İki yönlü yollarda, T-33a nolu Tehlikeli Viraj Yön Levhalarının her konumda\nçift olarak konulması ve trafiğin her iki istikametine de bakıyor olması gerekir.\nT-33b nolu Tehlikeli Viraj Yön Levhaları devlet yollarında kullanılmakla birlikte\nyüksek hızlı il yollarında da kullanılabilir. Aynı amaca hizmet eden T-33c nolu\nTehlikeli Viraj Yön Levhaları ise sadece il yollarında kullanılır.\nGörüşün kapalı olduğu yatay kurblarda, TT-27 nolu işaret levhası ile geçme\nyasağı uygulanır."
+  },
+  {
+    "ad": "Tehlikeli viraj yön levhaları",
+    "aciklama": "Bu işaret levhaları, görüşü artırmak ve sürücülere daha iyi kılavuzluk sağlamak\namacı ile güvenli seyir olasılığı bulunmayan keskin virajlarda, T-1a,b veya T-2a,b\nnolu işaret levhalarından sonra kullanılır. Ancak, tehlikeli viraj yön levhaları her\nvirajda kullanılmamalı, bu işaretler yolun genel yapısına göre kıyaslandığında\nözellikle tehlikeli bulunan virajlarda kullanılmalıdır.\n T-33a nolu Tehlikeli Viraj Yön Levhaları, uzun ve tehlikeli virajların dış kenarında\nkullanılmalıdır. Bütün viraj boyunca levhanın açısı trafiğin akış yönüne bakıyor\nolmalıdır. İki yönlü yollarda, T-33a nolu Tehlikeli Viraj Yön Levhalarının her konumda\nçift olarak konulması ve trafiğin her iki istikametine de bakıyor olması gerekir.\nT-33b nolu Tehlikeli Viraj Yön Levhaları devlet yollarında kullanılmakla birlikte\nyüksek hızlı il yollarında da kullanılabilir. Aynı amaca hizmet eden T-33c nolu\nTehlikeli Viraj Yön Levhaları ise sadece il yollarında kullanılır.\nGörüşün kapalı olduğu yatay kurblarda, TT-27 nolu işaret levhası ile geçme\nyasağı uygulanır."
+  },
+  {
+    "ad": "Refüj başı ek levhaları",
+    "aciklama": " T-34a nolu işaret levhası, yoldaki veya yol kenarındaki (ör: köprü ayakları) bir\nengelin önüne, engelin solundan geçilmesi gerektiğini bildirmek için kullanılır.\nT-34b nolu işaret levhası ise, yoldaki veya yol kenarındaki (ör: köprü ayakları) bir\nengelin önüne, engelin sağından geçilmesi gerektiğini bildirmek için kullanıldığı gibi,\nbölünmüş yollarda refüj başlarını uyarmak için TT-36a nolu Sağdan Gidiniz levhaları\naltında, bu levhanın anlamını ve etkinliğini artırmak amacıyla da kullanılır.\nRefüj Başı Ek Levhası (T-34b), her refüj başında kullanılmamalı, sadece\ntehlike arz eden kesimlerde TT-36a nolu levhanın verdiği mesajı güçlendirmek\namacı ile kullanılmalıdır."
+  },
+  {
+    "ad": "Dönüş adası ek levhası",
+    "aciklama": "Bu işaret levhası, ana güzergahtan sağa dönüşle ayrılan trafiği uyarmak amacı ile\nKavşak İçi Yön Levhaları ve TT-36c nolu Her İki Yandan Gidiniz levhalarının altında\nkullanılabileceği gibi yalnız başına da kullanılabilir.\nDönüş Adası Ek levhası, adı geçen levhaların altında, fiziksel buruna çarpma\nolasılığını düşürmek amacıyla, yavaşlama şeridi bulunan kesimlerde kullanılmalıdır.\nAncak, çarpma olasılığının zayıf olduğu kesimlerde Kavşak İçi Yön Levhaları ve TT36c nolu Her İki Yandan Gidiniz levhaları yalnız başına kullanılabilir.\nTT-36c nolu Her İki Yandan Gidiniz işaret levhasının ana yol ile çıkış rampası\narasındaki dönüş adasının işaretlenmesinde kullanılmaması gerekir. Bu gibi yerlerde,\nT-35 nolu Dönüş Adası Ek Levhası ile gerekirse kavşak içi yön levhasının\nkullanılması gerekir."
+  },
+  {
+    "ad": "Düşük banket",
+    "aciklama": "Bu işaret levhası, kaplama ile banket arasındaki trafik güvenliğini tehlikeye atacak\nseviye farklarını uyarmak için kullanılır. Bu işaret levhası, ayrıca yumuşak banketi\nuyarmak içinde kullanılabilir.\nBu işaret levhası, hiç banket bulunmayan veya çok dar olan banketin\ndevamındaki dik şevleri işaretlemek amacıyla kullanılmamalıdır.\n Bu işaret levhasının altında kullanılacak süreklilik ilave paneli (PL-1) ile düşük\nbanket uzunluğu belirtilebilir."
+  },
+  {
+    "ad": "Gizli buzlanma",
+    "aciklama": "Bu işaret levhası, seyir halinde bulunulan yolun diğer kesimlerine nazaran\nönceden beklenilmeyen ve tahmin edilemeyen buzlanmalar olabileceğini bildirir.\n Bu işaret levhası, köprü üstleri, güneş görmeyen yamaçlar ile nemli yerlerde\noluşabilecek ve seyir halinde bulunulan yolun, diğer kesimlerine nazaran önceden\nfark edilemeyen kesimlerinde olabilecek gizli buzlanma olasılığı bulunan yol\nkesimlerini bildirmek amacıyla kullanılmalıdır. Burada sayılan olumsuz yol koşulların\nbulunmadığı yol kesimlerinde, bu işaret levhası kullanılmamalıdır.\n Bu işaret levhasının kullanılması gereken kesimlerinin, yolun yapım ve\nbakımından sorumlu kuruluş ilgilileri tarafından, o kesimde yapılan araştırmalara ve\ngözlemlere dayalı olarak belirlenmesi gerekmektedir.\n Bu işaret levhasının altında kullanılacak süreklilik ilave paneli (PL-1) ile gizli\nbuzlanma olasılığı bulunan yol kesiminin uzunluğu belirtilebilir.\n\n Bu işaret levhaları, tercihen Ekim-Nisan ayları arasında kullanılmalıdır."
+  }
+]

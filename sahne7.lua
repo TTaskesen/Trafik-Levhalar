@@ -6,6 +6,7 @@
 
 local sahneDegis = require("composer")
 local ortak = require("levha_ortak")
+local dil = require("dil")
 local sahne = sahneDegis.newScene()
 
 local widget = require("widget")
@@ -149,6 +150,34 @@ Vefa gülümsedi. "Senin gelişin bir kaza değildi. Kapı, doğru anahtarı bek
 Ve o anda, zeminin altından tok bir ses yükseldi. Eylül ayaklarının altına baktı: çember dönüyordu.
 ]]
 
+local function hikayeyiDileUyarla(metin)
+	-- Türkçe metin zaten bu dosyada bulunduğu için hikaye_tr.txt aranmaz.
+	-- Böylece eksik kaynak dosyası nil döndürüp io.open hatasına yol açmaz.
+	if dil.kodu() ~= "tr" then
+		local dosyaYolu = system.pathForFile(
+			"Sifir Noktasi/hikaye_" .. dil.kodu() .. ".txt",
+			system.ResourceDirectory
+		)
+		if dosyaYolu then
+			local dilDosyasi = io.open(dosyaYolu, "r")
+			if dilDosyasi then
+				local yerelMetin = dilDosyasi:read("*a")
+				dilDosyasi:close()
+				if yerelMetin and #yerelMetin > 0 then
+					return yerelMetin
+				end
+			end
+		end
+	end
+
+	metin = metin:gsub("SIFIR NOKTASI", dil.metin("hikaye_basligi"))
+	metin = metin:gsub("—— Bölüm 1: İlk Sinyal ——", dil.metin("hikaye_bolum1"))
+	metin = metin:gsub("—— Bölüm 2: Beyaz Sessizlik ——", dil.metin("hikaye_bolum2"))
+	metin = metin:gsub("—— Bölüm 3: Kapı ——", dil.metin("hikaye_bolum3"))
+	metin = metin:gsub("—— Bölüm 4: Sıfırın İçi ——", dil.metin("hikaye_bolum4"))
+	return metin
+end
+
 
 
 local function yaziyaDokun(olay)
@@ -163,12 +192,40 @@ function sahne:create(olay)
 	local sceneGroup = self.view
 	local ustSinir = display.safeScreenOriginY or display.screenOriginY or 0
 
-	-- Arka plan: ana uygulama arka planı açık renkli düz zemindir (bg3.jpg kullanılmaz)
+	-- Sıfır Noktası hikâyesi için uzay atmosferli arka plan.
+	local arkaPlan = display.newImageRect(
+		sceneGroup,
+		"levha/bg.jpg",
+		display.contentWidth,
+		display.contentHeight
+	)
+	arkaPlan.x = display.contentCenterX
+	arkaPlan.y = display.contentCenterY
+
+	-- Açık metnin arka planda okunabilmesi için hafif karartma katmanı.
+	local metinKontrast = display.newRect(
+		sceneGroup,
+		display.contentCenterX,
+		display.contentCenterY,
+		display.contentWidth,
+		display.contentHeight
+	)
+	metinKontrast:setFillColor(0, 0, 0, 0.48)
 
 	--resim.touch = sahneyeDokun
 
-	yazi1 = display.newText("SIFIR NOKTASI", 0, 0, "Poppins-Bold", 16)
-	yazi1:setFillColor(0.05, 0.3, 0.55)
+	local baslikKontrast = display.newRoundedRect(
+		sceneGroup,
+		display.contentCenterX,
+		ustSinir + 20,
+		220,
+		42,
+		10
+	)
+	baslikKontrast:setFillColor(0.02, 0.04, 0.12, 0.88)
+
+	yazi1 = display.newText(dil.metin("hikaye_basligi"), 0, 0, "Poppins-Bold", 16)
+	yazi1:setFillColor(1, 1, 1)
 	yazi1.x, yazi1.y = display.contentCenterX, ustSinir + 20
 	sceneGroup:insert(yazi1)
 	yazi1:addEventListener("touch", yaziyaDokun)
@@ -204,12 +261,12 @@ function sahne:create(olay)
 			width = display.contentWidth,
 			height = display.contentHeight + oy7 - 148 - (sahneDegis.getVariable("tabBarHeight") or 0),
 			horizontalScrollDisabled = true,
-			backgroundColor = { 1, 1, 1 }
+			backgroundColor = { 0, 0, 0, 0 }
 		})
 
 	local paragraphs = {}
 	local paragraph
-	local tmpString = myText
+	local tmpString = hikayeyiDileUyarla(myText)
 
 	local yStart = 10
 	local mainPadding = 10
@@ -221,7 +278,7 @@ function sahne:create(olay)
 		paragraphs[#paragraphs].anchorY = 0
 		paragraphs[#paragraphs].x = mainPadding
 		paragraphs[#paragraphs].y = yStart
-		paragraphs[#paragraphs]:setFillColor(0.2)
+		paragraphs[#paragraphs]:setFillColor(1, 1, 1)
 		scrollView:insert(paragraphs[#paragraphs])
 		yStart = yStart + paragraphs[#paragraphs].height + 5
 	until tmpString == nil or string.len(tmpString) == 0

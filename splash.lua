@@ -9,6 +9,72 @@ local sahneDegis = require("composer")
 local splash = {}
 local splashAktif = false
 
+function splash.baslangicGoster(tamamlandi)
+	if splashAktif then
+		return
+	end
+	splashAktif = true
+
+	local grup = display.newGroup()
+	local arkaPlan = display.newRect(
+		grup,
+		display.contentCenterX,
+		display.contentCenterY,
+		display.contentWidth,
+		display.contentHeight
+	)
+	arkaPlan:setFillColor(0.015, 0.025, 0.08)
+
+	local logo = display.newImageRect(grup, "levha/taskesen.png", 92, 92)
+	logo.x = display.contentCenterX
+	logo.y = display.contentCenterY - 72
+	logo.alpha = 0
+	logo.xScale, logo.yScale = 0.7, 0.7
+
+	local yeniuc = display.newImageRect(grup, "levha/yeniuc.png", 104, 113)
+	yeniuc.x = display.contentCenterX
+	yeniuc.y = display.contentCenterY + 52
+	yeniuc.alpha = 0
+	yeniuc.xScale, yeniuc.yScale = 0.75, 0.75
+
+	local baslik = display.newText(grup, "Trafik Levhaları", display.contentCenterX,
+		display.contentCenterY - 132, "Poppins-Bold", 18)
+	baslik:setFillColor(1, 1, 1)
+	baslik.alpha = 0
+
+	transition.to(baslik, { alpha = 1, time = 260 })
+	transition.to(logo, {
+		alpha = 1,
+		xScale = 1,
+		yScale = 1,
+		time = 420,
+		transition = easing.outBack
+	})
+	transition.to(yeniuc, {
+		alpha = 1,
+		xScale = 1,
+		yScale = 1,
+		rotation = 360,
+		time = 720,
+		delay = 300,
+		transition = easing.outBack
+	})
+
+	timer.performWithDelay(1550, function()
+		splashAktif = false
+		transition.to(grup, {
+			alpha = 0,
+			time = 420,
+			onComplete = function()
+				grup:removeSelf()
+				if tamamlandi then
+					tamamlandi()
+				end
+			end
+		})
+	end, 1)
+end
+
 function splash.goster(hedefSahne, gecisTuru)
 	-- Aynı anda yalnızca bir splash/geçiş çalışsın.
 	if splashAktif then

@@ -1,0 +1,34 @@
+[
+  {
+    "ad": "",
+    "aciklama": "\n\n"
+  },
+  {
+    "ad": "(P-1) Park etmek yasaktır",
+    "aciklama": "Bu işaretin bulunduğu yerde park etmek (araçtan inip kalkmak dahil) yasaktır.\n\nMavi zemin üzerindeki kırmızı çapraz çizgi, levhada gösterilen “P” park sembolünün yasaklandığını belirtir. Bu nedenle araç kısa süreli bırakılmamalı; yol kenarında bekleme ihtiyacı varsa yalnızca izin verilen ve trafiği engellemeyen alanlar kullanılmalıdır. Levhanın geçerli olduğu mesafe ve varsa ek panel üzerindeki saat veya istisna bilgileri ayrıca dikkate alınmalıdır."
+  },
+  {
+    "ad": "(P-2) Duraklamak ve park etmek yasaktır",
+    "aciklama": "Bu işaretin bulunduğu yerde duraklamak ve park etmek yasaktır.\n\nMavi zemin üzerindeki kırmızı çarpı, hem duraklamanın hem de park etmenin yasak olduğunu görsel olarak bildirir. Sürücü yolcu indirme-bindirme veya kısa süreli bekleme için bile bu kesimde durmamalı; acil durumda aracı mümkün olan en güvenli noktaya alarak trafik akışını engellememelidir."
+  },
+  {
+    "ad": "(P-3a) Park yeri",
+    "aciklama": "Bu alanın araç park etmeye ayrıldığını gösterir.\n\nBeyaz “P” harfi, araçların park edebileceği düzenlenmiş alanı gösterir. Bu sembol park etme iznini bildirir ancak araç, park çizgileri ve varsa ek levhalarda belirtilen yön, süre, ücret veya kullanıcı sınırlamalarına uygun bırakılmalıdır."
+  },
+  {
+    "ad": "(P-3b) Park yeri",
+    "aciklama": "Bu alanın araç park etmeye ayrıldığını gösterir.\n\n“P” sembolünün altındaki ek araç işareti, park alanının belirli bir araç veya hizmet türü için düzenlendiğini gösterir. Sürücü park etmeden önce görseldeki ek sembolü ve alandaki açıklama levhasını kontrol etmeli; ayrılmış alanı amacı dışında kullanmamalıdır."
+  },
+  {
+    "ad": "(P-3c) Park yeri",
+    "aciklama": "Bu alanın araç park etmeye ayrıldığını gösterir.\n\nBu park sembolündeki ek araç figürü, park yerinin kullanım biçimini veya ayrılmış araç grubunu belirtir. Park alanına girişte yol üzerindeki çizgilere, yön oklarına ve varsa engelli erişimi ya da süre sınırlamasını belirten ek panellere uyulmalıdır."
+  },
+  {
+    "ad": "(P-3d) Park yeri",
+    "aciklama": "Bu alanın araç park etmeye ayrıldığını gösterir.\n\nGörseldeki “P” ve altındaki araç sembolü, park alanının belirli bir kullanım düzenine sahip olduğunu anlatır. Araç, gösterilen bölüme taşmadan ve diğer araçların giriş-çıkışını kapatmadan park edilmelidir; sembolün yanındaki ek bilgi varsa öncelikle o kural uygulanır."
+  },
+  {
+    "ad": "(P-3e) Park yeri",
+    "aciklama": "Bu alanın araç park etmeye ayrıldığını gösterir.\n\nBu park levhasındaki farklı araç sembolü, alanın belirli bir araç türü veya park düzeni için ayrıldığını gösterir. Sürücü levhadaki sembolü kendi aracıyla karşılaştırmalı, uygun olmayan aracı bu alana bırakmamalı ve park yönlendirmelerine uymalıdır."
+  }
+]

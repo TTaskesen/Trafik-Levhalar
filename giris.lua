@@ -7,6 +7,7 @@
 local widget = require("widget")
 local sahneDegis = require("composer")
 local ortak = require("levha_ortak")
+local dil = require("dil")
 local sahne = sahneDegis.newScene()
 
 local tabBar
@@ -20,6 +21,7 @@ function sahne:create(olay)
 	local levhaY = blokUstu + 175
 	local butonY = blokUstu + 330
 	local hikayeY = math.min(blokUstu + 455, ekranBilgileri.safeBottom - 30)
+	local dilY = math.min(blokUstu + 395, hikayeY - 46)
 
 	-- Arka plan: buz mavisi tonu (uygulamanın mavi temasıyla uyumlu karşılama ekranı)
 	local zemin = display.newRect(display.contentCenterX, display.contentCenterY,
@@ -34,13 +36,13 @@ function sahne:create(olay)
 	baslikKarti.strokeWidth = 1.5
 	sceneGroup:insert(baslikKarti)
 
-	local baslik = display.newText("KARAYOLLARI STANDART\nİŞARET LEVHALARI", 0, 0, "BebasNeue-Regular", 26)
+	local baslik = display.newText(dil.metin("uygulama_basligi"), 0, 0, "BebasNeue-Regular", 26)
 	baslik:setFillColor(1)
 	baslik.x = display.contentCenterX
 	baslik.y = baslikY
 	sceneGroup:insert(baslik)
 
-	local altBaslik = display.newText("Trafik İşaretleri Eğitim Uygulaması", 0, 0, "Poppins-Medium", 13)
+	local altBaslik = display.newText(dil.metin("uygulama_alt_basligi"), 0, 0, "Poppins-Medium", 13)
 	altBaslik:setFillColor(0.45)
 	altBaslik.x = display.contentCenterX
 	altBaslik.y = baslikY + 48
@@ -86,10 +88,39 @@ function sahne:create(olay)
 	baslaButonu.strokeWidth = 1.5
 	sceneGroup:insert(baslaButonu)
 
-	local baslaMetin = display.newText("BAŞLA", 0, 0, "Poppins-Bold", 18)
+	local baslaMetin = display.newText(dil.metin("basla"), 0, 0, "Poppins-Bold", 18)
 	baslaMetin:setFillColor(1)
 	baslaMetin.x, baslaMetin.y = baslaButonu.x, baslaButonu.y
 	sceneGroup:insert(baslaMetin)
+
+	-- Uygulama açılışında dil seçimi. Seçim cihazda saklanır ve sonraki açılışta korunur.
+	local dilBasligi = display.newText("Dil / Sprache / Langue / 언어", display.contentCenterX, dilY - 18,
+		"Poppins-Bold", 10)
+	dilBasligi:setFillColor(0.05, 0.3, 0.55)
+	sceneGroup:insert(dilBasligi)
+
+	local dilSecenekleri = {
+		{ kod = "tr", etiket = "Türkçe" },
+		{ kod = "de", etiket = "Deutsch" },
+		{ kod = "fr", etiket = "Français" },
+		{ kod = "ko", etiket = "한국어" }
+	}
+	local dilDugmeleri = {}
+	local dilToast
+	local dilMerkez = display.contentCenterX
+	for i, secenek in ipairs(dilSecenekleri) do
+		local x = dilMerkez + (i - 2.5) * 70
+		local dugme = display.newRoundedRect(x, dilY + 4, 64, 26, 6)
+		dugme:setFillColor(0.05, 0.3, 0.55, 0.85)
+		dugme:setStrokeColor(1, 1, 1, 0.35)
+		dugme.strokeWidth = 1
+		sceneGroup:insert(dugme)
+
+		local etiket = display.newText(secenek.etiket, x, dilY + 4, "Poppins-Bold", 8)
+		etiket:setFillColor(1)
+		sceneGroup:insert(etiket)
+		dilDugmeleri[#dilDugmeleri + 1] = { dugme = dugme, etiket = etiket, secenek = secenek }
+	end
 
 	local function basla()
 		if tabBar then
@@ -120,7 +151,7 @@ function sahne:create(olay)
 
 	-- Hikâye kısayolu: sahne7'ye gider
 	local hikayeYazi = display.newText({
-		text = "BİR HİKAYE OKU",
+		text = dil.metin("hikaye_oku"),
 		x = 0, y = 0,
 		font = "Poppins-Bold",
 		fontSize = 14
@@ -140,6 +171,77 @@ function sahne:create(olay)
 		end
 	end
 	hikayeYazi:addEventListener("touch", hikayeDokun)
+
+	local hikayeYazMetni = display.newText(dil.metin("hikaye_yaz"), 0, 0, "Poppins-Bold", 14)
+	hikayeYazMetni:setFillColor(0.05, 0.3, 0.55)
+	hikayeYazMetni.x, hikayeYazMetni.y = display.contentCenterX, hikayeY + 52
+	sceneGroup:insert(hikayeYazMetni)
+
+	local function hikayeYazDokun(olay)
+		if olay.phase == "began" then
+			sahneDegis.gotoScene("sahne13", "fade", 400)
+			return true
+		end
+	end
+	hikayeYazMetni:addEventListener("touch", hikayeYazDokun)
+
+	local function metinleriGuncelle()
+		baslik.text = dil.metin("uygulama_basligi")
+		altBaslik.text = dil.metin("uygulama_alt_basligi")
+		baslaMetin.text = dil.metin("basla")
+		hikayeYazi.text = dil.metin("hikaye_oku")
+	end
+
+	local function dilSecDokun(olay)
+		if olay.phase ~= "ended" then
+			return true
+		end
+
+		local secim = olay.target._dilSecenegi
+		if not secim then
+			return true
+		end
+
+		if secim.kod == "tr" then
+			return true
+		end
+
+		if dilToast then
+			transition.cancel(dilToast)
+			dilToast:removeSelf()
+			dilToast = nil
+		end
+
+		dilToast = display.newText({
+			parent = sceneGroup,
+			text = dil.metin("dil_hazirlaniyor"),
+			x = display.contentCenterX,
+			y = ekranBilgileri.safeBottom - 24,
+			width = display.contentWidth - 24,
+			font = "Poppins-Bold",
+			fontSize = 12,
+			align = "center"
+		})
+		dilToast:setFillColor(0.05, 0.3, 0.55)
+		dilToast.alpha = 0
+		transition.to(dilToast, { alpha = 1, time = 180, onComplete = function()
+			transition.to(dilToast, { alpha = 0, time = 300, delay = 1800, onComplete = function()
+				if dilToast then
+					dilToast:removeSelf()
+					dilToast = nil
+				end
+			end })
+		end })
+		return true
+	end
+
+	for _, secenek in ipairs(dilDugmeleri) do
+		secenek.dugme._dilSecenegi = secenek.secenek
+		secenek.dugme:addEventListener("touch", dilSecDokun)
+		secenek.etiket._dilSecenegi = secenek.secenek
+		secenek.etiket:addEventListener("touch", dilSecDokun)
+	end
+	metinleriGuncelle()
 
 	local function nabiz()
 		if dur then

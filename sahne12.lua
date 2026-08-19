@@ -29,20 +29,7 @@ local levhaKareleri = {
 
 local resimLevha = graphics.newImageSheet("levha/levha/7-otoyol/Otoyol.png", levhaKareleri)
 
-local levhaDetaylari =
-{
-{ ad = "", aciklama = "" },
-[2] = { ad = "Kavşak isim levhası", aciklama = [[Yeşil levhadaki kavşak adı, yol numarası ve mesafe bilgisi, sürücünün hangi kavşağa yaklaştığını önceden bildirir. Görseldeki “Düzce Kavşağı”, K.16 kodu ve 2000 m bilgisi, kavşağın iki kilometre ileride olduğunu gösterir. Sürücü güzergâhını önceden planlamalı ve çıkış ya da bağlantı şeridine zamanında geçmelidir.]] },
-[3] = { ad = "Otoyol rejimi levhası", aciklama = [[Mavi-kırmızı hız ve yasak sembollerinin birlikte bulunduğu levha, otoyol kesiminde geçerli olan temel trafik düzenini hatırlatır. Görselde 40 ve 120 hız değerleri ile durma, geri dönme veya yaya trafiğine ilişkin yasak sembolleri yer alır. Sürücü, levhadaki her sembolü ayrı bir kural olarak değerlendirmeli ve otoyolun kontrollü giriş-çıkış düzenine uymalıdır.]] },
-[4] = { ad = "Acil durum levhaları", aciklama = [[Birden fazla acil yardım ve hizmet sembolünün bulunduğu panel, otoyol üzerindeki acil durum noktalarını ve yardımcı tesisleri gösterir. Telefon, sağlık, itfaiye veya benzeri semboller sürücünün ihtiyaç halinde hangi hizmetlere ulaşabileceğini bildirir. Arıza ya da acil durumda araç güvenli yere alınmalı, bu işaretlerle gösterilen yardım noktalarına yönlendirme takip edilmelidir.]] },
-[5] = { ad = "Servis alanı levhaları", aciklama = [[Levhadaki “P” ve hizmet sembolleri, otoyol üzerindeki servis veya dinlenme alanında sunulan imkânları gösterir. Park, tuvalet, telefon, yakıt ya da diğer hizmet sembolleri sürücüye alanda neler bulunabileceği hakkında ön bilgi verir. Uzun yolculuklarda dinlenmek için yalnızca belirtilen servis alanlarına giriniz ve otoyolun ana taşıt yolunda durmayınız.]] },
-[6] = { ad = "Park alanı levhası", aciklama = [[Yeşil zemin üzerindeki “Park Alanı” yazısı ve “500 m” mesafe bilgisi, ileride bir park alanı bulunduğunu bildirir. Sürücü park ihtiyacını bu alana göre planlamalı, emniyet şeridinde veya otoyol taşıt yolunda durmamalıdır. Park alanına yaklaşırken yönlendirme işaretlerini ve giriş şeridini takip ediniz.]] },
-[7] = { ad = "Başüstü şerit seçimi levhası", aciklama = [[Araç ve şerit bilgilerini içeren yeşil levha, başüstü bir yönlendirme sistemiyle hangi şeridin hangi bağlantıya hizmet ettiğini gösterir. Görseldeki oklar ve araç sembolleri, sürücünün ilerleyeceği güzergâhı ve şerit seçimini önceden yapmasına yardımcı olur. Şerit değiştirmek gerekiyorsa sinyal veriniz, aynaları kontrol ediniz ve son anda manevra yapmayınız.]] },
-[8] = { ad = "OGS levhası", aciklama = [[OGS sembolü ve radyo dalgalarını andıran çizgiler, elektronik otoyol geçiş sistemine ait noktayı gösterir. Bu levha, geçiş veya ücretlendirme sistemiyle ilgili bir alan bulunduğunu bildirir; sürücü doğru şeridi takip etmeli ve geçiş için gerekli sistemin etkin olduğundan emin olmalıdır. Gişe ya da geçiş noktasında hız ve şerit düzenine uyunuz.]] },
-[9] = { ad = "HGS levhası", aciklama = [[Yeşil levhadaki HGS yazısı, Hızlı Geçiş Sistemi kullanılan geçiş noktasını gösterir. Araç, sistemde tanımlı bir HGS hesabı veya etiketiyle geçiş yapmalıdır; geçiş sırasında şerit ve hız uyarılarına uyulmalıdır. Hesabı veya etiketi bulunmayan araçlar için ilgili otoyol kurallarını ve alternatif geçiş düzenini kontrol ediniz.]] },
-[10] = { ad = "Şerit seçimi ve kullanma levhaları", aciklama = [[Üstten görülen yol ve birden fazla yön oku, şeritlerin farklı yön ve güzergâhlara ayrıldığını gösterir. Kırmızı çarpı işareti, ilgili şeridin veya yönün kullanılmaması gerektiğini; açık oklar ise kullanılabilecek yönleri belirtir. Sürücü kavşağa yaklaşmadan önce hedef yönünü seçmeli ve yol çizgileriyle levhadaki okları birlikte takip etmelidir.]] },
-
-}
+local levhaDetaylari = ortak.levhaAciklamalariniOku("levha/levha/7-otoyol/Otoyol Isaretleri  Aciklama.json", 10)
 
 -- Metin göstermek için ScrollView oluşturan fonksiyon
 local function metinOlustur(icerik, ustBosluk)
@@ -66,6 +53,7 @@ function scene:create(event)
     local tabBarHeight = composer.getVariable("tabBarHeight") or 0
 
     local tableViewColors = ortak.listeRenkleri()
+    local seciliSatir
 
     local ilkKare = levhaKareleri.frames[1]
     local g, y = levhaBoyut(ilkKare)
@@ -79,6 +67,10 @@ function scene:create(event)
     local function goBack(event)
         local tabBar = composer.getVariable("tabBar")
         ortak.tabBarGizle(tabBar)
+        if seciliSatir then
+            seciliSatir._detayAcildi = false
+            seciliSatir = nil
+        end
         transition.to(self.tableView, { x = display.contentWidth * 0.5, time = 600, transition = easing.outQuint })
         transition.to(self.backButton, { x = 100, y = 200, time = 480, transition = easing.outQuint })
         transition.to(self.yeniLevha, { x = display.contentWidth + self.yeniLevha.contentWidth, time = 480, transition = easing.outQuint,
@@ -108,7 +100,7 @@ function scene:create(event)
 
         local rowTitle = display.newText({
             parent = row,
-            text = levhaDetaylari[row.index].ad,
+            text = ortak.levhaAdi(levhaDetaylari[row.index].ad),
             x = 0,
             y = 0,
             width = math.max(1, display.contentWidth - 92),
@@ -124,7 +116,7 @@ function scene:create(event)
         if (row.isCategory) then
             rowTitle.isVisible = false
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
-            rowTitle.text = "OTOYOL LEVHALARI (9 LEVHA)"
+            rowTitle.text = ortak.listeBasligi("otoyol", 9)
             rowTitle.font = "Poppins-Bold"
             rowTitle.size = 16
         else
@@ -144,9 +136,10 @@ function scene:create(event)
         local phase = event.phase
         local row = event.target
 
-        if (phase == "press" or phase == "release" or phase == "tap" or phase == "ended") then
+        if (phase == "release" or phase == "tap" or phase == "ended") then
             if not row.isCategory and not row._detayAcildi then
                 row._detayAcildi = true
+                seciliSatir = row
                 local tabBar = composer.getVariable("tabBar")
                 ortak.tabBarGizle(tabBar)
                 transition.to(self.tableView, {
@@ -178,7 +171,7 @@ function scene:create(event)
                         transition = easing.outQuint
                     })
 
-                local secilenMetin = levhaDetaylari[row.index].aciklama
+                local secilenMetin = ortak.levhaAciklamasi(levhaDetaylari[row.index])
                 metinOlustur(secilenMetin, yeniMetinY)
                 sceneGroup:insert(scrollViewMetin)
             end
@@ -228,7 +221,7 @@ function scene:create(event)
     ortak.listeGeriDonButonu(sceneGroup, function()
         composer.gotoScene("sahne1", "fade", 400)
     end)
-    ortak.sabitListeBasligi(sceneGroup, "OTOYOL LEVHALARI (9 LEVHA)", ox, oy)
+    ortak.sabitListeBasligi(sceneGroup, ortak.listeBasligi("otoyol", 9), ox, oy)
 end
 
 function scene:show(event)

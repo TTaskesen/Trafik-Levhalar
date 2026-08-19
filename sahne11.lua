@@ -49,40 +49,7 @@ local levhaKareleri = {
 
 local resimLevha = graphics.newImageSheet("levha/levha/5-yeni-standart/yeni-standart.png", levhaKareleri)
 
-local levhaDetaylari =
-{
-    [1] = { ad = "", aciklama = "" },
-[2] = { ad = "Trafik Sıkışıklığı", aciklama = [[Görselde art arda dizilmiş araçlar bulunması, ileride trafik yoğunluğu veya araç kuyruğu oluşabileceğini bildirir. Sürücü, hızını azaltmalı, öndeki araçla güvenli takip mesafesini korumalı ve ani fren yapabilecek araçlara karşı hazırlıklı olmalıdır. Özellikle kavşak, tünel ve yol daralmalarında kuyruğun sonundaki araca çarpmamak için dikkatli olunmalıdır.]] },
-[3] = { ad = "Tramvay Hattı ile Oluşan Kavşak", aciklama = [[Üçgen içindeki tramvay sembolü, ileride tramvay hattının karayoluyla kesiştiği bir kavşağı gösterir. Tramvayların ray üzerinde ve belirli bir güzergâhta ilerlediğini unutmayınız; kavşağa yaklaşırken hızı azaltınız, sinyal ve geçiş önceliği kurallarına uyunuz.]] },
-[4] = { ad = "Okul Bölgesi Azami Hız Sınırı", aciklama = [[Sarı okul bölgesi paneli ve altındaki 30 hız göstergesi, okul çevresinde azami hızın 30 km/s olduğunu bildirir. Bu bölgede çocukların yola aniden çıkabileceğini dikkate alarak yavaşlayınız, geçiş yapan öğrencilere öncelik veriniz ve park etmiş araçların arasından çıkabilecek yayalara karşı dikkatli olunuz.]] },
-[5] = { ad = "Yayalar ve Bisikletliler Tarafından Kullanılabilen Yol", aciklama = [[Mavi daire içindeki yaya ve bisikletli sembolleri, yolun her iki kullanıcı grubu tarafından birlikte kullanılabileceğini gösterir. Bu işaret, yayalar ile bisikletlilerin aynı ortak alanda hareket ettiğini belirtir; bisikletliler yayalara yaklaşırken hızını azaltmalı, yayalar da bisiklet geçişlerini engellememelidir.]] },
-[6] = { ad = "Yayalar ve Bisikletliler Tarafından Kullanılabilen Yolun Sonu", aciklama = [[Mavi ortak yaya-bisiklet yolu sembolü üzerindeki kırmızı çapraz çizgi, bu ortak kullanım yolunun sona erdiğini bildirir. İşaretten sonra yol kullanıcıları için farklı bir düzen başlayabileceğinden bisikletliler ve yayalar yönlendirme levhalarını takip etmeli, sürücüler de yolun yeni kullanım biçimine dikkat etmelidir.]] },
-[7] = { ad = "Yayalar ve Bisikletliler İçin Ayrı Ayrı Kullanılabilen Yol", aciklama = [[Mavi dairede yaya ve bisiklet sembollerinin ayrı bölümlerde gösterilmesi, yaya ve bisikletliler için ayrılmış ayrı şerit veya bölümlerin bulunduğunu belirtir. Yayalar kendilerine ayrılan kısmı, bisikletliler ise bisiklet bölümünü kullanmalı; bölümler arasındaki sınırı ihlal etmemelidir.]] },
-[8] = { ad = "Yayalar ve Bisikletliler İçin Ayrı Ayrı Kullanılabilen Yolun Sonu", aciklama = [[Ayrı yaya ve bisiklet bölümlerini gösteren sembol üzerindeki kırmızı çizgi, bu düzenin sona erdiğini bildirir. Bundan sonra ayrı şerit bulunmayabileceği için bisikletliler hızını azaltmalı, yayalar güvenli alanda yürümeli ve tüm kullanıcılar yeni trafik düzenine uyum sağlamalıdır.]] },
-[9] = { ad = "Girişi Olmayan Yol Kavşağı", aciklama = [[Mavi levhadaki beyaz T sembolü ve kırmızı kapalı kol, ileride araç girişine izin verilmeyen bir yol kolunun bulunduğunu gösterir. Bu levha, kavşakta yön seçerken kapalı kola girmemeniz gerektiğini önceden bildirir; yolun açık yönlerine ve diğer yön levhalarına uyunuz.]] },
-[10] = { ad = "Kavşak İçi Yön Levhası (Metro)", aciklama = [[Üzerinde “P + METRO” yazısı ve sağ yön oku bulunan levha, metroya aktarma yapmak isteyenlerin kullanacağı park alanını veya metro yönünü gösterir. Sürücü, ok yönünde ilerlemeli; levhanın park ve metro bağlantısını birlikte bildirdiğini dikkate almalıdır.]] },
-[11] = { ad = "İleri Tek Yönlü Yol", aciklama = [[Mavi kare içindeki ileri yön oku ve “TEK YÖN” ifadesi, yolun bu bölümünde trafiğin yalnızca ileri yönde aktığını bildirir. Karşı yönden giriş yapmayınız, geri manevra ve dönüşleri yalnızca izin verilen noktalarda gerçekleştiriniz.]] },
-[12] = { ad = "Rampalı Yaya Üst Geçidi", aciklama = [[Tekerlekli sandalye sembolü bulunan mavi levha, rampalı ve erişilebilir bir yaya üst geçidini gösterir. Bu geçit, engelli bireylerin, bebek arabası kullananların ve hareket kabiliyeti sınırlı yayaların yolu güvenli biçimde geçebilmesi için düzenlenmiştir; yayalar geçişte bu yapıyı kullanmalıdır.]] },
-[13] = { ad = "İki Yönlü Trafik", aciklama = [[Karşılıklı iki ok, yolun iki yönlü trafiğe açık olduğunu gösterir. Tek yönlü bölümden sonra karşı yönden araç gelebileceğini dikkate alınız; şerit çizgilerine, karşıdan gelen trafiğe ve sollama kurallarına uyunuz.]] },
-[14] = { ad = "Yaya Öncelikli Yol", aciklama = [[Yaya, araç ve ev sembollerinin birlikte bulunduğu mavi levha, yayaların öncelikli olduğu bir yol veya yerleşim alanını gösterir. Sürücüler düşük hızla ilerlemeli, yayalara geçiş hakkı vermeli ve araçlarını yayaların hareketini engellemeyecek yerlere park etmelidir.]] },
-[15] = { ad = "Yaya Öncelikli Yolun Sonu", aciklama = [[Yaya öncelikli yol sembolü üzerindeki kırmızı çizgi, bu özel yol düzeninin sona erdiğini bildirir. Levhadan sonra yayaların önceliği farklı kurallara bağlı olabileceği için sürücüler normal yol ve geçiş kurallarına dönmeli, yayalar da işaretli geçiş noktalarını kullanmalıdır.]] },
-[16] = { ad = "İstasyon", aciklama = [[Mavi levhadaki tren veya toplu taşıma aracı sembolü, ileride bir istasyon bulunduğunu gösterir. İstasyon çevresinde yolcu iniş-binişi ve karşıdan karşıya geçen yayalar artabileceğinden hızı azaltınız ve istasyon giriş-çıkışlarına dikkat ediniz.]] },
-[17] = { ad = "Tramvay Durağı", aciklama = [[Levhadaki tramvay sembolü, tramvay durağının bulunduğunu bildirir. Durakta bekleyen veya tramvaydan inen yolcular yola yaklaşabilir; sürücüler durağa yaklaşırken yavaşlamalı, tramvay ve yolcuların güvenli geçişini gözetmelidir.]] },
-[18] = { ad = "Sanayi Bölgesi (OSB)", aciklama = [[Fabrika sembolü bulunan levha, organize sanayi bölgesine veya sanayi tesislerinin yoğun olduğu bir alana girildiğini gösterir. Kamyon, servis aracı, iş makinesi ve fabrika giriş-çıkışlarıyla karşılaşılabileceğinden hızınızı azaltınız ve ağır araç manevralarına dikkat ediniz.]] },
-[19] = { ad = "Trafik Elektronik Denetleme", aciklama = [[Kamera ve denetim cihazı sembolü, trafik akışının elektronik sistemlerle izlenebileceğini bildirir. Bu levha hız, kırmızı ışık, şerit ve diğer trafik ihlallerinin denetlenebileceği anlamına gelir; sürücü tüm trafik kurallarına uymalıdır.]] },
-[20] = { ad = "Trafik Elektronik Denetleme", aciklama = [[Dikey kamera ve kontrol cihazı görseli, elektronik trafik denetiminin devam ettiğini gösterir. Sürücü hızını kontrol etmeli, sinyal ve şerit kurallarına uymalı; denetim cihazlarının bulunduğu bölgede ani ve kural dışı manevralardan kaçınmalıdır.]] },
-[21] = { ad = "Trafik Elektronik Denetleme", aciklama = [[Levhanın yatay ve uzun biçimde tasarlanması, elektronik denetim bilgisinin yol boyunca veya belirli bir kesim için verildiğini gösterir. Denetim alanında hız sınırına, takip mesafesine ve şerit disiplinine özellikle dikkat edilmelidir.]] },
-[22] = { ad = "Kapalı Park Yeri", aciklama = [[Üstü çatı biçiminde ve altında “P” bulunan mavi levha, kapalı otopark alanını gösterir. Sürücü park girişini, araç yüksekliği ve yönlendirme işaretlerini kontrol etmeli; otopark içinde belirtilen hız ve park düzenine uymalıdır.]] },
-[23] = { ad = "Park Yeri (Metrodan Yararlanacaklar İçin)", aciklama = [[“P + METRO” ibaresi, aracını park ederek yolculuğuna metro ile devam etmek isteyenler için ayrılmış park alanını gösterir. Bu alan, karayolu ile metro arasında aktarma yapılmasını sağlar; araç park edildikten sonra metro yönlendirmelerini takip ediniz.]] },
-[24] = { ad = "Park Yeri (Tramvaydan Yararlanacaklar İçin)", aciklama = [[“P + tramvay” sembolü, aracını park edip tramvayla devam etmek isteyen yolculara ayrılmış park alanını bildirir. Park alanından tramvay durağına geçerken yaya yollarını kullanınız ve raylı sistem geçişlerine dikkat ediniz.]] },
-[25] = { ad = "Ağaç Engeli", aciklama = [[Ağaç ve yol engeli görseli, yol üzerinde veya yol kenarında görüşü ve geçiş alanını daraltabilecek bir ağaç engeli bulunduğunu bildirir. Sürücü hızını azaltmalı, engelin çevresinden geçerken karşı yönden gelen araçları kontrol etmeli ve yol kenarına yaklaşan yayalara dikkat etmelidir.]] },
-[26] = { ad = "Araç Çekilir", aciklama = [[Çekici üzerindeki araç sembolü, kurallara aykırı veya trafiği engelleyen araçların çekilebileceğini gösterir. Bu bölgede park etmeyiniz; aracınızı yalnızca izin verilen park alanlarına bırakınız ve çekici çalışma alanına yaklaşmayınız.]] },
-[27] = { ad = "İki Yönlü Trafik", aciklama = [[Karşılıklı oklar, yolun iki yönde kullanıldığını gösterir. Alt panel bulunmadığından levha genel iki yönlü trafik bilgisini verir; karşı yönden gelen araçlara dikkat ediniz ve şerit değiştirmeden önce yolu kontrol ediniz.]] },
-[28] = { ad = "İki Yönlü Trafik (200 m)", aciklama = [[Karşılıklı okların altında “200 m” mesafe bilgisinin bulunması, iki yönlü trafik düzeninin 200 metre sonra başlayacağını bildirir. Sürücü bu mesafe içinde hızını ve şerit konumunu ayarlamalı, karşı yönden gelecek araçlara hazırlıklı olmalıdır.]] },
-[29] = { ad = "Askeri Araç Çıkabilir", aciklama = [[Tank sembolü, askeri araçların yola çıkabileceği veya yolu kullanabileceği bir bölgeye yaklaşıldığını gösterir. Askeri araçlar geniş, yavaş ve manevra kabiliyeti sınırlı olabilir; ani çıkışlara karşı hızınızı azaltınız ve geçişlerine engel olmayınız.]] },
-[30] = { ad = "Yüksek Gerilim Hattı", aciklama = [[Şimşek sembolü ve 4.50 m yükseklik bilgisi, ileride yüksek gerilim hattı bulunduğunu ve belirtilen düşey açıklığa dikkat edilmesi gerektiğini gösterir. Özellikle kamyon, otobüs ve yük taşıyan araçlar yüksekliklerini kontrol etmeli; elektrik hatlarına ve tesislerine yaklaşmamalıdır.]] },
-
-}
+local levhaDetaylari = ortak.levhaAciklamalariniOku("levha/levha/5-yeni-standart/Yeni Standart Levhalar Aciklama.json", 30)
 
 -- Metin göstermek için ScrollView oluşturan fonksiyon
 local function metinOlustur(icerik, ustBosluk)
@@ -105,6 +72,7 @@ function scene:create(event)
     local themeID = composer.getVariable("themeID")
 
     local tableViewColors = ortak.listeRenkleri()
+    local seciliSatir
 
     local ilkKare = levhaKareleri.frames[1]
     local g, y = levhaBoyut(ilkKare)
@@ -118,6 +86,10 @@ function scene:create(event)
     local function goBack(event)
         local tabBar = composer.getVariable("tabBar")
         ortak.tabBarGizle(tabBar)
+        if seciliSatir then
+            seciliSatir._detayAcildi = false
+            seciliSatir = nil
+        end
         transition.to(self.tableView, { x = display.contentWidth * 0.5, time = 600, transition = easing.outQuint })
         transition.to(self.backButton, { x = 100, y = 200, time = 480, transition = easing.outQuint })
         transition.to(self.yeniLevha, { x = display.contentWidth + self.yeniLevha.contentWidth, time = 480, transition = easing.outQuint,
@@ -147,7 +119,7 @@ function scene:create(event)
 
         local rowTitle = display.newText({
             parent = row,
-            text = levhaDetaylari[row.index].ad,
+            text = ortak.levhaAdi(levhaDetaylari[row.index].ad),
             x = 0,
             y = 0,
             width = math.max(1, display.contentWidth - 92),
@@ -163,7 +135,7 @@ function scene:create(event)
         if (row.isCategory) then
             rowTitle.isVisible = false
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
-            rowTitle.text = "YENİ STANDART LEVHALAR (29 LEVHA)"
+            rowTitle.text = ortak.listeBasligi("yeni", 29)
             rowTitle.font = "Poppins-Bold"
             rowTitle.size = 16
         else
@@ -183,9 +155,10 @@ function scene:create(event)
         local phase = event.phase
         local row = event.target
 
-        if (phase == "press" or phase == "release" or phase == "tap" or phase == "ended") then
+        if (phase == "release" or phase == "tap" or phase == "ended") then
             if not row.isCategory and not row._detayAcildi then
                 row._detayAcildi = true
+                seciliSatir = row
                 local tabBar = composer.getVariable("tabBar")
                 ortak.tabBarGizle(tabBar)
                 transition.to(self.tableView, {
@@ -217,7 +190,7 @@ function scene:create(event)
                         transition = easing.outQuint
                     })
 
-                local secilenMetin = levhaDetaylari[row.index].aciklama
+                local secilenMetin = ortak.levhaAciklamasi(levhaDetaylari[row.index])
                 metinOlustur(secilenMetin, yeniMetinY)
                 sceneGroup:insert(scrollViewMetin)
             end
@@ -267,7 +240,7 @@ function scene:create(event)
     ortak.listeGeriDonButonu(sceneGroup, function()
         composer.gotoScene("sahne1", "fade", 400)
     end)
-    ortak.sabitListeBasligi(sceneGroup, "YENİ STANDART LEVHALAR (29 LEVHA)", ox, oy)
+    ortak.sabitListeBasligi(sceneGroup, ortak.listeBasligi("yeni", 29), ox, oy)
 end
 
 function scene:show(event)

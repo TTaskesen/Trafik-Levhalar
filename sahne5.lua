@@ -27,17 +27,7 @@ local levhaKareleri = {
 
 local resimLevha = graphics.newImageSheet("levha/levha/4-durma-park/durma-park.jpg", levhaKareleri)
 
-local levhaDetaylari =
-{
-    [1] = { ad = "", aciklama = "" },
-    [2] = { ad = "(P-1) Park etmek yasaktır", aciklama = [[Bu işaretin bulunduğu yerde park etmek (araçtan inip kalkmak dahil) yasaktır.]] },
-    [3] = { ad = "(P-2) Duraklamak ve park etmek yasaktır", aciklama = [[Bu işaretin bulunduğu yerde duraklamak ve park etmek yasaktır.]] },
-    [4] = { ad = "(P-3a) Park yeri", aciklama = [[Bu alanın araç park etmeye ayrıldığını gösterir.]] },
-    [5] = { ad = "(P-3b) Park yeri", aciklama = [[Bu alanın araç park etmeye ayrıldığını gösterir.]] },
-    [6] = { ad = "(P-3c) Park yeri", aciklama = [[Bu alanın araç park etmeye ayrıldığını gösterir.]] },
-    [7] = { ad = "(P-3d) Park yeri", aciklama = [[Bu alanın araç park etmeye ayrıldığını gösterir.]] },
-    [8] = { ad = "(P-3e) Park yeri", aciklama = [[Bu alanın araç park etmeye ayrıldığını gösterir.]] },
-}
+local levhaDetaylari = ortak.levhaAciklamalariniOku("levha/levha/4-durma-park/Durma ve Park Yapma Aciklama.json", 8)
 
 -- Metin göstermek için ScrollView oluşturan fonksiyon
 local function metinOlustur(icerik, ustBosluk)
@@ -60,6 +50,7 @@ function scene:create(event)
     local themeID = composer.getVariable("themeID")
 
     local tableViewColors = ortak.listeRenkleri()
+    local seciliSatir
 
     local ilkKare = levhaKareleri.frames[1]
     local g, y = levhaBoyut(ilkKare)
@@ -73,6 +64,10 @@ function scene:create(event)
     local function goBack(event)
         local tabBar = composer.getVariable("tabBar")
         ortak.tabBarGizle(tabBar)
+        if seciliSatir then
+            seciliSatir._detayAcildi = false
+            seciliSatir = nil
+        end
         transition.to(self.tableView, { x = display.contentWidth * 0.5, time = 600, transition = easing.outQuint })
         transition.to(self.backButton, { x = 100, y = 200, time = 480, transition = easing.outQuint })
         transition.to(self.yeniLevha, { x = display.contentWidth + self.yeniLevha.contentWidth, time = 480, transition = easing.outQuint,
@@ -102,7 +97,7 @@ function scene:create(event)
 
         local rowTitle = display.newText({
             parent = row,
-            text = levhaDetaylari[row.index].ad,
+		text = ortak.levhaAdi(levhaDetaylari[row.index].ad),
             fontSize = row.isCategory and 16 or 15,
             font = row.isCategory and "Poppins-Bold" or "Poppins-Medium",
             width = math.max(1, display.contentWidth - 92),
@@ -116,7 +111,7 @@ function scene:create(event)
         if (row.isCategory) then
             rowTitle.isVisible = false
             rowTitle:setFillColor(unpack(row.params.catLabelColor))
-            rowTitle.text = "DURAKLAMA ve PARK İŞARETLERİ (7 LEVHA)"
+			rowTitle.text = ortak.listeBasligi("durma", 7)
         else
             rowTitle:setFillColor(unpack(row.params.defaultLabelColor))
             local kare = levhaKareleri.frames[row.index - 1]
@@ -134,9 +129,10 @@ function scene:create(event)
         local phase = event.phase
         local row = event.target
 
-        if (phase == "press" or phase == "release" or phase == "tap" or phase == "ended") then
+        if (phase == "release" or phase == "tap" or phase == "ended") then
             if not row.isCategory and not row._detayAcildi then
                 row._detayAcildi = true
+                seciliSatir = row
                 local tabBar = composer.getVariable("tabBar")
                 ortak.tabBarGizle(tabBar)
                 transition.to(self.tableView, {
@@ -168,7 +164,7 @@ function scene:create(event)
                         transition = easing.outQuint
                     })
 
-                local secilenMetin = levhaDetaylari[row.index].aciklama
+                local secilenMetin = ortak.levhaAciklamasi(levhaDetaylari[row.index])
                 metinOlustur(secilenMetin, yeniMetinY)
                 sceneGroup:insert(scrollViewMetin)
             end
@@ -218,7 +214,7 @@ function scene:create(event)
     ortak.listeGeriDonButonu(sceneGroup, function()
         composer.gotoScene("sahne1", "fade", 400)
     end)
-    ortak.sabitListeBasligi(sceneGroup, "DURAKLAMA VE PARK ETME İŞARETLERİ (7 LEVHA)", ox, oy)
+	ortak.sabitListeBasligi(sceneGroup, ortak.listeBasligi("durma", 7), ox, oy)
 end
 
 function scene:show(event)

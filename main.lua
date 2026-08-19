@@ -11,9 +11,11 @@ display.setDefault( "background", 1 )	-- white
 
 -- require controller module
 local sahneDegis = require ("composer")
+local splash = require ("splash")
 
 local widget = require ("widget")
 local ortak = require ("levha_ortak")
+local dil = require ("dil")
 
 local temaIdleri = {
 	"widget_theme_android_holo_dark",
@@ -46,39 +48,43 @@ local function widgetleriGoster( widgetTemaNumarasi )
 		sahneDegis.gotoScene("sahne1", "fade", 400)
 	end
 
-	-- Create buttons table for the tabBar
-	local tabButtons = 
-	{
-		{
-			label = "Ana Sayfa",
-			width = tabButtonWidth,
-			onPress = anaSayfayaGit,
-			selected = true
-		},
-		{
-			label = "Levha Tarihi",
-			width = tabButtonWidth,
-			onPress = function() sahneDegis.gotoScene( "sahne8" ); end,
-		},
-		{
-			label = "Bilgi",
-			width = tabButtonWidth,
-			onPress = function() sahneDegis.gotoScene( "sahne9" ); end,
-		},
-		{
-			label = "Hakkımızda",
-			width = tabButtonWidth,
-			onPress = function() sahneDegis.gotoScene( "sahne10" ); end,
+	local function tabBarOlustur()
+		local tabButtons = {
+			{
+				label = dil.metin("tab_ana_sayfa"),
+				width = tabButtonWidth,
+				onPress = anaSayfayaGit,
+				selected = true
+			},
+			{
+				label = dil.metin("tab_levha_tarihi"),
+				width = tabButtonWidth,
+				onPress = function() sahneDegis.gotoScene("sahne8"); end,
+			},
+			{
+				label = dil.metin("tab_bilgi"),
+				width = tabButtonWidth,
+				onPress = function() sahneDegis.gotoScene("sahne9"); end,
+			},
+			{
+				label = dil.metin("tab_hakkimizda"),
+				width = tabButtonWidth,
+				onPress = function() sahneDegis.gotoScene("sahne10"); end,
+			}
 		}
-	}
-	tabBar = widget.newTabBar
-	{
-		left = 0,
-		top = display.contentHeight,
-		width = display.contentWidth,
-		buttons = tabButtons
-	}
-	tabBar.isHitTestable = true
+
+		if tabBar then
+			tabBar:removeSelf()
+		end
+		tabBar = widget.newTabBar {
+			left = 0,
+			top = display.contentHeight,
+			width = display.contentWidth,
+			buttons = tabButtons
+		}
+		tabBar.isHitTestable = true
+		return tabBar
+	end
 
 	-- Widget tam yüklendikten sonra yüksekliği ve konumu doğru okunur;
 	-- hemen okunduğunda height 0 dönebildiği için ertelenmiş ayar yapılır.
@@ -92,6 +98,15 @@ local function widgetleriGoster( widgetTemaNumarasi )
 		-- Sahnelere, tab bar üst kenarının biraz üzerinde durmaları için pay eklenmiş yükseklik ver
 		sahneDegis.setVariable( "tabBarHeight", h + altGuvenlikBoslugu )
 	end
+	local function dilEtiketleriniGuncelle()
+		local gorunur = tabBar and tabBar.isVisible
+		tabBarOlustur()
+		tabBarAyarla()
+		tabBar.isVisible = gorunur
+		sahneDegis.setVariable("tabBar", tabBar)
+	end
+	sahneDegis.setVariable("dilEtiketleriniGuncelle", dilEtiketleriniGuncelle)
+	tabBarOlustur()
 	tabBarAyarla()
 	timer.performWithDelay( 100, tabBarAyarla )
 	-- Sahne içerikleri sonradan oluşturulsa bile tab bar her zaman
@@ -108,7 +123,10 @@ local function widgetleriGoster( widgetTemaNumarasi )
 	sahneDegis.setVariable( "tabBar", tabBar )
 
 	-- Start at giris (karşılama ekranı)
-	sahneDegis.gotoScene( "giris" )
+	tabBar.isVisible = false
+	splash.baslangicGoster(function()
+		sahneDegis.gotoScene("giris", "fade", 500)
+	end)
 end
 
 -- Soru sormadan doğrudan Android teması ile başla (Android Dark)

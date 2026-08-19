@@ -1,0 +1,31 @@
+Diese Anwendung soll die in der Türkei gültigen Standard-Verkehrszeichen vorstellen und erklären.
+
+INHALT
+Die Verkehrszeichen sind in folgende Kategorien unterteilt:
+
+1. GEFAHR- UND WARNZEICHEN
+Sie warnen Fahrer frühzeitig vor möglichen Gefahren auf der Straße, zum Beispiel vor Kurven, Fußgängerüberwegen und rutschiger Fahrbahn.
+
+2. VERKEHRSREGELUNGSZEICHEN
+Sie zeigen verbindliche Regeln wie Halt, Vorfahrt, Geschwindigkeitsbegrenzungen und Überholverbote.
+
+3. INFORMATIONSZEICHEN
+Sie informieren über Straßen und Umgebung, etwa über Richtungen, Entfernungen und Ortschaften.
+
+4. HALTE- UND PARKZEICHEN
+Sie zeigen, wo Halten oder Parken verboten oder erlaubt ist.
+
+5. SONDERZEICHEN
+Sie kennzeichnen besondere Situationen und besondere Zwecke.
+
+6. NEUE STANDARDZEICHEN
+Sie enthalten neue Zeichen, die mit aktuellen Änderungen der Verkehrsstandards eingeführt wurden.
+
+7. AUTOBAHNZEICHEN
+Sie informieren auf Autobahnen über Fahrordnung, Richtung, Ausfahrten, Anschlüsse und sichere Fahrbedingungen.
+
+SO WIRD DIE ANWENDUNG BENUTZT
+Wählen Sie auf der Startseite eine Kategorie und tippen Sie anschließend auf ein Zeichen. Das Zeichen wird vergrößert angezeigt; darunter erscheint eine Erklärung seiner Bedeutung.
+
+HAFTUNGSAUSSCHLUSS
+Die Informationen dienen ausschließlich Bildungszwecken. Für die im Straßenverkehr geltenden Regeln sind offizielle Quellen und die Veröffentlichungen zuständiger Behörden maßgeblich.

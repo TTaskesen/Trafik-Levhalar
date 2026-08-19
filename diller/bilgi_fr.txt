@@ -1,0 +1,31 @@
+Cette application présente et explique les panneaux routiers standard en vigueur en Turquie.
+
+CONTENU
+Les panneaux sont répartis dans les catégories suivantes :
+
+1. SIGNALISATION DE DANGER ET D’AVERTISSEMENT
+Elle avertit à l’avance des dangers possibles, comme les virages, les passages pour piétons et les chaussées glissantes.
+
+2. SIGNALISATION DE RÉGLEMENTATION
+Elle indique les règles obligatoires : arrêt, priorité, limitation de vitesse et interdiction de dépasser.
+
+3. SIGNALISATION D’INFORMATION
+Elle renseigne les usagers sur la route et ses environs, notamment les directions, les distances et les agglomérations.
+
+4. SIGNALISATION D’ARRÊT ET DE STATIONNEMENT
+Elle indique les endroits où l’arrêt ou le stationnement sont interdits ou autorisés.
+
+5. SIGNALISATION SPÉCIALE
+Elle regroupe les panneaux destinés aux situations et aux usages particuliers.
+
+6. NOUVEAUX PANNEAUX STANDARD
+Elle présente les panneaux ajoutés avec les mises à jour des normes de circulation.
+
+7. PANNEAUX D’AUTOROUTE
+Ils informent sur l’organisation de la route, les directions, les sorties, les raccordements et la conduite en sécurité.
+
+MODE D’EMPLOI
+Choisissez une catégorie sur l’accueil, puis touchez un panneau dans la liste. Le panneau s’affiche en grand et une explication de sa signification apparaît dessous.
+
+AVERTISSEMENT
+Ces informations sont fournies à des fins éducatives. Les règles officielles et les publications des autorités compétentes doivent être prises comme référence.
