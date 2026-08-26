@@ -5,6 +5,7 @@ local composer = require("composer")
 local widget = require("widget")
 local ortak = require("levha_ortak")
 local scene = composer.newScene()
+local GIZLILIK_URL = "https://ttaskesen.github.io/Trafik-Levhalar/privacy/"
 
 local politika = [[
 GİZLİLİK POLİTİKASI
@@ -51,12 +52,19 @@ function scene:create()
         "BebasNeue-Regular", 26)
     baslik:setFillColor(0.05, 0.3, 0.55)
 
-    local geri = display.newRoundedRect(grup, display.contentCenterX, ust + 76,
-        170, 42, 8)
+    local geri = display.newRoundedRect(grup, display.contentCenterX - 78, ust + 76,
+        142, 42, 8)
     geri:setFillColor(0.05, 0.3, 0.55)
     local geriMetin = display.newText(grup, "GERİ DÖN", geri.x, geri.y,
-        "Poppins-Bold", 14)
+        "Poppins-Bold", 12)
     geriMetin:setFillColor(1)
+
+    local webdeAc = display.newRoundedRect(grup, display.contentCenterX + 78, ust + 76,
+        142, 42, 8)
+    webdeAc:setFillColor(0.05, 0.3, 0.55)
+    local webdeAcMetin = display.newText(grup, "WEB'DE AÇ", webdeAc.x, webdeAc.y,
+        "Poppins-Bold", 12)
+    webdeAcMetin:setFillColor(1)
 
     local scroll = widget.newScrollView({
         top = ust + 105,
@@ -86,8 +94,14 @@ function scene:create()
         composer.gotoScene("sahne10", "slideRight", 350)
         return true
     end
+    local function webdeGoster()
+        system.openURL(GIZLILIK_URL)
+        return true
+    end
     geri:addEventListener("tap", don)
     geriMetin:addEventListener("tap", don)
+    webdeAc:addEventListener("tap", webdeGoster)
+    webdeAcMetin:addEventListener("tap", webdeGoster)
 end
 
 function scene:show(event)

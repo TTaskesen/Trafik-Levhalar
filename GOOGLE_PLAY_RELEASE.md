@@ -65,23 +65,20 @@ Son kontrol: Play Console'un yükleme ekranında paket adını, versionCode'u ve
 4. Yerel upload keystore yalnızca gelecek AAB yüklemelerini imzalamak için saklanır; kaybolursa Play Console üzerinden upload key sıfırlama süreci gerekir.
 5. Test başarılı olduktan sonra kapalı test ve ardından production akışına ilerleyin. Yeni kişisel geliştirici hesaplarında production erişimi için Play'in güncel kapalı test koşulları ayrıca uygulanabilir.
 
-## 5. Gizlilik politikasını GitHub Pages ile yayınlayın
+## 5. Gizlilik politikası: yayın durumu
 
-Bu repoda Pages kaynağı için hazır dosya `docs/privacy/index.html` konumundadır. Yayın yapılmamıştır.
+GitHub Pages yayındadır. Play Console'daki **Privacy policy** alanına aşağıdaki etkin HTTPS adresini girin:
 
-1. Değişiklikleri ancak gözden geçirip commit/push onayı verdikten sonra GitHub'a gönderin.
-2. GitHub deposunda **Settings → Pages** açın.
-3. **Build and deployment / Source** alanında **Deploy from a branch** seçin.
-4. Yayınlanacak dalı ve klasör olarak `/docs` seçin; Save'e basın.
-5. GitHub'ın gösterdiği HTTPS URL'nin, örneğin `https://ttaskesen.github.io/Trafik-Levhalar-/privacy/`, açıldığını gizli pencere ve mobil ağ üzerinden doğrulayın.
-6. Bu HTTPS adresini Play Console'daki Privacy policy alanına girin. İstenirse uygulama içindeki politika metni ile URL'deki metnin aynı release'i anlattığını tekrar karşılaştırın.
+`https://ttaskesen.github.io/Trafik-Levhalar/privacy/`
+
+Pages kaynağı `main` dalındaki `docs/` klasörüdür. Gizlilik metni değişirse commit/push sonrasında aynı URL'yi gizli pencere ve mobil ağ üzerinden yeniden doğrulayın. Uygulama içindeki **WEB'DE AÇ** düğmesi de bu adrese gider.
 
 Pages herkese açıktır; `docs/` altına anahtar, test verisi veya kişisel belge koymayın. Özel alan adı kullanılacaksa GitHub Pages ayarlarından ekleyin, DNS kaydını doğrulayın ve alan adını GitHub'da doğrulayın; rastgele bir `CNAME` dosyası eklemek yeterli değildir.
 
-## 6. Yayın öncesi zorunlu kontrol
+## 6. Play'e yüklemeden önce tamamlanacak kontroller
 
-- Güncel AAB'de release sertifikası, paket adı, `versionCode=6` ve `targetSdk=36` doğrulandı.
-- Release AAB'de hikâye yazma girişinin görünmediği, `INTERNET` izninin bulunmadığı ve statik hikâye okuyucunun çevrimdışı çalıştığı Android cihazda test edildi.
-- Gizlilik URL'si HTTPS üzerinde herkese açık, uygulama içi metinle ve Data Safety ile uyumlu.
-- Gerçek Android cihazdan ekran görüntüleri alındı ve tüm gezinme test edildi.
-- Play Console'daki Data Safety, reklamlar, hedef kitle, içerik derecelendirmesi ve mağaza listesi son AAB davranışına göre dolduruldu.
+- [ ] Güncel AAB'de release sertifikası, `com.taskesen.trafiklevhalari`, `versionCode=6` ve `targetSdk=36` doğrulandı.
+- [ ] Release AAB'de hikâye yazma girişinin görünmediği, `INTERNET` izninin bulunmadığı ve statik hikâye okuyucunun çevrimdışı çalıştığı gerçek Android cihazda test edildi.
+- [ ] Uygulama içindeki **WEB'DE AÇ** düğmesinin HTTPS politikasını tarayıcıda açtığı test edildi.
+- [ ] Play Console'daki Data Safety, reklamlar, hedef kitle, içerik derecelendirmesi ve mağaza listesi son AAB davranışına göre dolduruldu.
+- [ ] Mağaza simgesi, feature graphic ve gerçek uygulama ekran görüntüleri yüklendi.

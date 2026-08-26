@@ -42,7 +42,13 @@ function splash.baslangicGoster(tamamlandi)
 	baslik:setFillColor(1, 1, 1)
 	baslik.alpha = 0
 
+	local gelistirici = display.newText(grup, "Turgut Taşkesen tarafından geliştirilmiştir.",
+		display.contentCenterX, display.contentCenterY + 145, "Poppins-Medium", 12)
+	gelistirici:setFillColor(0.82, 0.87, 0.95)
+	gelistirici.alpha = 0
+
 	transition.to(baslik, { alpha = 1, time = 260 })
+	transition.to(gelistirici, { alpha = 1, time = 260, delay = 180 })
 	transition.to(logo, {
 		alpha = 1,
 		xScale = 1,

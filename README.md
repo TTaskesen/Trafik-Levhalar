@@ -36,7 +36,7 @@ cp uygulama_ayar.local.example.lua uygulama_ayar.local.lua
 
 ## Güvenlik ve gizlilik
 
-Keystore, imza dosyaları, Supabase yapılandırması ve yerel debug ayarları Git'e eklenmez. Release gizlilik politikası kaynağı `docs/privacy/index.html` dosyasındadır; GitHub Pages üzerinden HTTPS ile yayınlanmadan önce gözden geçirilmelidir.
+Keystore, imza dosyaları, Supabase yapılandırması ve yerel debug ayarları Git'e eklenmez. Release gizlilik politikası kaynağı `docs/privacy/index.html` dosyasıdır ve [GitHub Pages üzerinde yayındadır](https://ttaskesen.github.io/Trafik-Levhalar/privacy/).
 
 ## Kontroller
 

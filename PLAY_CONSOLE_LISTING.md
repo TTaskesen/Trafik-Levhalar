@@ -41,14 +41,21 @@ Nihai release AAB; kullanıcı hikâyesi yazma, Supabase, raporlama, reklam SDK'
 | Kullanıcı veri silme isteğinde bulunabilir mi? | Uygulama hesap veya kişisel veri tutmuyor. Gizlilik soruları destek e-postasından alınır. |
 | Reklam içeriyor mu? | Hayır; nihai AAB'de reklam SDK'sı veya reklam gösterimi bulunmadığı doğrulanırsa. |
 
-Gizlilik politikası URL'si, Data Safety beyanı ve nihai AAB aynı release davranışını anlatmalıdır.
+Gizlilik politikası URL'si `https://ttaskesen.github.io/Trafik-Levhalar/privacy/` olmalıdır. Data Safety beyanı ve nihai AAB aynı release davranışını anlatmalıdır.
 
 ## Mağaza varlıkları
 
-- 512 × 512 mağaza simgesi: gerçek final simgeyi yükleyin.
-- Feature graphic: Play Console'un güncel boyut/biçim kuralına uygun ve uygulamayı dürüstçe temsil eden görsel hazırlayın.
-- Gerçek Android release veya test AAB'sinden ekran görüntüleri: karşılama, kategori menüsü, levha listesi, levha açıklaması ve tarih/bilgi ekranı.
+- 512 × 512 mağaza simgesi: `Icon.png` (alfa kanallı PNG) yüklenmeye hazırdır.
+- Feature graphic: `store-assets/feature-graphic.png` (1024 × 500, alfa kanalsız PNG) **Main store listing → Graphics → Feature graphic** alanına yüklenmeye hazırdır.
+- Yayın için en az iki gerçek Android uygulama ekran görüntüsü yükleyin. Güncel imzalı AAB'den alınmış, cihaz çerçevesi veya yanıltıcı ek metin içermeyen görseller kullanın.
+- Önerilen dört dikey ekran: karşılama, kategori menüsü, levha listesi/açıklaması ve gizlilik politikası. 1080 × 1920 çözünürlük iyi bir başlangıçtır.
 - Açıklama ve ekran görüntülerinde uygulamada olmayan çevrimiçi işlev veya kullanıcı hikâyesi yazma özelliği vaat etmeyin.
+
+## Play Console'da ayrıca doğrulanacak beyanlar
+
+- **Uygulama erişimi:** Normal eğitim akışı giriş hesabı istemiyorsa, incelemeci için oturum açma veya özel erişim talimatı gerekmez. İmzalı AAB'de bunun hâlâ geçerli olduğunu kontrol edin.
+- **Reklamlar:** Son AAB'de reklam SDK'sı veya reklam gösterimi yoksa “Uygulamam reklam içermiyor” beyanı seçilebilir. AAB oluşturulduktan sonra tekrar doğrulayın.
+- **Hedef API:** `targetSdk=36` olarak ayarlı. Console gönderiminden hemen önce Google Play'in geçerli hedef API şartını tekrar kontrol edin.
 
 ## Supabase yeniden açılırsa: UGC kontrol listesi
 

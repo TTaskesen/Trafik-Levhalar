@@ -55,14 +55,14 @@ settings =
 			"LaunchScreen.storyboardc",
 			-- Kullanıcı hikâyesi yazma/Supabase yalnız debug akışıdır.
 			"sahne13.lua", "sahne14.lua", "hikaye_*.lua",
-			"supabase_hikayeler.lua", "supabase_config.lua", "ugc_*.lua",
+			"supabase_hikayeler.lua", "supabase_config.lua", "supabase_config.example.lua", "ugc_*.lua",
 			"uygulama_ayar.local.lua", "uygulama_ayar.local.example.lua",
 			-- Aynı çalışma ağacındaki bağımsız e-kitap projesi release AAB'ye girmez.
 			"e-book/*",
 			-- Supabase migration betiği yalnız geliştirici içindir, uygulamaya girmez.
 			"supabase/*.sql",
 			-- Yayın belgeleri ve GitHub Pages kaynağı AAB'ye dahil edilmez.
-			"docs/*", "privacy-policy.html", "GOOGLE_PLAY_RELEASE.md", "PLAY_CONSOLE_LISTING.md",
+			"docs/*", "store-assets/*", "privacy-policy.html", "GOOGLE_PLAY_RELEASE.md", "PLAY_CONSOLE_LISTING.md",
 		},
 	},
 }
