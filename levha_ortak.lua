@@ -47,23 +47,39 @@ local yerelLevhaAdlari = {
     }
 }
 
-local yerelLevhaAciklamalari = {
-    de = {
-        ["Park yeri"] = "Dieses Zeichen weist auf einen ausgewiesenen Parkplatz hin. Parken Sie nur innerhalb der markierten Fläche und beachten Sie die örtlichen Regeln.",
-        ["Yaya geçidi"] = "Dieses Zeichen weist auf einen Fußgängerüberweg hin. Fahrer müssen langsamer fahren und Fußgängern das sichere Überqueren ermöglichen.",
-        ["Okul geçidi"] = "Dieses Zeichen warnt vor einem Schulübergang. Fahren Sie besonders vorsichtig und achten Sie auf Kinder, die die Straße überqueren können."
-    },
-    fr = {
-        ["Park yeri"] = "Ce panneau indique une place de stationnement aménagée. Garez-vous uniquement dans la zone prévue et respectez les règles locales.",
-        ["Yaya geçidi"] = "Ce panneau indique un passage pour piétons. Les conducteurs doivent ralentir et permettre aux piétons de traverser en sécurité.",
-        ["Okul geçidi"] = "Ce panneau avertit de la présence d’un passage scolaire. Conduisez avec une attention particulière et surveillez les enfants."
-    },
-    ko = {
-        ["Park yeri"] = "이 표지는 지정된 주차 장소를 나타냅니다. 표시된 구역 안에 주차하고 현지 규정을 지켜야 합니다.",
-        ["Yaya geçidi"] = "이 표지는 보행자 횡단보도를 나타냅니다. 운전자는 속도를 줄이고 보행자가 안전하게 건너도록 해야 합니다.",
-        ["Okul geçidi"] = "이 표지는 학교 앞 횡단보도를 알립니다. 어린이가 건널 수 있으므로 특히 주의해서 운전해야 합니다."
-    }
-}
+-- Uzun levha açıklamaları dil dosyalarında tutulur. Böylece çeviri içeriği
+-- arayüz kodundan bağımsız olarak kategori kategori tamamlanabilir.
+local detayCeviriOnbellegi = {}
+
+local function detayCevirileriniOku(dilKodu)
+    if detayCeviriOnbellegi[dilKodu] ~= nil then
+        return detayCeviriOnbellegi[dilKodu]
+    end
+
+    local yol = system.pathForFile("diller/levha_detay_" .. dilKodu .. ".json", system.ResourceDirectory)
+    if not yol then
+        detayCeviriOnbellegi[dilKodu] = false
+        return nil
+    end
+
+    local dosya = io.open(yol, "r")
+    if not dosya then
+        detayCeviriOnbellegi[dilKodu] = false
+        return nil
+    end
+
+    local icerik = dosya:read("*a")
+    dosya:close()
+
+    local basarili, ceviriler = pcall(json.decode, icerik)
+    if basarili and type(ceviriler) == "table" then
+        detayCeviriOnbellegi[dilKodu] = ceviriler
+        return ceviriler
+    end
+
+    detayCeviriOnbellegi[dilKodu] = false
+    return nil
+end
 
 local levhaTerimleri = {
     de = {
@@ -357,8 +373,42 @@ function ortak.levhaAciklamasi(kayit)
     if type(kayit) ~= "table" then
         return ""
     end
-    local ceviriler = yerelLevhaAciklamalari[dil.kodu()]
-    return (ceviriler and ceviriler[kayit.ad]) or kayit.aciklama or ""
+
+    local aktifDil = dil.kodu()
+    if aktifDil == "tr" then
+        return kayit.aciklama or ""
+    end
+
+    local ceviriler = detayCevirileriniOku(aktifDil)
+    if ceviriler and type(ceviriler[kayit.ad]) == "string" and ceviriler[kayit.ad] ~= "" then
+        return ceviriler[kayit.ad]
+    end
+
+    -- Çevirisi henüz eklenmemiş kayıtlar için Türkçe uzun yönetmelik metnini
+    -- göstermeyiz. Bu kısa, güvenli açıklama kullanıcıyı yerel kural kaynağına
+    -- yönlendirir; tam çeviri ilgili dil dosyasına eklenmelidir.
+    local cevrilmisAd = ortak.levhaAdi(kayit.ad or "")
+    if aktifDil == "de" then
+        if cevrilmisAd == kayit.ad then
+            return "Dieses Verkehrszeichen weist auf eine Verkehrsregel oder Verkehrsinformation hin. Beachten Sie die örtlichen Verkehrsregeln und die Angaben auf dem Schild."
+        end
+        return "Dieses Verkehrszeichen bezieht sich auf „" .. cevrilmisAd
+            .. "“. Beachten Sie die örtlichen Verkehrsregeln und die Angaben auf dem Schild."
+    elseif aktifDil == "fr" then
+        if cevrilmisAd == kayit.ad then
+            return "Ce panneau indique une règle ou une information de circulation. Respectez les règles locales et les indications du panneau."
+        end
+        return "Ce panneau concerne « " .. cevrilmisAd
+            .. " ». Respectez les règles locales de circulation et les indications du panneau."
+    elseif aktifDil == "ko" then
+        if cevrilmisAd == kayit.ad then
+            return "이 표지는 교통 규정 또는 교통 정보를 안내합니다. 현지 교통 규정과 표지의 안내를 따라야 합니다."
+        end
+        return "이 표지는 ‘" .. cevrilmisAd
+            .. "’에 관한 교통 표지입니다. 현지 교통 규정과 표지의 안내를 따라야 합니다."
+    end
+
+    return kayit.aciklama or ""
 end
 
 function ortak.listeBasligi(kod, adet)
