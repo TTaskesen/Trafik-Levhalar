@@ -2,7 +2,11 @@
 -- Supabase REST bağlantısı. Ayarlar boşsa uygulama yerel kayıtla çalışır.
 --------------------------------------------------------------------------------
 local json = require("json")
-local config = require("supabase_config")
+local config = {}
+local yuklendi, yerelConfig = pcall(require, "supabase_config")
+if yuklendi and type(yerelConfig) == "table" then
+    config = yerelConfig
+end
 
 local supabase = {}
 
@@ -50,17 +54,26 @@ function supabase.aktif()
     return hazirMi()
 end
 
-function supabase.hikayeGonder(baslik, metin, dilKodu, listener)
-    return istekYap("POST", "hikayeler", {
-        baslik = baslik,
-        metin = metin,
-        dil = dilKodu or "tr",
-        durum = "beklemede"
-    }, listener)
+function supabase.hikayeGonder(baslik, metin, dilKodu, yazarKimligi, listener)
+	return istekYap("POST", "hikayeler", {
+		baslik = baslik,
+		metin = metin,
+		dil = dilKodu or "tr",
+		yazar_kimligi = yazarKimligi,
+		durum = "beklemede"
+	}, listener)
 end
 
 function supabase.yayinlananlariGetir(listener)
-    return istekYap("GET", "hikayeler?select=id,baslik,metin,dil,olusturma_tarihi&durum=eq.yayinda&order=olusturma_tarihi.desc", nil, listener)
+	return istekYap("GET", "hikayeler?select=id,baslik,metin,dil,yazar_kimligi,olusturma_tarihi&durum=eq.yayinda&order=olusturma_tarihi.desc", nil, listener)
+end
+
+function supabase.icerikBildir(hikayeId, bildirenKimlik, neden, listener)
+	return istekYap("POST", "hikaye_raporlari", {
+		hikaye_id = hikayeId,
+		bildiren_kimlik = bildirenKimlik,
+		neden = neden
+	}, listener)
 end
 
 return supabase

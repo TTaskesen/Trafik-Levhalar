@@ -8,6 +8,7 @@ local widget = require("widget")
 local sahneDegis = require("composer")
 local ortak = require("levha_ortak")
 local dil = require("dil")
+local ayarlar = require("uygulama_ayar")
 local sahne = sahneDegis.newScene()
 
 local tabBar
@@ -149,47 +150,59 @@ function sahne:create(olay)
 	baslaButonu:addEventListener("touch", baslaDokun)
 	baslaMetin:addEventListener("touch", baslaDokun)
 
-	-- Hikâye kısayolu: sahne7'ye gider
-	local hikayeYazi = display.newText({
-		text = dil.metin("hikaye_oku"),
-		x = 0, y = 0,
-		font = "Poppins-Bold",
-		fontSize = 14
-	})
-	hikayeYazi:setFillColor(0.05, 0.3, 0.55)
-	hikayeYazi.x = display.contentCenterX
-	hikayeYazi.y = hikayeY
-	sceneGroup:insert(hikayeYazi)
+	local hikayeYazi
+	local hikayeYazMetni
+	if ayarlar.hikayeOkumaAktif then
+		-- Hikâye kısayolu: sahne7'ye gider
+		hikayeYazi = display.newText({
+			text = dil.metin("hikaye_oku"),
+			x = 0, y = 0,
+			font = "Poppins-Bold",
+			fontSize = 14
+		})
+		hikayeYazi:setFillColor(0.05, 0.3, 0.55)
+		hikayeYazi.x = display.contentCenterX
+		hikayeYazi.y = hikayeY
+		sceneGroup:insert(hikayeYazi)
 
-	local function hikayeDokun(olay)
-		if olay.phase == "began" then
-			if tabBar then
-				tabBar.isVisible = true
+		local function hikayeDokun(olay)
+			if olay.phase == "began" then
+				if tabBar then
+					tabBar.isVisible = true
+				end
+				sahneDegis.gotoScene("sahne7", "fade", 400)
+				return true
 			end
-			sahneDegis.gotoScene("sahne7", "fade", 400)
-			return true
 		end
+		hikayeYazi:addEventListener("touch", hikayeDokun)
+
 	end
-	hikayeYazi:addEventListener("touch", hikayeDokun)
 
-	local hikayeYazMetni = display.newText(dil.metin("hikaye_yaz"), 0, 0, "Poppins-Bold", 14)
-	hikayeYazMetni:setFillColor(0.05, 0.3, 0.55)
-	hikayeYazMetni.x, hikayeYazMetni.y = display.contentCenterX, hikayeY + 52
-	sceneGroup:insert(hikayeYazMetni)
+	if ayarlar.hikayeYazmaDebug then
+		hikayeYazMetni = display.newText(dil.metin("hikaye_yaz"), 0, 0, "Poppins-Bold", 14)
+		hikayeYazMetni:setFillColor(0.05, 0.3, 0.55)
+		hikayeYazMetni.x, hikayeYazMetni.y = display.contentCenterX, hikayeY + 52
+		sceneGroup:insert(hikayeYazMetni)
 
-	local function hikayeYazDokun(olay)
-		if olay.phase == "began" then
-			sahneDegis.gotoScene("sahne13", "fade", 400)
-			return true
+		local function hikayeYazDokun(olay)
+			if olay.phase == "began" then
+				sahneDegis.gotoScene("sahne13", "fade", 400)
+				return true
+			end
 		end
+		hikayeYazMetni:addEventListener("touch", hikayeYazDokun)
 	end
-	hikayeYazMetni:addEventListener("touch", hikayeYazDokun)
 
 	local function metinleriGuncelle()
 		baslik.text = dil.metin("uygulama_basligi")
 		altBaslik.text = dil.metin("uygulama_alt_basligi")
 		baslaMetin.text = dil.metin("basla")
-		hikayeYazi.text = dil.metin("hikaye_oku")
+		if hikayeYazi then
+			hikayeYazi.text = dil.metin("hikaye_oku")
+		end
+		if hikayeYazMetni then
+			hikayeYazMetni.text = dil.metin("hikaye_yaz")
+		end
 	end
 
 	local function dilSecDokun(olay)
@@ -202,36 +215,10 @@ function sahne:create(olay)
 			return true
 		end
 
-		if secim.kod == "tr" then
-			return true
-		end
-
-		if dilToast then
-			transition.cancel(dilToast)
-			dilToast:removeSelf()
-			dilToast = nil
-		end
-
-		dilToast = display.newText({
-			parent = sceneGroup,
-			text = dil.metin("dil_hazirlaniyor"),
-			x = display.contentCenterX,
-			y = ekranBilgileri.safeBottom - 24,
-			width = display.contentWidth - 24,
-			font = "Poppins-Bold",
-			fontSize = 12,
-			align = "center"
-		})
-		dilToast:setFillColor(0.05, 0.3, 0.55)
-		dilToast.alpha = 0
-		transition.to(dilToast, { alpha = 1, time = 180, onComplete = function()
-			transition.to(dilToast, { alpha = 0, time = 300, delay = 1800, onComplete = function()
-				if dilToast then
-					dilToast:removeSelf()
-					dilToast = nil
-				end
-			end })
-		end })
+		dil.sec(secim.kod)
+		metinleriGuncelle()
+		local etiketleriGuncelle = sahneDegis.getVariable("dilEtiketleriniGuncelle")
+		if etiketleriGuncelle then etiketleriGuncelle() end
 		return true
 	end
 

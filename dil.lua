@@ -96,9 +96,8 @@ function dil.metin(anahtar)
     return metinler[anahtar] or anahtar
 end
 
--- Çeviri çalışmaları tamamlanana kadar uygulama arayüzü Türkçe açılır.
--- Diğer dil dosyaları ve dil altyapısı korunur; dil düğmeleri şu aşamada
--- yalnızca çalışma durumunu bildiren mesaj gösterir.
-dil.yukle("tr")
+-- İlk açılışta kayıtlı veya cihaz dili kullanılır; kullanıcı karşılama
+-- ekranından dili değiştirdiğinde seçim cihazda saklanır.
+dil.yukle()
 
 return dil

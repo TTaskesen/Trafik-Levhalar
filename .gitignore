@@ -18,3 +18,10 @@ desktop.ini
 
 # Supabase publishable key is supplied locally; keep the template tracked instead.
 supabase_config.lua
+uygulama_ayar.local.lua
+
+# Release signing credentials must never be committed.
+*.jks
+*.keystore
+key.properties
+signing.properties

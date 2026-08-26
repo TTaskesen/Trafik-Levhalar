@@ -7,6 +7,9 @@ local ortak = require("levha_ortak")
 local hikayeKayit = require("hikaye_kayit")
 local guvenlik = require("hikaye_guvenlik")
 local supabase = require("supabase_hikayeler")
+local ugcKimlik = require("ugc_kimlik")
+local ugcPolitika = require("ugc_politikasi")
+local ayarlar = require("uygulama_ayar")
 local scene = composer.newScene()
 
 local alani
@@ -14,13 +17,6 @@ local baslikAlani
 local tabBar
 local durumMesaji
 local gonderiliyor = false
-local GONDERILECEK_ADRES = "turguttaskesen@gmail.com"
-
-local function urlKodla(metin)
-	return tostring(metin or ""):gsub("[^%w%-%._~ ]", function(karakter)
-		return string.format("%%%02X", string.byte(karakter))
-	end):gsub(" ", "%%20")
-end
 
 local function anaSayfayaDon()
 	composer.gotoScene("giris", "fade", 400)
@@ -196,15 +192,28 @@ function scene:create()
 			durumGoster(hataMesaji, true)
 			return true
 		end
+		if not ayarlar.hikayeSunucuAktif then
+			hikayeKayit.ekle(baslik, hikaye)
+			alani.text = ""
+			baslikAlani.text = ""
+			baslikYerTutucu.isVisible = true
+			metinYerTutucu.isVisible = true
+			durumGoster("Hikâyen yalnızca bu cihazda kaydedildi.", false)
+			return true
+		end
+		if not ugcPolitika.kabulEdildiMi() then
+			native.showAlert("Kullanım Koşulları", ugcPolitika.metin,
+				{ "Vazgeç", "Kabul Et" }, function(sonuc)
+					if sonuc.action == "clicked" and sonuc.index == 2 then
+						ugcPolitika.kabulEt()
+						gonderDokun({ phase = "ended" })
+					end
+				end)
+			return true
+		end
 		gonderiliyor = true
 		guvenlik.gonderimBaslat()
-		local konu = dil.metin("hikaye_mail_konu") .. ": " .. baslik
-		local govde = dil.metin("hikaye_mail_giris") .. "\n\n" .. hikaye
-		local mailto = "mailto:" .. GONDERILECEK_ADRES
-			.. "?subject=" .. urlKodla(konu)
-			.. "&body=" .. urlKodla(govde)
-		system.openURL(mailto)
-		local istekBasladi = supabase.hikayeGonder(baslik, hikaye, dil.kodu(), function(basarili)
+		local istekBasladi = supabase.hikayeGonder(baslik, hikaye, dil.kodu(), ugcKimlik.kodu(), function(basarili)
 			gonderiliyor = false
 			if basarili then
 				hikayeKayit.ekle(baslik, hikaye)

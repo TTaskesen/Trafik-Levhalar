@@ -8,6 +8,8 @@ local ortak = require("levha_ortak")
 local kayit = require("hikaye_kayit")
 local hikayeCache = require("hikaye_cache")
 local supabase = require("supabase_hikayeler")
+local ugcKimlik = require("ugc_kimlik")
+local engelleme = require("ugc_engelleme")
 local scene = composer.newScene()
 
 function scene:create()
@@ -60,23 +62,38 @@ function scene:create()
 	local function kartlariYerlestir()
 		local y = 12
 		for _, kart in ipairs(kartlar) do
-			local yukseklik = kart.baslikYuksekligi + 18
-			if kart.acik then
-				yukseklik = yukseklik + kart.metin.height + 18
-				kart.metin.isVisible = true
+			if kart.engellendi then
+				kart.grup.isVisible = false
 			else
+				kart.grup.isVisible = true
+				local yukseklik = kart.baslikYuksekligi + 18
+				if kart.acik then
+				yukseklik = yukseklik + kart.metin.height + 18 + kart.kontrolYuksekligi
+				kart.metin.isVisible = true
+				if kart.bildir then kart.bildir.isVisible = true; kart.bildirYazi.isVisible = true end
+				if kart.engelle then kart.engelle.isVisible = true; kart.engelleYazi.isVisible = true end
+				else
 				kart.metin.isVisible = false
+				if kart.bildir then kart.bildir.isVisible = false; kart.bildirYazi.isVisible = false end
+				if kart.engelle then kart.engelle.isVisible = false; kart.engelleYazi.isVisible = false end
+				end
+				kart.zemin.height = yukseklik
+				kart.zemin.y = yukseklik * 0.5
+				kart.grup.y = y
+				kart.metin.y = kart.baslikYuksekligi + 10
+				if kart.bildir then
+				kart.bildir.y = yukseklik - 14
+				kart.bildirYazi.y = kart.bildir.y
+				kart.engelle.y = kart.bildir.y
+				kart.engelleYazi.y = kart.engelle.y
+				end
+				y = y + yukseklik + 10
 			end
-			kart.zemin.height = yukseklik
-			kart.zemin.y = yukseklik * 0.5
-			kart.grup.y = y
-			kart.metin.y = kart.baslikYuksekligi + 10
-			y = y + yukseklik + 10
 		end
 		scroll:setScrollHeight(math.max(scroll.height, y + 12))
 	end
 
-	local function kartEkle(baslik, metin, tarih)
+	local function kartEkle(baslik, metin, tarih, hikayeId, yazarKimligi)
 		if bosYazi then
 			bosYazi:removeSelf()
 			bosYazi = nil
@@ -118,7 +135,8 @@ function scene:create()
 			grup = kartGrubu,
 			metin = kartMetni,
 			baslikYuksekligi = math.max(30, kartBasligi.height),
-			acik = false
+			acik = false,
+			kontrolYuksekligi = hikayeId and 34 or 0
 		}
 		kart.zemin = display.newRoundedRect(kartGrubu, scroll.width * 0.5, 0,
 			scroll.width - 16, 1, 8)
@@ -136,6 +154,39 @@ function scene:create()
 		kart.zemin:addEventListener("tap", kartDokun)
 		kartBasligi:addEventListener("tap", kartDokun)
 		kartMetni:addEventListener("tap", kartDokun)
+		if hikayeId and yazarKimligi and yazarKimligi ~= ugcKimlik.kodu() then
+			kart.bildir = display.newRoundedRect(kartGrubu, 74, 0, 110, 24, 6)
+			kart.bildir:setFillColor(0.75, 0.2, 0.15)
+			kart.bildirYazi = display.newText(kartGrubu, "İÇERİĞİ BİLDİR", kart.bildir.x, 0, "Poppins-Bold", 8)
+			kart.bildirYazi:setFillColor(1)
+			kart.engelle = display.newRoundedRect(kartGrubu, 194, 0, 94, 24, 6)
+			kart.engelle:setFillColor(0.28, 0.28, 0.35)
+			kart.engelleYazi = display.newText(kartGrubu, "ENGELLE", kart.engelle.x, 0, "Poppins-Bold", 8)
+			kart.engelleYazi:setFillColor(1)
+			local function bildir()
+				native.showAlert("İçeriği bildir", "Neden seçin:", { "Vazgeç", "Uygunsuz", "Taciz", "Telif" }, function(sonuc)
+					local nedenler = { [2] = "uygunsuz", [3] = "taciz", [4] = "telif" }
+					local neden = nedenler[sonuc.index]
+					if sonuc.action == "clicked" and neden then
+						supabase.icerikBildir(hikayeId, ugcKimlik.kodu(), neden, function(basarili)
+							native.showAlert("İçerik bildirimi", basarili and "Bildiriminiz incelenmek üzere alındı." or "Bildirim gönderilemedi.", { "Tamam" })
+						end)
+					end
+				end)
+				return true
+			end
+			local function engelle()
+				if engelleme.engelle(yazarKimligi) then
+					kart.engellendi = true
+					kartlariYerlestir()
+				end
+				return true
+			end
+			kart.bildir:addEventListener("tap", bildir)
+			kart.bildirYazi:addEventListener("tap", bildir)
+			kart.engelle:addEventListener("tap", engelle)
+			kart.engelleYazi:addEventListener("tap", engelle)
+		end
 		kartlar[#kartlar + 1] = kart
 		kartlariYerlestir()
 	end
@@ -180,9 +231,9 @@ function scene:create()
 			if not scene.view then return end
 			for _, hikaye in ipairs(sonuc) do
 				local anahtar = hikayeAnahtari(hikaye.metin)
-				if not gorunenHikayeler[anahtar] then
+				if not gorunenHikayeler[anahtar] and not engelleme.engelliMi(hikaye.yazar_kimligi) then
 					gorunenHikayeler[anahtar] = true
-					kartEkle(hikaye.baslik, hikaye.metin, hikaye.olusturma_tarihi)
+					kartEkle(hikaye.baslik, hikaye.metin, hikaye.olusturma_tarihi, hikaye.id, hikaye.yazar_kimligi)
 				end
 			end
 		end)

@@ -112,6 +112,16 @@ function scene:create(event)
 
     metinOlustur()
     sceneGroup:insert(scrollViewMetin)
+
+    local gizlilik = display.newText(sceneGroup, "GİZLİLİK POLİTİKASI",
+        display.contentCenterX, baslikY + 38,
+        "Poppins-Bold", 11)
+    gizlilik:setFillColor(0.05, 0.3, 0.55)
+    gizlilik.isHitTestable = true
+    gizlilik:addEventListener("tap", function()
+        composer.gotoScene("gizlilik", "slideLeft", 350)
+        return true
+    end)
 end
 
 function scene:show(event)
