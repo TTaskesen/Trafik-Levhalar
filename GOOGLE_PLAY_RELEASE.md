@@ -2,7 +2,7 @@
 
 ## Sabit release bilgileri
 
-- Paket adı: `com.turguttaskesen.trafiklevhalari`
+- Paket adı: `com.taskesen.trafiklevhalari`
 - Sürüm adı: `1.0.0`
 - Sürüm kodu: `6`
 - Hedef: Google Play, `targetSdk=36`
@@ -28,7 +28,7 @@ Komutun istediği keystore ve anahtar parolalarını bir parola yöneticisine ka
 1. Solar2D Simulator'da bu proje klasörünü açın.
 2. **File → Build → Android** seçin.
 3. Application Name için `Trafik Levhaları` yazın.
-4. Package alanına tam olarak `com.turguttaskesen.trafiklevhalari` girin. İlk Play yüklemesinden sonra bu ad değiştirilemez.
+4. Package alanına tam olarak `com.taskesen.trafiklevhalari` girin. İlk Play yüklemesinden sonra bu ad değiştirilemez.
 5. Version Name `1.0.0`, Version Code `6` olmalı. Yeni bir Play yüklemesinde versionCode artırılmalıdır.
 6. Target App Store olarak **Google Play** seçin.
 7. Keystore menüsünde **Debug** seçmeyin. Özel upload `.jks` dosyasını, parolasını ve `trafik-levhalari-upload` alias'ını seçin.
