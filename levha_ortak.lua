@@ -9,6 +9,7 @@ local ortak = {}
 local BASLIK_MAVI = { 0.05, 0.30, 0.55 }
 local BASLIK_MAVI_ACIK = { 0.08, 0.40, 0.68 }
 local BASLIK_BEYAZ = { 1, 1, 1 }
+local LISTE_ALT_ALAN_YUKSEKLIGI = 84
 
 -- Çevrilen ad varsa onu kullanır; eksik çevirilerde Türkçe ad korunur.
 local yerelLevhaAdlari = {
@@ -468,6 +469,7 @@ function ortak.ekranBilgileri()
         letterboxX = math.abs(originX),
         letterboxY = math.abs(originY),
         safeBottom = safeOriginY + safeHeight,
+        actualBottom = originY + (display.actualContentHeight or display.contentHeight),
         bottomInset = math.max(8, bottomInset)
     }
 end
@@ -628,11 +630,36 @@ end
 
 function ortak.listeGeriDonButonu(sceneGroup, onRelease)
     local ekran = ortak.ekranBilgileri()
+    -- Alt alan fiziksel ekranın sonuna kadar uzanır; düğmenin altındaki bölüm
+    -- Android sistem gezinme alanından görsel olarak ayrılmasını sağlar.
+    local altAlanAlti = ekran.actualBottom
+    local altAlanUstu = altAlanAlti - LISTE_ALT_ALAN_YUKSEKLIGI
+    local altAlan = display.newRect(
+        sceneGroup,
+        display.contentCenterX,
+        altAlanAlti - (LISTE_ALT_ALAN_YUKSEKLIGI / 2),
+        display.contentWidth + (ekran.letterboxX * 2),
+        LISTE_ALT_ALAN_YUKSEKLIGI
+    )
+    altAlan:setFillColor(0.92, 0.95, 0.98)
+    altAlan:addEventListener("touch", function()
+        return true
+    end)
+
     local buton = ortak.geriDonButonu(onRelease)
     buton.x = display.contentCenterX
-    buton.y = ekran.safeBottom - 28
+    -- Düğme gri alt alanda ortanın biraz üstünde kalır; listeye daha yakın
+    -- görünür ve Android sistem gezinme simgelerinden ayrık kalır.
+    buton.y = altAlanUstu + (LISTE_ALT_ALAN_YUKSEKLIGI / 2) - 32
     sceneGroup:insert(buton)
     return buton
+end
+
+-- Liste satırlarını alt eylem alanından önce bitirir. Böylece son satır,
+-- Geri Dön düğmesinin devamı gibi görünmez ve düğmenin altında kalmaz.
+function ortak.listeIcerikYuksekligi(oy)
+    local toplam = display.contentHeight - 70 + ((oy or 0) * 2)
+    return math.max(80, toplam - LISTE_ALT_ALAN_YUKSEKLIGI)
 end
 
 function ortak.tabBarGizle(tabBar, sure)

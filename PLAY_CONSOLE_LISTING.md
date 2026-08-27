@@ -6,7 +6,7 @@ Bu taslak, kullanıcı hikâyesi yazma ve Supabase kaynakları release AAB'den �
 
 - Uygulama adı: Trafik Levhaları
 - Uygulama türü: Uygulama
-- Paket adı: `com.taskesen.trafiklevhalari`
+- Paket adı: `com.taskesen.trafiklevhalaritr`
 - Kategori önerisi: Eğitim
 - İletişim e-postası: `turguttaskesen@gmail.com`
 

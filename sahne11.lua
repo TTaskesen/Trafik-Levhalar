@@ -202,7 +202,7 @@ function scene:create(event)
             top = -oy,
             left = -ox,
             width = display.contentWidth + ox + ox,
-            height = display.contentHeight - 70 + oy + oy,
+            height = ortak.listeIcerikYuksekligi(oy),
             hideBackground = true,
             onRowRender = onRowRender,
             onRowTouch = onRowTouch,

@@ -21,6 +21,8 @@ settings =
 		-- oluşturulan AAB'nin manifestinden ayrıca doğrulanmalıdır.
 		versionCode = "6",
 		versionName = "1.0.0",
+		-- Google Play kapalı test yükleyicisi API 21 ve üzerini gerektirir.
+		minSdkVersion = "21",
 	},
 
 	--

@@ -2,7 +2,7 @@
 
 ## Sabit release bilgileri
 
-- Paket adı: `com.taskesen.trafiklevhalari`
+- Paket adı: `com.taskesen.trafiklevhalaritr`
 - Sürüm adı: `1.0.0`
 - Sürüm kodu: `6`
 - Hedef: Google Play, `targetSdk=36`
@@ -28,7 +28,7 @@ Komutun istediği keystore ve anahtar parolalarını bir parola yöneticisine ka
 1. Solar2D Simulator'da bu proje klasörünü açın.
 2. **File → Build → Android** seçin.
 3. Application Name için `Trafik Levhaları` yazın.
-4. Package alanına tam olarak `com.taskesen.trafiklevhalari` girin. İlk Play yüklemesinden sonra bu ad değiştirilemez.
+4. Package alanına tam olarak `com.taskesen.trafiklevhalaritr` girin. Bu değer Play Console'da oluşturulan uygulama kaydıyla aynı olmalıdır; ilk Play yüklemesinden sonra değiştirilemez.
 5. Version Name `1.0.0`, Version Code `6` olmalı. Yeni bir Play yüklemesinde versionCode artırılmalıdır.
 6. Target App Store olarak **Google Play** seçin.
 7. Keystore menüsünde **Debug** seçmeyin. Özel upload `.jks` dosyasını, parolasını ve `trafik-levhalari-upload` alias'ını seçin.
@@ -77,7 +77,7 @@ Pages herkese açıktır; `docs/` altına anahtar, test verisi veya kişisel bel
 
 ## 6. Play'e yüklemeden önce tamamlanacak kontroller
 
-- [ ] Güncel AAB'de release sertifikası, `com.taskesen.trafiklevhalari`, `versionCode=6` ve `targetSdk=36` doğrulandı.
+- [ ] Güncel AAB'de release sertifikası, `com.taskesen.trafiklevhalaritr`, `versionCode=6` ve `targetSdk=36` doğrulandı.
 - [ ] Release AAB'de hikâye yazma girişinin görünmediği, `INTERNET` izninin bulunmadığı ve statik hikâye okuyucunun çevrimdışı çalıştığı gerçek Android cihazda test edildi.
 - [ ] Uygulama içindeki **WEB'DE AÇ** düğmesinin HTTPS politikasını tarayıcıda açtığı test edildi.
 - [ ] Play Console'daki Data Safety, reklamlar, hedef kitle, içerik derecelendirmesi ve mağaza listesi son AAB davranışına göre dolduruldu.
