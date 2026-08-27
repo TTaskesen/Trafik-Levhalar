@@ -25,6 +25,17 @@ settings =
 		minSdkVersion = "21",
 	},
 
+	-- Solar2D'nin varsayılan açılış logosu yerine uygulama simgesini gösterir.
+	-- Görsel, Android paketi oluşturulurken başlangıç ekranı için kullanılır.
+	splashScreen =
+	{
+		android =
+		{
+			enable = true,
+			image = "splash-icon.png",
+		},
+	},
+
 	--
 	-- iOS section
 	--
