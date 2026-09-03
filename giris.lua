@@ -124,9 +124,9 @@ function sahne:create(olay)
 	end
 
 	local function basla()
-		if tabBar then
-			tabBar.isVisible = true
-		end
+		-- Hikâye ekranı menüyü dokunulamaz duruma getirebilir; ana
+		-- uygulama akışına dönülürken hem görünürlüğü hem dokunmayı aç.
+		ortak.tabBarGoster(tabBar, 0)
 		sahneDegis.gotoScene("sahne1", "fade", 500)
 	end
 
@@ -167,9 +167,10 @@ function sahne:create(olay)
 
 		local function hikayeDokun(olay)
 			if olay.phase == "began" then
-				if tabBar then
-					tabBar.isVisible = true
-				end
+				-- Hikâye, ana uygulama gezinmesinden bağımsız okunur.
+				-- Geçiş sırasında dahi alt menünün görünür veya dokunulabilir
+				-- olmaması gerekir.
+				ortak.tabBarGizle(tabBar, 0)
 				sahneDegis.gotoScene("sahne7", "fade", 400)
 				return true
 			end
@@ -252,11 +253,9 @@ function sahne:show(olay)
 end
 
 function sahne:hide(olay)
-	if "will" == olay.phase then
-		if tabBar then
-			tabBar.isVisible = true
-		end
-	end
+	-- Alt menü yalnız "Başla" akışında açılır. Bu nedenle karşılama
+	-- ekranından çıkarken menüyü genel olarak görünür yapmayın; hikâye
+	-- geçişinde dört sekmenin etkinleşmesini önler.
 end
 
 function sahne:destroy(olay)

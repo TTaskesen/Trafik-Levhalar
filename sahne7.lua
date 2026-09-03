@@ -294,7 +294,9 @@ function sahne:show(olay)
 
 	if "did" == faz then
 		local tabBar = sahneDegis.getVariable("tabBar")
-		ortak.tabBarGoster(tabBar)
+		-- Hikâye okuma ekranında ana uygulama sekmeleri görünmez ve
+		-- dokunulamaz kalmalıdır.
+		ortak.tabBarGizle(tabBar, 0)
 
 		collectgarbage("collect")
 
