@@ -153,7 +153,7 @@ function sahne:create(olay)
 	local hikayeYazi
 	local hikayeYazMetni
 	if ayarlar.hikayeOkumaAktif then
-		-- Hikâye kısayolu: sahne7'ye gider
+		-- Hikâye kısayolu önce paketlenmiş hikâyelerin seçim ekranını açar.
 		hikayeYazi = display.newText({
 			text = dil.metin("hikaye_oku"),
 			x = 0, y = 0,
@@ -171,7 +171,7 @@ function sahne:create(olay)
 				-- Geçiş sırasında dahi alt menünün görünür veya dokunulabilir
 				-- olmaması gerekir.
 				ortak.tabBarGizle(tabBar, 0)
-				sahneDegis.gotoScene("sahne7", "fade", 400)
+				sahneDegis.gotoScene("hikaye_secim", "fade", 400)
 				return true
 			end
 		end

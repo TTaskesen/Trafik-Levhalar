@@ -150,6 +150,18 @@ Vefa gülümsedi. "Senin gelişin bir kaza değildi. Kapı, doğru anahtarı bek
 Ve o anda, zeminin altından tok bir ses yükseldi. Eylül ayaklarının altına baktı: çember dönüyordu.
 ]]
 
+local function kaynakMetniOku(goreliYol)
+	local yol = system.pathForFile(goreliYol, system.ResourceDirectory)
+	if not yol then return nil end
+
+	local dosya = io.open(yol, "r")
+	if not dosya then return nil end
+
+	local metin = dosya:read("*a")
+	dosya:close()
+	return metin
+end
+
 local function hikayeyiDileUyarla(metin)
 	-- Türkçe metin zaten bu dosyada bulunduğu için hikaye_tr.txt aranmaz.
 	-- Böylece eksik kaynak dosyası nil döndürüp io.open hatasına yol açmaz.
@@ -176,6 +188,19 @@ local function hikayeyiDileUyarla(metin)
 	metin = metin:gsub("—— Bölüm 3: Kapı ——", dil.metin("hikaye_bolum3"))
 	metin = metin:gsub("—— Bölüm 4: Sıfırın İçi ——", dil.metin("hikaye_bolum4"))
 	return metin
+end
+
+local function okunacakHikayeyiAl()
+	if sahneDegis.getVariable("okunacakHikaye") == "kolumun_gucu" then
+		local metin = kaynakMetniOku("hikayeler/kolumun_gucu.txt")
+		if metin and #metin > 0 then
+			-- Bu hikâye şu an yalnız Türkçe sağlanıyor; UTF-8 kaynak doğrudan
+			-- okunur, böylece ğ, ü, ş, ı, ö ve ç karakterleri korunur.
+			return "KOLUMUN GÜCÜ", metin
+		end
+	end
+
+	return dil.metin("hikaye_basligi"), hikayeyiDileUyarla(myText)
 end
 
 
@@ -224,7 +249,8 @@ function sahne:create(olay)
 	)
 	baslikKontrast:setFillColor(0.02, 0.04, 0.12, 0.88)
 
-	yazi1 = display.newText(dil.metin("hikaye_basligi"), 0, 0, "Poppins-Bold", 16)
+	local hikayeBasligi, hikayeMetni = okunacakHikayeyiAl()
+	yazi1 = display.newText(hikayeBasligi, 0, 0, "Poppins-Bold", 16)
 	yazi1:setFillColor(1, 1, 1)
 	yazi1.x, yazi1.y = display.contentCenterX, ustSinir + 20
 	sceneGroup:insert(yazi1)
@@ -266,7 +292,7 @@ function sahne:create(olay)
 
 	local paragraphs = {}
 	local paragraph
-	local tmpString = hikayeyiDileUyarla(myText)
+	local tmpString = hikayeMetni
 
 	local yStart = 10
 	local mainPadding = 10

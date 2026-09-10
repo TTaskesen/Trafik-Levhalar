@@ -28,7 +28,7 @@ cp uygulama_ayar.local.example.lua uygulama_ayar.local.lua
 ## Google Play release
 
 - Paket: `com.taskesen.trafiklevhalaritr`
-- Sürüm: `1.0.0` (`versionCode=6`)
+- Sürüm: `1.0.1` (`versionCode=7`)
 - Release AAB'de kullanıcı hikâyesi yazma, Supabase ve UGC kaynakları hariç tutulur; ağ izni istenmez.
 - Hedef API seviyesi, kullanılan Solar2D sürümünün oluşturduğu AAB manifestinden yayın öncesinde doğrulanmalıdır.
 
