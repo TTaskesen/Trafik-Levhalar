@@ -19,8 +19,8 @@ settings =
 		-- kaynakları yalnız debug için tutulur ve aşağıda paketten çıkarılır.
 		-- Google Play'deki targetSdk değeri, kullanılan Solar2D sürümüyle
 		-- oluşturulan AAB'nin manifestinden ayrıca doğrulanmalıdır.
-		versionCode = "7",
-		versionName = "1.0.1",
+		versionCode = "8",
+		versionName = "1.0.2",
 		-- Google Play kapalı test yükleyicisi API 21 ve üzerini gerektirir.
 		minSdkVersion = "21",
 	},
@@ -44,6 +44,11 @@ settings =
 		xcassets = "Images.xcassets",
 		plist =
 		{
+			-- App Store için gösterilen sürüm ve her yüklemede artacak derleme numarası.
+			CFBundleShortVersionString = "1.0.2",
+			CFBundleVersion = "10",
+			-- App Store Connect iOS 15 ve üzerini gerektiriyor.
+			MinimumOSVersion = "15.0",
 			UIStatusBarHidden = true,
 			UILaunchStoryboardName = "LaunchScreen",
 		},
@@ -63,7 +68,20 @@ settings =
 	excludeFiles =
 	{
 		-- Exclude unnecessary files for each platform
-		all = { "Icon.png", "Icon-*dpi.png", "Images.xcassets", },
+		-- Git geçmişi uygulama kaynağı değildir; iOS imzalama adımını da bozabilir.
+		all = { "Icon.png", "Icon-*dpi.png", "Images.xcassets", ".git/*", },
+		iphone = {
+			-- Android ve geliştirme kaynakları iOS yayın paketine dahil edilmez.
+			"AndroidResources/*",
+			-- Statik hikâye seçimi ve okuyucu iOS yayın akışında kullanılabilir.
+			-- Yalnızca kullanıcı hikâyesi/UGC yardımcıları paket dışı bırakılır.
+			"sahne13.lua", "sahne14.lua",
+			"hikaye_cache.lua", "hikaye_guvenlik.lua", "hikaye_kayit.lua",
+			"supabase_hikayeler.lua", "supabase_config.lua", "supabase_config.example.lua", "ugc_*.lua",
+			"uygulama_ayar.local.lua", "uygulama_ayar.local.example.lua",
+			"e-book/*", "supabase/*.sql",
+			"docs/*", "store-assets/*", "privacy-policy.html", "GOOGLE_PLAY_RELEASE.md", "PLAY_CONSOLE_LISTING.md",
+		},
 		android = {
 			"LaunchScreen.storyboardc",
 			-- Kullanıcı hikâyesi yazma/Supabase yalnız debug akışıdır.
