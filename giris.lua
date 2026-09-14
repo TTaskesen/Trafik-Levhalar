@@ -126,6 +126,11 @@ function sahne:create(olay)
 	local function basla()
 		-- Hikâye ekranı menüyü dokunulamaz duruma getirebilir; ana
 		-- uygulama akışına dönülürken hem görünürlüğü hem dokunmayı aç.
+		-- Dil değişiminde main.lua etiketleri yenilemek için eski tabBar'ı
+		-- kaldırıp yenisini oluşturur. Bu sahnenin yerel referansı eski
+		-- nesneyi gösterebildiğinden, geçiş anında her zaman Composer'daki
+		-- güncel tabBar'ı kullan.
+		tabBar = sahneDegis.getVariable("tabBar") or tabBar
 		ortak.tabBarGoster(tabBar, 0)
 		sahneDegis.gotoScene("sahne1", "fade", 500)
 	end
