@@ -36,7 +36,8 @@ local function metinOlustur()
     end
 
     local tabBarHeight = composer.getVariable("tabBarHeight") or 0
-    local ustBosluk = (display.safeScreenOriginY or display.screenOriginY or 0) + 96
+    -- Başlık ve gizlilik bağlantısı için üstte ayrılmış alan bırak.
+    local ustBosluk = (display.safeScreenOriginY or display.screenOriginY or 0) + 112
     local oy = math.abs(display.screenOriginY)
     local scrollView = widget.newScrollView(
         {
@@ -113,12 +114,24 @@ function scene:create(event)
     metinOlustur()
     sceneGroup:insert(scrollViewMetin)
 
-    local gizlilik = display.newText(sceneGroup, "GİZLİLİK POLİTİKASI",
-        display.contentCenterX, baslikY + 38,
+    local gizlilikY = baslikY + 70
+    local gizlilikArka = display.newRoundedRect(sceneGroup,
+        display.contentCenterX, gizlilikY, 210, 30, 8)
+    gizlilikArka:setFillColor(0.90, 0.95, 1, 0.96)
+    gizlilikArka:setStrokeColor(0.05, 0.3, 0.55, 0.45)
+    gizlilikArka.strokeWidth = 1
+
+    local gizlilik = display.newText(sceneGroup, dil.metin("gizlilik_politikasi"),
+        display.contentCenterX, gizlilikY,
         "Poppins-Bold", 11)
     gizlilik:setFillColor(0.05, 0.3, 0.55)
     gizlilik.isHitTestable = true
+    gizlilikArka.isHitTestable = true
     gizlilik:addEventListener("tap", function()
+        composer.gotoScene("gizlilik", "slideLeft", 350)
+        return true
+    end)
+    gizlilikArka:addEventListener("tap", function()
         composer.gotoScene("gizlilik", "slideLeft", 350)
         return true
     end)
