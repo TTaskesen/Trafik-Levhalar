@@ -15,8 +15,8 @@ local HIKAYELER = {
 	},
 	{
 		id = "kolumun_gucu",
-		baslik = function() return "KOLUMUN GÜCÜ" end,
-		aciklama = "Hacı Derdiyok · Kuşların da Yuvası Var"
+		baslik = function() return dil.metin("hikaye_kolumun_gucu_basligi") end,
+		aciklama = function() return dil.metin("hikaye_kolumun_gucu_aciklama") end
 	}
 }
 
@@ -55,7 +55,7 @@ local function kartOlustur(grup, hikaye, y)
 
 	local aciklama = display.newText({
 		parent = kart,
-		text = hikaye.aciklama,
+		text = type(hikaye.aciklama) == "function" and hikaye.aciklama() or hikaye.aciklama,
 		x = 30,
 		y = y + 20,
 		width = display.contentWidth - 68,
@@ -92,7 +92,7 @@ function scene:create(event)
 
 	local bilgi = display.newText({
 		parent = sceneGroup,
-		text = "Okumak istediğiniz hikâyeyi seçin.",
+		text = dil.metin("hikaye_secim_bilgisi"),
 		x = display.contentCenterX,
 		y = ust + 67,
 		width = display.contentWidth - 48,

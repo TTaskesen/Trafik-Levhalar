@@ -194,9 +194,10 @@ local function okunacakHikayeyiAl()
 	if sahneDegis.getVariable("okunacakHikaye") == "kolumun_gucu" then
 		local metin = kaynakMetniOku("hikayeler/kolumun_gucu.txt")
 		if metin and #metin > 0 then
-			-- Bu hikâye şu an yalnız Türkçe sağlanıyor; UTF-8 kaynak doğrudan
-			-- okunur, böylece ğ, ü, ş, ı, ö ve ç karakterleri korunur.
-			return "KOLUMUN GÜCÜ", metin
+			-- Çeviri dosyası varsa kullan; yoksa Türkçe özgün metni koru.
+			-- Böylece eksik çeviri için uydurma içerik gösterilmez.
+			local yerelMetin = dil.dosyaMetni("kolumun_gucu", nil)
+			return dil.metin("hikaye_kolumun_gucu_basligi"), yerelMetin or metin
 		end
 	end
 
