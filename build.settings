@@ -46,9 +46,27 @@ settings =
 		{
 			-- App Store için gösterilen sürüm ve her yüklemede artacak derleme numarası.
 			CFBundleShortVersionString = "1.0.2",
-			CFBundleVersion = "10",
+			CFBundleVersion = "12",
 			-- App Store Connect iOS 15 ve üzerini gerektiriyor.
 			MinimumOSVersion = "15.0",
+			-- Solar2D 3731'in otomatik yer tutucularını gerçek uygulama davranışıyla
+			-- uyumlu açıklamalarla değiştirir. Uygulama bu kaynaklara erişmez.
+			NSAppleMusicUsageDescription = "Trafik Levhaları Apple Music arşivinize erişmez.",
+			NSBluetoothPeripheralUsageDescription = "Trafik Levhaları Bluetooth kullanmaz.",
+			NSCalendarsUsageDescription = "Trafik Levhaları takviminize erişmez.",
+			NSCameraUsageDescription = "Trafik Levhaları kameranızı kullanmaz.",
+			NSContactsUsageDescription = "Trafik Levhaları kişilerinize erişmez.",
+			NSHomeKitUsageDescription = "Trafik Levhaları HomeKit kullanmaz.",
+			NSLocationAlwaysUsageDescription = "Trafik Levhaları konumunuzu kullanmaz.",
+			NSLocationUsageDescription = "Trafik Levhaları konumunuzu kullanmaz.",
+			NSLocationWhenInUseUsageDescription = "Trafik Levhaları konumunuzu kullanmaz.",
+			NSMicrophoneUsageDescription = "Trafik Levhaları mikrofonu kullanmaz.",
+			NSMotionUsageDescription = "Trafik Levhaları hareket verilerini kullanmaz.",
+			NSPhotoLibraryUsageDescription = "Trafik Levhaları fotoğraf arşivinizi okumaz.",
+			NSPhotoLibraryAddUsageDescription = "Trafik Levhaları fotoğraf arşivinize erişmez.",
+			NSRemindersUsageDescription = "Trafik Levhaları anımsatıcılarınıza erişmez.",
+			NSSiriUsageDescription = "Trafik Levhaları Siri ile bütünleşmez.",
+			NSSpeechRecognitionUsageDescription = "Trafik Levhaları konuşma tanımayı kullanmaz.",
 			UIStatusBarHidden = true,
 			UILaunchStoryboardName = "LaunchScreen",
 		},
@@ -80,7 +98,7 @@ settings =
 			"supabase_hikayeler.lua", "supabase_config.lua", "supabase_config.example.lua", "ugc_*.lua",
 			"uygulama_ayar.local.lua", "uygulama_ayar.local.example.lua",
 			"e-book/*", "supabase/*.sql",
-			"docs/*", "store-assets/*", "privacy-policy.html", "GOOGLE_PLAY_RELEASE.md", "PLAY_CONSOLE_LISTING.md",
+			"docs/*", "store-assets/*", "privacy-policy.html", "GOOGLE_PLAY_RELEASE.md", "PLAY_CONSOLE_LISTING.md", "IOS_RELEASE_CHECKLIST.md",
 		},
 		android = {
 			"LaunchScreen.storyboardc",
@@ -93,7 +111,7 @@ settings =
 			-- Supabase migration betiği yalnız geliştirici içindir, uygulamaya girmez.
 			"supabase/*.sql",
 			-- Yayın belgeleri ve GitHub Pages kaynağı AAB'ye dahil edilmez.
-			"docs/*", "store-assets/*", "privacy-policy.html", "GOOGLE_PLAY_RELEASE.md", "PLAY_CONSOLE_LISTING.md",
+			"docs/*", "store-assets/*", "privacy-policy.html", "GOOGLE_PLAY_RELEASE.md", "PLAY_CONSOLE_LISTING.md", "IOS_RELEASE_CHECKLIST.md",
 		},
 	},
 }

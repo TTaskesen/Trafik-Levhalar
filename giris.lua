@@ -20,9 +20,12 @@ function sahne:create(olay)
 	local blokUstu = ustSinir + 12
 	local baslikY = blokUstu + 45
 	local levhaY = blokUstu + 175
-	local butonY = blokUstu + 330
+	-- Açılış ekranındaki ikinci yerel işlev için Başla düğmesi ile dil
+	-- seçimini ayıracak kadar dikey alan bırak.
+	local butonY = blokUstu + 310
 	local hikayeY = math.min(blokUstu + 455, ekranBilgileri.safeBottom - 30)
 	local dilY = math.min(blokUstu + 395, hikayeY - 46)
+	local quizY = butonY + 42
 
 	-- Arka plan: buz mavisi tonu (uygulamanın mavi temasıyla uyumlu karşılama ekranı)
 	local zemin = display.newRect(display.contentCenterX, display.contentCenterY,
@@ -155,6 +158,28 @@ function sahne:create(olay)
 	baslaButonu:addEventListener("touch", baslaDokun)
 	baslaMetin:addEventListener("touch", baslaDokun)
 
+	-- Apple incelemesindeki minimum işlevsellik riskini azaltan, uygulama içi
+	-- ve çevrimdışı çalışan levha bilgi sınavına görünür bir giriş.
+	local quizYazi = display.newText({
+		text = dil.metin("quiz_giris"),
+		x = display.contentCenterX,
+		y = quizY,
+		font = "Poppins-Bold",
+		fontSize = 12
+	})
+	quizYazi:setFillColor(0.05, 0.3, 0.55)
+	sceneGroup:insert(quizYazi)
+
+	local function quizDokun(olay)
+		if olay.phase == "began" then
+			ortak.tabBarGizle(tabBar, 0)
+			sahneDegis.gotoScene("quiz", "fade", 350)
+			return true
+		end
+		return true
+	end
+	quizYazi:addEventListener("touch", quizDokun)
+
 	local hikayeYazi
 	local hikayeYazMetni
 	if ayarlar.hikayeOkumaAktif then
@@ -209,22 +234,45 @@ function sahne:create(olay)
 		if hikayeYazMetni then
 			hikayeYazMetni.text = dil.metin("hikaye_yaz")
 		end
+		quizYazi.text = dil.metin("quiz_giris")
 	end
 
 	local function dilSecDokun(olay)
+		local nesne = olay.target
+		if olay.phase == "began" then
+			-- Dil düğmesine basılı tutulurken odağı açıkça bu nesnede tut.
+			-- Böylece dil değişiminden sonra ilk Başla dokunuşu önceki
+			-- dokunma odağı tarafından yutulmaz.
+			display.getCurrentStage():setFocus(nesne)
+			nesne.isFocus = true
+			return true
+		end
+
+		if not nesne.isFocus or (olay.phase ~= "ended" and olay.phase ~= "cancelled") then
+			return true
+		end
+
+		display.getCurrentStage():setFocus(nil)
+		nesne.isFocus = false
 		if olay.phase ~= "ended" then
 			return true
 		end
 
-		local secim = olay.target._dilSecenegi
+		local secim = nesne._dilSecenegi
 		if not secim then
 			return true
 		end
 
-		dil.sec(secim.kod)
-		metinleriGuncelle()
-		local etiketleriGuncelle = sahneDegis.getVariable("dilEtiketleriniGuncelle")
-		if etiketleriGuncelle then etiketleriGuncelle() end
+		-- Dokunma olayı tamamen kapandıktan sonra metinleri ve tab bar'ı
+		-- yenile. Display nesnelerini aynı touch callback'i içindeyken
+		-- değiştirmek, sonraki Başla dokunuşunun ilk turda kaçırılmasına
+		-- neden olabiliyor.
+		timer.performWithDelay(1, function()
+			dil.sec(secim.kod)
+			metinleriGuncelle()
+			local etiketleriGuncelle = sahneDegis.getVariable("dilEtiketleriniGuncelle")
+			if etiketleriGuncelle then etiketleriGuncelle() end
+		end)
 		return true
 	end
 
