@@ -17,6 +17,7 @@
   "quiz_sonraki": "QUESTION SUIVANTE",
   "quiz_tamamlandi": "Test terminé",
   "quiz_tekrar": "RECOMMENCER",
+  "quiz_ilerleme": "Meilleur score : %d/%d · Tests terminés : %d",
   "levha_tarihi_basligi": "Histoire des panneaux",
   "bilgi_basligi": "Informations",
   "hakkimizda_basligi": "À propos",

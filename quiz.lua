@@ -6,6 +6,7 @@
 local composer = require("composer")
 local ortak = require("levha_ortak")
 local dil = require("dil")
+local ogrenme = require("ogrenme_kaydi")
 
 local scene = composer.newScene()
 
@@ -123,6 +124,18 @@ function scene:create()
     })
     ilerleme:setFillColor(0.25, 0.28, 0.32)
 
+    local kayitBilgisi = display.newText({
+        parent = sceneGroup,
+        text = "",
+        x = display.contentCenterX,
+        y = ust + 125,
+        width = display.contentWidth - 28,
+        font = "Poppins-Medium",
+        fontSize = 9,
+        align = "center"
+    })
+    kayitBilgisi:setFillColor(0.32, 0.35, 0.39)
+
     local soruBasligi = display.newText({
         parent = sceneGroup,
         text = dil.metin("quiz_soru"),
@@ -142,6 +155,20 @@ function scene:create()
     local soruSirasi = 1
     local puan = 0
     local cevaplandi = false
+    local yanlislar = {}
+    local sonucKaydedildi = false
+
+    local function kayitMetniniGuncelle(kayit)
+        kayit = kayit or ogrenme.oku()
+        local toplam = tonumber(kayit.lastTotal) or #sorular
+        if toplam < 1 then toplam = #sorular end
+        kayitBilgisi.text = string.format(
+            dil.metin("quiz_ilerleme"),
+            tonumber(kayit.best) or 0,
+            toplam,
+            tonumber(kayit.attempts) or 0
+        )
+    end
 
     local function secenekleriKaldir()
         for _, secenek in ipairs(secenekGruplari) do
@@ -153,6 +180,11 @@ function scene:create()
     end
 
     local function sonucEkraniniGoster()
+        if not sonucKaydedildi then
+            sonucKaydedildi = true
+            local kayit = ogrenme.sinaviKaydet(puan, #sorular, yanlislar)
+            kayitMetniniGuncelle(kayit)
+        end
         if levhaGorseli then levhaGorseli.isVisible = false end
         soruBasligi.text = dil.metin("quiz_tamamlandi")
         soruBasligi.y = ust + 153
@@ -166,6 +198,8 @@ function scene:create()
             if event.phase == "ended" then
                 soruSirasi = 1
                 puan = 0
+                yanlislar = {}
+                sonucKaydedildi = false
                 sorular = sinavSorulariOlustur()
                 soruBasligi.y = ust + 104
                 ilerleme.y = ust + 89
@@ -211,6 +245,7 @@ function scene:create()
             geriBildirim.text = dil.metin("quiz_dogru")
             geriBildirim:setFillColor(0.12, 0.45, 0.22)
         else
+            yanlislar[#yanlislar + 1] = soru.dogru
             secenek._zemin:setFillColor(0.75, 0.20, 0.20)
             geriBildirim.text = dil.metin("quiz_yanlis") .. " " .. soru.dogru
             geriBildirim:setFillColor(0.65, 0.12, 0.12)
@@ -246,6 +281,7 @@ function scene:create()
         soruBasligi.text = dil.metin("quiz_soru")
         soruBasligi.y = ust + 104
         ilerleme.text = string.format(dil.metin("quiz_puan_kisa"), soruSirasi, #sorular, puan)
+        kayitMetniniGuncelle()
         geriBildirim.text = ""
         geriBildirim.x = -1000
 
@@ -347,6 +383,7 @@ function scene:create()
     -- Ekran ilk açıldığında ve her dil seçiminden sonra aynı çizim yolu kullanılır.
     math.randomseed(os.time() + math.floor(os.clock() * 1000))
     sorular = sinavSorulariOlustur()
+    kayitMetniniGuncelle()
     scene._sinaviCiz()
 end
 

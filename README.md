@@ -8,6 +8,7 @@ Türkiye'deki trafik levhalarını tanımaya ve anlamlarını öğrenmeye yardı
 - Levha açıklamaları ve trafik levhalarının tarihçesi
 - Türkçe, Almanca, Fransızca ve Korece arayüz seçenekleri
 - Uygulama içi statik hikâye okuyucu
+- Çevrimdışı levha sınavı, cihazda tutulan en iyi skor ve tamamlanan sınav ilerlemesi
 
 ## Çalıştırma
 

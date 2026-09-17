@@ -17,6 +17,7 @@
   "quiz_sonraki": "SONRAKİ SORU",
   "quiz_tamamlandi": "Sınav tamamlandı",
   "quiz_tekrar": "TEKRAR DENE",
+  "quiz_ilerleme": "En iyi skor: %d/%d · Tamamlanan sınav: %d",
   "levha_tarihi_basligi": "Levha Tarihi",
   "bilgi_basligi": "Bilgi",
   "hakkimizda_basligi": "Hakkımızda",

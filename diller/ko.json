@@ -17,6 +17,7 @@
   "quiz_sonraki": "다음 문제",
   "quiz_tamamlandi": "테스트 완료",
   "quiz_tekrar": "다시 시도",
+  "quiz_ilerleme": "최고 점수: %d/%d · 완료한 테스트: %d",
   "levha_tarihi_basligi": "교통 표지판 역사",
   "bilgi_basligi": "정보",
   "hakkimizda_basligi": "소개",

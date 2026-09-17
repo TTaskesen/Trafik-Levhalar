@@ -17,6 +17,7 @@
   "quiz_sonraki": "NÄCHSTE FRAGE",
   "quiz_tamamlandi": "Test abgeschlossen",
   "quiz_tekrar": "NOCHMAL VERSUCHEN",
+  "quiz_ilerleme": "Bestwert: %d/%d · Abgeschlossene Tests: %d",
   "levha_tarihi_basligi": "Verkehrszeichen-Geschichte",
   "bilgi_basligi": "Info",
   "hakkimizda_basligi": "Über uns",
