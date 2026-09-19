@@ -157,6 +157,8 @@ function scene:create()
     local cevaplandi = false
     local yanlislar = {}
     local sonucKaydedildi = false
+    local sifirlaButonu
+    local sifirlaYazi
 
     local function kayitMetniniGuncelle(kayit)
         kayit = kayit or ogrenme.oku()
@@ -179,6 +181,26 @@ function scene:create()
         secenekGruplari = {}
     end
 
+    local function sinaviBaslangicaDondur()
+        soruSirasi = 1
+        puan = 0
+        yanlislar = {}
+        sonucKaydedildi = false
+        cevaplandi = false
+        sorular = sinavSorulariOlustur()
+        soruBasligi.text = dil.metin("quiz_soru")
+        soruBasligi.y = ust + 104
+        ilerleme.y = ust + 89
+        geriBildirim.text = ""
+        geriBildirim.x = -1000
+        secenekleriKaldir()
+        if sonrakiButon then sonrakiButon.isVisible = false end
+        if sonrakiYazi then sonrakiYazi.isVisible = false end
+        if scene._sinaviCiz then
+            scene._sinaviCiz()
+        end
+    end
+
     local function sonucEkraniniGoster()
         if not sonucKaydedildi then
             sonucKaydedildi = true
@@ -196,23 +218,7 @@ function scene:create()
         geriBildirim:setFillColor(0.05, 0.30, 0.55)
         geriBildirim:addEventListener("touch", function(event)
             if event.phase == "ended" then
-                soruSirasi = 1
-                puan = 0
-                yanlislar = {}
-                sonucKaydedildi = false
-                sorular = sinavSorulariOlustur()
-                soruBasligi.y = ust + 104
-                ilerleme.y = ust + 89
-                geriBildirim.text = ""
-                geriBildirim.x = -1000
-                if sonrakiButon then sonrakiButon.isVisible = false end
-                if sonrakiYazi then sonrakiYazi.isVisible = false end
-                if levhaGorseli then levhaGorseli.isVisible = true end
-                cevaplandi = false
-                secenekleriKaldir()
-                -- İlk soruyu aşağıdaki ortak çizim fonksiyonu oluşturur.
-                local olay = { phase = "yeniden" }
-                if scene._sinaviCiz then scene._sinaviCiz(olay) end
+                sinaviBaslangicaDondur()
             end
             return true
         end)
@@ -379,6 +385,52 @@ function scene:create()
     end
     sonrakiButon:addEventListener("touch", sonrakiDokun)
     sonrakiYazi:addEventListener("touch", sonrakiDokun)
+
+    sifirlaButonu = display.newRoundedRect(sceneGroup, display.contentCenterX, ust + 515,
+        190, 30, 7)
+    sifirlaButonu:setFillColor(0.38, 0.42, 0.48)
+    sifirlaYazi = display.newText({
+        parent = sceneGroup,
+        text = "İlerlemeyi sıfırla",
+        x = sifirlaButonu.x,
+        y = sifirlaButonu.y,
+        font = "Poppins-Bold",
+        fontSize = 10
+    })
+    sifirlaYazi:setFillColor(1)
+
+    local function ilerlemeyiSifirla()
+        native.showAlert(
+            "İlerlemeyi sıfırla",
+            "Kayıtlı en iyi skor, tamamlanan sınav sayısı ve yanlış cevaplar silinecek. Bu işlem yalnızca bu cihazdaki yerel veriyi etkiler.",
+            { "İptal", "Sıfırla" },
+            function(event)
+                if event.action ~= "clicked" or event.index ~= 2 then
+                    return
+                end
+
+                if not ogrenme.sifirla() then
+                    native.showAlert(
+                        "Sıfırlama başarısız",
+                        "Yerel sınav kaydı silinemedi. Lütfen tekrar deneyin.",
+                        { "Tamam" }
+                    )
+                    return
+                end
+
+                sinaviBaslangicaDondur()
+            end
+        )
+    end
+
+    local function sifirlaDokun(event)
+        if event.phase == "ended" then
+            ilerlemeyiSifirla()
+        end
+        return true
+    end
+    sifirlaButonu:addEventListener("touch", sifirlaDokun)
+    sifirlaYazi:addEventListener("touch", sifirlaDokun)
 
     -- Ekran ilk açıldığında ve her dil seçiminden sonra aynı çizim yolu kullanılır.
     math.randomseed(os.time() + math.floor(os.clock() * 1000))

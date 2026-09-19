@@ -90,4 +90,22 @@ function modul.sinaviKaydet(puan, toplam, yanlislar)
     return kayit
 end
 
+-- Bu işlem yalnızca uygulamanın DocumentsDirectory alanındaki yerel kaydı
+-- siler. Kayıt henüz oluşmadıysa başarılı kabul edilir.
+function modul.sifirla()
+    local yol = kayitYolu()
+    if not yol then
+        return false
+    end
+
+    local dosya = io.open(yol, "r")
+    if not dosya then
+        return true
+    end
+    dosya:close()
+
+    local basarili = os.remove(yol)
+    return basarili ~= nil
+end
+
 return modul
