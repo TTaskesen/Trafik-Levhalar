@@ -158,8 +158,13 @@ function sahne:create(olay)
 	baslaButonu:addEventListener("touch", baslaDokun)
 	baslaMetin:addEventListener("touch", baslaDokun)
 
-	-- Apple incelemesindeki minimum işlevsellik riskini azaltan, uygulama içi
-	-- ve çevrimdışı çalışan levha bilgi sınavına görünür bir giriş.
+	-- Uygulama içi ve çevrimdışı çalışan levha bilgi sınavına görünür, geniş
+	-- bir dokunma alanıyla giriş ver. Metin tek başına bağlantı gibi
+	-- algılanabildiği için arkasında gerçek bir düğme yüzeyi bulunur.
+	local quizButonu = display.newRoundedRect(sceneGroup, display.contentCenterX, quizY, 246, 30, 8)
+	quizButonu:setFillColor(0.05, 0.3, 0.55, 0.9)
+	quizButonu:setStrokeColor(1, 1, 1, 0.35)
+	quizButonu.strokeWidth = 1
 	local quizYazi = display.newText({
 		text = dil.metin("quiz_giris"),
 		x = display.contentCenterX,
@@ -167,36 +172,59 @@ function sahne:create(olay)
 		font = "Poppins-Bold",
 		fontSize = 12
 	})
-	quizYazi:setFillColor(0.05, 0.3, 0.55)
+	quizYazi:setFillColor(1)
+	quizYazi.isHitTestable = false
 	sceneGroup:insert(quizYazi)
 
 	local function quizDokun(olay)
+		local nesne = olay.target
 		if olay.phase == "began" then
+			display.getCurrentStage():setFocus(nesne)
+			nesne.isFocus = true
+			return true
+		elseif nesne.isFocus and (olay.phase == "ended" or olay.phase == "cancelled") then
+			display.getCurrentStage():setFocus(nil)
+			nesne.isFocus = false
+			if olay.phase ~= "ended" then return true end
 			ortak.tabBarGizle(tabBar, 0)
 			sahneDegis.gotoScene("quiz", "fade", 350)
 			return true
 		end
 		return true
 	end
-	quizYazi:addEventListener("touch", quizDokun)
+	quizButonu:addEventListener("touch", quizDokun)
 
 	local hikayeYazi
+	local hikayeButonu
 	local hikayeYazMetni
 	if ayarlar.hikayeOkumaAktif then
 		-- Hikâye kısayolu önce paketlenmiş hikâyelerin seçim ekranını açar.
+		-- Bu işlev metin bağlantısı değil, belirgin ve geniş bir düğmedir.
+		hikayeButonu = display.newRoundedRect(sceneGroup, display.contentCenterX, hikayeY, 246, 32, 8)
+		hikayeButonu:setFillColor(0.05, 0.3, 0.55, 0.9)
+		hikayeButonu:setStrokeColor(1, 1, 1, 0.35)
+		hikayeButonu.strokeWidth = 1
 		hikayeYazi = display.newText({
 			text = dil.metin("hikaye_oku"),
 			x = 0, y = 0,
 			font = "Poppins-Bold",
 			fontSize = 14
 		})
-		hikayeYazi:setFillColor(0.05, 0.3, 0.55)
+		hikayeYazi:setFillColor(1)
+		hikayeYazi.isHitTestable = false
 		hikayeYazi.x = display.contentCenterX
 		hikayeYazi.y = hikayeY
 		sceneGroup:insert(hikayeYazi)
 
 		local function hikayeDokun(olay)
 			if olay.phase == "began" then
+				display.getCurrentStage():setFocus(olay.target)
+				olay.target.isFocus = true
+				return true
+			elseif olay.target.isFocus and (olay.phase == "ended" or olay.phase == "cancelled") then
+				display.getCurrentStage():setFocus(nil)
+				olay.target.isFocus = false
+				if olay.phase ~= "ended" then return true end
 				-- Hikâye, ana uygulama gezinmesinden bağımsız okunur.
 				-- Geçiş sırasında dahi alt menünün görünür veya dokunulabilir
 				-- olmaması gerekir.
@@ -204,8 +232,9 @@ function sahne:create(olay)
 				sahneDegis.gotoScene("hikaye_secim", "fade", 400)
 				return true
 			end
+			return true
 		end
-		hikayeYazi:addEventListener("touch", hikayeDokun)
+		hikayeButonu:addEventListener("touch", hikayeDokun)
 
 	end
 
@@ -235,6 +264,19 @@ function sahne:create(olay)
 			hikayeYazMetni.text = dil.metin("hikaye_yaz")
 		end
 		quizYazi.text = dil.metin("quiz_giris")
+	end
+
+	local function dilDugmeleriniGuncelle()
+		for _, secenek in ipairs(dilDugmeleri) do
+			local secili = dil.kodu() == secenek.secenek.kod
+			if secili then
+				secenek.dugme:setFillColor(0.02, 0.42, 0.28, 1)
+				secenek.dugme.strokeWidth = 2
+			else
+				secenek.dugme:setFillColor(0.05, 0.3, 0.55, 0.85)
+				secenek.dugme.strokeWidth = 1
+			end
+		end
 	end
 
 	local function dilSecDokun(olay)
@@ -270,6 +312,7 @@ function sahne:create(olay)
 		timer.performWithDelay(1, function()
 			dil.sec(secim.kod)
 			metinleriGuncelle()
+			dilDugmeleriniGuncelle()
 			local etiketleriGuncelle = sahneDegis.getVariable("dilEtiketleriniGuncelle")
 			if etiketleriGuncelle then etiketleriGuncelle() end
 		end)
@@ -279,10 +322,10 @@ function sahne:create(olay)
 	for _, secenek in ipairs(dilDugmeleri) do
 		secenek.dugme._dilSecenegi = secenek.secenek
 		secenek.dugme:addEventListener("touch", dilSecDokun)
-		secenek.etiket._dilSecenegi = secenek.secenek
-		secenek.etiket:addEventListener("touch", dilSecDokun)
+		secenek.etiket.isHitTestable = false
 	end
 	metinleriGuncelle()
+	dilDugmeleriniGuncelle()
 
 	local function nabiz()
 		if dur then
