@@ -608,7 +608,10 @@ function ortak.geriDonButonu(onRelease, genislik, yukseklik)
 
     function buton:touch(event)
         if event.phase == "began" then
-            display.getCurrentStage():setFocus(self)
+            -- Odak, dinleyiciyi taşıyan gerçek yüzeyde kalmalı. Grubu odak
+            -- olarak seçmek Android'de began sonrasında ended olayının
+            -- yüzeye ulaşmamasına ve düğmenin yanıtsız kalmasına yol açabilir.
+            display.getCurrentStage():setFocus(event.target or self)
             self.isFocus = true
             zemin:setFillColor(unpack(BASLIK_MAVI_ACIK))
             return true
@@ -624,7 +627,15 @@ function ortak.geriDonButonu(onRelease, genislik, yukseklik)
         return true
     end
 
-    buton:addEventListener("touch")
+    -- Dokunma dinleyicisini grubun kendisi yerine gerçek görsel yüzeye bağla.
+    -- Bazı Android cihazlarında display.newGroup hedefinin doğrudan hit-test
+    -- edilmemesi dokunma yanıtı riskini artırabilir.
+    -- Metin üstte kalsa da dokunma yüzeyini engellememesi için hit-test dışı
+    -- bırakılır; böylece düğmenin tamamı tek ve güvenilir bir hedef olur.
+    yazi.isHitTestable = false
+    zemin:addEventListener("touch", function(event)
+        return buton:touch(event)
+    end)
     return buton
 end
 

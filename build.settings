@@ -19,7 +19,7 @@ settings =
 		-- kaynakları yalnız debug için tutulur ve aşağıda paketten çıkarılır.
 		-- Google Play'deki targetSdk değeri, kullanılan Solar2D sürümüyle
 		-- oluşturulan AAB'nin manifestinden ayrıca doğrulanmalıdır.
-		versionCode = "10",
+		versionCode = "11",
 		versionName = "1.0.3",
 		-- Google Play kapalı test yükleyicisi API 21 ve üzerini gerektirir.
 		minSdkVersion = "21",
