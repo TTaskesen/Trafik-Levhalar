@@ -1,39 +1,15 @@
 --------------------------------------------------------------------------------
 -- Trafik levhalarını öğrenmeye dönük çevrimdışı mini sınav.
--- Bu ekran, uygulamadaki görsel ve açıklama içeriğini kullanıcı etkileşimi,
--- anlık geri bildirim ve puan takibiyle birleştirir.
+-- Kullanıcı önce seviyeyi seçer; her seviyede 10 soru bulunur ve bütün
+-- kategorilerden levhalar soru/çeldirici havuzuna dahil edilir.
 --------------------------------------------------------------------------------
 local composer = require("composer")
 local ortak = require("levha_ortak")
 local dil = require("dil")
 local ogrenme = require("ogrenme_kaydi")
+local quizVerileri = require("quiz_verileri")
 
 local scene = composer.newScene()
-
-local FRAME_DESCRIPTOR = {
-    sheetContentWidth = 700,
-    sheetContentHeight = 1950,
-    frames = {}
-}
-
-local xKonumlari = { 5, 180, 360, 530 }
-local frameNo = 0
-for satir = 0, 12 do
-    for sutun = 1, 4 do
-        frameNo = frameNo + 1
-        FRAME_DESCRIPTOR.frames[frameNo] = {
-            x = xKonumlari[sutun],
-            y = 3 + satir * 150,
-            width = 163,
-            height = 146
-        }
-    end
-end
-
-local imageSheet = graphics.newImageSheet(
-    "levha/levha/1-tehlike/tehlike.png",
-    FRAME_DESCRIPTOR
-)
 
 local function karistir(liste)
     for i = #liste, 2, -1 do
@@ -43,43 +19,15 @@ local function karistir(liste)
     return liste
 end
 
-local function sinavSorulariOlustur()
-    local kayitlar = ortak.levhaAciklamalariniOku(
-        "levha/levha/1-tehlike/Tehlike ve Uyari Aciklama.json",
-        53
-    )
-    -- İki taraftan ve sağ/sol taraftan daralan kaplama levhaları da
-    -- birbirinden ayrı kayıtlar olarak sınava dahil edilir.
-    local secilecekKayitlar = { 2, 3, 4, 5, 6, 7, 8, 9, 10 }
-    local sorular = {}
-
-    for _, kayitIndeksi in ipairs(secilecekKayitlar) do
-        local kayit = kayitlar[kayitIndeksi]
-        if kayit and kayit.ad and kayit.ad ~= "" then
-            sorular[#sorular + 1] = {
-                -- JSON'daki ilk boş kayıt görsel sprite'ında bulunmaz.
-                kare = kayitIndeksi - 1,
-                kayit = kayit,
-                dogru = ortak.levhaAdi(kayit.ad)
-            }
-        end
-    end
-
-    return karistir(sorular)
-end
-
 function scene:create()
     local sceneGroup = self.view
     local ekran = ortak.ekranBilgileri()
     local ust = ekran.safeOriginY or display.safeScreenOriginY or display.screenOriginY or 0
 
-    local zemin = display.newRect(
-        sceneGroup,
-        display.contentCenterX,
-        display.contentCenterY,
-        display.contentWidth,
-        display.contentHeight
-    )
+    math.randomseed(os.time() + math.floor(os.clock() * 1000))
+
+    local zemin = display.newRect(sceneGroup, display.contentCenterX, display.contentCenterY,
+        display.contentWidth, display.contentHeight)
     zemin:setFillColor(0.84, 0.91, 0.97)
     zemin:addEventListener("touch", function() return true end)
 
@@ -88,22 +36,16 @@ function scene:create()
     baslikKarti:setFillColor(0.05, 0.30, 0.55)
 
     local baslik = display.newText({
-        parent = sceneGroup,
-        text = dil.metin("quiz_baslik"),
-        x = display.contentCenterX,
-        y = ust + 37,
-        font = "Poppins-Bold",
-        fontSize = 20
+        parent = sceneGroup, text = dil.metin("quiz_baslik"),
+        x = display.contentCenterX, y = ust + 37,
+        font = "Poppins-Bold", fontSize = 20
     })
     baslik:setFillColor(1)
 
     local geri = display.newText({
-        parent = sceneGroup,
-        text = dil.metin("geri_don"),
-        x = 48,
-        y = ust + 76,
-        font = "Poppins-Bold",
-        fontSize = 13
+        parent = sceneGroup, text = dil.metin("geri_don"),
+        x = 48, y = ust + 76,
+        font = "Poppins-Bold", fontSize = 13
     })
     geri.anchorX = 0
     geri:setFillColor(0.05, 0.30, 0.55)
@@ -114,35 +56,45 @@ function scene:create()
         return true
     end)
 
+    local seviyePaneli = display.newGroup()
+    sceneGroup:insert(seviyePaneli)
+    local seviyeBasligi = display.newText({
+        parent = seviyePaneli, text = dil.metin("quiz_zorluk_sec"),
+        x = display.contentCenterX, y = ust + 145,
+        width = display.contentWidth - 36,
+        font = "Poppins-Bold", fontSize = 17, align = "center"
+    })
+    seviyeBasligi:setFillColor(0.10, 0.12, 0.15)
+
+    local seviyeAciklama = display.newText({
+        parent = seviyePaneli, text = dil.metin("quiz_seviye_aciklama"),
+        x = display.contentCenterX, y = ust + 177,
+        width = display.contentWidth - 42,
+        font = "Poppins-Medium", fontSize = 11, align = "center"
+    })
+    seviyeAciklama:setFillColor(0.32, 0.35, 0.39)
+
+    local oyunOgesi = display.newGroup()
+    sceneGroup:insert(oyunOgesi)
+    oyunOgesi.isVisible = false
+
     local ilerleme = display.newText({
-        parent = sceneGroup,
-        text = "",
-        x = display.contentCenterX,
-        y = ust + 89,
-        font = "Poppins-Medium",
-        fontSize = 12
+        parent = oyunOgesi, text = "", x = display.contentCenterX, y = ust + 89,
+        font = "Poppins-Medium", fontSize = 12
     })
     ilerleme:setFillColor(0.25, 0.28, 0.32)
 
     local kayitBilgisi = display.newText({
-        parent = sceneGroup,
-        text = "",
-        x = display.contentCenterX,
-        y = ust + 125,
-        width = display.contentWidth - 28,
-        font = "Poppins-Medium",
-        fontSize = 9,
+        parent = oyunOgesi, text = "", x = display.contentCenterX, y = ust + 125,
+        width = display.contentWidth - 28, font = "Poppins-Medium", fontSize = 9,
         align = "center"
     })
     kayitBilgisi:setFillColor(0.32, 0.35, 0.39)
 
     local soruBasligi = display.newText({
-        parent = sceneGroup,
-        text = dil.metin("quiz_soru"),
-        x = display.contentCenterX,
-        y = ust + 104,
-        font = "Poppins-Bold",
-        fontSize = 15
+        parent = oyunOgesi, text = dil.metin("quiz_soru"),
+        x = display.contentCenterX, y = ust + 104,
+        font = "Poppins-Bold", fontSize = 15
     })
     soruBasligi:setFillColor(0.10, 0.12, 0.15)
 
@@ -151,14 +103,17 @@ function scene:create()
     local geriBildirim
     local sonrakiButon
     local sonrakiYazi
+    local tekrarButonu
+    local tekrarYazi
+    local sifirlaButonu
+    local sifirlaYazi
     local sorular = {}
+    local seviye
     local soruSirasi = 1
     local puan = 0
     local cevaplandi = false
     local yanlislar = {}
     local sonucKaydedildi = false
-    local sifirlaButonu
-    local sifirlaYazi
 
     local function kayitMetniniGuncelle(kayit)
         kayit = kayit or ogrenme.oku()
@@ -174,31 +129,75 @@ function scene:create()
 
     local function secenekleriKaldir()
         for _, secenek in ipairs(secenekGruplari) do
-            if secenek and secenek.removeSelf then
-                secenek:removeSelf()
-            end
+            if secenek and secenek.removeSelf then secenek:removeSelf() end
         end
         secenekGruplari = {}
     end
 
+    local function oyunDugmeleriniGizle()
+        if sonrakiButon then sonrakiButon.isVisible = false end
+        if sonrakiYazi then sonrakiYazi.isVisible = false end
+        if tekrarButonu then tekrarButonu.isVisible = false end
+        if tekrarYazi then tekrarYazi.isVisible = false end
+        if sifirlaButonu then sifirlaButonu.isVisible = false end
+        if sifirlaYazi then sifirlaYazi.isVisible = false end
+    end
+
+    local function seviyeButonunuGoster(kod, y, renk, yaziBoyutu)
+        local dugme = display.newRoundedRect(seviyePaneli, display.contentCenterX, y,
+            display.contentWidth - 58, 48, 9)
+        dugme:setFillColor(renk[1], renk[2], renk[3])
+        dugme:setStrokeColor(1, 1, 1, 0.35)
+        dugme.strokeWidth = 1.5
+        local yazi = display.newText({
+            parent = seviyePaneli, text = dil.metin("quiz_" .. kod),
+            x = dugme.x, y = dugme.y, font = "Poppins-Bold", fontSize = yaziBoyutu or 15
+        })
+        yazi:setFillColor(1)
+        yazi.isHitTestable = false
+
+        local function dokun(event)
+            if event.phase == "began" then
+                display.getCurrentStage():setFocus(dugme)
+                dugme.isFocus = true
+                dugme:setFillColor(math.min(1, renk[1] + 0.08), math.min(1, renk[2] + 0.08),
+                    math.min(1, renk[3] + 0.08))
+            elseif dugme.isFocus and (event.phase == "ended" or event.phase == "cancelled") then
+                display.getCurrentStage():setFocus(nil)
+                dugme.isFocus = false
+                dugme:setFillColor(renk[1], renk[2], renk[3])
+                if event.phase == "ended" then
+                    seviye = kod
+                    seviyePaneli.isVisible = false
+                    oyunOgesi.isVisible = true
+                    soruSirasi, puan, cevaplandi, sonucKaydedildi = 1, 0, false, false
+                    yanlislar = {}
+                    sorular = quizVerileri.sorulariOlustur(seviye, 10)
+                    scene._sinaviCiz()
+                end
+            end
+            return true
+        end
+        dugme:addEventListener("touch", dokun)
+        return dugme
+    end
+
+    seviyeButonunuGoster("kolay", ust + 235, { 0.12, 0.52, 0.30 })
+    seviyeButonunuGoster("orta", ust + 300, { 0.05, 0.30, 0.55 })
+    seviyeButonunuGoster("zor", ust + 365, { 0.68, 0.18, 0.18 })
+
     local function sinaviBaslangicaDondur()
-        soruSirasi = 1
-        puan = 0
+        soruSirasi, puan, cevaplandi, sonucKaydedildi = 1, 0, false, false
         yanlislar = {}
-        sonucKaydedildi = false
-        cevaplandi = false
-        sorular = sinavSorulariOlustur()
+        sorular = quizVerileri.sorulariOlustur(seviye, 10)
         soruBasligi.text = dil.metin("quiz_soru")
         soruBasligi.y = ust + 104
         ilerleme.y = ust + 89
         geriBildirim.text = ""
         geriBildirim.x = -1000
         secenekleriKaldir()
-        if sonrakiButon then sonrakiButon.isVisible = false end
-        if sonrakiYazi then sonrakiYazi.isVisible = false end
-        if scene._sinaviCiz then
-            scene._sinaviCiz()
-        end
+        oyunDugmeleriniGizle()
+        scene._sinaviCiz()
     end
 
     local function sonucEkraniniGoster()
@@ -212,18 +211,12 @@ function scene:create()
         soruBasligi.y = ust + 153
         ilerleme.text = string.format(dil.metin("quiz_puan"), puan, #sorular)
         ilerleme.y = ust + 185
-        geriBildirim.text = dil.metin("quiz_tekrar")
         geriBildirim.x = display.contentCenterX
         geriBildirim.y = ust + 245
-        geriBildirim:setFillColor(0.05, 0.30, 0.55)
-        geriBildirim:addEventListener("touch", function(event)
-            if event.phase == "ended" then
-                sinaviBaslangicaDondur()
-            end
-            return true
-        end)
-        if sonrakiButon then sonrakiButon.isVisible = false end
-        if sonrakiYazi then sonrakiYazi.isVisible = false end
+        tekrarButonu.isVisible = true
+        tekrarYazi.isVisible = true
+        sifirlaButonu.isVisible = true
+        sifirlaYazi.isVisible = true
         secenekleriKaldir()
     end
 
@@ -234,10 +227,9 @@ function scene:create()
             sonucEkraniniGoster()
             return
         end
-        if sonrakiButon then sonrakiButon.isVisible = false end
-        if sonrakiYazi then sonrakiYazi.isVisible = false end
         if geriBildirim then geriBildirim.text = "" end
         secenekleriKaldir()
+        oyunDugmeleriniGizle()
         scene._sinaviCiz()
     end
 
@@ -256,14 +248,12 @@ function scene:create()
             geriBildirim.text = dil.metin("quiz_yanlis") .. " " .. soru.dogru
             geriBildirim:setFillColor(0.65, 0.12, 0.12)
             for _, diger in ipairs(secenekGruplari) do
-                if diger._dogru then
-                    diger._zemin:setFillColor(0.18, 0.58, 0.30)
-                end
+                if diger._dogru then diger._zemin:setFillColor(0.18, 0.58, 0.30) end
             end
         end
         ilerleme.text = string.format(dil.metin("quiz_puan_kisa"), soruSirasi, #sorular, puan)
-        if sonrakiButon then sonrakiButon.isVisible = true end
-        if sonrakiYazi then sonrakiYazi.isVisible = true end
+        sonrakiButon.isVisible = true
+        sonrakiYazi.isVisible = true
     end
 
     function scene._sinaviCiz()
@@ -274,15 +264,21 @@ function scene:create()
         end
 
         if levhaGorseli then levhaGorseli:removeSelf() end
-        -- Levha görselindeki küçük teknik açıklama metni cevabı açık
-        -- edebiliyor. Alt kısmı kırparak yalnızca işaretin kendisini göster.
-        levhaGorseli = display.newContainer(120, 84)
-        sceneGroup:insert(levhaGorseli)
+        local frame = soru.kareBilgisi
+        local maxWidth, maxHeight = math.min(display.contentWidth - 48, 190), 122
+        local oran = frame.width / frame.height
+        local gorselW, gorselH = maxWidth, maxWidth / oran
+        if gorselH > maxHeight + 35 then
+            gorselH = maxHeight + 35
+            gorselW = gorselH * oran
+        end
+        levhaGorseli = display.newContainer(math.max(120, gorselW + 12), maxHeight)
+        oyunOgesi:insert(levhaGorseli)
         levhaGorseli.x = display.contentCenterX
         levhaGorseli.y = ust + 178
-        local levhaResmi = display.newImageRect(levhaGorseli, imageSheet, soru.kare, 120, 108)
+        local levhaResmi = display.newImageRect(levhaGorseli, soru.imageSheet, soru.kare, gorselW, gorselH)
         levhaResmi.x = 0
-        levhaResmi.y = 12
+        levhaResmi.y = 8
 
         soruBasligi.text = dil.metin("quiz_soru")
         soruBasligi.y = ust + 104
@@ -291,41 +287,25 @@ function scene:create()
         geriBildirim.text = ""
         geriBildirim.x = -1000
 
-        -- Doğru cevap her zaman seçeneklerin içinde bulunmalı. Önce mevcut
-        -- sorunun cevabını ekle, kalan üç seçeneği havuzdan rastgele seç.
         local adaylar = { soru.dogru }
-        local digerCevaplar = {}
-        for index, aday in ipairs(sorular) do
-            if index ~= soruSirasi and aday.dogru ~= soru.dogru then
-                digerCevaplar[#digerCevaplar + 1] = aday.dogru
-            end
-        end
-        karistir(digerCevaplar)
-        for i = 1, math.min(3, #digerCevaplar) do
-            adaylar[#adaylar + 1] = digerCevaplar[i]
-        end
+        local digerCevaplar = quizVerileri.distraktorler(soru, 3)
+        for _, cevap in ipairs(digerCevaplar) do adaylar[#adaylar + 1] = cevap end
         karistir(adaylar)
 
         local baslangicY = ust + 258
         for i, cevapMetni in ipairs(adaylar) do
             local secenek = display.newGroup()
-            sceneGroup:insert(secenek)
-            local zeminSecenek = display.newRoundedRect(secenek, display.contentCenterX,
-                baslangicY + ((i - 1) * 47), display.contentWidth - 44, 39, 8)
+            oyunOgesi:insert(secenek)
+            local y = baslangicY + ((i - 1) * 47)
+            local zeminSecenek = display.newRoundedRect(secenek, display.contentCenterX, y,
+                display.contentWidth - 44, 39, 8)
             zeminSecenek:setFillColor(0.05, 0.30, 0.55)
             local etiket = display.newText({
-                parent = secenek,
-                text = cevapMetni,
-                x = display.contentCenterX,
-                y = baslangicY + ((i - 1) * 47),
-                width = display.contentWidth - 66,
-                font = "Poppins-Bold",
-                fontSize = 13,
-                align = "center"
+                parent = secenek, text = cevapMetni, x = display.contentCenterX, y = y,
+                width = display.contentWidth - 66, font = "Poppins-Bold", fontSize = 13, align = "center"
             })
             etiket:setFillColor(1)
-            secenek._zemin = zeminSecenek
-            secenek._etiket = etiket
+            secenek._zemin, secenek._etiket = zeminSecenek, etiket
             secenek._dogru = cevapMetni == soru.dogru
             local function secenekDokun(event)
                 if event.phase == "began" then
@@ -335,11 +315,7 @@ function scene:create()
                 elseif secenek.isFocus and (event.phase == "ended" or event.phase == "cancelled") then
                     display.getCurrentStage():setFocus(nil)
                     secenek.isFocus = false
-                    if event.phase == "ended" then
-                        cevapla(secenek, soru)
-                    elseif not cevaplandi then
-                        zeminSecenek:setFillColor(0.05, 0.30, 0.55)
-                    end
+                    if event.phase == "ended" then cevapla(secenek, soru) end
                 end
                 return true
             end
@@ -351,34 +327,18 @@ function scene:create()
     end
 
     geriBildirim = display.newText({
-        parent = sceneGroup,
-        text = "",
-        x = -1000,
-        y = ust + 444,
-        width = display.contentWidth - 30,
-        font = "Poppins-Bold",
-        fontSize = 12,
-        align = "center"
+        parent = oyunOgesi, text = "", x = -1000, y = ust + 444,
+        width = display.contentWidth - 30, font = "Poppins-Bold", fontSize = 12, align = "center"
     })
 
-    sonrakiButon = display.newRoundedRect(sceneGroup, display.contentCenterX, ust + 466,
-        150, 34, 7)
+    sonrakiButon = display.newRoundedRect(oyunOgesi, display.contentCenterX, ust + 466, 150, 34, 7)
     sonrakiButon:setFillColor(0.05, 0.30, 0.55)
-    sonrakiYazi = display.newText({
-        parent = sceneGroup,
-        text = dil.metin("quiz_sonraki"),
-        x = sonrakiButon.x,
-        y = sonrakiButon.y,
-        font = "Poppins-Bold",
-        fontSize = 13
-    })
+    sonrakiYazi = display.newText({ parent = oyunOgesi, text = dil.metin("quiz_sonraki"),
+        x = sonrakiButon.x, y = sonrakiButon.y, font = "Poppins-Bold", fontSize = 13 })
     sonrakiYazi:setFillColor(1)
-    sonrakiButon.isVisible = false
-    sonrakiYazi.isVisible = false
     local function sonrakiDokun(event)
         if event.phase == "ended" and sonrakiButon.isVisible then
-            sonrakiButon.isVisible = false
-            sonrakiYazi.isVisible = false
+            oyunDugmeleriniGizle()
             sonrakiSoruyuGoster()
         end
         return true
@@ -386,57 +346,45 @@ function scene:create()
     sonrakiButon:addEventListener("touch", sonrakiDokun)
     sonrakiYazi:addEventListener("touch", sonrakiDokun)
 
-    sifirlaButonu = display.newRoundedRect(sceneGroup, display.contentCenterX, ust + 515,
-        190, 30, 7)
-    sifirlaButonu:setFillColor(0.38, 0.42, 0.48)
-    sifirlaYazi = display.newText({
-        parent = sceneGroup,
-        text = "İlerlemeyi sıfırla",
-        x = sifirlaButonu.x,
-        y = sifirlaButonu.y,
-        font = "Poppins-Bold",
-        fontSize = 10
-    })
-    sifirlaYazi:setFillColor(1)
+    tekrarButonu = display.newRoundedRect(oyunOgesi, display.contentCenterX, ust + 245, 190, 34, 7)
+    tekrarButonu:setFillColor(0.05, 0.30, 0.55)
+    tekrarYazi = display.newText({ parent = oyunOgesi, text = dil.metin("quiz_tekrar"),
+        x = tekrarButonu.x, y = tekrarButonu.y, font = "Poppins-Bold", fontSize = 12 })
+    tekrarYazi:setFillColor(1)
+    local function tekrarDokun(event)
+        if event.phase == "ended" and tekrarButonu.isVisible then sinaviBaslangicaDondur() end
+        return true
+    end
+    tekrarButonu:addEventListener("touch", tekrarDokun)
+    tekrarYazi:addEventListener("touch", tekrarDokun)
 
+    sifirlaButonu = display.newRoundedRect(oyunOgesi, display.contentCenterX, ust + 292, 190, 30, 7)
+    sifirlaButonu:setFillColor(0.38, 0.42, 0.48)
+    sifirlaYazi = display.newText({ parent = oyunOgesi, text = dil.metin("quiz_sifirla"),
+        x = sifirlaButonu.x, y = sifirlaButonu.y, font = "Poppins-Bold", fontSize = 10 })
+    sifirlaYazi:setFillColor(1)
     local function ilerlemeyiSifirla()
         native.showAlert(
-            "İlerlemeyi sıfırla",
-            "Kayıtlı en iyi skor, tamamlanan sınav sayısı ve yanlış cevaplar silinecek. Bu işlem yalnızca bu cihazdaki yerel veriyi etkiler.",
-            { "İptal", "Sıfırla" },
+            dil.metin("quiz_sifirla"), dil.metin("quiz_sifirla_aciklama"),
+            { dil.metin("quiz_iptal"), dil.metin("quiz_onayla") },
             function(event)
-                if event.action ~= "clicked" or event.index ~= 2 then
-                    return
-                end
-
+                if event.action ~= "clicked" or event.index ~= 2 then return end
                 if not ogrenme.sifirla() then
-                    native.showAlert(
-                        "Sıfırlama başarısız",
-                        "Yerel sınav kaydı silinemedi. Lütfen tekrar deneyin.",
-                        { "Tamam" }
-                    )
+                    native.showAlert(dil.metin("quiz_sifirla"), dil.metin("quiz_sifirla_hata"), { "OK" })
                     return
                 end
-
                 sinaviBaslangicaDondur()
             end
         )
     end
-
     local function sifirlaDokun(event)
-        if event.phase == "ended" then
-            ilerlemeyiSifirla()
-        end
+        if event.phase == "ended" and sifirlaButonu.isVisible then ilerlemeyiSifirla() end
         return true
     end
     sifirlaButonu:addEventListener("touch", sifirlaDokun)
     sifirlaYazi:addEventListener("touch", sifirlaDokun)
 
-    -- Ekran ilk açıldığında ve her dil seçiminden sonra aynı çizim yolu kullanılır.
-    math.randomseed(os.time() + math.floor(os.clock() * 1000))
-    sorular = sinavSorulariOlustur()
-    kayitMetniniGuncelle()
-    scene._sinaviCiz()
+    oyunDugmeleriniGizle()
 end
 
 function scene:show(event)
@@ -446,9 +394,7 @@ function scene:show(event)
 end
 
 function scene:hide(event)
-    if event.phase == "did" then
-        composer.removeScene("quiz")
-    end
+    if event.phase == "did" then composer.removeScene("quiz") end
 end
 
 scene:addEventListener("create", scene)

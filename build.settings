@@ -45,9 +45,9 @@ settings =
 		plist =
 		{
 			-- App Store için gösterilen sürüm ve her yüklemede artacak derleme numarası.
-			CFBundleShortVersionString = "1.0.2",
+			CFBundleShortVersionString = "1.0.3",
 			-- Öğrenme ilerlemesi ve sınav geçmişi değişikliği için Build 13.
-			CFBundleVersion = "13",
+			CFBundleVersion = "14",
 			-- App Store Connect iOS 15 ve üzerini gerektiriyor.
 			MinimumOSVersion = "15.0",
 			-- Solar2D 3731'in otomatik yer tutucularını gerçek uygulama davranışıyla
