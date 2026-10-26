@@ -10,29 +10,29 @@ local GIZLILIK_URL = "https://ttaskesen.github.io/Trafik-Levhalar/privacy/"
 local politika = [[
 GİZLİLİK POLİTİKASI
 
-Son güncelleme: 26 Ağustos 2026
+Son güncelleme: 26 Ekim 2026
 
-Bu politika, Trafik Levhaları uygulamasının kullanıcı verilerini nasıl işlediğini açıklar. Uygulamanın geliştiricisi Turgut Taşkesen'dir. Gizlilik soruları için turguttaskesen@gmail.com adresinden iletişime geçebilirsiniz.
+Bu politika, Trafik Levhaları uygulamasının kullanıcı verilerini nasıl işlediğini açıklar. Geliştirici hesabındaki ad Turgut Taskesen, geliştirici iletişimindeki ad Turgut Taşkesen'dir. Gizlilik soruları için turguttaskesen@gmail.com adresinden iletişime geçebilirsiniz.
 
-TOPLANAN VERİLER
+UYGULAMA İÇİNDE KULLANILAN VE CİHAZDA SAKLANAN VERİLER
 
-Bu release; hesap, ad, e-posta, konum, kişi listesi, kamera, mikrofon, fotoğraf, reklam kimliği veya kullanım analitiği toplamaz. Kullanıcı hikâyesi yazma ve Supabase bağlantısı release paketine dahil değildir.
+Uygulama, sınav ilerlemesini (tamamlanan sınav sayısı, en iyi ve son puan, soru sayısı ve yanlış cevap kayıtları) ve seçilen arayüz dilini işlevleri sunmak için yalnızca cihazda saklar. Bu kayıtlar uygulama tarafından bir sunucuya gönderilmez. Uygulama hesabı, ad, e-posta, telefon, konum, kişi listesi, kamera, mikrofon, fotoğraf, reklam kimliği veya kullanım analitiği istemez. Kullanıcı hikâyesi gönderme ve Supabase bağlantısı bu Android yayın paketinden çıkarılmıştır.
 
 VERİLERİN KULLANIMI VE PAYLAŞIMI
 
-Uygulama trafik levhası içeriklerini ve statik hikâye okuyucuyu çevrimdışı sunar. Reklam göstermez, üçüncü taraflara kullanıcı verisi aktarmaz ve izleme amacıyla SDK kullanmaz.
+Yerel sınav kaydı sınav sonucunu ve yanlış cevapları göstermek; dil tercihi seçilen dili sonraki açılışta korumak için kullanılır. Bu sürüm reklam göstermez, analiz/izleme amacıyla veri aktarmaz ve bu kayıtları üçüncü taraflarla paylaşmaz.
 
 YEREL KAYITLAR
 
-Dil tercihi gibi sınırlı teknik tercihler uygulamanın cihazdaki özel alanında saklanabilir. Bu release kullanıcı hikâyesi, kullanıcı hesabı veya çevrimiçi kullanıcı içeriği kaydetmez.
+Sınav kayıtları ve dil tercihi uygulamanın cihazdaki özel alanında tutulur. İlk açılışta kullanıcının politika bağlantısını açıp devam etmeyi seçtiği bilgisi de yalnızca bu cihazdaki uygulama tercihlerinde saklanır. Bu seçim, kişisel veri işleme izni değildir. Uygulama içindeki “İlerlemeyi sıfırla” seçeneği sınav kayıtlarını siler. Uygulamayı kaldırmak cihazdaki uygulama kayıtlarını kaldırır. Bu sürüm kullanıcı hesabı veya çevrimiçi kullanıcı içeriği oluşturmaz.
 
-SAKLAMA VE SİLME
+SAKLAMA, ERİŞİM VE SİLME
 
-Uygulama hesap oluşturmaz ve kişisel veri işlemez. Gizlilikle ilgili sorularınız için turguttaskesen@gmail.com adresine yazabilirsiniz.
+Yerel kayıtlar kullanıcı uygulama içi sıfırlama seçeneğini kullanana veya uygulamayı kaldırana kadar cihazda kalır. Kullanıcı ilerleme verisini uygulamadaki sıfırlama seçeneğiyle silebilir; dil tercihi ve politika bağlantısını açma kaydı cihaz ayarlarından uygulama verileri temizlenerek veya uygulama kaldırılarak silinebilir. Erişim, kopya veya gizlilikle ilgili talepler için geliştiriciyle turguttaskesen@gmail.com adresinden iletişime geçebilirsiniz. Geliştirici sunucusunda bu yerel kayıtlara ait bir kopya bulunmaz.
 
 GÜVENLİK
 
-Bu release'te kişisel veri aktarımı yoktur. Gelecekte kullanıcı hikâyesi veya çevrimiçi bir özellik yayınlanırsa, bu politika ve Google Play Data Safety beyanı yayın öncesinde güncellenir.
+Yerel kayıtlar uygulamanın özel alanında tutulur. Bu sürümde söz konusu kayıtlar ağ üzerinden aktarılmaz. Gelecekte çevrimiçi özellik eklenirse politika ve mağaza gizlilik beyanları yayın öncesinde güncellenir.
 
 DEĞİŞİKLİKLER
 

@@ -125,7 +125,12 @@ local function widgetleriGoster( widgetTemaNumarasi )
 	-- Start at giris (karşılama ekranı)
 	tabBar.isVisible = false
 	splash.baslangicGoster(function()
-		sahneDegis.gotoScene("giris", "fade", 500)
+		local gizlilikOnayi = require("gizlilik_onay")
+		if gizlilikOnayi.gerekli() then
+			sahneDegis.gotoScene("gizlilik_onay", "fade", 350)
+		else
+			sahneDegis.gotoScene("giris", "fade", 500)
+		end
 	end)
 end
 
